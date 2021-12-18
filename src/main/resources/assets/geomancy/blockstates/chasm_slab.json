@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "geomancy:block/chasm_slab"
+    },
+    "type=double": {
+      "model": "geomancy:block/chasm_planks"
+    },
+    "type=top": {
+      "model": "geomancy:block/chasm_slab_top"
+    }
+  }
+}

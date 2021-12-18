@@ -1,0 +1,374 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://maven.parchmentmc.org' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+sourceSets {
+  
+    main {
+        resources {
+            include '**/**'
+            //Add the generated main module resources
+            srcDirs += 'src/datagen/generated/gemmod'
+            //But exclude the cache of the generated data from what gets built
+            exclude '.cache'
+        }
+
+    }
+    additions { setupSourceSet(additions, 'additions') }
+
+    test {
+        //The test module has no resources
+        resources.srcDirs = []
+        compileClasspath += main.output + additions.output
+        runtimeClasspath += main.output + additions.output
+    }
+    //Data gen modules for the different modules
+    datagenmain { setupDataGenSourceSet(datagenmain, null, 'main') }
+    datagenadditions { setupDataGenSourceSet(datagenadditions, additions, 'additions') }
+}
+
+//This method sets up an additional sourceSet in src/$name and adds a reference to the corresponding
+// data gen's resource directory excluding the cache. It also adds the api and main mekanism module
+// to the dependencies of the source set we are setting up
+def setupSourceSet(SourceSet sourceSet, String name) {
+    sourceSet.resources {
+        //Add the generated module resources
+        srcDirs += 'src/datagen/generated/gemmod' + name
+        //But exclude the cache of the generated data from what gets built
+        exclude '.cache'
+    }
+    sourceSet.compileClasspath += sourceSets.main.output
+}
+
+//This method sets up a source set in datagen/$name and adds the api, main mekanism module and an optional
+// base module to the dependencies of the data generators source set that we are setting up
+def setupDataGenSourceSet(SourceSet datagenSourceSet, SourceSet baseSourceSet, String name) {
+    datagenSourceSet.java.srcDirs = ['src/datagen/' + name + '/java']
+    datagenSourceSet.compileClasspath += project.sourceSets.main.output
+    if (baseSourceSet == null) {
+        //Base source set has resources that we put files that our annotation processor generates for consumption by our datagen
+        datagenSourceSet.resources.srcDirs = ['src/datagen/' + name + '/resources']
+    } else {
+        //Data gen sourceSets outside of the main one have no resources
+        datagenSourceSet.resources.srcDirs = []
+        //Only case it is null is when we are doing datagenmain so other cases also add access to the stuff
+        // in datagenmain so we can add helper classes
+        datagenSourceSet.compileClasspath += project.sourceSets.datagenmain.output
+        datagenSourceSet.compileClasspath += baseSourceSet.output
+    }
+}
+
+configurations {
+    //Make sure all our sub source set stuff extends the proper base methods so that
+    // they can see all the dependencies we have in dependencies including forge
+    extendConfigurations(implementation, datagenmainImplementation)
+    extendConfigurations(compileOnly, datagenmainCompileOnly)
+    extendConfigurations(runtimeOnly, datagenmainRuntimeOnly)
+    //Extend configurations for alternate modules. First by making the implementation, compileOnly, runtimeOnly equivalents
+    // for those modules extend the main ones, and then by making the corresponding ones for datagen for the module extend those.
+    // This way if we add a dependency/integration in a submodule instead of the main module of Mekanism, the datagen of the corresponding
+    // module will be able to properly access the dependency
+    for (def name : ["additions"]) {
+        maybeCreate("datagen" + name + "Implementation").extendsFrom(maybeCreate(name + "Implementation").extendsFrom(implementation))
+        maybeCreate("datagen" + name + "CompileOnly").extendsFrom(maybeCreate(name + "CompileOnly").extendsFrom(compileOnly))
+        maybeCreate("datagen" + name + "RuntimeOnly").extendsFrom(maybeCreate(name + "RuntimeOnly").extendsFrom(runtimeOnly))
+    }
+}
+
+static void extendConfigurations(Configuration base, Configuration... configurations) {
+    for (def configuration : configurations) {
+        configuration.extendsFrom(base)
+    }
+}
+
+ext {
+    //versionProperties = ["version" : mod_version, "mc_version": minecraft_version_range, "forge_version": forge_version_range,
+    //                     "loader_version": loader_version_range, "jei_version": jei_version_range]
+    jsonPatterns = ["**///*.json", "**/*.mcmeta"]
+}
+
+def mainReplaceResources = createReplaceResourcesTask("main", sourceSets.main)
+def additionsReplaceResources = createReplaceResourcesTask("additions", sourceSets.additions)
+
+def createReplaceResourcesTask(String output, SourceSet sourceSet) {
+    return tasks.register("${output}ReplaceResources", Copy) {
+        it.outputs.upToDateWhen { false }
+        def modsToml = copySpec {
+            from(sourceSet.resources) {
+                include "META-INF/mods.toml"
+                
+            }
+        }
+        //Copy it into the build dir
+        it.with modsToml
+        it.into "$buildDir/resources/${output}/"
+        //If IntelliJ's output dir exists, copy it there as well
+        if (new File("$rootDir/out/production/Geomancy.${output}/").exists()) {
+            //Note: This copies it into the correct place, but it still doesn't have the IntelliJ
+            // run work by default because of incorrect MOD_CLASSES getting generated.
+            // probably related to us setting inheritOutputDirs
+            copy {
+                with modsToml
+                into "$rootDir/out/production/Geomancy.${output}/"
+            }
+        }
+        //If Eclipse's output dir exists, copy it there as well
+        if (new File("$rootDir/bin/${output}/").exists()) {
+            copy {
+                with modsToml
+                into "$rootDir/bin/${output}/"
+            }
+        }
+    }
+}
+
+
+version = "${mc_version}-${mod_version}"
+group = 'geomancy' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'Geomancy'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+minecraft {
+    // The mappings can be changed at any time, and must be in the following format.
+    // Channel:   Version:
+    // snapshot   YYYYMMDD   Snapshot are built nightly.
+    // stable     #          Stables are built at the discretion of the MCP team.
+    // official   MCVersion  Official field/method names from Mojang mapping files
+    //
+    // You must be aware of the Mojang license when using the 'official' mappings.
+    // See more information here: https://github.com/MinecraftForge/MCPConfig/blob/master/Mojang.md
+    //
+    // Use non-default mappings at your own risk. they may not always work.
+    // Simply re-run your setup task after changing the mappings to update your workspace.
+   	mappings channel: 'parchment', version: '2021.12.13-nightly-SNAPSHOT-1.18.1'
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    
+    //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
+  runs {
+        client {
+            workingDirectory project.file('../run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+              mods {
+                gemmod.sources((SourceSet[]) sourceSets.main)
+                gemmodadditions.source((SourceSet) sourceSets.additions)
+            }
+        }
+
+        server {
+            workingDirectory project.file('../serverrun')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                gemmod.sources((SourceSet[]) sourceSets.main)
+                gemmodadditions.source((SourceSet) sourceSets.additions)
+            }
+        }
+
+        data {
+            workingDirectory project.file('../run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+             args '--all', '--output', file('src/datagen/generated/'),
+                    '--mod', 'gemmod',
+                    '--existing', file('src/main/resources/'),
+                    '--mod', 'gemmodadditions',
+                    '--existing', file('src/additions/resources/')
+
+		
+
+            mods {
+                gemmod.sources((SourceSet[]) [sourceSets.main, sourceSets.datagenmain])
+                gemmodadditions.sources((SourceSet[]) [sourceSets.additions, sourceSets.datagenadditions])
+            }
+        }
+    }
+}
+
+repositories {
+	maven {
+		url "https://www.cursemaven.com"
+	}
+	maven {
+		url "https://dvs1.progwml6.com/files/maven/"
+	}
+	maven {
+		url "https://modmaven.k-4u.nl"
+	}
+}
+
+dependencies {
+    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
+    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
+    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.5'
+
+   	compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+   	runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+
+}
+
+if (project.hasProperty('UPDATE_MAPPINGS')) {
+    //If the project has the update mappings property, configure it to be able to target all our extra sourceSets as well
+    // so that whenever we need to update mappings it is quick and easy to do so.
+    // Note: This needs to be below the dependencies and minecraft blocks so that it can properly read the mappings value
+    // and also read and find the minecraft dep
+    def extraSourceSets = [sourceSets.additions,
+                           sourceSets.datagenmain, sourceSets.datagenadditions]
+    Set<File> allExtraDirs = new HashSet<>()
+    for (def sourceSet : extraSourceSets) {
+        allExtraDirs.addAll(sourceSet.java.srcDirs)
+    }
+    extractRangeMap {
+        sources.from(allExtraDirs)
+    }
+    applyRangeMap {
+        sources.from(allExtraDirs)
+    }
+    allExtraDirs.each { extractMappedNew.addTarget it }
+}
+
+processResources { setupProcessResources(processResources, mainReplaceResources) }
+processAdditionsResources { setupProcessResources(processAdditionsResources, additionsReplaceResources) }
+processDatagenmainResources { dependsOn(compileJava) }
+
+def setupProcessResources(ProcessResources process, TaskProvider<Task> replaceResources) {
+    process.duplicatesStrategy(DuplicatesStrategy.FAIL)
+    process.exclude('META-INF/mods.toml')
+    process.from("${projectDir}") { include 'logo.png' }
+    process.configure { finalizedBy(replaceResources) }
+    process.doLast {
+        fileTree(dir: process.getOutputs().getFiles().getAsPath(), includes: jsonPatterns).each {
+            File file -> file.setText(JsonOutput.toJson(new JsonSlurper().parse(file)))
+        }
+    }
+}
+
+classes.configure { dependsOn(mainReplaceResources) }
+additionsClasses.configure { dependsOn(additionsReplaceResources) }
+
+
+def getManifestAttributes(String title) {
+    return [
+            "Specification-Title"     : title,
+            "Specification-Vendor"    : "Geomancy",
+            "Specification-Version"   : "${project.mod_version}",
+            "Implementation-Title"    : title,
+            "Implementation-Version"  : "${project.mod_version}",
+            "Implementation-Vendor"   : "Geomancy",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    ]
+}
+
+// Example for how to get properties into the manifest for reading by the runtime..
+jar {
+    duplicatesStrategy(DuplicatesStrategy.FAIL)
+    from([sourceSets.main.output])
+    manifest.attributes(getManifestAttributes("Geomancy"))
+    afterEvaluate { finalizedBy reobfJar }
+}
+
+task sourcesJar(type: Jar, dependsOn: [classes, additionsClasses]) {
+    duplicatesStrategy(DuplicatesStrategy.FAIL)
+    archiveClassifier.set("sources")
+    from(sourceSets.main.allJava, sourceSets.additions.allJava)
+    manifest.attributes(getManifestAttributes("Geomancy"))
+}
+
+task additionsJar(type: Jar) {
+    duplicatesStrategy(DuplicatesStrategy.FAIL)
+    archiveFileName.set("GeomancyAdditions-${project.version}.jar")
+    archiveClassifier.set("additions")
+    from sourceSets.additions.output
+    manifest.attributes(getManifestAttributes("GeomancyAdditions"))
+    afterEvaluate { finalizedBy reobfAdditionsJar }
+}
+
+/*task allJar(type: Jar, dependsOn: [classes, additionsClasses]) {
+    mustRunAfter(clean)
+    afterEvaluate { finalizedBy reobfAllJar }
+    duplicatesStrategy(DuplicatesStrategy.FAIL)
+    archiveClassifier.set("all")
+    manifest.attributes(getManifestAttributes("GeomancyAll"))
+    //Start by generating the merged data
+    MergeJars.merge(project, sourceSets.main, sourceSets.additions)
+    //Then copy all the files except for ones we are going to include from the merged
+    List<String> baseExcludeData = MergeJars.getGeneralPathsToExclude(project)
+    Closure excludeFromMain = MergeJars.createExcludeClosure(baseExcludeData)
+    from(sourceSets.main.output, excludeFromMain)
+    Closure excludeFromAll = MergeJars.createExcludeClosure(baseExcludeData, 'logo.png', 'pack.mcmeta')
+    from(sourceSets.additions.output, excludeFromAll)
+    //And finally copy over the generated files
+    MergeJars.getGeneratedClosures(versionProperties).each { closure -> from("$buildDir/generated", closure) }
+}*/
+
+
+tasks.withType(JavaCompile).configureEach({
+    it.options.encoding = 'UTF-8'
+})
+
+compileJava {
+    options.annotationProcessorPath = configurations.annotationProcessor
+    options.annotationProcessorGeneratedSourcesDirectory = layout.buildDirectory.file("src/datagen/main/resources/").map(r -> r.asFile)
+}
+
+artifacts {
+    archives jar
+    archives additionsJar
+    archives sourcesJar
+}
+
+reobf {
+    jar { classpath.from(sourceSets.main.compileClasspath) }
+    additionsJar { classpath.from(sourceSets.additions.compileClasspath) }
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}

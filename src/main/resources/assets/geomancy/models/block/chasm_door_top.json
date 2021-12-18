@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "top": "geomancy:blocks/chasm_door_top",
+    "bottom": "geomancy:blocks/chasm_door_bottom"
+  }
+}

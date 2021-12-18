@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "geomancy:blocks/chasm_planks",
+    "top": "geomancy:blocks/chasm_planks",
+    "side": "geomancy:blocks/chasm_planks"
+  }
+}

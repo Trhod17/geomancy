@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="${loader_version}"
+issueTrackerURL="https://github.com/codersdownunder"
+license="LGPL V3"
+
+[[mods]]
+    modId="geomancyadditions"
+    version="${file.jarVersion}"
+    displayName="Geomancy: Additions"
+    displayURL=""
+    authors="Trhod177"
+    credits=""
+    logoFile="logo.png"
+    description='''Geomancy Additions'''
+
+[[dependencies.gemmodadditions]]
+    modId="geomancy"
+    mandatory=true
+    versionRange="[${version}]"
+    side="BOTH"

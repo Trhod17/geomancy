@@ -1,0 +1,165 @@
+package net.codersdownunder.gemmod.blocks.dipper;
+
+import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.ContainerInit;
+import net.codersdownunder.gemmod.utils.GeomancyTags;
+import net.codersdownunder.gemmod.utils.slots.GenericSlot;
+import net.codersdownunder.gemmod.utils.slots.OutputSlot;
+import net.codersdownunder.gemmod.utils.slots.SlotRestricted;
+import net.minecraft.core.BlockMath;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
+
+public class DipperContainer extends AbstractContainerMenu {
+
+	private BlockEntity blockEntity;
+	private Player playerEntity;
+	private IItemHandler playerInventory;
+	
+	public DipperBlockEntity tile;
+	
+	public int counter;
+	
+	public static final int PLAYER_INVENTORY_XPOS = -5;
+	public static final int PLAYER_INVENTORY_YPOS = 113;
+
+	public DipperContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, DipperBlockEntity tile) {
+		super(ContainerInit.DIPPER_CONTAINER.get(), windowId);
+		blockEntity = world.getBlockEntity(pos);
+		this.playerEntity = player;
+		this.playerInventory = new InvWrapper(playerInventory);
+		this.tile = tile;
+		
+		
+		if (blockEntity != null) {
+			blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+				//center line
+				addSlot(new SlotRestricted(h, 0, 67, -9, GeomancyTags.Items.STRING.getValues()));
+				addSlot(new SlotRestricted(h, 1, 67, 9, GeomancyTags.Items.STRING.getValues()));
+				addSlot(new SlotRestricted(h, 2, 67, 27, GeomancyTags.Items.SEED_CRYSTAL.getValues()));
+				addSlot(new SlotRestricted(h, 3, 67, 45, GeomancyTags.Items.STRING.getValues()));
+				addSlot(new GenericSlot(h, 4, 67, 63));
+				addSlot(new GenericSlot(h, 5, 67, 81));
+				//center left
+				addSlot(new GenericSlot(h, 6, 49, 9));
+				addSlot(new GenericSlot(h, 7, 49, 27));
+				addSlot(new GenericSlot(h, 8, 49, 45));
+				//left
+				addSlot(new GenericSlot(h, 9, 31, 27));
+				addSlot(new GenericSlot(h, 10, 31, 45));
+				addSlot(new GenericSlot(h, 11, 31, 63));
+				//center right
+				addSlot(new GenericSlot(h, 12, 85, 27));
+				addSlot(new GenericSlot(h, 13, 85, 45));
+				addSlot(new GenericSlot(h, 14, 85, 9));
+				//right
+				addSlot(new GenericSlot(h, 15, 103, 27));
+				addSlot(new GenericSlot(h, 16, 103, 45));
+				addSlot(new GenericSlot(h, 17, 103, 63));
+				//concoctions
+				addSlot(new SlotRestricted(h, 18, -5, 27, GeomancyTags.Items.CONCOCTIONS_TIER_4.getValues()));
+				addSlot(new SlotRestricted(h, 19, -5, 45, GeomancyTags.Items.CONCOCTIONS_TIER_3.getValues()));
+				addSlot(new SlotRestricted(h, 20, -5, 63, GeomancyTags.Items.CONCOCTIONS_TIER_2.getValues()));
+				addSlot(new SlotRestricted(h, 21, -5, 81, GeomancyTags.Items.CONCOCTIONS_TIER_1.getValues()));
+				//output
+				addSlot(new OutputSlot(h, 22, 139, 27));
+			});
+		}
+		
+		layoutPlayerInventorySlots(PLAYER_INVENTORY_XPOS, PLAYER_INVENTORY_YPOS);
+	}
+	
+	public double fractionOfDippingTimeComplete() {
+	    if (tile.totalTime == 0) return 0;
+	    double fraction = tile.counter / (double)tile.totalTime;
+	    System.out.println(fraction);
+	    return Mth.clamp(fraction, 0.0, 1.0);
+	  }
+	
+	
+	
+	  @Override
+	    public ItemStack quickMoveStack(Player playerIn, int index) {
+	        ItemStack itemstack = ItemStack.EMPTY;
+	       
+	        if (index != 0) {
+	            
+	        	Slot slot = this.slots.get(index);
+           	 	ItemStack stack = slot.getItem();
+	        	
+	            for (int i = index; i < index; i++) {
+	            	 
+	            	 if (!this.moveItemStackTo(stack, 0, i, true)) {
+	            		 return ItemStack.EMPTY;
+	            	 }
+	            	 
+	            	 if (!this.moveItemStackTo(stack, i, 37, true)) {
+	            		 return ItemStack.EMPTY;
+	            	 }
+				}
+	            
+	            if (stack.isEmpty()) {
+	                slot.set(ItemStack.EMPTY);
+	            } else {
+	                slot.setChanged();
+	            }
+	            
+	            slot.onTake(playerIn, stack);
+	        }
+
+	        return itemstack;
+
+	    }
+
+
+
+	    private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
+	        for (int i = 0 ; i < amount ; i++) {
+	            addSlot(new SlotItemHandler(handler, index, x, y));
+	            x += dx;
+	            index++;
+	        }
+	        return index;
+	    }
+
+	    private int addSlotBox(IItemHandler handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
+	        for (int j = 0 ; j < verAmount ; j++) {
+	            index = addSlotRange(handler, index, x, y, horAmount, dx);
+	            y += dy;
+	        }
+	        return index;
+	    }
+
+	    private void layoutPlayerInventorySlots(int leftCol, int topRow) {
+	        // Player inventory
+	        addSlotBox(playerInventory, 9, leftCol, topRow, 9, 18, 3, 18);
+
+	        // Hotbar
+	        topRow += 58;
+	        addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
+	    }
+
+	    @Override
+	    public boolean stillValid(Player playerIn) {
+	        return stillValid(ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos()), playerEntity, BlockInit.DIPPER.get());
+	    }
+
+	    public DipperBlockEntity getTable()
+	    {
+	        return tile;
+	    }
+
+}

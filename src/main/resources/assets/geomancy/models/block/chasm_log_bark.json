@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "geomancy:blocks/chasm_log",
+    "side": "geomancy:blocks/chasm_log"
+  }
+}

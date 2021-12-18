@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "waterlogged=false": [
+      {
+      "model": "geomancy:block/infusion"
+      }
+    ],
+    "waterlogged=true": [
+    {
+    "model": "geomancy:block/infusion"
+    }
+    ]	
+  }
+}
