@@ -1,6 +1,7 @@
 package net.codersdownunder.gemmod.common;
 
 import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.client.GeomanyLanguageProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,13 +18,15 @@ public class GeomancyDataProvider {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
-        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        if (event.includeClient()) {
+        //ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         
+        if (event.includeClient()) {
+        	gen.addProvider(new GeomanyLanguageProvider(gen));
+        	//System.out.println("********* IT HITS THIS **********");
         }
         
-        if (event.includeServer()) {
-        	
+         if (event.includeServer()) {
+        	gen.addProvider(new GeomancyRecipeProvider(gen));
         }
     }
 }

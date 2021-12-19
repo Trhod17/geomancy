@@ -7,7 +7,7 @@ public class DippingRecipeType implements RecipeType<DippingRecipe> {
     
     @Override
     public String toString() {
-        return GemMod.MODID + ":infusing";
+        return GemMod.MODID + ":dipping";
     }
 
 }

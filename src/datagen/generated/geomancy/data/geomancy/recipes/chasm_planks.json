@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:chasm_log"
+    }
+  ],
+  "result": {
+    "item": "geomancy:chasm_planks",
+    "count": 4
+  }
+}

@@ -24,7 +24,7 @@ sourceSets {
         resources {
             include '**/**'
             //Add the generated main module resources
-            srcDirs += 'src/datagen/generated/gemmod'
+            srcDirs += 'src/datagen/generated/geomancy'
             //But exclude the cache of the generated data from what gets built
             exclude '.cache'
         }
@@ -197,8 +197,8 @@ minecraft {
         }
 
         data {
-            workingDirectory project.file('../run')
-
+            workingDirectory project.file('run')
+			
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
@@ -206,9 +206,9 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
              args '--all', '--output', file('src/datagen/generated/'),
-                    '--mod', 'gemmod',
+                    '--mod', 'geomancy',
                     '--existing', file('src/main/resources/'),
-                    '--mod', 'gemmodadditions',
+                    '--mod', 'geomancyadditions',
                     '--existing', file('src/additions/resources/')
 
 		

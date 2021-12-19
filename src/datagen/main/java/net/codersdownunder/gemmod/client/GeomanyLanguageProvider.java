@@ -10,13 +10,14 @@ public class GeomanyLanguageProvider extends LanguageProvider {
     
     public GeomanyLanguageProvider(DataGenerator gen) {
         super(gen, GemMod.MODID, "en_us");
+        System.out.println("********* IT HITS THIS **********");
     }
     
     private static String modid = GemMod.MODID;
     
     @Override
     protected void addTranslations() {
-        
+    	System.out.println("********* IT HITS THIS **********");
         addBlocks();
         addItems();
         addToolTips();
@@ -28,9 +29,9 @@ public class GeomanyLanguageProvider extends LanguageProvider {
     private void addScreenText() {
         add("screen." + modid + ".infusion_table.text", "Infusion Table");
         add("screen." + modid + ".infusion_table.button.text", "Infuse");
-        add(modid + ".liquid_amount", "Stored: %smB / %smB");
-        add(modid + ".liquid_percentage", "Filled: %s");
-        add(modid + ".tank_empty", "Empty");
+        add("screen." + modid + ".liquid_amount", "Stored: %smB / %smB");
+        add("screen." + modid + ".liquid_percentage", "Filled: %s");
+        add("screen." + modid + ".tank_empty", "Empty");
         
     }
     

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "geomancy",
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "geomancy:chasm_planks"
+    }
+  },
+  "result": {
+    "item": "geomancy:chasm_trapdoor",
+    "count": 3
+  }
+}

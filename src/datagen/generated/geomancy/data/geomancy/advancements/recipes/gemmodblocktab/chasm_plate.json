@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:chasm_plate"
+    ]
+  },
+  "criteria": {
+    "chasm_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "geomancy:chasm_planks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:chasm_plate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "chasm_planks",
+      "has_the_recipe"
+    ]
+  ]
+}
