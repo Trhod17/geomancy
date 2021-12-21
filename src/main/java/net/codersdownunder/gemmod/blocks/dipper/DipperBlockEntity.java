@@ -307,6 +307,12 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 				setChanged();
 				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2 | 4);
 			}
+			
+			@Override
+			public int getSlotLimit(int slot) {
+				
+				return 1;
+			}
 //
 //	            @Override
 //	            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {

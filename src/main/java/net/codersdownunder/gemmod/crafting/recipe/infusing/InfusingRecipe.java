@@ -148,7 +148,7 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
             }
             
             pBuffer.writeItemStack(pRecipe.output, false);
-            
+
         }
     }
 

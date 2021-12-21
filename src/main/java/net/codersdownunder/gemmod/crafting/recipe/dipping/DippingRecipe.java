@@ -118,7 +118,7 @@ public class DippingRecipe implements Recipe<SimpleContainer>
         public DippingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson)
         {
         	
-        	int fluidAmount = GsonHelper.getAsInt(pJson, "amount");
+            int fluidAmount = GsonHelper.getAsInt(pJson, "amount");
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "output"));
             //int infusingTime = JSONUtils.getAsInt(pJson, "time");
 
@@ -145,8 +145,6 @@ public class DippingRecipe implements Recipe<SimpleContainer>
             int fluidAmount = pBuffer.readInt();
             ItemStack output = pBuffer.readItem();
             
-       
-            
             return new DippingRecipe(pRecipeId, output, inputs, fluidAmount);
         }
 
@@ -159,7 +157,7 @@ public class DippingRecipe implements Recipe<SimpleContainer>
                 ing.toNetwork(pBuffer);
             }
             pBuffer.writeInt(pRecipe.fluidAmount);
-            pBuffer.writeItem(pRecipe.output);
+            pBuffer.writeItemStack(pRecipe.output, false);
         }
     }
 

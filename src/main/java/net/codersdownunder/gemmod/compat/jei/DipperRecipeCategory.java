@@ -32,7 +32,7 @@ public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
     
     public DipperRecipeCategory(IGuiHelper helper) {
         this.back = helper.drawableBuilder(GUI, 0, 0, 180, 130).trim(10, 0, 30, 10).build();
-        this.icon = helper.createDrawableIngredient(new ItemStack(BlockInit.DIPPER.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.DIPPER.get()));
         
     }
 

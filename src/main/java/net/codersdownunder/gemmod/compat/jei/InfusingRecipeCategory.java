@@ -24,7 +24,7 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
     
     public InfusingRecipeCategory(IGuiHelper helper) {
         this.back = helper.drawableBuilder(GUI, 0, 0, 190, 120).trim(3, 0, 20, 35).build();
-        this.icon = helper.createDrawableIngredient(new ItemStack(BlockInit.INFUSION_TABLE.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.INFUSION_TABLE.get()));
     }
 
     @Override
