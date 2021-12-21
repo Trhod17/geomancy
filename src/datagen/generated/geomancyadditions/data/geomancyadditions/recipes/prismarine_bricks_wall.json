@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "geomancyadditions",
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:prismarine_bricks"
+    }
+  },
+  "result": {
+    "item": "geomancyadditions:prismarine_bricks_wall",
+    "count": 6
+  }
+}

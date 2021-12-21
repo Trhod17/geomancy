@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
-import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,12 +37,14 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 
 	public static int capacity = 4000;
 
-	private static int processTime = 1000;
+	private static int processTime = 100;
 	public int counter;
 	public int totalTime;
+	@SuppressWarnings("unused")
 	private boolean valid;
 	private boolean crafting;
 	private ItemStack output;
+	private int fluidamount;
 
 	public DipperBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
 		super(TileEntityInit.DIPPER_BE.get(), pWorldPosition, pBlockState);
@@ -88,10 +89,15 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 	}
 
 	public void tickServer() {
+		
+		if (level.isClientSide) return;
 
 		if (counter > 0) {
 			counter--;
 			setChanged();
+			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2);
+			
+			
 		}
 		
 //		System.out.println(counter);
@@ -100,9 +106,12 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 
 			if (isRecipeValid() && crafting) {
 				if (itemHandler.getStackInSlot(22).isEmpty()) {
-					attemptCraft(output);
+					if (tank.getFluid().getAmount() > fluidamount) {
+					attemptCraft(output, fluidamount);
+					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2);
 					totalTime = 0;
 					crafting = false;
+					}
 				}
 			}
 			
@@ -195,10 +204,11 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 		
 		valid = true;
 		output = recipe.getResultItem();
+		fluidamount = recipe.getFluidAmount();
 		return true;
 	}
 
-	private void attemptCraft(ItemStack output) {
+	private void attemptCraft(ItemStack output, int fluidamount) {
 
 		itemHandler.extractItem(0, 1, false);
 		itemHandler.extractItem(1, 1, false);
@@ -219,6 +229,8 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 		itemHandler.extractItem(16, 1, false);
 		itemHandler.extractItem(17, 1, false);
 		itemHandler.insertItem(22, output, false);
+		tank.drain(1000, FluidAction.EXECUTE);
+		counter = 0;
 	}
 
 	@Override
@@ -235,11 +247,17 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 	@Override
 	public void handleUpdateTag(CompoundTag tag) {
 		this.load(tag);
+		
 	}
 
 	@Override
 	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-		this.load(pkt.getTag());
+		  load(pkt.getTag());
+	}
+	
+	@Override
+	public void onLoad() {
+		super.onLoad();
 	}
 
 	@Override
@@ -271,8 +289,6 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 		tank.writeToNBT(tag);
 		tag.putInt("fluid", tank.getCapacity());
 		tag.putInt("counter", counter);
-		
-
 	}
 
 	public FluidStack getFluid() {

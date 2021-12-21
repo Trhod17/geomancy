@@ -77,6 +77,10 @@ public class DippingRecipe implements Recipe<SimpleContainer>
         return recipeItems;
     }
     
+    public int getFluidAmount() {
+    	return fluidAmount;
+    }
+    
     @Override
     public ItemStack assemble(SimpleContainer pInv)
     {
@@ -113,14 +117,14 @@ public class DippingRecipe implements Recipe<SimpleContainer>
         @Override
         public DippingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson)
         {
+        	
+        	int fluidAmount = GsonHelper.getAsInt(pJson, "amount");
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "output"));
             //int infusingTime = JSONUtils.getAsInt(pJson, "time");
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(pJson, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(18, Ingredient.EMPTY);
 
-            int fluidAmount = GsonHelper.getAsInt(pJson, "amount");
-            
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
@@ -137,9 +141,11 @@ public class DippingRecipe implements Recipe<SimpleContainer>
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
-
-            ItemStack output = pBuffer.readItem();
+            
             int fluidAmount = pBuffer.readInt();
+            ItemStack output = pBuffer.readItem();
+            
+       
             
             return new DippingRecipe(pRecipeId, output, inputs, fluidAmount);
         }
@@ -147,12 +153,13 @@ public class DippingRecipe implements Recipe<SimpleContainer>
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, DippingRecipe pRecipe)
         {
+
             pBuffer.writeInt(pRecipe.getIngredients().size());
             for (Ingredient ing : pRecipe.getIngredients()) {
                 ing.toNetwork(pBuffer);
             }
-            pBuffer.writeItemStack(pRecipe.output, false);
             pBuffer.writeInt(pRecipe.fluidAmount);
+            pBuffer.writeItem(pRecipe.output);
         }
     }
 

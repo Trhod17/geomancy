@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "geomancyadditions",
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:purpur_pillar"
+    }
+  },
+  "result": {
+    "item": "geomancyadditions:purpur_pillar_wall",
+    "count": 6
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "geomancy:chasm_button",
+    "geomancy:chasm_door",
+    "geomancy:chasm_fence",
+    "geomancy:chasm_fence_gate",
+    "geomancy:chasm_log",
+    "geomancy:chasm_log_bark",
+    "geomancy:chasm_log_stripped",
+    "geomancy:chasm_log_stripped_bark",
+    "geomancy:chasm_planks",
+    "geomancy:chasm_plate",
+    "geomancy:chasm_sign",
+    "geomancy:chasm_sign_wall",
+    "geomancy:chasm_slab",
+    "geomancy:chasm_stairs",
+    "geomancy:chasm_trapdoor"
+  ]
+}

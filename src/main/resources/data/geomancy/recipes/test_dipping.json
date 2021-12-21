@@ -1,0 +1,63 @@
+{
+  "type": "geomancy:dipping_recipe",
+  "ingredients": [
+  	{
+      "item": "minecraft:string"
+  	},
+  	{
+      "item": "minecraft:string"
+  	},
+  	{
+      "item": "minecraft:quartz"
+  	},
+  	{
+      "item": "minecraft:string"
+  	},
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "geomancy:amethyst"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "geomancy:amethyst"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "geomancy:amethyst"
+    },
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "amount": 1000,
+  "output": {
+    "item": "geomancy:sapphire"
+  }
+}

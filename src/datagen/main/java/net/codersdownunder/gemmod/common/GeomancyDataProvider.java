@@ -1,9 +1,13 @@
 package net.codersdownunder.gemmod.common;
 
 import net.codersdownunder.gemmod.GemMod;
-import net.codersdownunder.gemmod.client.GeomanyLanguageProvider;
+import net.codersdownunder.gemmod.client.GeomancyLanguageProvider;
+import net.codersdownunder.gemmod.common.loottables.ModLootTables;
+import net.codersdownunder.gemmod.common.recipes.GeomancyRecipeProvider;
+import net.codersdownunder.gemmod.common.tags.GeomancyBlockTags;
+import net.codersdownunder.gemmod.common.tags.GeomancyFluidTags;
+import net.codersdownunder.gemmod.common.tags.GeomancyItemTags;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -18,15 +22,19 @@ public class GeomancyDataProvider {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
-        //ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         
         if (event.includeClient()) {
-        	gen.addProvider(new GeomanyLanguageProvider(gen));
+        	gen.addProvider(new GeomancyLanguageProvider(gen));
         	//System.out.println("********* IT HITS THIS **********");
         }
         
          if (event.includeServer()) {
         	gen.addProvider(new GeomancyRecipeProvider(gen));
+        	gen.addProvider(new ModLootTables(gen));
+        	GeomancyBlockTags blockTags = new GeomancyBlockTags(gen, event.getExistingFileHelper());
+            gen.addProvider(blockTags);
+            gen.addProvider(new GeomancyItemTags(gen, blockTags, event.getExistingFileHelper()));
+            gen.addProvider(new GeomancyFluidTags(gen, event.getExistingFileHelper()));
         }
     }
 }

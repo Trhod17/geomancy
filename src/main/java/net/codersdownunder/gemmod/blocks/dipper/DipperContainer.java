@@ -6,7 +6,6 @@ import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.codersdownunder.gemmod.utils.slots.GenericSlot;
 import net.codersdownunder.gemmod.utils.slots.OutputSlot;
 import net.codersdownunder.gemmod.utils.slots.SlotRestricted;
-import net.minecraft.core.BlockMath;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,7 +16,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -102,13 +100,9 @@ public class DipperContainer extends AbstractContainerMenu {
 	        	
 	            for (int i = index; i < index; i++) {
 	            	 
-	            	 if (!this.moveItemStackTo(stack, 0, i, true)) {
-	            		 return ItemStack.EMPTY;
-	            	 }
-	            	 
-	            	 if (!this.moveItemStackTo(stack, i, 37, true)) {
-	            		 return ItemStack.EMPTY;
-	            	 }
+//	            	if ((!this.slots.get(i).hasItem() || this.slots.get(i).getItem().equals(stack)) && ) {
+//	            		
+//	            	}
 				}
 	            
 	            if (stack.isEmpty()) {

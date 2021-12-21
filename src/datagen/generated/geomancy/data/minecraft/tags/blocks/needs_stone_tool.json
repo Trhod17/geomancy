@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "geomancy:dipper",
+    "geomancy:infusion_table",
+    "geomancy:end_lantern",
+    "geomancy:end_lantern_block",
+    "geomancy:mulmus_lantern",
+    "geomancy:mulmus_lantern_polished"
+  ]
+}

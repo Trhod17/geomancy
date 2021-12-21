@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "geomancy:block/chasm_log_horizontal_stripped",
+      "model": "geomancy:block/chasm_log_horizontal_stripped_bark",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "geomancy:block/chasm_log_stripped"
+      "model": "geomancy:block/chasm_log_stripped_bark"
     },
     "axis=z": {
-      "model": "geomancy:block/chasm_log_horizontal_stripped",
+      "model": "geomancy:block/chasm_log_horizontal_stripped_bark",
       "x": 90
     }
   }

@@ -2,6 +2,7 @@ package net.codersdownunder.gemmod.blocks.infusion;
 
 import java.util.stream.Stream;
 
+import net.codersdownunder.gemmod.GemMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -136,7 +137,7 @@ public class InfusionBlock extends Block implements SimpleWaterloggedBlock, Enti
                     @Override
                     public Component getDisplayName()
                     {
-                        return new TranslatableComponent("screen.gemmod.infusion_table.text");
+                        return new TranslatableComponent("screen." + GemMod.MODID + ".infusion_table.text");
                     }
                 };
                 NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);

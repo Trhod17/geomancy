@@ -108,7 +108,7 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
             this.setRegistryName(GemMod.MODID, "infusing_recipe");
         }
         
-        @Override
+         @Override
         public InfusingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson)
         {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "output"));
@@ -135,6 +135,7 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
             }
 
             ItemStack output = pBuffer.readItem();
+            
             return new InfusingRecipe(pRecipeId, output, inputs);
         }
 
@@ -145,6 +146,7 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
             for (Ingredient ing : pRecipe.getIngredients()) {
                 ing.toNetwork(pBuffer);
             }
+            
             pBuffer.writeItemStack(pRecipe.output, false);
             
         }

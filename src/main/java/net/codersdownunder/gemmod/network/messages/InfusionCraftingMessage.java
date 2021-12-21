@@ -1,60 +1,57 @@
 package net.codersdownunder.gemmod.network.messages;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkEvent;
 
 public class InfusionCraftingMessage
 {
 
-    private static BlockPos pos;
+    private final BlockPos pos;
 
-    public InfusionCraftingMessage() {}
-    
 
     public InfusionCraftingMessage(BlockPos pos)
     {
-        InfusionCraftingMessage.pos = pos;
+        this.pos = pos;
+    }
+    
+    public InfusionCraftingMessage(FriendlyByteBuf buffer) {
+    	this(buffer.readBlockPos());
     }
 
     
-    public static void encode(InfusionCraftingMessage message, FriendlyByteBuf buffer)
+    public void encode(FriendlyByteBuf buffer)
     {
-        buffer.writeBlockPos(pos);
+        buffer.writeBlockPos(this.pos);
     }
 
-    
-    public static InfusionCraftingMessage decode(FriendlyByteBuf buffer)
+    public boolean handle(Supplier<NetworkEvent.Context> supplier)
     {
-        return new InfusionCraftingMessage(buffer.readBlockPos());
-    }
-    
-
-    @SuppressWarnings("static-access")
-    public static void handle(InfusionCraftingMessage message, Supplier<NetworkEvent.Context> supplier)
-    {
+    	final var success = new AtomicBoolean(false);
         supplier.get().enqueueWork(() ->
         {
            ServerPlayer player = supplier.get().getSender();
            if (player != null) {
-               Level world = player.getCommandSenderWorld();
-               BlockEntity tile = world.getBlockEntity(message.pos);
+               //Level world = player.getCommandSenderWorld();
+               BlockEntity tile = supplier.get().getSender().level.getBlockEntity(pos);
                if (tile instanceof InfusionTableBlockEntity) {
                    InfusionTableBlockEntity table = (InfusionTableBlockEntity) tile;
                    
                    table.craft();
+                   success.set(true);
                }
            }
            //InfusionTableContainer.id = getContainerId();
            
         });
         supplier.get().setPacketHandled(true);
+        return success.get();
     }
    
 }
