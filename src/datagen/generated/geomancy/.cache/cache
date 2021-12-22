@@ -15,7 +15,7 @@ c1c099930bb8a6027517ed5ac057cc4f1cde9961 data/geomancy/loot_tables/blocks/chasm_
 178c819d164b591d8b14e4f5ff4be191a1c17cfc data/geomancy/loot_tables/blocks/chasm_door.json
 c2dd71c9f7134a397c4a0ff32057b9aeab0e8f58 data/geomancy/loot_tables/blocks/chasm_fence.json
 9826c3b2b50bc7b200ddb56534eb74c934b4a55a data/geomancy/loot_tables/blocks/chasm_fence_gate.json
-04adb16f24593b537994f0f92454875749b0c84c data/geomancy/loot_tables/blocks/chasm_leaves.json
+6d595375203d7b3522b86217e24f6d05b4e809e1 data/geomancy/loot_tables/blocks/chasm_leaves.json
 7588e834eca958796a732ce8d73ce551f45a24cb data/geomancy/loot_tables/blocks/chasm_log.json
 23cbe7cb6dfe9308fa7425dc1c7d247ce7539ebd data/geomancy/loot_tables/blocks/chasm_log_bark.json
 aed58bb15bf13729cf15e32ae4185a72dc63a7d2 data/geomancy/loot_tables/blocks/chasm_log_stripped.json
@@ -50,6 +50,7 @@ cc4e8024f0a9ea6c001fde7f0e8dd76dfe60a1ca data/geomancy/tags/items/concoctions/co
 ff9a1ed164a567520fd27da62577843ec74d9095 data/geomancy/tags/items/concoctions/concoctions_tier_2.json
 31ab683c23c605ab7c0179b6b1eb2e9d6312548e data/geomancy/tags/items/concoctions/concoctions_tier_3.json
 538198000d121046faed91d2199676587c44f93b data/geomancy/tags/items/concoctions/concoctions_tier_4.json
+f16042a50704b5f6a4c23287d75daf622e2cc856 data/geomancy/tags/items/dipping_fluids.json
 46304d0a9023fb2700637b9b4fd9d8f7adf59e6d data/geomancy/tags/items/seed_crystal.json
 58d1ba4ecc6a5c33d406020ffc4c1c5f20e93b33 data/geomancy/tags/items/string.json
 5aa9a9d4bb713dd658f7f10a9b5a281615a4dde7 data/minecraft/tags/blocks/fence_gates.json

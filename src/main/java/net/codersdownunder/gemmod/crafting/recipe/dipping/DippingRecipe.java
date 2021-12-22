@@ -36,7 +36,6 @@ public class DippingRecipe implements Recipe<SimpleContainer>
     private final NonNullList<Ingredient> recipeItems;
     private final int fluidAmount;
 
-
     public DippingRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems, int fluidAmount) {
         this.id = id;
         this.output = output;
@@ -138,12 +137,14 @@ public class DippingRecipe implements Recipe<SimpleContainer>
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(18, Ingredient.EMPTY);
 
+            pBuffer.readInt();
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
             
             int fluidAmount = pBuffer.readInt();
             ItemStack output = pBuffer.readItem();
+            
             
             return new DippingRecipe(pRecipeId, output, inputs, fluidAmount);
         }

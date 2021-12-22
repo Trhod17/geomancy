@@ -37,7 +37,7 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 
 	public static int capacity = 4000;
 
-	private static int processTime = 100;
+	private static int processTime = 2000;
 	public int counter;
 	public int totalTime;
 	@SuppressWarnings("unused")

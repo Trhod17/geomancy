@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "geomancyadditions",
+  "ingredient": {
+    "item": "minecraft:purpur_block"
+  },
+  "result": "geomancyadditions:purpur_wall",
+  "count": 1
+}

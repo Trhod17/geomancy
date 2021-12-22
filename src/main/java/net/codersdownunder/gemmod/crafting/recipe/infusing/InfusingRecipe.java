@@ -129,7 +129,7 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
         public InfusingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer)
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(6, Ingredient.EMPTY);
-
+            pBuffer.readInt();
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
