@@ -11,7 +11,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
-import net.codersdownunder.gemmod.blocks.dipper.DipperContainer;
+import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.utils.FluidUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -24,18 +24,18 @@ import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.fluids.FluidStack;
 
 
-public class DipperScreen extends AbstractContainerScreen<DipperContainer> {
+public class DipperScreen extends AbstractContainerScreen<DipperMenu> {
 
 	
 	final static int FONT_Y_SPACING = 10;
-	final static int PLAYER_INV_LABEL_XPOS = DipperContainer.PLAYER_INVENTORY_XPOS;
-	final static int PLAYER_INV_LABEL_YPOS = DipperContainer.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
+	final static int PLAYER_INV_LABEL_XPOS = DipperMenu.PLAYER_INVENTORY_XPOS;
+	final static int PLAYER_INV_LABEL_YPOS = DipperMenu.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
 	
 	private ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/dipper.png");
-	public DipperContainer container;
+	public DipperMenu container;
 	private DipperBlockEntity ent;
 
-	public DipperScreen(DipperContainer container, Inventory inv, Component name) {
+	public DipperScreen(DipperMenu container, Inventory inv, Component name) {
 		super(container, inv, name);
 		ent = container.tile;
 		this.container = container;

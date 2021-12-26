@@ -33,6 +33,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
 
 public class InfusionBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
@@ -72,6 +73,20 @@ public class InfusionBlock extends Block implements SimpleWaterloggedBlock, Enti
         this.registerDefaultState(this.stateDefinition.any().setValue(BlockStateProperties.WATERLOGGED, false));
         
     }
+    
+
+	@Override
+	public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+		 if (pState.hasBlockEntity() && pState.getBlock() != pNewState.getBlock()) {
+	            // drops everything in the inventory
+	            pLevel.getBlockEntity(pPos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+	                for (int i = 0; i < h.getSlots(); i++) {
+	                	popResource(pLevel, pPos, h.getStackInSlot(i));
+	                }
+	            });
+	            pLevel.removeBlockEntity(pPos);
+	        }
+	}
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state)

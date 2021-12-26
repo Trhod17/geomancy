@@ -8,7 +8,7 @@ license="LGPL V3"
     version="${file.jarVersion}"
     displayName="Geomancy: Additions"
     displayURL=""
-    authors="Trhod177"
+    authors="Trhod177, Lena_Cupid"
     credits=""
     logoFile="logo.png"
     description='''Geomancy Additions'''
@@ -18,3 +18,7 @@ license="LGPL V3"
     mandatory=true
     versionRange="[${version}]"
     side="BOTH"
+    
+[modproperties.geomancyadditions]
+    catalogueItemIcon="geomancyadditions:purpur_wall" #Optional support for Cataloque mod.
+    configuredBackground="geomancy:textures/blocks/chasm_planks.png" #Optional support for Configured mod.

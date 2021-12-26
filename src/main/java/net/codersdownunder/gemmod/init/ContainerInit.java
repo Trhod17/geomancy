@@ -2,7 +2,7 @@ package net.codersdownunder.gemmod.init;
 
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
-import net.codersdownunder.gemmod.blocks.dipper.DipperContainer;
+import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
@@ -23,7 +23,7 @@ public class ContainerInit
         return new InfusionTableContainer(windowId, world, pos, inv, inv.player);
     }));
     
-    public static final RegistryObject<MenuType<DipperContainer>> DIPPER_CONTAINER = CONTAINERS.register("dipper_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
+    public static final RegistryObject<MenuType<DipperMenu>> DIPPER_CONTAINER = CONTAINERS.register("dipper_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
         BlockPos pos = data.readBlockPos();
         Level world = inv.player.getCommandSenderWorld();
         BlockEntity te = inv.player.getCommandSenderWorld().getBlockEntity(pos);
@@ -31,7 +31,7 @@ public class ContainerInit
             return null;
         }
         
-        return new DipperContainer(windowId, world, pos, inv, inv.player, tile);
+        return new DipperMenu(windowId, world, pos, inv, inv.player, tile);
     }));
 
 }   

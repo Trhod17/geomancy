@@ -33,8 +33,7 @@ public class ClientSetup {
 	        ItemBlockRenderTypes.setRenderLayer(BlockInit.END_LANTERN.get(), GppRender);
 	        ItemBlockRenderTypes.setRenderLayer(BlockInit.INFUSION_TABLE.get(), GppRender);
 	        ItemBlockRenderTypes.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
-	        ItemBlockRenderTypes.setRenderLayer(BlockInit.DIPPER.get(), RenderType.cutout());
-	        
+	        ItemBlockRenderTypes.setRenderLayer(BlockInit.DIPPER.get(), RenderType.cutout());     
 	        });
 	        
 	        BlockEntityRenderers.register(TileEntityInit.CUSTOM_SIGN.get(), SignRenderer::new);

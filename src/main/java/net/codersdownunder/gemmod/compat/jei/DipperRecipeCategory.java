@@ -96,7 +96,31 @@ public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
         
         //itemStackGroup.setBackground(23, bac);\
         itemStackGroup.set(ingredients);
+        itemStackGroup.set(0, getString());
+        itemStackGroup.set(0, getString());
+        itemStackGroup.set(0, getSeedCrystal());
+        itemStackGroup.set(0, getString());
         fluidStackGroup.set(19, AcceptedFluids.getAcceptedFluids());
+    }
+    
+    private static ArrayList<ItemStack> getString() {
+    	ArrayList<ItemStack> stack = new ArrayList<ItemStack>();
+    	
+    	for (int i = 0; i < GeomancyTags.Items.STRING.getValues().size(); i++) {
+			stack.add(new ItemStack(GeomancyTags.Items.STRING.getValues().get(i)));
+		}
+    	
+    	return stack;
+    }
+    
+    private static ArrayList<ItemStack> getSeedCrystal() {
+    	ArrayList<ItemStack> stack = new ArrayList<ItemStack>();
+    	
+    	for (int i = 0; i < GeomancyTags.Items.SEED_CRYSTAL.getValues().size(); i++) {
+			stack.add(new ItemStack(GeomancyTags.Items.SEED_CRYSTAL.getValues().get(i)));
+		}
+    	
+    	return stack;
     }
     
     private static abstract class AcceptedFluids {

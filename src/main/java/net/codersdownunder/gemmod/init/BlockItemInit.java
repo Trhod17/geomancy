@@ -33,4 +33,6 @@ public class BlockItemInit
     public static final RegistryObject<BlockItem> MULMUS_LANTERN_POLISHED = BLOCKITEMS.register("mulmus_lantern_polished", () -> new BlockItem(BlockInit.MULMUS_LANTERN_POLISHED.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> INFUSION_TABLE = BLOCKITEMS.register("infusion_table", () -> new BlockItem(BlockInit.INFUSION_TABLE.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> DIPPER = BLOCKITEMS.register("dipper", () -> new BlockItem(BlockInit.DIPPER.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> DREAM_CATCHER = BLOCKITEMS.register("dream_catcher", () -> new BlockItem(BlockInit.DREAM_CATCHER.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> GEODE_ORE = BLOCKITEMS.register("geode_ore", () -> new BlockItem(BlockInit.GEODE_ORE.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
 }

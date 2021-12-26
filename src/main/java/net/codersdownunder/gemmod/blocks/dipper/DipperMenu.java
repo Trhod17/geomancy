@@ -7,7 +7,6 @@ import net.codersdownunder.gemmod.utils.slots.GenericSlot;
 import net.codersdownunder.gemmod.utils.slots.OutputSlot;
 import net.codersdownunder.gemmod.utils.slots.SlotRestricted;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -21,7 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-public class DipperContainer extends AbstractContainerMenu {
+public class DipperMenu extends AbstractContainerMenu {
 
 	private BlockEntity blockEntity;
 	private Player playerEntity;
@@ -33,8 +32,10 @@ public class DipperContainer extends AbstractContainerMenu {
 	
 	public static final int PLAYER_INVENTORY_XPOS = -5;
 	public static final int PLAYER_INVENTORY_YPOS = 113;
+	
+	private static final int CONTAINER_SIZE = 22;
 
-	public DipperContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, DipperBlockEntity tile) {
+	public DipperMenu(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, DipperBlockEntity tile) {
 		super(ContainerInit.DIPPER_CONTAINER.get(), windowId);
 		blockEntity = world.getBlockEntity(pos);
 		this.playerEntity = player;
@@ -80,45 +81,29 @@ public class DipperContainer extends AbstractContainerMenu {
 		layoutPlayerInventorySlots(PLAYER_INVENTORY_XPOS, PLAYER_INVENTORY_YPOS);
 	}
 	
-	public double fractionOfDippingTimeComplete() {
-	    if (tile.totalTime == 0) return 0;
-	    double fraction = tile.counter / (double)tile.totalTime;
-	    System.out.println(fraction);
-	    return Mth.clamp(fraction, 0.0, 1.0);
-	  }
-	
-	
-	
-	  @Override
-	    public ItemStack quickMoveStack(Player playerIn, int index) {
-	        ItemStack itemstack = ItemStack.EMPTY;
-	       
-	        if (index != 0) {
-	            
-	        	Slot slot = this.slots.get(index);
-           	 	ItemStack stack = slot.getItem();
-	        	
-	            for (int i = index; i < index; i++) {
-	            	 
-//	            	if ((!this.slots.get(i).hasItem() || this.slots.get(i).getItem().equals(stack)) && ) {
-//	            		
-//	            	}
-				}
-	            
-	            if (stack.isEmpty()) {
-	                slot.set(ItemStack.EMPTY);
-	            } else {
-	                slot.setChanged();
+	public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
+	      ItemStack itemstack = ItemStack.EMPTY;
+	      Slot slot = this.slots.get(pIndex);
+	      if (slot != null && slot.hasItem()) {
+	         ItemStack itemstack1 = slot.getItem();
+	         itemstack = itemstack1.copy();
+	         if (pIndex < DipperMenu.CONTAINER_SIZE) {
+	            if (!this.moveItemStackTo(itemstack1, DipperMenu.CONTAINER_SIZE, this.slots.size(), true)) {
+	               return ItemStack.EMPTY;
 	            }
-	            
-	            slot.onTake(playerIn, stack);
-	        }
+	         } else if (!this.moveItemStackTo(itemstack1, 0, DipperMenu.CONTAINER_SIZE, false)) {
+	            return ItemStack.EMPTY;
+	         }
 
-	        return itemstack;
+	         if (itemstack1.isEmpty()) {
+	            slot.set(ItemStack.EMPTY);
+	         } else {
+	            slot.setChanged();
+	         }
+	      }
 
-	    }
-
-
+	      return itemstack;
+	   }
 
 	    private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
 	        for (int i = 0 ; i < amount ; i++) {

@@ -21,7 +21,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -38,9 +37,9 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
 
 public class DipperBlock extends BaseEntityBlock implements EntityBlock {
@@ -58,6 +57,19 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 
 	public DipperBlock(Properties p_49795_) {
 		super(p_49795_);
+	}
+	
+	@Override
+	public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+		 if (pState.hasBlockEntity() && pState.getBlock() != pNewState.getBlock()) {
+	            // drops everything in the inventory
+	            pLevel.getBlockEntity(pPos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+	                for (int i = 0; i < h.getSlots(); i++) {
+	                	popResource(pLevel, pPos, h.getStackInSlot(i));
+	                }
+	            });
+	            pLevel.removeBlockEntity(pPos);
+	        }
 	}
 	
 	@Override
@@ -112,42 +124,45 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 			}
 		};
 	}
-	
-    private void setRetainedFluidInTank(Level world, BlockPos pos, BlockState state, ItemStack stack) {
-        if (stack.hasTag()) {
-            final DipperBlockEntity tank = (DipperBlockEntity) world.getBlockEntity(pos);
-            if (tank != null) {
-                if (stack.getTag() != null) {
-                    CompoundTag tag = stack.getTag().getCompound("TileData");
-                    tag.putInt("x", pos.getX());
-                    tag.putInt("y", pos.getY());
-                    tag.putInt("z", pos.getZ());
-                    tank.load(tag);
-                }
-            }
-        }
-    }
+//	
+//	
+//	
+//    private void setRetainedFluidInTank(Level world, BlockPos pos, BlockState state, ItemStack stack) {
+//        if (stack.hasTag()) {
+//            final DipperBlockEntity tank = (DipperBlockEntity) world.getBlockEntity(pos);
+//            if (tank != null) {
+//                if (stack.getTag() != null) {
+//                    CompoundTag tag = stack.getTag().getCompound("TileData");
+//                    tag.putInt("x", pos.getX());
+//                    tag.putInt("y", pos.getY());
+//                    tag.putInt("z", pos.getZ());
+//                    tank.load(tag);
+//                }
+//            }
+//        }
+//    }
 
 	public DipperBlockEntity getTank(BlockGetter world, BlockPos pos) {
         return (DipperBlockEntity) world.getBlockEntity(pos);
     }
-
-	@Override
-	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
-			BlockHitResult pHit) {
-			
-		if (!pPlayer.getItemInHand(pHand).isEmpty() && GeomancyTags.Items.DIPPING_FLUIDS.getValues().contains(pPlayer.getItemInHand(pHand).getItem())) {
-			fill(pState, pLevel, pPos, pPlayer, pHand, pHit);
-		} else if (!pPlayer.getItemInHand(pHand).isEmpty() && pPlayer.getItemInHand(pHand).getItem().asItem() == Items.BUCKET) {
-			empty(pState, pLevel, pPos, pPlayer, pHand, pHit);
-		} else {
-			openGUI(pState, pLevel, pPos, pPlayer, pHand, pHit);
-		}
-
-		
-			return InteractionResult.SUCCESS;
-	}
 	
+	  @Override
+	    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	        ItemStack held = player.getItemInHand(hand);
+
+	        
+	        if (FluidUtil.interactWithFluidHandler(player, hand, world, pos, hit.getDirection()) ||
+	                held.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).isPresent() && 
+	                GeomancyTags.Items.DIPPING_FLUIDS.getValues().contains(held.getItem())) {
+	            return InteractionResult.SUCCESS;
+	        } else {
+				openGUI(state, world, pos, player, hand, hit);
+				return InteractionResult.SUCCESS;
+			}
+
+	        //return InteractionResult.FAIL;
+	    }
+
 	public InteractionResult openGUI(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
 			BlockHitResult pHit) {
 
@@ -159,7 +174,7 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 					@Override
 					public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory,
 							Player pPlayer) {
-						return new DipperContainer(pContainerId, pLevel, pPos, pInventory, pPlayer, null);
+						return new DipperMenu(pContainerId, pLevel, pPos, pInventory, pPlayer, null);
 					}
 
 					@Override
@@ -175,67 +190,67 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 		
 		return InteractionResult.SUCCESS;
 	}
-	
-	public InteractionResult empty(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
-			BlockHitResult pHit) {
-		
-		ItemStack stack = pPlayer.getItemInHand(pHand).copy();
-        ItemStack fillStack = stack.copy();
-        fillStack.setCount(1);
-        LazyOptional<IFluidHandlerItem> fluidHandlerOptional = fillStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY);
-        if(fluidHandlerOptional.isPresent()){
-            BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
-            if(tileEntity instanceof DipperBlockEntity){
-                IFluidHandlerItem fluidHandler = fluidHandlerOptional.resolve().get();
-                if(((DipperBlockEntity)tileEntity).interactWithItemFluidHandler(fluidHandler)){
-                    stack.shrink(1);
-                    if(stack.isEmpty()) {
-                        pPlayer.setItemInHand(pHand, fluidHandler.getContainer());
-                    	//setRetainedFluidInTank(pLevel, pPos, pState, fillStack);
-                	} else {
-                        //pPlayer.setItemInHand(pHand, stack);
-                        if(!pPlayer.getInventory().add(fluidHandler.getContainer())) {
-                            //pPlayer.drop(fluidHandler.getContainer(), false);
-                        }
-                        
-                        setRetainedFluidInTank(pLevel, pPos, pState, fillStack);
-                    }
-                    return InteractionResult.sidedSuccess(pLevel.isClientSide);
-                }
-            }
-            return InteractionResult.CONSUME;
-        }
-        return InteractionResult.CONSUME;
-	}
-	
-	public InteractionResult fill(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
-			BlockHitResult pHit) {
-		 	ItemStack stack = pPlayer.getItemInHand(pHand).copy();
-	        ItemStack fillStack = stack.copy();
-	        fillStack.setCount(1);
-	        LazyOptional<IFluidHandlerItem> fluidHandlerOptional = fillStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY);
-	        if(fluidHandlerOptional.isPresent()){
-	            BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
-	            if(tileEntity instanceof DipperBlockEntity){
-	                IFluidHandlerItem fluidHandler = fluidHandlerOptional.resolve().get();
-	                if(((DipperBlockEntity)tileEntity).interactWithItemFluidHandler(fluidHandler)){
-	                    stack.shrink(1);
-	                    if(stack.isEmpty())
-	                        pPlayer.setItemInHand(pHand, fluidHandler.getContainer());
-	                    	setRetainedFluidInTank(pLevel, pPos, pState, fillStack);
-	                	} else {
-	                        pPlayer.setItemInHand(pHand, stack);
-	                        if(!pPlayer.getInventory().add(fluidHandler.getContainer())) {
-	                            pPlayer.drop(fluidHandler.getContainer(), false);
-	                        }
-	                        
-	                        setRetainedFluidInTank(pLevel, pPos, pState, fillStack);
-	                    }
-	                    return InteractionResult.sidedSuccess(pLevel.isClientSide);
-	                }
-	            }
-	            return InteractionResult.CONSUME;
-
-	}
+//	
+//	public InteractionResult empty(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
+//			BlockHitResult pHit) {
+//		
+//		ItemStack stack = pPlayer.getItemInHand(pHand).copy();
+//        ItemStack fillStack = stack.copy();
+//        fillStack.setCount(1);
+//        LazyOptional<IFluidHandlerItem> fluidHandlerOptional = fillStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY);
+//        if(fluidHandlerOptional.isPresent()){
+//            BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
+//            if(tileEntity instanceof DipperBlockEntity){
+//                IFluidHandlerItem fluidHandler = fluidHandlerOptional.resolve().get();
+//                if(((DipperBlockEntity)tileEntity).interactWithItemFluidHandler(fluidHandler)){
+//                    stack.shrink(1);
+//                    if(stack.isEmpty()) {
+//                        pPlayer.setItemInHand(pHand, fluidHandler.getContainer());
+//                    	//setRetainedFluidInTank(pLevel, pPos, pState, fillStack);
+//                	} else {
+//                        //pPlayer.setItemInHand(pHand, stack);
+//                        if(!pPlayer.getInventory().add(fluidHandler.getContainer())) {
+//                            //pPlayer.drop(fluidHandler.getContainer(), false);
+//                        }
+//                        
+//                        setRetainedFluidInTank(pLevel, pPos, pState, fillStack);
+//                    }
+//                    return InteractionResult.sidedSuccess(pLevel.isClientSide);
+//                }
+//            }
+//            return InteractionResult.CONSUME;
+//        }
+//        return InteractionResult.CONSUME;
+//	}
+//	
+//	public InteractionResult fill(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
+//			BlockHitResult pHit) {
+//		 	ItemStack stack = pPlayer.getItemInHand(pHand).copy();
+//	        ItemStack fillStack = stack.copy();
+//	        fillStack.setCount(1);
+//	        LazyOptional<IFluidHandlerItem> fluidHandlerOptional = fillStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY);
+//	        if(fluidHandlerOptional.isPresent()){
+//	            BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
+//	            if(tileEntity instanceof DipperBlockEntity){
+//	                IFluidHandlerItem fluidHandler = fluidHandlerOptional.resolve().get();
+//	                if(((DipperBlockEntity)tileEntity).interactWithItemFluidHandler(fluidHandler)){
+//	                    stack.shrink(1);
+//	                    if(stack.isEmpty())
+//	                        pPlayer.setItemInHand(pHand, fluidHandler.getContainer());
+//	                    	setRetainedFluidInTank(pLevel, pPos, pState, fillStack);
+//	                	} else {
+//	                        pPlayer.setItemInHand(pHand, stack);
+//	                        if(!pPlayer.getInventory().add(fluidHandler.getContainer())) {
+//	                            pPlayer.drop(fluidHandler.getContainer(), false);
+//	                        }
+//	                        
+//	                        setRetainedFluidInTank(pLevel, pPos, pState, fillStack);
+//	                    }
+//	                    return InteractionResult.sidedSuccess(pLevel.isClientSide);
+//	                }
+//	            }
+//	            return InteractionResult.CONSUME;
+//
+//	}
 
 }

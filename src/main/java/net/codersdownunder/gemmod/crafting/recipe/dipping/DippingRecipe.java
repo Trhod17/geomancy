@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.init.BlockInit;
@@ -58,6 +57,10 @@ public class DippingRecipe implements Recipe<SimpleContainer>
         List<ItemStack> inputs = new ArrayList<>();
         int matched = 0;
 
+//        inputs.add(ItemStack.EMPTY);
+//        inputs.add(ItemStack.EMPTY);
+//        inputs.add(ItemStack.EMPTY);
+//        inputs.add(ItemStack.EMPTY);
         for (int i = 0; i < pInv.getContainerSize(); i++) {
             ItemStack stack = pInv.getItem(i);
 
@@ -67,7 +70,10 @@ public class DippingRecipe implements Recipe<SimpleContainer>
                 matched++;
             }
         }
-
+        
+        //System.out.println(matched == inputs.size() && RecipeMatcher.findMatches(inputs, this.recipeItems) != null);
+        
+        //System.out.println(pInv + " = " + inputs);
         return matched == inputs.size() && RecipeMatcher.findMatches(inputs, this.recipeItems) != null;
     }
 
@@ -122,11 +128,21 @@ public class DippingRecipe implements Recipe<SimpleContainer>
             //int infusingTime = JSONUtils.getAsInt(pJson, "time");
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(pJson, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(18, Ingredient.EMPTY);
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }
+            NonNullList<Ingredient> inputs = NonNullList.withSize(14, Ingredient.EMPTY);
+            		inputs.set(0, Ingredient.fromJson(ingredients.get(0)));
+            		inputs.set(1, Ingredient.fromJson(ingredients.get(1)));
+            		inputs.set(2, Ingredient.fromJson(ingredients.get(2)));
+            		inputs.set(3, Ingredient.fromJson(ingredients.get(3)));
+            		inputs.set(4, Ingredient.fromJson(ingredients.get(4)));
+            		inputs.set(5, Ingredient.fromJson(ingredients.get(5)));
+            		inputs.set(6, Ingredient.fromJson(ingredients.get(6)));
+            		inputs.set(7, Ingredient.fromJson(ingredients.get(7)));
+            		inputs.set(8, Ingredient.fromJson(ingredients.get(8)));
+            		inputs.set(9, Ingredient.fromJson(ingredients.get(9)));
+            		inputs.set(10, Ingredient.fromJson(ingredients.get(10)));
+            		inputs.set(11, Ingredient.fromJson(ingredients.get(11)));
+            		inputs.set(12, Ingredient.fromJson(ingredients.get(12)));
+            		inputs.set(13, Ingredient.fromJson(ingredients.get(13)));
 
             return new DippingRecipe(pRecipeId, output, inputs, fluidAmount);
         }
@@ -135,11 +151,11 @@ public class DippingRecipe implements Recipe<SimpleContainer>
         @Override
         public DippingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer)
         {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(18, Ingredient.EMPTY);
+            NonNullList<Ingredient> inputs = NonNullList.withSize(14, Ingredient.EMPTY);
 
             pBuffer.readInt();
             for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(pBuffer));
+            		inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
             
             int fluidAmount = pBuffer.readInt();

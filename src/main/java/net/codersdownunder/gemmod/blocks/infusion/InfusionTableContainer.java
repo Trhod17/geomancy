@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
+import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.ContainerInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
@@ -48,6 +49,7 @@ public class InfusionTableContainer extends AbstractContainerMenu {
 //    public static final int FURNACE_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
     
     public static int id;
+    private static int CONTAINER_SIZE = 6;
     
     public InfusionTableContainer() {
         super(ContainerInit.INFUSION_TABLE_CONTAINER.get(), id);
@@ -85,6 +87,30 @@ public class InfusionTableContainer extends AbstractContainerMenu {
         layoutPlayerInventorySlots(PLAYER_INVENTORY_XPOS, PLAYER_INVENTORY_YPOS);
     }
     
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
+	      ItemStack itemstack = ItemStack.EMPTY;
+	      Slot slot = this.slots.get(pIndex);
+	      if (slot != null && slot.hasItem()) {
+	         ItemStack itemstack1 = slot.getItem();
+	         itemstack = itemstack1.copy();
+	         if (pIndex < InfusionTableContainer.CONTAINER_SIZE) {
+	            if (!this.moveItemStackTo(itemstack1, InfusionTableContainer.CONTAINER_SIZE, this.slots.size(), true)) {
+	               return ItemStack.EMPTY;
+	            }
+	         } else if (!this.moveItemStackTo(itemstack1, 0, InfusionTableContainer.CONTAINER_SIZE, false)) {
+	            return ItemStack.EMPTY;
+	         }
+
+	         if (itemstack1.isEmpty()) {
+	            slot.set(ItemStack.EMPTY);
+	         } else {
+	            slot.setChanged();
+	         }
+	      }
+
+	      return itemstack;
+	   }
+    
     public BlockPos getPos() {
         return this.pos;
     }
@@ -95,48 +121,7 @@ public class InfusionTableContainer extends AbstractContainerMenu {
         return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, BlockInit.INFUSION_TABLE.get());
     }
 
-    @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
-        ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
-        if (slot != null && slot.hasItem()) {
-            ItemStack stack = slot.getItem();
-            itemstack = stack.copy();
-            if (index == 0) {
-                if (!this.moveItemStackTo(stack, 1, 37, true)) {
-                    return ItemStack.EMPTY;
-                }
-                slot.onQuickCraft(stack, itemstack);
-            } else {
-                if (!this.moveItemStackTo(stack, 0, 1, false)) {
-                        return ItemStack.EMPTY;
-                } else if (index < 28) {
-                    if (!this.moveItemStackTo(stack, 28, 37, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (index < 37 && !this.moveItemStackTo(stack, 1, 28, false)) {
-                    return ItemStack.EMPTY;
-                }
-            }
-
-            if (stack.isEmpty()) {
-                slot.set(ItemStack.EMPTY);
-            } else {
-                slot.setChanged();
-            }
-
-            if (stack.getCount() == itemstack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-
-            slot.onTake(playerIn, stack);
-        }
-
-        return itemstack;
-    }
-
-
-
+    
     private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
         for (int i = 0 ; i < amount ; i++) {
             addSlot(new SlotItemHandler(handler, index, x, y));

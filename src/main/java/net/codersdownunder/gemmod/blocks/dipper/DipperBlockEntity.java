@@ -1,8 +1,12 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.codersdownunder.gemmod.Config;
+import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;
@@ -11,8 +15,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -20,27 +27,25 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
+public class DipperBlockEntity extends BlockEntity {
 
 	private final ItemStackHandler itemHandler = createHandler();
-	private final FluidTank tank = new FluidTank(capacity);
-	private FluidStack fluidStack = FluidStack.EMPTY;
+    private FluidTank tank;
 
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-	private final LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> getTank());
-
+	private final LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> tank);
+	
 	public static int capacity = 4000;
 
-	private static int processTime = 2000;
+	private static int processTime = GemMod.isDevBuild() ? 10 : Config.SERVER.dipperTime.get();
 	public int counter;
 	public int totalTime;
-	@SuppressWarnings("unused")
 	private boolean valid;
 	private boolean crafting;
 	private ItemStack output;
@@ -49,19 +54,20 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 	public DipperBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
 		super(TileEntityInit.DIPPER_BE.get(), pWorldPosition, pBlockState);
 
-//		 this.tank = new FluidTank(capacity) {
-//
-//	            @Override
-//	            public int fill(FluidStack resource, FluidAction action) {
-//	               return this.fill(resource, action);
-//	            }
-//
-//	            @Override
-//	            protected void onContentsChanged() {
-//	                DipperBlockEntity.this.setChanged();
-//	                DipperBlockEntity.this.clientSync();
-//	            }
-//	        };
+		 this.tank = new FluidTank(capacity) {
+	            @Override
+	            public int fill(FluidStack resource, FluidAction action) {
+	                int filled = super.fill(resource, action);
+	                setChanged();
+	                return resource.isFluidEqual(this.getFluid()) ? resource.getAmount() : filled;
+	            }
+
+	            @Override
+	            protected void onContentsChanged() {
+	            	setChanged();
+	            	DipperBlockEntity.this.sendToClients();
+	            }
+	        };
 
 	}
 
@@ -81,11 +87,14 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 ////		});
 //	}
 
+
 	@Override
 	public void setRemoved() {
 		super.setRemoved();
+		
 		handler.invalidate();
 		fluidHandler.invalidate();
+		
 	}
 
 	public void tickServer() {
@@ -105,12 +114,15 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 		if (counter <= 0) {
 
 			if (isRecipeValid() && crafting) {
+				
 				if (itemHandler.getStackInSlot(22).isEmpty()) {
-					if (tank.getFluid().getAmount() > fluidamount) {
+					
+					if (tank.getFluidAmount() > fluidamount) {
 					attemptCraft(output, fluidamount);
 					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2);
 					totalTime = 0;
 					crafting = false;
+					setChanged();
 					}
 				}
 			}
@@ -119,6 +131,7 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 				counter = processTime();
 				totalTime = counter;
 				crafting = true;
+				setChanged();
 			}
 		}
 		
@@ -164,26 +177,22 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 
 	private boolean isRecipeValid() {
 
-		SimpleContainer inv = new SimpleContainer(itemHandler.getSlots() - 5);
-
-		inv.setItem(0, itemHandler.getStackInSlot(0));
-		inv.setItem(1, itemHandler.getStackInSlot(1));
-		inv.setItem(2, itemHandler.getStackInSlot(2));
-		inv.setItem(3, itemHandler.getStackInSlot(3));
-		inv.setItem(4, itemHandler.getStackInSlot(4));
-		inv.setItem(5, itemHandler.getStackInSlot(5));
-		inv.setItem(6, itemHandler.getStackInSlot(6));
-		inv.setItem(7, itemHandler.getStackInSlot(7));
-		inv.setItem(8, itemHandler.getStackInSlot(8));
-		inv.setItem(9, itemHandler.getStackInSlot(9));
-		inv.setItem(10, itemHandler.getStackInSlot(10));
-		inv.setItem(11, itemHandler.getStackInSlot(11));
-		inv.setItem(12, itemHandler.getStackInSlot(12));
-		inv.setItem(13, itemHandler.getStackInSlot(13));
-		inv.setItem(14, itemHandler.getStackInSlot(14));
-		inv.setItem(15, itemHandler.getStackInSlot(15));
-		inv.setItem(16, itemHandler.getStackInSlot(16));
-		inv.setItem(17, itemHandler.getStackInSlot(17));
+		SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
+		
+		inv.setItem(0, itemHandler.getStackInSlot(4));
+		inv.setItem(1, itemHandler.getStackInSlot(5));
+		inv.setItem(2, itemHandler.getStackInSlot(6));
+		inv.setItem(3, itemHandler.getStackInSlot(7));
+		inv.setItem(4, itemHandler.getStackInSlot(8));
+		inv.setItem(5, itemHandler.getStackInSlot(9));
+		inv.setItem(6, itemHandler.getStackInSlot(10));
+		inv.setItem(7, itemHandler.getStackInSlot(11));
+		inv.setItem(8, itemHandler.getStackInSlot(12));
+		inv.setItem(9, itemHandler.getStackInSlot(13));
+		inv.setItem(10, itemHandler.getStackInSlot(14));
+		inv.setItem(11, itemHandler.getStackInSlot(15));
+		inv.setItem(12, itemHandler.getStackInSlot(16));
+		inv.setItem(13, itemHandler.getStackInSlot(17));
 
 		if (level == null) {
 			valid = false;
@@ -191,21 +200,25 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 			return false;
 			
 		}
-
+		//System.out.println(inv);
 		DippingRecipe recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.DIPPING_RECIPE, inv, level)
 				.orElse(null);
-
+		//System.out.print(recipe);
 		if (recipe == null) {
 			valid = false;
 			
 			return false;
 		}
-	
 		
-		valid = true;
-		output = recipe.getResultItem();
-		fluidamount = recipe.getFluidAmount();
-		return true;
+		if (!itemHandler.getStackInSlot(0).isEmpty() && !itemHandler.getStackInSlot(1).isEmpty() && !itemHandler.getStackInSlot(2).isEmpty() && !itemHandler.getStackInSlot(3).isEmpty()) {
+		
+			valid = true;
+			output = recipe.getResultItem();
+			fluidamount = recipe.getFluidAmount();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private void attemptCraft(ItemStack output, int fluidamount) {
@@ -229,75 +242,89 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 		itemHandler.extractItem(16, 1, false);
 		itemHandler.extractItem(17, 1, false);
 		itemHandler.insertItem(22, output, false);
-		tank.drain(1000, FluidAction.EXECUTE);
+		tank.drain(fluidamount, FluidAction.EXECUTE);
+		//tank.getFluidInTank(1).shrink(fluidamount);
+		
+		//tank.drain(1000, FluidAction.EXECUTE);
 		counter = 0;
 	}
+	
+	  @Override
+	    public CompoundTag getUpdateTag() {
+	        return this.save(new CompoundTag());
+	    }
 
-	@Override
-	public CompoundTag getUpdateTag() {
-		return this.save(new CompoundTag());
-	}
+	    @Override
+	    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+	        return ClientboundBlockEntityDataPacket.create(this);
+	    }
 
-	@Nullable
-	@Override
-	public ClientboundBlockEntityDataPacket getUpdatePacket() {
-		return ClientboundBlockEntityDataPacket.create(this);
-	}
+	    @Override
+	    public void handleUpdateTag(CompoundTag tag) {
+	        this.load(tag);
+	    }
 
-	@Override
-	public void handleUpdateTag(CompoundTag tag) {
-		this.load(tag);
-		
-	}
+	    @Override
+	    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+	        this.load(pkt.getTag());
+	    }
 
-	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-		  load(pkt.getTag());
-	}
+	    @SuppressWarnings("resource")
+		public void sendToClients() {
+	        if (this.getLevel().isClientSide()) {
+	            //VoidTanks.LOGGER.debug("Tried to sync to clients from a client.");
+	            return;
+	        }
+
+	        ServerLevel world = (ServerLevel) this.getLevel();
+	        List<ServerPlayer> entities = world.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.getBlockPos()), false);
+	        ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
+	        entities.forEach(e -> e.connection.send(packet));
+	        setChanged();
+	    }
+
+	    @Override
+	    public void load(CompoundTag tag) {
+	        super.load(tag);
+	        itemHandler.deserializeNBT(tag.getCompound("inventory"));
+	        counter = tag.getInt("counter");
+	        crafting = tag.getBoolean("crafting");
+	        valid = tag.getBoolean("valid");
+	        tank.readFromNBT(tag);
+	        tank.setCapacity(tag.getInt("FluidCapacity"));
+	    }
+	    
+//	    @Override
+//	    public CompoundTag save(CompoundTag tag) {
+//	    	super.saveAdditional(tag);
+//	    	return tag;
+//	    }
+
+	    @Override
+	    protected void saveAdditional(CompoundTag pTag) {
+	    	 //super.save(pTag);
+		     pTag.put("inventory", itemHandler.serializeNBT());
+		     pTag.putInt("counter", counter);
+		     pTag.putBoolean("crafting", crafting);
+		     pTag.putBoolean("valid", valid);
+		     tank.writeToNBT(pTag);
+		     pTag.putInt("FluidCapacity", tank.getCapacity());
+		    
+	    }
+
 	
 	@Override
 	public void onLoad() {
 		super.onLoad();
 	}
 
-	@Override
-	public void load(CompoundTag tag) {
-
-		if (tag.contains("inventory")) {
-			itemHandler.deserializeNBT(tag.getCompound("inventory"));
-		}
-		
-		if (tag.contains("counter")) {
-			counter = tag.getInt("counter");
-		}
-
-		tank.readFromNBT(tag);
-		tank.setCapacity(tag.getInt("fluid"));
-
-		super.load(tag);
-	}
-
-	@Override
-	public CompoundTag save(CompoundTag tag) {
-		saveAdditional(tag);
-		return super.save(tag);
-	}
-
-	@Override
-	protected void saveAdditional(CompoundTag tag) {
-		tag.put("inventory", itemHandler.serializeNBT());
-		tank.writeToNBT(tag);
-		tag.putInt("fluid", tank.getCapacity());
-		tag.putInt("counter", counter);
-	}
-
-	public FluidStack getFluid() {
-		return getFluidInTank(1);
-	}
-
-	public FluidTank getTank() {
-		return this.tank;
-	}
+    public FluidStack getFluid() {
+        return this.tank.getFluid();
+    }
+//
+//	public FluidTank getTank() {
+//		return this.tank;
+//	}
 
 	private ItemStackHandler createHandler() {
 		return new ItemStackHandler(24) {
@@ -306,6 +333,8 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 			protected void onContentsChanged(int slot) {
 				setChanged();
 				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2 | 4);
+				counter = 0;
+				crafting = false;
 			}
 			
 			@Override
@@ -313,6 +342,8 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 				
 				return 1;
 			}
+			
+			
 //
 //	            @Override
 //	            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
@@ -346,107 +377,60 @@ public class DipperBlockEntity extends BlockEntity implements IFluidHandler {
 		return fluidHandler;
 	}
 
-	@Override
-	public int getTanks() {
+//	@Override
+//	public int getTanks() {
+//
+//		return 1;
+//	}
+//
+//	@Override
+//	public FluidStack getFluidInTank(int tank) {
+//
+//		return this.tank.getFluid();
+//	}
+//
+//	@Override
+//	public int getTankCapacity(int tank) {
+//
+//		return capacity;
+//	}
+//
+//	@Override
+//	public boolean isFluidValid(int tank, FluidStack stack) {
+//
+//		return true;
+//	}
+//
+//	public boolean interactWithItemFluidHandler(IFluidHandlerItem fluidHandler) {
+//		if (fluidHandler.getTanks() == 0)
+//			return false;
+//
+//		FluidStack tankFluid = fluidHandler.getFluidInTank(1);
+//
+//		if (tankFluid.isEmpty()) {
+//			if (!this.tank.isEmpty()) {
+//				int amount = fluidHandler.fill(this.tank.getFluid(), FluidAction.SIMULATE);
+//				if (amount > 0) {
+//					amount = fluidHandler.fill(this.tank.getFluid(), FluidAction.EXECUTE);
+//					fluidHandler.drain(amount, FluidAction.EXECUTE);
+//					this.setChanged();
+//					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+//					return true;
+//				}
+//			}
+//		} else if (this.tank.isEmpty()) {
+//			tankFluid = tankFluid.copy();
+//			tankFluid.setAmount(this.tank.getCapacity() - this.tank.getFluidAmount());
+//			FluidStack amount = fluidHandler.drain(tankFluid, FluidAction.EXECUTE);
+//			if (!amount.isEmpty() && (this.tank.isEmpty())) {
+//				amount.grow(this.tank.getFluidAmount());
+//				this.fluidStack = amount;
+//				this.setChanged();
+//				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
-		return 1;
-	}
-
-	@Override
-	public FluidStack getFluidInTank(int tank) {
-
-		return this.fluidStack.copy();
-	}
-
-	@Override
-	public int getTankCapacity(int tank) {
-
-		return capacity;
-	}
-
-	@Override
-	public boolean isFluidValid(int tank, FluidStack stack) {
-
-		return true;
-	}
-
-	@Override
-	public int fill(FluidStack resource, FluidAction action) {
-
-		if (resource.isEmpty() || !(this.fluidStack.isEmpty() || this.fluidStack.isFluidEqual(resource)))
-			return 0;
-
-		int amount = Math.min(resource.getAmount(),
-				this.getTankCapacity(this.getTanks()) - this.fluidStack.getAmount());
-		if (action.execute()) {
-			FluidStack newStack = resource.copy();
-			newStack.setAmount(this.fluidStack.getAmount() + amount);
-			this.fluidStack = newStack;
-			this.setChanged();
-		}
-		return amount;
-
-	}
-
-	@Nonnull
-	@Override
-	public FluidStack drain(FluidStack resource, FluidAction action) {
-		if (resource.isEmpty() || this.fluidStack.isEmpty() || !this.fluidStack.getFluid().isSame(resource.getFluid()))
-			return FluidStack.EMPTY;
-		int amount = Math.min(resource.getAmount(), this.fluidStack.getAmount());
-		FluidStack returnStack = this.fluidStack.copy();
-
-		returnStack.setAmount(amount);
-		if (action.execute()) {
-			this.fluidStack.shrink(amount);
-			this.setChanged();
-		}
-		return returnStack;
-	}
-
-	@Override
-	public FluidStack drain(int maxDrain, FluidAction action) {
-		if (maxDrain <= 0 || this.fluidStack.isEmpty())
-			return FluidStack.EMPTY;
-		int amount = Math.min(maxDrain, this.fluidStack.getAmount());
-		FluidStack returnStack = this.fluidStack.copy();
-		returnStack.setAmount(amount);
-		if (action.execute()) {
-			this.fluidStack.shrink(amount);
-			this.setChanged();
-		}
-		return returnStack;
-	}
-
-	public boolean interactWithItemFluidHandler(IFluidHandlerItem fluidHandler) {
-		if (fluidHandler.getTanks() == 0)
-			return false;
-
-		FluidStack tankFluid = fluidHandler.getFluidInTank(1);
-
-		if (tankFluid.isEmpty()) {
-			if (!this.fluidStack.isEmpty()) {
-				int amount = fluidHandler.fill(this.fluidStack.copy(), FluidAction.SIMULATE);
-				if (amount > 0 && this.isFluidValid(1, this.fluidStack)) {
-					amount = fluidHandler.fill(this.fluidStack.copy(), FluidAction.EXECUTE);
-					this.fluidStack.shrink(amount);
-					this.setChanged();
-					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-					return true;
-				}
-			}
-		} else if (this.fluidStack.isEmpty() || this.fluidStack.isFluidEqual(tankFluid)) {
-			tankFluid = tankFluid.copy();
-			tankFluid.setAmount(this.getTankCapacity(1) - this.fluidStack.getAmount());
-			FluidStack amount = fluidHandler.drain(tankFluid, FluidAction.EXECUTE);
-			if (!amount.isEmpty() && (this.fluidStack.isEmpty() || this.fluidStack.isFluidEqual(amount))) {
-				amount.grow(this.fluidStack.getAmount());
-				this.fluidStack = amount;
-				this.setChanged();
-				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-				return true;
-			}
-		}
-		return false;
-	}
 }

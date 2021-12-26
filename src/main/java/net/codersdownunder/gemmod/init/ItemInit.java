@@ -59,7 +59,5 @@ public class ItemInit
     public static final RegistryObject<Item> CONCOCTION_TWO = ITEMS.register("concoction_two", () -> new Item(new Item.Properties().tab((GemMod.gemsmoditemtab))));
     public static final RegistryObject<Item> CONCOCTION_THREE = ITEMS.register("concoction_three", () -> new Item(new Item.Properties().tab((GemMod.gemsmoditemtab))));
     public static final RegistryObject<Item> CONCOCTION_FOUR = ITEMS.register("concoction_four", () -> new Item(new Item.Properties().tab((GemMod.gemsmoditemtab))));
-    
-    
-    
+
 }
