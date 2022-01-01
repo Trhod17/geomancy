@@ -32,7 +32,7 @@ public class DipperBlockEntityRenderer implements BlockEntityRenderer<DipperBloc
 	        FluidStack fluidStack = tank.getFluid();
 	        if (!fluidStack.isEmpty()) {
 	            int amount = fluidStack.getAmount();
-	            int total = tank.capacity;
+	            int total = DipperBlockEntity.capacity;
 	            this.renderFluidInTank(tank.getLevel(), tank.getBlockPos(), fluidStack, matrix, buffer, (amount / (float) total));
 	        }
 	    }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.IItemHandler;
 
@@ -19,7 +20,7 @@ public class SlotRestricted extends GenericSlot {
 		whitelist = list;
 	}
 
-	public SlotRestricted(IItemHandler inventory, int index, int x, int y, boolean holder, Class<?>... items) {
+	public SlotRestricted(IItemHandler inventory, int index, int x, int y, boolean holder, BlockEntity tile, Class<?>... items) {
 		super(inventory, index, x, y);
 		classes = Arrays.asList(items);
 	}

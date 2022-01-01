@@ -81,16 +81,15 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add("tooltip.gem_dreaming_sphene.text", "A Vivid Dream of Blinding Light");
         add("tooltip.gem_dreaming_rhodonite.text", "A Vivid Dream of Abyssal-Like Infinity");
         
-        add("tooltip.concoction.one", "Used to speed up the dipper");
-        add("tooltip.concoction.two", "Used to speed up the dipper (Requires previous tiers)");
-        add("tooltip.concoction.three", "Used to speed up the dipper (Requires previous tiers)");
-        add("tooltip.concoction.four", "Used to speed up the dipper (Requires previous tiers)");
+        add("tooltip.concoction.one", "Used to increase ouput quantities");
+        add("tooltip.concoction.two", "Used to increase ouput quantities (Requires previous tiers)");
+        add("tooltip.concoction.three", "Used to increase ouput quantities (Requires previous tiers)");
+        add("tooltip.concoction.four", "Used to increase ouput quantities (Requires previous tiers)");
         
         add(modid + ".dipper.tooltip.add_fluid_unpressed", "Hold control for filling instructions");
         add(modid + ".dipper.tooltip.add_fluid", "Right Click with bucket of valid fluid to add fill Dipper");
         add(modid + ".dipper.tooltip.use_case_unpressed", "Hold shift to more information");
         add(modid + ".dipper.tooltip.use_case", "Used to grow crystals if you ever run out of them (very slow!!)");
-        add(modid + ".dipper.tooltip.warning", "Dosent save stored liquids. You have been warned");
     }
     
     private void addItems() {
@@ -138,6 +137,8 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(ItemInit.CONCOCTION_TWO.get(), "Concoction 2");
         add(ItemInit.CONCOCTION_THREE.get(), "Concoction 3");
         add(ItemInit.CONCOCTION_FOUR.get(), "Concoction 4");
+        
+        add(ItemInit.GEODE.get(), "Geode Chunk");
     }
 
     private void addBlocks() {
@@ -163,6 +164,8 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(BlockInit.MULMUS_LANTERN_POLISHED.get(), "Polished Mulmus Lantern");
         add(BlockInit.INFUSION_TABLE.get(), "Infusion Table");
         add(BlockInit.DIPPER.get(), "Dipper");
+        add(BlockInit.DREAM_CATCHER.get(), "Dream Catcher");
+        add(BlockInit.GEODE_ORE.get(), "Geode Ore");
     }
     
     private void addItemGroupText() {

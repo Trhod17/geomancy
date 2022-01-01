@@ -6,8 +6,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.codersdownunder.gemmod.GemMod;
-import net.codersdownunder.gemmod.blocks.infusion.GemModButton;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableContainer;
+import net.codersdownunder.gemmod.client.gui.widgets.GemModButton;
 import net.codersdownunder.gemmod.network.GemModNetwork;
 import net.codersdownunder.gemmod.network.messages.InfusionCraftingMessage;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

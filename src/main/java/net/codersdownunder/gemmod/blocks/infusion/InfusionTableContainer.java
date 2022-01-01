@@ -8,6 +8,7 @@ import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.ContainerInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
+import net.codersdownunder.gemmod.utils.slots.GenericSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -66,20 +67,13 @@ public class InfusionTableContainer extends AbstractContainerMenu {
 
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 67, 63));
-                addSlot(new SlotItemHandler(h, 1, 31, 45));
-                addSlot(new SlotItemHandler(h, 2, 103, 45));
-                addSlot(new SlotItemHandler(h, 3, 103, 9));
-                addSlot(new SlotItemHandler(h, 4, 31, 9));
-                addSlot(new SlotItemHandler(h, 5, 67, -9));
-                addSlot(new SlotItemHandler(h, 6, 67, 27) {
-                    @Override
-                    public boolean mayPlace(ItemStack pStack)
-                    {
-                        return false;
-                    }
-                    
-                });
+                addSlot(new GenericSlot(h, 0, 67, 63));
+                addSlot(new GenericSlot(h, 1, 31, 45));
+                addSlot(new GenericSlot(h, 2, 103, 45));
+                addSlot(new GenericSlot(h, 3, 103, 9));
+                addSlot(new GenericSlot(h, 4, 31, 9));
+                addSlot(new GenericSlot(h, 5, 67, -9));
+                addSlot(new GenericSlot(h, 6, 67, 27));
             });
         }
 

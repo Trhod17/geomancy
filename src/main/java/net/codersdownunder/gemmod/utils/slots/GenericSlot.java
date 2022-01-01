@@ -14,5 +14,10 @@ public class GenericSlot extends SlotItemHandler {
     public boolean mayPlace(ItemStack stack) {
 	return stack != null && container.canPlaceItem(getSlotIndex(), stack);
     }
+    
+//    @Override
+//    public void setChanged() {
+//    	tile.setChanged();
+//    }
 
 }

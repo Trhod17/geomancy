@@ -1,4 +1,4 @@
-package net.codersdownunder.gemmod.blocks.infusion;
+package net.codersdownunder.gemmod.client.gui.widgets;
 
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;

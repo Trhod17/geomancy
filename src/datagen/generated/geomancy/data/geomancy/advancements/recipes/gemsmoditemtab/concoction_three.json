@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:concoction_three"
+    ]
+  },
+  "criteria": {
+    "concoction3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:honeycomb"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:glowstone_dust"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:honey_bottle"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:blaze_powder"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:nether_wart"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:concoction_three"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "concoction3",
+      "has_the_recipe"
+    ]
+  ]
+}

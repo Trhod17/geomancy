@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:concoction_four"
+    ]
+  },
+  "criteria": {
+    "concoction4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:chorus_flower"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:dragon_breath"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:ender_eye"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:ghast_tear"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:concoction_four"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "concoction4",
+      "has_the_recipe"
+    ]
+  ]
+}

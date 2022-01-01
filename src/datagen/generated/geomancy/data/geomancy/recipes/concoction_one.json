@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "geomancy",
+  "pattern": [
+    " x ",
+    "asd",
+    " f "
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:bone_meal"
+    },
+    "a": {
+      "item": "minecraft:gunpowder"
+    },
+    "s": {
+      "item": "minecraft:glass_bottle"
+    },
+    "d": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "f": {
+      "item": "minecraft:milk_bucket"
+    }
+  },
+  "result": {
+    "item": "geomancy:concoction_one"
+  }
+}

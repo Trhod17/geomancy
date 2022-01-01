@@ -10,7 +10,6 @@ import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -86,7 +85,6 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 			pTooltip.add(new TranslatableComponent(GemMod.MODID + ".dipper.tooltip.use_case_unpressed").withStyle(ChatFormatting.GREEN));
 		}
 		
-		pTooltip.add(new TranslatableComponent(GemMod.MODID + ".dipper.tooltip.warning").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.UNDERLINE));
 	}
 	
 	@Override

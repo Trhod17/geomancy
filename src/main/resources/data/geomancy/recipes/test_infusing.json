@@ -18,9 +18,12 @@
     },
     {
       "item": "minecraft:stick"
+    },
+    {
+      "item": "geomancy:sapphire"
     }
   ],
   "output": {
-    "item": "geomancy:sapphire"
+    "item": "geomancy:sapphire_dreaming"
   }
 }

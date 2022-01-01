@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -30,7 +31,9 @@ public class ModBlockLootTables extends BlockLoot {
             dropSelf(BlockInit.END_LANTERN_BLOCK.get());
             dropSelf(BlockInit.MULMUS_LANTERN.get());
             dropSelf(BlockInit.MULMUS_LANTERN_POLISHED.get());
+            dropSelf(BlockInit.DREAM_CATCHER.get());
             dropOther(BlockInit.CHASM_SIGN_WALL.get(), BlockInit.CHASM_SIGN.get());
+            add(BlockInit.GEODE_ORE.get(), createOreDrop(BlockInit.GEODE_ORE.get(), ItemInit.GEODE.get()));
             add(BlockInit.CHASM_LEAVES.get(), createLeavesDrops(BlockInit.CHASM_LEAVES.get(), Blocks.OAK_SAPLING, 0.1f));
             add(BlockInit.CHASM_DOOR.get(), createDoorTable(BlockInit.CHASM_DOOR.get()));
             add(BlockInit.INFUSION_TABLE.get(), createNameableBlockEntityTable(BlockInit.INFUSION_TABLE.get()));

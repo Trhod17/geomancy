@@ -142,6 +142,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
             inv.setItem(3, itemHandler.getStackInSlot(3));
             inv.setItem(4, itemHandler.getStackInSlot(4));
             inv.setItem(5, itemHandler.getStackInSlot(5));
+            inv.setItem(6, itemHandler.getStackInSlot(6));
           
             //System.out.println(inv + " " + level);
           
@@ -178,6 +179,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
         itemHandler.extractItem(3, 1, false);
         itemHandler.extractItem(4, 1, false);
         itemHandler.extractItem(5, 1, false);
+        itemHandler.extractItem(6, 1, false);
         itemHandler.insertItem(6, output, false);
     }
     

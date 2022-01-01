@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:concoction_two"
+    ]
+  },
+  "criteria": {
+    "concoction2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:phantom_membrane"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:lapis_lazuli"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:ink_sac"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:slime_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:concoction_two"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "concoction2",
+      "has_the_recipe"
+    ]
+  ]
+}

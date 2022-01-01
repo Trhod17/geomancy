@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:concoction_one"
+    ]
+  },
+  "criteria": {
+    "concoction1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bone_meal"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:gunpowder"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:glass_bottle"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:fermented_spider_eye"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:milk_bucket"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:concoction_one"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "concoction1",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -18,9 +18,12 @@
     },
     {
       "item": "minecraft:leather"
+    },
+    {
+      "item": "geomancy:agate"
     }
   ],
   "output": {
-    "item": "geomancy:agate"
+    "item": "geomancy:agate_dreaming"
   }
 }

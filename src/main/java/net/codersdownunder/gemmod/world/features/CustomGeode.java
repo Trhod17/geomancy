@@ -61,7 +61,7 @@ public class CustomGeode {
 						ImmutableList.of(blockReg.defaultBlockState(), blockReg.defaultBlockState(),
 								blockReg.defaultBlockState(), blockReg.defaultBlockState()),
 						BlockTags.FEATURES_CANNOT_REPLACE.getName(), BlockTags.GEODE_INVALID_BLOCKS.getName()),
-				new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
+				new GeodeLayerSettings(1.7D, 1.5D, 3.2D, 5.2D),
 				new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true,
 				UniformInt.of(4, 6), UniformInt.of(3, 4),
 				UniformInt.of(1, 2), -16, 16, 0.05D, 1)));

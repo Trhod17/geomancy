@@ -1,0 +1,51 @@
+{
+  "type": "geomancy:dipping_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "geomancy:amethyst"
+    },
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:cake"
+    },
+    {
+      "item": "geomancy:topaz"
+    },
+    {
+      "item": "minecraft:oak_log"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "item": "geomancy:agate"
+    },
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "amount": 1000,
+  "output": {
+    "item": "geomancy:sapphire"
+  }
+}

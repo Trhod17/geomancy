@@ -1,12 +1,12 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.codersdownunder.gemmod.Config;
-import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;
@@ -41,51 +41,55 @@ public class DipperBlockEntity extends BlockEntity {
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> tank);
 	
+	private CompoundTag updateTag;
+	
 	public static int capacity = 4000;
 
-	private static int processTime = GemMod.isDevBuild() ? 10 : Config.SERVER.dipperTime.get();
+	private static int processTime = Config.SERVER.dipperTime.get();
 	public int counter;
 	public int totalTime;
 	private boolean valid;
 	private boolean crafting;
 	private ItemStack output;
+	private int outputQuantity;
 	private int fluidamount;
 
 	public DipperBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
 		super(TileEntityInit.DIPPER_BE.get(), pWorldPosition, pBlockState);
 
+		updateTag = getTileData();
+		
 		 this.tank = new FluidTank(capacity) {
 	            @Override
 	            public int fill(FluidStack resource, FluidAction action) {
 	                int filled = super.fill(resource, action);
-	                setChanged();
 	                return resource.isFluidEqual(this.getFluid()) ? resource.getAmount() : filled;
 	            }
 
 	            @Override
 	            protected void onContentsChanged() {
 	            	setChanged();
-	            	DipperBlockEntity.this.sendToClients();
+	            	clientSync();
 	            }
 	        };
 
 	}
 
-//	@SuppressWarnings("resource")
-//	public void clientSync() {
-//		if (Objects.requireNonNull(this.getLevel()).isClientSide) {
-//			return;
-//		}
-//		ServerLevel world = (ServerLevel) this.getLevel();
-////		List<ServerPlayer> entities = world.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.worldPosition),
-////				false);
-//		//ClientboundBlockEntityDataPacket updatePacket = this.getUpdatePacket();
-////		entities.forEach(e -> {
-////			if (updatePacket != null) {
-////				e.connection.send(updatePacket);
-////			}
-////		});
-//	}
+	@SuppressWarnings("resource")
+	public void clientSync() {
+		if (Objects.requireNonNull(this.getLevel()).isClientSide) {
+			return;
+		}
+		ServerLevel world = (ServerLevel) this.getLevel();
+		List<ServerPlayer> entities = world.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.worldPosition),
+				false);
+		ClientboundBlockEntityDataPacket updatePacket = this.getUpdatePacket();
+		entities.forEach(e -> {
+			if (updatePacket != null) {
+				e.connection.send(updatePacket);
+			}
+		});
+	}
 
 
 	@Override
@@ -117,7 +121,7 @@ public class DipperBlockEntity extends BlockEntity {
 				
 				if (itemHandler.getStackInSlot(22).isEmpty()) {
 					
-					if (tank.getFluidAmount() > fluidamount) {
+					if (tank.getFluidAmount() >= fluidamount) {
 					attemptCraft(output, fluidamount);
 					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2);
 					totalTime = 0;
@@ -128,7 +132,8 @@ public class DipperBlockEntity extends BlockEntity {
 			}
 			
 			if (isRecipeValid() && !crafting) {
-				counter = processTime();
+				counter = processTime;
+				outputQuantity = outputQuantity();
 				totalTime = counter;
 				crafting = true;
 				setChanged();
@@ -138,7 +143,7 @@ public class DipperBlockEntity extends BlockEntity {
 		
 	}
 	
-	private int processTime() {
+	private int outputQuantity() {
 		
 		ItemStack concoction1 = itemHandler.getStackInSlot(21);
 		ItemStack concoction2 = itemHandler.getStackInSlot(20);
@@ -146,33 +151,50 @@ public class DipperBlockEntity extends BlockEntity {
 		ItemStack concoction4 = itemHandler.getStackInSlot(18);
 		
 		if (concoction1.isEmpty()) {
-			return processTime;
+			return 1;
 		} else {
 			if (concoction2.isEmpty()) {
-				itemHandler.extractItem(21, 1, false);
-				return processTime - 100;
+				shrink(21, 1);
+				return 2;
 			}
 			
 			if (concoction3.isEmpty()) {
-				itemHandler.extractItem(21, 1, false);
-				itemHandler.extractItem(20, 1, false);
-				return processTime - 200;
+				shrink(21, 1);
+				shrink(20, 1);
+				return 4;
 			}
 			
 			if (concoction4.isEmpty()) {
-				itemHandler.extractItem(21, 1, false);
-				itemHandler.extractItem(20, 1, false);
-				itemHandler.extractItem(19, 1, false);
-				return processTime - 300;
+				shrink(21, 1);
+				shrink(20, 1);
+				shrink(19, 1);
+				return 8;
 			}
 			
 			if (!concoction1.isEmpty() && !concoction2.isEmpty() && !concoction3.isEmpty() && !concoction4.isEmpty()) {
-				return processTime - 400;
+				shrink(21, 1);
+				shrink(20, 1);
+				shrink(19, 1);
+				shrink(18, 1);
+				return 16;
 			}
 		}
 
 		
 		return processTime;
+	}
+	
+	private void shrink(int slot, int amount) {
+		ItemStack stack = itemHandler.getStackInSlot(slot);
+		if (stack.isDamageableItem()) {
+			if (stack.getDamageValue() > 1 || !stack.isDamaged()) {
+			stack.setDamageValue(stack.getDamageValue() - 1);
+			} else {
+				itemHandler.extractItem(slot, 1, false);
+			}
+		} else {
+			itemHandler.extractItem(slot, 1, false);
+		}
 	}
 
 	private boolean isRecipeValid() {
@@ -241,7 +263,7 @@ public class DipperBlockEntity extends BlockEntity {
 		itemHandler.extractItem(15, 1, false);
 		itemHandler.extractItem(16, 1, false);
 		itemHandler.extractItem(17, 1, false);
-		itemHandler.insertItem(22, output, false);
+		itemHandler.insertItem(22, new ItemStack(output.getItem(), outputQuantity), false);
 		tank.drain(fluidamount, FluidAction.EXECUTE);
 		//tank.getFluidInTank(1).shrink(fluidamount);
 		
@@ -251,7 +273,8 @@ public class DipperBlockEntity extends BlockEntity {
 	
 	  @Override
 	    public CompoundTag getUpdateTag() {
-	        return this.save(new CompoundTag());
+	        this.saveAdditional(updateTag);
+	        return updateTag;
 	    }
 
 	    @Override
@@ -272,7 +295,6 @@ public class DipperBlockEntity extends BlockEntity {
 	    @SuppressWarnings("resource")
 		public void sendToClients() {
 	        if (this.getLevel().isClientSide()) {
-	            //VoidTanks.LOGGER.debug("Tried to sync to clients from a client.");
 	            return;
 	        }
 
@@ -290,8 +312,7 @@ public class DipperBlockEntity extends BlockEntity {
 	        counter = tag.getInt("counter");
 	        crafting = tag.getBoolean("crafting");
 	        valid = tag.getBoolean("valid");
-	        tank.readFromNBT(tag);
-	        tank.setCapacity(tag.getInt("FluidCapacity"));
+	        tank.readFromNBT(tag.getCompound("fluid"));
 	    }
 	    
 //	    @Override
@@ -303,12 +324,14 @@ public class DipperBlockEntity extends BlockEntity {
 	    @Override
 	    protected void saveAdditional(CompoundTag pTag) {
 	    	 //super.save(pTag);
+	    	 CompoundTag fluid = new CompoundTag();
 		     pTag.put("inventory", itemHandler.serializeNBT());
 		     pTag.putInt("counter", counter);
 		     pTag.putBoolean("crafting", crafting);
 		     pTag.putBoolean("valid", valid);
-		     tank.writeToNBT(pTag);
-		     pTag.putInt("FluidCapacity", tank.getCapacity());
+		     tank.writeToNBT(fluid);
+		     pTag.put("fluid", fluid);
+		     super.saveAdditional(pTag);
 		    
 	    }
 
@@ -376,6 +399,10 @@ public class DipperBlockEntity extends BlockEntity {
 	public LazyOptional<IFluidHandler> getFluidCap() {
 		return fluidHandler;
 	}
+
+    public FluidTank getTank() {
+        return this.tank;
+    }
 
 //	@Override
 //	public int getTanks() {

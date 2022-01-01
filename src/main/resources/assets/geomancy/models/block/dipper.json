@@ -2,14 +2,14 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "block/oak_log",
-		"1": "block/smooth_stone",
-		"2": "block/glass",
-		"3": "block/oak_planks",
-		"4": "block/chiseled_stone_bricks",
-		"5": "block/cauldron_side",
-		"7": "block/white_wool",
-		"particle": "block/oak_log"
+		"0": "minecraft:block/oak_log",
+		"1": "minecraft:block/smooth_stone",
+		"2": "minecraft:block/glass",
+		"3": "minecraft:block/oak_planks",
+		"4": "minecraft:block/chiseled_stone_bricks",
+		"5": "minecraft:block/cauldron_side",
+		"7": "minecraft:block/white_wool",
+		"particle": "minecraft:block/oak_log"
 	},
 	"elements": [
 		{
@@ -307,8 +307,21 @@
 			"translation": [0, 0, -2.75],
 			"scale": [0.5, 0.5, 0.5]
 		},
+		"thirdperson_lefthand": {
+			"translation": [0, 0, -1.5],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0.5]
+		},
 		"gui": {
-			"rotation": [23, -37, 0],
+			"rotation": [14, -34, -4],
 			"translation": [0.25, -0.25, 0],
 			"scale": [0.6, 0.6, 0.6]
 		}

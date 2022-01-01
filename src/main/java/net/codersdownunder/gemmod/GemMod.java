@@ -43,7 +43,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLLoader;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(GemMod.MODID)
@@ -88,10 +88,6 @@ public class GemMod
         MinecraftForge.EVENT_BUS.register(new WorldGenerationEvents());
 
  
-    }
-    
-    public static boolean isDevBuild() {
-        return !FMLLoader.isProduction();
     }
 
     private void setup(final FMLCommonSetupEvent event)

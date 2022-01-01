@@ -55,9 +55,10 @@ public class ItemInit
     
     public static final RegistryObject<Item> MULMUS_BULB = ITEMS.register("mulmus_bulb", () -> new MulmusItem(new Item.Properties().food(Foods.PORKCHOP).tab(GemMod.gemsmoditemtab)));
     
-    public static final RegistryObject<Item> CONCOCTION_ONE = ITEMS.register("concoction_one", () -> new Item(new Item.Properties().tab((GemMod.gemsmoditemtab))));
-    public static final RegistryObject<Item> CONCOCTION_TWO = ITEMS.register("concoction_two", () -> new Item(new Item.Properties().tab((GemMod.gemsmoditemtab))));
-    public static final RegistryObject<Item> CONCOCTION_THREE = ITEMS.register("concoction_three", () -> new Item(new Item.Properties().tab((GemMod.gemsmoditemtab))));
-    public static final RegistryObject<Item> CONCOCTION_FOUR = ITEMS.register("concoction_four", () -> new Item(new Item.Properties().tab((GemMod.gemsmoditemtab))));
+    public static final RegistryObject<Item> CONCOCTION_ONE = ITEMS.register("concoction_one", () -> new Item(new Item.Properties().durability(16).tab((GemMod.gemsmoditemtab))));
+    public static final RegistryObject<Item> CONCOCTION_TWO = ITEMS.register("concoction_two", () -> new Item(new Item.Properties().durability(8).tab((GemMod.gemsmoditemtab))));
+    public static final RegistryObject<Item> CONCOCTION_THREE = ITEMS.register("concoction_three", () -> new Item(new Item.Properties().durability(4).tab((GemMod.gemsmoditemtab))));
+    public static final RegistryObject<Item> CONCOCTION_FOUR = ITEMS.register("concoction_four", () -> new Item(new Item.Properties().durability(2).tab((GemMod.gemsmoditemtab))));
 
+    public static final RegistryObject<Item> GEODE = ITEMS.register("geode", () -> new DreamingGemItem(new Item.Properties().tab((GemMod.gemsmoditemtab))));
 }

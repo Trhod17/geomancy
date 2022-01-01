@@ -26,5 +26,6 @@ public final class GemModNetwork
         .encoder(InfusionCraftingMessage::encode).decoder(InfusionCraftingMessage::new).consumer(InfusionCraftingMessage::handle).add();
   
     }
+   
 
 }
