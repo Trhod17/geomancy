@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "waterlogged=false": [
+      {
+      "model": "geomancy:block/dreamcatcher"
+      }
+    ],
+    "waterlogged=true": [
+    {
+    "model": "geomancy:block/dreamcatcher"
+    }
+    ]	
+  }
+}

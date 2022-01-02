@@ -28,7 +28,6 @@
   "geomancy.dipper.tooltip.add_fluid_unpressed": "Hold control for filling instructions",
   "geomancy.dipper.tooltip.use_case": "Used to grow crystals if you ever run out of them (very slow!!)",
   "geomancy.dipper.tooltip.use_case_unpressed": "Hold shift to more information",
-  "geomancy.dipper.tooltip.warning": "Dosent save stored liquids. You have been warned",
   "item.geomancy.agate": "Agate",
   "item.geomancy.agate_dreaming": "Dreaming Agate",
   "item.geomancy.amethyst": "Amethyst",

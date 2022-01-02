@@ -2,10 +2,11 @@ package net.codersdownunder.gemmod.setup;
 
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.client.gui.DipperScreen;
+import net.codersdownunder.gemmod.client.gui.DreamCatcherScreen;
 import net.codersdownunder.gemmod.client.gui.InfusionTableScreen;
 import net.codersdownunder.gemmod.client.renderer.DipperBlockEntityRenderer;
 import net.codersdownunder.gemmod.init.BlockInit;
-import net.codersdownunder.gemmod.init.ContainerInit;
+import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -22,8 +23,9 @@ public class ClientSetup {
 	
 	  public static void doClientStuff(final FMLClientSetupEvent event) {
 		  
-	        MenuScreens.register(ContainerInit.INFUSION_TABLE_CONTAINER.get(), InfusionTableScreen::new);
-	        MenuScreens.register(ContainerInit.DIPPER_CONTAINER.get(), DipperScreen::new);
+	        MenuScreens.register(MenuInit.INFUSION_TABLE_CONTAINER.get(), InfusionTableScreen::new);
+	        MenuScreens.register(MenuInit.DIPPER_CONTAINER.get(), DipperScreen::new);
+	        MenuScreens.register(MenuInit.DREAM_CATCHER_MENU.get(), DreamCatcherScreen::new);
 	        
 	        RenderType GppRender = RenderType.cutoutMipped();
 	       

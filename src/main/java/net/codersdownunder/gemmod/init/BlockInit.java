@@ -2,6 +2,7 @@ package net.codersdownunder.gemmod.init;
 
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlock;
+import net.codersdownunder.gemmod.blocks.dream.DreamCatcherBlock;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomStandingSignBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomWallSignBlock;
@@ -52,7 +53,7 @@ public class BlockInit
     public static final RegistryObject<Block> CHASM_FENCE = BLOCKS.register("chasm_fence", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CHASM_FENCE_GATE = BLOCKS.register("chasm_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     
-    public static final RegistryObject<Block> END_LANTERN_BLOCK = BLOCKS.register("end_lantern_block", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS, MaterialColor.QUARTZ).strength(0.3F).sound(SoundType.GLASS).lightLevel((p_235455_0_) -> {
+    public static final RegistryObject<Block> END_LANTERN_BLOCK = BLOCKS.register("end_lantern_block", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS, MaterialColor.QUARTZ).strength(0.3F).sound(SoundType.GLASS).requiresCorrectToolForDrops().lightLevel((p_235455_0_) -> {
       return 15;
    })));
     
@@ -62,20 +63,20 @@ public class BlockInit
     public static final RegistryObject<Block> CHASM_SIGN = BLOCKS.register("chasm_sign", () -> new CustomStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), GemMod.CHASM));
     public static final RegistryObject<Block> CHASM_SIGN_WALL = BLOCKS.register("chasm_sign_wall", () -> new CustomWallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), GemMod.CHASM));
     
-    public static final RegistryObject<Block> MULMUS_LANTERN = BLOCKS.register("mulmus_lantern", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS, MaterialColor.QUARTZ).strength(0.3F).sound(SoundType.GLASS).lightLevel((p_235455_0_) -> {
+    public static final RegistryObject<Block> MULMUS_LANTERN = BLOCKS.register("mulmus_lantern", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS, MaterialColor.QUARTZ).strength(0.3F).requiresCorrectToolForDrops().sound(SoundType.GLASS).lightLevel((p_235455_0_) -> {
       return 15;
    })));
-   public static final RegistryObject<Block> MULMUS_LANTERN_POLISHED = BLOCKS.register("mulmus_lantern_polished", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS, MaterialColor.QUARTZ).strength(0.3F).sound(SoundType.GLASS).lightLevel((p_235455_0_) -> {
+   public static final RegistryObject<Block> MULMUS_LANTERN_POLISHED = BLOCKS.register("mulmus_lantern_polished", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS, MaterialColor.QUARTZ).strength(0.3F).requiresCorrectToolForDrops().sound(SoundType.GLASS).lightLevel((p_235455_0_) -> {
        return 15;
     })));
    
-   public static final RegistryObject<Block> INFUSION_TABLE = BLOCKS.register("infusion_table", () -> new InfusionBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> INFUSION_TABLE = BLOCKS.register("infusion_table", () -> new InfusionBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
    
-   public static final RegistryObject<Block> DIPPER = BLOCKS.register("dipper", () -> new DipperBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WATER).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> DIPPER = BLOCKS.register("dipper", () -> new DipperBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WATER).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
    
-   public static final RegistryObject<Block> DREAM_CATCHER = BLOCKS.register("dream_catcher", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS).sound(SoundType.GLASS)));
+   public static final RegistryObject<Block> DREAM_CATCHER = BLOCKS.register("dream_catcher", () -> new DreamCatcherBlock(BlockBehaviour.Properties.of(Material.GLASS).requiresCorrectToolForDrops().sound(SoundType.GLASS)));
    
-   public static final RegistryObject<Block> GEODE_ORE = BLOCKS.register("geode_ore", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).sound(SoundType.STONE)));
+   public static final RegistryObject<Block> GEODE_ORE = BLOCKS.register("geode_ore", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).requiresCorrectToolForDrops().sound(SoundType.STONE)));
    
    //TODO Finish this later
    //public static final RegistryObject<Block> CHASM_SAPLING = BLOCKS.register("chasm_sapling", () -> new SaplingBlock(new ChasmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));

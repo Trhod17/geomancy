@@ -48,7 +48,7 @@ public class VillagerInit {
 				new VillagerTrades.EmeraldForItems(ItemInit.CITRINE.get(), 2, 1000, 10)
 		};
 		VillagerTrades.ItemListing[] gemerLevel3 = new VillagerTrades.ItemListing[] {
-				new VillagerTrades.ItemsForEmeralds(BlockItemInit.DIPPER.get(), 23, 1, 3),
+				new VillagerTrades.ItemsForEmeralds(ItemInit.DIPPER.get(), 23, 1, 3),
 				new VillagerTrades.EmeraldForItems(ItemInit.CHRYSOCOLLA.get(), 2, 1000, 10)
 		};
 		VillagerTrades.ItemListing[] gemerLevel4 = new VillagerTrades.ItemListing[] {

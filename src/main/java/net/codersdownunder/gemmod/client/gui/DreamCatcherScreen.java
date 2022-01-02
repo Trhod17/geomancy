@@ -6,31 +6,27 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.codersdownunder.gemmod.GemMod;
-import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
-import net.codersdownunder.gemmod.client.gui.widgets.GemModButton;
-import net.codersdownunder.gemmod.network.GemModNetwork;
-import net.codersdownunder.gemmod.network.messages.InfusionCraftingMessage;
+import net.codersdownunder.gemmod.blocks.dream.DreamCatcherMenu;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class InfusionTableScreen extends AbstractContainerScreen<InfusionTableMenu>
+public class DreamCatcherScreen extends AbstractContainerScreen<DreamCatcherMenu>
 {
 
-    private ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/infusion_table.png");
-    public InfusionTableMenu container;
+    private ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/dreamcatcher.png");
+    public DreamCatcherMenu container;
 
-    public InfusionTableScreen(InfusionTableMenu container, Inventory inv, Component name) {
+    public DreamCatcherScreen(DreamCatcherMenu container, Inventory inv, Component name) {
         super(container, inv, name);
         this.container = container;
 
     }
     
-    final static int FONT_Y_SPACING = 10;
-    final static int PLAYER_INV_LABEL_XPOS = InfusionTableMenu.PLAYER_INVENTORY_XPOS;
-    final static int PLAYER_INV_LABEL_YPOS = InfusionTableMenu.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
+    static final int FONT_Y_SPACING = 10;
+    static final int PLAYER_INV_LABEL_XPOS = DreamCatcherMenu.PLAYER_INVENTORY_XPOS;
+    static final int PLAYER_INV_LABEL_YPOS = DreamCatcherMenu.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
 
     @Override
     public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
@@ -55,14 +51,6 @@ public class InfusionTableScreen extends AbstractContainerScreen<InfusionTableMe
         
         this.font.draw(matrixStack, this.getTitle(),                  
                 PLAYER_INV_LABEL_XPOS, PLAYER_INV_LABEL_YPOS, Color.darkGray.getRGB());
-
-        this.addRenderableWidget(new GemModButton(this.width / 2 - 55, this.height / 2 + 3, 84, 20, new TranslatableComponent("screen.geomancy.infusion_table.button.text"), 
-                button -> { 
-                    //craft();
-                    //this.container.getTable().crafting = true;
-                    GemModNetwork.CHANNEL.sendToServer(new InfusionCraftingMessage(this.getMenu().getPos()));
-                
-                }));
     }
     
 

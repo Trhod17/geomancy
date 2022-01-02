@@ -1,0 +1,30 @@
+{
+  "type": "geomancy:infusing_recipe",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "geomancy:agate"
+    },
+    {
+      "item": "geomancy:charoite"
+    }
+  ],
+  "result": {
+    "item": "geomancy:charoite_dreaming"
+  }
+}

@@ -3,7 +3,8 @@ package net.codersdownunder.gemmod.init;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
 import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
-import net.codersdownunder.gemmod.blocks.infusion.InfusionTableContainer;
+import net.codersdownunder.gemmod.blocks.dream.DreamCatcherMenu;
+import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
@@ -13,14 +14,14 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ContainerInit
+public class MenuInit
 {
     public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, GemMod.MODID);
 
-    public static final RegistryObject<MenuType<InfusionTableContainer>> INFUSION_TABLE_CONTAINER = CONTAINERS.register("infusion_table", () -> IForgeMenuType.create((windowId, inv, data) -> {
+    public static final RegistryObject<MenuType<InfusionTableMenu>> INFUSION_TABLE_CONTAINER = CONTAINERS.register("infusion_table", () -> IForgeMenuType.create((windowId, inv, data) -> {
         BlockPos pos = data.readBlockPos();
         Level world = inv.player.getCommandSenderWorld();
-        return new InfusionTableContainer(windowId, world, pos, inv, inv.player);
+        return new InfusionTableMenu(windowId, world, pos, inv, inv.player);
     }));
     
     public static final RegistryObject<MenuType<DipperMenu>> DIPPER_CONTAINER = CONTAINERS.register("dipper_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
@@ -32,6 +33,12 @@ public class ContainerInit
         }
         
         return new DipperMenu(windowId, world, pos, inv, inv.player, tile);
+    }));
+    
+    public static final RegistryObject<MenuType<DreamCatcherMenu>> DREAM_CATCHER_MENU = CONTAINERS.register("dream_catcher_menu", () -> IForgeMenuType.create((windowId, inv, data) -> {
+        BlockPos pos = data.readBlockPos();
+        Level world = inv.player.getCommandSenderWorld();
+        return new DreamCatcherMenu(windowId, world, pos, inv, inv.player);
     }));
 
 }   

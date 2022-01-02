@@ -31,6 +31,9 @@ public class GeomancyTags {
 		public static final Tags.IOptionalNamedTag<Item> CONCOCTIONS_TIER_3 = createTag("concoctions/concoctions_tier_3");
 		public static final Tags.IOptionalNamedTag<Item> CONCOCTIONS_TIER_4 = createTag("concoctions/concoctions_tier_4");
 		
+		public static final Tags.IOptionalNamedTag<Item> DREAM_COMMON = createTag("dream_common");
+		public static final Tags.IOptionalNamedTag<Item> DREAM_RARE = createTag("dream_rare");
+		
 		public static final Tags.IOptionalNamedTag<Item> STRING = createTag("string");
 		public static final Tags.IOptionalNamedTag<Item> SEED_CRYSTAL = createTag("seed_crystal");
 		

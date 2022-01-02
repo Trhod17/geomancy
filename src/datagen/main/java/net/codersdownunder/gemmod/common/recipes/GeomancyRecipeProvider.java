@@ -171,5 +171,45 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.group(GemMod.MODID)
 		.unlockedBy("concoction4", InventoryChangeTrigger.TriggerInstance.hasItems(Items.REDSTONE, Items.CHORUS_FLOWER, Items.DRAGON_BREATH, Items.ENDER_EYE, Items.GHAST_TEAR))
 		.save(consumer);
+		
+		InfusionRecipes(consumer);
+		DippingRecipes(consumer);
+	}
+	
+	private void InfusionRecipes(Consumer<FinishedRecipe> consumer) {
+		InfusionRecipeBuilder.infusing(ItemInit.CHAROITE_DREAMING.get())
+		.requires(Items.STICK)
+		.requires(Items.STICK)
+		.requires(Items.STICK)
+		.requires(Items.STICK)
+		.requires(Items.STICK)
+		.requires(ItemInit.AGATE.get())
+		// Item below is the item to be infused
+		.requires(ItemInit.CHAROITE.get())
+		.group(GemMod.MODID)
+		.save(consumer);
+
+	}
+	
+	private void DippingRecipes(Consumer<FinishedRecipe> consumer) {
+		DippingRecipeBuilder.dipping(ItemInit.CITRINE_DREAMING.get(), 1000)
+		.requires(Items.STICK)
+		.requires(ItemInit.AMETHYST.get())
+		.requires(Items.APPLE)
+		.requires(Items.CARROT)
+		.requires(Items.DIAMOND)
+		.requires(ItemInit.AGATE.get())
+		.requires(Items.CAKE)
+		.requires(ItemInit.TOPAZ.get())
+		.requires(Items.OAK_LOG)
+		.requires(Items.REDSTONE)
+		.requires(Items.IRON_INGOT)
+		.requires(Items.BUCKET)
+		.requires(ItemInit.CHAROITE.get())
+		.requires(Items.POTATO)
+		.requires(Items.EMERALD)
+		.group(GemMod.MODID)
+		.save(consumer);
+
 	}
 }

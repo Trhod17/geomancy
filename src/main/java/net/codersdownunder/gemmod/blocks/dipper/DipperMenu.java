@@ -1,7 +1,7 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
 import net.codersdownunder.gemmod.init.BlockInit;
-import net.codersdownunder.gemmod.init.ContainerInit;
+import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.codersdownunder.gemmod.utils.slots.GenericSlot;
 import net.codersdownunder.gemmod.utils.slots.OutputSlot;
@@ -36,7 +36,7 @@ public class DipperMenu extends AbstractContainerMenu {
 	private static final int CONTAINER_SIZE = 22;
 
 	public DipperMenu(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, DipperBlockEntity tile) {
-		super(ContainerInit.DIPPER_CONTAINER.get(), windowId);
+		super(MenuInit.DIPPER_CONTAINER.get(), windowId);
 		blockEntity = world.getBlockEntity(pos);
 		this.playerEntity = player;
 		this.playerInventory = new InvWrapper(playerInventory);

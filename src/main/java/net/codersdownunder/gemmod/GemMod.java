@@ -9,8 +9,7 @@ import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.handlers.DreamCatcherEventHandler;
 import net.codersdownunder.gemmod.handlers.LogStrippingEvent;
 import net.codersdownunder.gemmod.init.BlockInit;
-import net.codersdownunder.gemmod.init.BlockItemInit;
-import net.codersdownunder.gemmod.init.ContainerInit;
+import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.init.VillagerInit;
@@ -72,8 +71,7 @@ public class GemMod
         
         ItemInit.ITEMS.register(bus);
         BlockInit.BLOCKS.register(bus);
-        BlockItemInit.BLOCKITEMS.register(bus);
-        ContainerInit.CONTAINERS.register(bus);
+        MenuInit.CONTAINERS.register(bus);
         TileEntityInit.TILE_ENTITIES.register(bus);
         VillagerInit.POINT_OF_INTEREST_TYPES.register(bus);
         VillagerInit.VILLAGER_PROFESSIONS.register(bus);

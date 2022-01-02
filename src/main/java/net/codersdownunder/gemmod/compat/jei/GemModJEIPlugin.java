@@ -11,8 +11,7 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.codersdownunder.gemmod.GemMod;
-import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
-import net.codersdownunder.gemmod.blocks.infusion.InfusionTableContainer;
+import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.client.Minecraft;
@@ -61,7 +60,7 @@ public class GemModJEIPlugin implements IModPlugin
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
 
     	//registration.addRecipeTransferHandler(DipperMenu.class, DipperRecipeCategory.ID, 0, 18, 19, PLAYER_INV_SIZE);
-    	registration.addRecipeTransferHandler(InfusionTableContainer.class, InfusingRecipeCategory.ID, 0, 6, 7, PLAYER_INV_SIZE);
+    	registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.ID, 0, 6, 7, PLAYER_INV_SIZE);
     }
     
     private static Collection<?> getRecipes(RecipeManager manager, RecipeType<?> type) {

@@ -1,64 +1,42 @@
-package net.codersdownunder.gemmod.blocks.infusion;
+package net.codersdownunder.gemmod.blocks.dream;
 
-import java.util.Objects;
-
-import javax.annotation.Nullable;
-
-import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.init.BlockInit;
-import net.codersdownunder.gemmod.init.ContainerInit;
-import net.codersdownunder.gemmod.init.TileEntityInit;
+import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.utils.slots.GenericSlot;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.DataSlot;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-@SuppressWarnings("unused")
-public class InfusionTableContainer extends AbstractContainerMenu {
+public class DreamCatcherMenu extends AbstractContainerMenu {
 
     private BlockEntity tileEntity;
     private Player playerEntity;
     private IItemHandler playerInventory;
-    private Level world;
-    private Player player;
-    private InfusionTableBlockEntity table;
     private BlockPos pos;
 
     public static final int PLAYER_INVENTORY_XPOS = -5;
     public static final int PLAYER_INVENTORY_YPOS = 117;
     
-//    public static final int INPUT_SLOTS_COUNT = 6;
-//    public static final int OUTPUT_SLOTS_COUNT = 1;
-//    public static final int FURNACE_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
-    
     public static int id;
-    private static int CONTAINER_SIZE = 6;
+    private int CONTAINER_SIZE = 6;
     
-    public InfusionTableContainer() {
-        super(ContainerInit.INFUSION_TABLE_CONTAINER.get(), id);
+    public DreamCatcherMenu() {
+        super(MenuInit.DREAM_CATCHER_MENU.get(), id);
     }
     
-    public InfusionTableContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player)  {
-        super(ContainerInit.INFUSION_TABLE_CONTAINER.get(), windowId);
-        InfusionTableContainer.id = windowId;
+    public DreamCatcherMenu(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player)  {
+        super(MenuInit.DREAM_CATCHER_MENU.get(), windowId);
+        DreamCatcherMenu.id = windowId;
         tileEntity = world.getBlockEntity(pos);
         this.playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
@@ -67,13 +45,13 @@ public class InfusionTableContainer extends AbstractContainerMenu {
 
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new GenericSlot(h, 0, 67, 63));
-                addSlot(new GenericSlot(h, 1, 31, 45));
-                addSlot(new GenericSlot(h, 2, 103, 45));
-                addSlot(new GenericSlot(h, 3, 103, 9));
-                addSlot(new GenericSlot(h, 4, 31, 9));
-                addSlot(new GenericSlot(h, 5, 67, -9));
-                addSlot(new GenericSlot(h, 6, 67, 27));
+            	 int i = 0;
+            	 for(int j = 0; j < 3; ++j) {
+                     for(int k = 0; k < 4; ++k) {
+                    	 addSlot(new GenericSlot(h, i, 37 + k * 18, 14 + j * 18));
+                    	 i++;
+                     }
+                  }
             });
         }
 
@@ -87,11 +65,11 @@ public class InfusionTableContainer extends AbstractContainerMenu {
 	      if (slot != null && slot.hasItem()) {
 	         ItemStack itemstack1 = slot.getItem();
 	         itemstack = itemstack1.copy();
-	         if (pIndex < InfusionTableContainer.CONTAINER_SIZE) {
-	            if (!this.moveItemStackTo(itemstack1, InfusionTableContainer.CONTAINER_SIZE, this.slots.size(), true)) {
+	         if (pIndex < this.CONTAINER_SIZE) {
+	            if (!this.moveItemStackTo(itemstack1, this.CONTAINER_SIZE, this.slots.size(), true)) {
 	               return ItemStack.EMPTY;
 	            }
-	         } else if (!this.moveItemStackTo(itemstack1, 0, InfusionTableContainer.CONTAINER_SIZE, false)) {
+	         } else if (!this.moveItemStackTo(itemstack1, 0, this.CONTAINER_SIZE, false)) {
 	            return ItemStack.EMPTY;
 	         }
 
@@ -112,7 +90,7 @@ public class InfusionTableContainer extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player playerIn) {
-        return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, BlockInit.INFUSION_TABLE.get());
+        return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, BlockInit.DREAM_CATCHER.get());
     }
 
     
@@ -142,10 +120,4 @@ public class InfusionTableContainer extends AbstractContainerMenu {
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
     
-    public InfusionTableBlockEntity getTable()
-    {
-        return table;
-    }
-
-
 }

@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "geomancy:agate_dreaming",
+    "geomancy:amethyst_dreaming",
+    "geomancy:charoite_dreaming",
+    "geomancy:chrysocolla_dreaming",
+    "geomancy:citrine_dreaming",
+    "geomancy:garnet_dreaming",
+    "geomancy:jade_dreaming",
+    "geomancy:jasper_dreaming",
+    "geomancy:lilystar_dreaming",
+    "geomancy:malachite_dreaming",
+    "geomancy:onyx_dreaming",
+    "geomancy:peridot_dreaming",
+    "geomancy:rhodonite_dreaming",
+    "geomancy:ruby_dreaming",
+    "geomancy:sapphire_dreaming",
+    "geomancy:sphene_dreaming",
+    "geomancy:spinel_dreaming",
+    "geomancy:topaz_dreaming",
+    "minecraft:emerald",
+    "geomancy:emerald_dreaming"
+  ]
+}

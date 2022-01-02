@@ -57,6 +57,8 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
         List<ItemStack> inputs = new ArrayList<>();
         int matched = 0;
 
+        //System.out.println(pInv.getItem(6));
+        
         for (int i = 0; i < pInv.getContainerSize(); i++) {
             ItemStack stack = pInv.getItem(i);
 
@@ -67,8 +69,21 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
             }
         }
 
-        return matched == inputs.size() && RecipeMatcher.findMatches(inputs, this.recipeItems) != null;
+        return matched == inputs.size() && RecipeMatcher.findMatches(inputs, this.recipeItems) != null && this.matches(pInv, false);
     }
+    
+    private boolean matches(SimpleContainer pCraftingInventory, boolean pMirrored) {
+        
+              Ingredient ingredient = Ingredient.EMPTY;
+               ingredient = this.recipeItems.get(6);
+                 
+              if (!ingredient.test(pCraftingInventory.getItem(6))) {
+                 return false;
+              }
+
+        return true;
+     }
+
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
