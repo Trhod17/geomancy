@@ -188,6 +188,8 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.requires(ItemInit.CHAROITE.get())
 		.group(GemMod.MODID)
 		.save(consumer);
+		
+		//Add more below
 
 	}
 	
@@ -210,6 +212,8 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.requires(Items.EMERALD)
 		.group(GemMod.MODID)
 		.save(consumer);
-
+		
+		// Add more below
+		
 	}
 }
