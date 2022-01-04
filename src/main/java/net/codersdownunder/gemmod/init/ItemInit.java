@@ -4,6 +4,7 @@ import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.items.DreamingGemItem;
 import net.codersdownunder.gemmod.items.GemItem;
 import net.codersdownunder.gemmod.items.MulmusItem;
+import net.codersdownunder.gemmod.items.TeleCoreItem;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -64,6 +65,7 @@ public class ItemInit
 
     public static final RegistryObject<Item> GEODE = ITEMS.register("geode", () -> new DreamingGemItem(new Item.Properties().tab((GemMod.gemsmoditemtab))));
     
+    public static final RegistryObject<Item> TELE_CORE = ITEMS.register("tele_core", () -> new TeleCoreItem(new Item.Properties().tab(GemMod.gemsmoditemtab)));
     
     
     
@@ -103,6 +105,6 @@ public class ItemInit
     public static final RegistryObject<BlockItem> DIPPER = ITEMS.register("dipper", () -> new BlockItem(BlockInit.DIPPER.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> DREAM_CATCHER = ITEMS.register("dream_catcher", () -> new BlockItem(BlockInit.DREAM_CATCHER.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> GEODE_ORE = ITEMS.register("geode_ore", () -> new BlockItem(BlockInit.GEODE_ORE.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
-    
+    public static final RegistryObject<BlockItem> TELEPAD = ITEMS.register("telepad", () -> new BlockItem(BlockInit.TELEPAD.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
 
 }

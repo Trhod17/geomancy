@@ -4,6 +4,7 @@ import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.client.gui.DipperScreen;
 import net.codersdownunder.gemmod.client.gui.DreamCatcherScreen;
 import net.codersdownunder.gemmod.client.gui.InfusionTableScreen;
+import net.codersdownunder.gemmod.client.gui.TelepadScreen;
 import net.codersdownunder.gemmod.client.renderer.DipperBlockEntityRenderer;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
@@ -26,16 +27,13 @@ public class ClientSetup {
 	        MenuScreens.register(MenuInit.INFUSION_TABLE_CONTAINER.get(), InfusionTableScreen::new);
 	        MenuScreens.register(MenuInit.DIPPER_CONTAINER.get(), DipperScreen::new);
 	        MenuScreens.register(MenuInit.DREAM_CATCHER_MENU.get(), DreamCatcherScreen::new);
-	        
-	        RenderType GppRender = RenderType.cutoutMipped();
+	        MenuScreens.register(MenuInit.TELEPAD_MENU.get(), TelepadScreen::new);
+	      
 	       
 	        //RenderTypeLookup.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
 	        
 	        event.enqueueWork(() -> {
-	        ItemBlockRenderTypes.setRenderLayer(BlockInit.END_LANTERN.get(), GppRender);
-	        ItemBlockRenderTypes.setRenderLayer(BlockInit.INFUSION_TABLE.get(), GppRender);
-	        ItemBlockRenderTypes.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
-	        ItemBlockRenderTypes.setRenderLayer(BlockInit.DIPPER.get(), RenderType.cutout());     
+	         renderLayer();
 	        });
 	        
 	        BlockEntityRenderers.register(TileEntityInit.CUSTOM_SIGN.get(), SignRenderer::new);
@@ -45,4 +43,12 @@ public class ClientSetup {
 	        
 	        BlockEntityRenderers.register(TileEntityInit.DIPPER_BE.get(), DipperBlockEntityRenderer::new);
 	    }
+	  
+	  private static void renderLayer() {
+		  RenderType GppRender = RenderType.cutoutMipped();
+		  ItemBlockRenderTypes.setRenderLayer(BlockInit.END_LANTERN.get(), GppRender);
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.INFUSION_TABLE.get(), GppRender);
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.DIPPER.get(), RenderType.cutout());    
+	  }
 }

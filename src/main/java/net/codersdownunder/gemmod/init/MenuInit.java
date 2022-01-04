@@ -5,6 +5,7 @@ import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
 import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.blocks.dream.DreamCatcherMenu;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
+import net.codersdownunder.gemmod.blocks.telepad.TelepadMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
@@ -40,5 +41,12 @@ public class MenuInit
         Level world = inv.player.getCommandSenderWorld();
         return new DreamCatcherMenu(windowId, world, pos, inv, inv.player);
     }));
+    
+    public static final RegistryObject<MenuType<TelepadMenu>> TELEPAD_MENU = CONTAINERS.register("telepad_menu", () -> IForgeMenuType.create((windowId, inv, data) -> {
+        BlockPos pos = data.readBlockPos();
+        Level world = inv.player.getCommandSenderWorld();
+        return new TelepadMenu(windowId, world, pos, inv, inv.player);
+    }));
+
 
 }   

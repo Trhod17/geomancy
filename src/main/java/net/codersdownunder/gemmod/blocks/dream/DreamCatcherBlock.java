@@ -155,7 +155,7 @@ public class DreamCatcherBlock extends HorizontalDirectionalBlock implements Sim
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
     	// TODO Auto-generated method stub
-    	return defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+    	return defaultBlockState().setValue(FACING, pContext.getHorizontalDirection());
     }
     
     @Override
