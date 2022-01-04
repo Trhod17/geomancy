@@ -25,10 +25,10 @@ public class DreamCatcherMenu extends AbstractContainerMenu {
     private BlockPos pos;
 
     public static final int PLAYER_INVENTORY_XPOS = -5;
-    public static final int PLAYER_INVENTORY_YPOS = 117;
+    public static final int PLAYER_INVENTORY_YPOS = 113;
     
     public static int id;
-    private int CONTAINER_SIZE = 6;
+    private int CONTAINER_SIZE = 16;
     
     public DreamCatcherMenu() {
         super(MenuInit.DREAM_CATCHER_MENU.get(), id);
@@ -45,13 +45,23 @@ public class DreamCatcherMenu extends AbstractContainerMenu {
 
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            	 int i = 0;
-            	 for(int j = 0; j < 3; ++j) {
-                     for(int k = 0; k < 4; ++k) {
-                    	 addSlot(new GenericSlot(h, i, 37 + k * 18, 14 + j * 18));
-                    	 i++;
-                     }
-                  }
+            	addSlot(new GenericSlot(h, 0, 49, 27));
+            	addSlot(new GenericSlot(h, 1, 67, 27));
+            	addSlot(new GenericSlot(h, 2, 85, 27));
+            	addSlot(new GenericSlot(h, 3, 31, 45));
+            	addSlot(new GenericSlot(h, 4, 49, 45));
+            	addSlot(new GenericSlot(h, 5, 67, 45));
+            	addSlot(new GenericSlot(h, 6, 85, 45));
+            	addSlot(new GenericSlot(h, 7, 103, 45));
+            	addSlot(new GenericSlot(h, 8, 31, 63));
+            	addSlot(new GenericSlot(h, 9, 49, 63));
+            	addSlot(new GenericSlot(h, 10, 67, 63));
+            	addSlot(new GenericSlot(h, 11, 85, 63));
+            	addSlot(new GenericSlot(h, 12, 103, 63));
+            	addSlot(new GenericSlot(h, 13, 49, 81));
+            	addSlot(new GenericSlot(h, 14, 67, 81));
+            	addSlot(new GenericSlot(h, 15, 85, 81));
+
             });
         }
 

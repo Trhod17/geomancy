@@ -74,6 +74,7 @@
   "itemGroup.gemmodblocktab": "Geomancy Blocks",
   "itemGroup.gemsmoditemtab": "Geomancy Items",
   "screen.geomancy.dipper.text": "Dipper",
+  "screen.geomancy.dreamcatcher.text": "Dream Catcher",
   "screen.geomancy.infusion_table.button.text": "Infuse",
   "screen.geomancy.infusion_table.text": "Infusion Table",
   "screen.geomancy.liquid_amount": "Stored: %smB / %smB",

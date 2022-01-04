@@ -145,7 +145,7 @@ public class DippingRecipeBuilder implements RecipeBuilder {
 	            jsonobject.addProperty("count", this.count);
 	         }
 	         pJson.addProperty("amount", fluidAmount);
-	         pJson.add("result", jsonobject);
+	         pJson.add("output", jsonobject);
 	         } else {
 	        	 throw new IndexOutOfBoundsException("not enough items for dipping recipe");
 	         }

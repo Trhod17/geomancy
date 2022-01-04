@@ -53,8 +53,8 @@ public class InfusionTableScreen extends AbstractContainerScreen<InfusionTableMe
         final int LABEL_YPOS = -23;
         this.font.draw(matrixStack, this.title, LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB()); 
         
-        this.font.draw(matrixStack, this.getTitle(),                  
-                PLAYER_INV_LABEL_XPOS, PLAYER_INV_LABEL_YPOS, Color.darkGray.getRGB());
+        this.font.draw(matrixStack, this.playerInventoryTitle, PLAYER_INV_LABEL_XPOS, PLAYER_INV_LABEL_YPOS,
+				Color.darkGray.getRGB());	
 
         this.addRenderableWidget(new GemModButton(this.width / 2 - 55, this.height / 2 + 3, 84, 20, new TranslatableComponent("screen.geomancy.infusion_table.button.text"), 
                 button -> { 

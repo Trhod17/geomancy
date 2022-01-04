@@ -32,6 +32,7 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add("screen." + modid + ".liquid_amount", "Stored: %smB / %smB");
         add("screen." + modid + ".liquid_percentage", "Filled: %s");
         add("screen." + modid + ".tank_empty", "Empty");
+        add("screen." + modid + ".dreamcatcher.text", "Dream Catcher");
         
     }
     

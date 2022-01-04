@@ -57,10 +57,11 @@ public class DreamCatcherEventHandler {
 
 	private static void insert(BlockEntity entity, Item item, int count) {
 
+		int slot = rand.nextInt(15);
 		entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
-			for (int i = 0; i < 12; i++) {
-				if (itemHandler.getStackInSlot(i).isEmpty()) {
-					itemHandler.insertItem(i, new ItemStack(item, count), false);
+			for (int i = 0; i < 15; i++) {
+				if (itemHandler.getStackInSlot(slot).isEmpty() || itemHandler.getStackInSlot(slot).getItem() == item) {
+					itemHandler.insertItem(slot, new ItemStack(item, count), false);
 					break;
 				}
 			}

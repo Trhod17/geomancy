@@ -1,14 +1,13 @@
 {
   "variants": {
-    "waterlogged=false": [
-      {
-      "model": "geomancy:block/dreamcatcher"
-      }
-    ],
-    "waterlogged=true": [
-    {
-    "model": "geomancy:block/dreamcatcher"
-    }
-    ]	
+      "waterlogged=false,facing=north": { "model": "geomancy:block/dreamcatcher" },
+	  "waterlogged=false,facing=south": { "model": "geomancy:block/dreamcatcher", "y": 180 },
+	  "waterlogged=false,facing=west": { "model": "geomancy:block/dreamcatcher", "y": 270 },
+	  "waterlogged=false,facing=east": { "model": "geomancy:block/dreamcatcher", "y": 90 },
+   	  "waterlogged=true,facing=north": { "model": "geomancy:block/dreamcatcher" },
+	  "waterlogged=true,facing=south": { "model": "geomancy:block/dreamcatcher", "y": 180 },
+	  "waterlogged=true,facing=west": { "model": "geomancy:block/dreamcatcher", "y": 270 },
+	  "waterlogged=true,facing=east": { "model": "geomancy:block/dreamcatcher", "y": 90 }
+
   }
 }

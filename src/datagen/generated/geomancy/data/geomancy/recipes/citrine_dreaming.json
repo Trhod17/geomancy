@@ -49,7 +49,7 @@
     }
   ],
   "amount": 1000,
-  "result": {
+  "output": {
     "item": "geomancy:citrine_dreaming"
   }
 }

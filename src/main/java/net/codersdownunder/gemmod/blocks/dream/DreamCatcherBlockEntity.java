@@ -19,7 +19,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class DreamCatcherBlockEntity extends BlockEntity {
 
-	private static final int INPUT_SLOTS = 12;
+	private static final int INPUT_SLOTS = 16;
 
     private ItemStackHandler itemHandler = createHandler();
 

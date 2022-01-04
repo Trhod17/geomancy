@@ -45,12 +45,12 @@ public class DreamCatcherScreen extends AbstractContainerScreen<DreamCatcherMenu
     @Override
     protected void renderLabels(PoseStack matrixStack, int mouseX, int mouseY) {
         
-        final int LABEL_XPOS = 40;
-        final int LABEL_YPOS = -23;
+        final int LABEL_XPOS = 38;
+        final int LABEL_YPOS = 13;
         this.font.draw(matrixStack, this.title, LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB()); 
         
-        this.font.draw(matrixStack, this.getTitle(),                  
-                PLAYER_INV_LABEL_XPOS, PLAYER_INV_LABEL_YPOS, Color.darkGray.getRGB());
+        this.font.draw(matrixStack, this.playerInventoryTitle, PLAYER_INV_LABEL_XPOS, PLAYER_INV_LABEL_YPOS,
+				Color.darkGray.getRGB());	
     }
     
 

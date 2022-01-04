@@ -142,7 +142,7 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 	            jsonobject.addProperty("count", this.count);
 	         }
 
-	         pJson.add("result", jsonobject);
+	         pJson.add("output", jsonobject);
 	         }
 	      }
 
