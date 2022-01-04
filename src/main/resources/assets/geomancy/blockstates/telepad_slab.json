@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "waterlogged=false": [
+      {
+      "model": "geomancy:block/telepad_slab"
+      }
+    ],
+    "waterlogged=true": [
+    {
+    "model": "geomancy:block/telepad_slab"
+    }
+    ]	
+  }
+}

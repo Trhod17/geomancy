@@ -22,6 +22,8 @@
   "block.geomancy.infusion_table": "Infusion Table",
   "block.geomancy.mulmus_lantern": "Mulmus Lantern",
   "block.geomancy.mulmus_lantern_polished": "Polished Mulmus Lantern",
+  "block.geomancy.telepad": "Telepad",
+  "block.geomancy.telepad_slab": "Telepad Slab",
   "category.geomancy.dipping_recipes": "Dipping Recipes",
   "category.geomancy.infusing_recipe": "Infusing Recipes",
   "geomancy.dipper.tooltip.add_fluid": "Right Click with bucket of valid fluid to add fill Dipper",
@@ -69,6 +71,7 @@
   "item.geomancy.sphene_dreaming": "Dreaming Sphene",
   "item.geomancy.spinel": "Spinel",
   "item.geomancy.spinel_dreaming": "Dreaming Spinel",
+  "item.geomancy.tele_core": "Tele-Core",
   "item.geomancy.topaz": "Topaz",
   "item.geomancy.topaz_dreaming": "Dreaming Topaz",
   "itemGroup.gemmodblocktab": "Geomancy Blocks",
@@ -80,6 +83,7 @@
   "screen.geomancy.liquid_amount": "Stored: %smB / %smB",
   "screen.geomancy.liquid_percentage": "Filled: %s",
   "screen.geomancy.tank_empty": "Empty",
+  "screen.geomancy.telepad.text": "Telepad",
   "tooltip.concoction.four": "Used to increase ouput quantities (Requires previous tiers)",
   "tooltip.concoction.one": "Used to increase ouput quantities",
   "tooltip.concoction.three": "Used to increase ouput quantities (Requires previous tiers)",
@@ -121,5 +125,6 @@
   "tooltip.gem_sapphire.text": "A Dream of Unparalleled Stability",
   "tooltip.gem_sphene.text": "A Dream of Blinding Light",
   "tooltip.gem_spinel.text": "A Dream of Unbound Life",
-  "tooltip.gem_topaz.text": "A Dream of Intense Rush"
+  "tooltip.gem_topaz.text": "A Dream of Intense Rush",
+  "tooltip.pos.text": "Pos Saved: "
 }

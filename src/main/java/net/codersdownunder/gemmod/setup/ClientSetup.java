@@ -45,10 +45,11 @@ public class ClientSetup {
 	    }
 	  
 	  private static void renderLayer() {
-		  RenderType GppRender = RenderType.cutoutMipped();
-		  ItemBlockRenderTypes.setRenderLayer(BlockInit.END_LANTERN.get(), GppRender);
-	      ItemBlockRenderTypes.setRenderLayer(BlockInit.INFUSION_TABLE.get(), GppRender);
+		  ItemBlockRenderTypes.setRenderLayer(BlockInit.END_LANTERN.get(), RenderType.cutoutMipped());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.INFUSION_TABLE.get(), RenderType.cutoutMipped());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.DIPPER.get(), RenderType.cutout());    
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD.get(), RenderType.cutoutMipped());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD_SLAB.get(), RenderType.cutoutMipped());
 	  }
 }

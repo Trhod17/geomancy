@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:telepad_slab"
+    }
+  ],
+  "result": {
+    "item": "geomancy:telepad"
+  }
+}

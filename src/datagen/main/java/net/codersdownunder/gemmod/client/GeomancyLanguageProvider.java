@@ -33,6 +33,7 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add("screen." + modid + ".liquid_percentage", "Filled: %s");
         add("screen." + modid + ".tank_empty", "Empty");
         add("screen." + modid + ".dreamcatcher.text", "Dream Catcher");
+        add("screen." + modid + ".telepad.text", "Telepad");
         
     }
     
@@ -81,6 +82,8 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add("tooltip.gem_dreaming_onyx.text", "A Vivid Dream of Pristine Ground");
         add("tooltip.gem_dreaming_sphene.text", "A Vivid Dream of Blinding Light");
         add("tooltip.gem_dreaming_rhodonite.text", "A Vivid Dream of Abyssal-Like Infinity");
+        
+        add("tooltip.pos.text", "Pos Saved: ");
         
         add("tooltip.concoction.one", "Used to increase ouput quantities");
         add("tooltip.concoction.two", "Used to increase ouput quantities (Requires previous tiers)");
@@ -140,6 +143,7 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(ItemInit.CONCOCTION_FOUR.get(), "Concoction 4");
         
         add(ItemInit.GEODE.get(), "Geode Chunk");
+        add(ItemInit.TELE_CORE.get(), "Tele-Core");
     }
 
     private void addBlocks() {
@@ -167,6 +171,8 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(BlockInit.DIPPER.get(), "Dipper");
         add(BlockInit.DREAM_CATCHER.get(), "Dream Catcher");
         add(BlockInit.GEODE_ORE.get(), "Geode Ore");
+        add(BlockInit.TELEPAD.get(), "Telepad");
+        add(BlockInit.TELEPAD_SLAB.get(), "Telepad Slab");
     }
     
     private void addItemGroupText() {

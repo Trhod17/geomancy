@@ -21,7 +21,10 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         		.add(BlockInit.END_LANTERN.get())
         		.add(BlockInit.END_LANTERN_BLOCK.get())
         		.add(BlockInit.MULMUS_LANTERN.get())
-        		.add(BlockInit.MULMUS_LANTERN_POLISHED.get());
+        		.add(BlockInit.MULMUS_LANTERN_POLISHED.get())
+        		.add(BlockInit.TELEPAD.get())
+        		.add(BlockInit.TELEPAD_SLAB.get())
+        		.add(BlockInit.DREAM_CATCHER.get());
 				
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(BlockInit.DIPPER.get())
@@ -29,7 +32,10 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         		.add(BlockInit.END_LANTERN.get())
         		.add(BlockInit.END_LANTERN_BLOCK.get())
         		.add(BlockInit.MULMUS_LANTERN.get())
-        		.add(BlockInit.MULMUS_LANTERN_POLISHED.get());
+        		.add(BlockInit.MULMUS_LANTERN_POLISHED.get())
+        		.add(BlockInit.TELEPAD.get())
+        		.add(BlockInit.TELEPAD_SLAB.get())
+        		.add(BlockInit.DREAM_CATCHER.get());
         
         tag(BlockTags.MINEABLE_WITH_AXE)
         		.add(BlockInit.CHASM_BUTTON.get())

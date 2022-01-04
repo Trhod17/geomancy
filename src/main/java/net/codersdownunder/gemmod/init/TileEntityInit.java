@@ -20,5 +20,5 @@ public class TileEntityInit
     public static RegistryObject<BlockEntityType<InfusionTableBlockEntity>> INFUSION_TABLE = TILE_ENTITIES.register("infusion_table",() -> BlockEntityType.Builder.of(InfusionTableBlockEntity::new, BlockInit.INFUSION_TABLE.get()).build(null));
     public static RegistryObject<BlockEntityType<DipperBlockEntity>> DIPPER_BE = TILE_ENTITIES.register("dipper_be", () -> BlockEntityType.Builder.of(DipperBlockEntity::new, BlockInit.DIPPER.get()).build(null));
     public static RegistryObject<BlockEntityType<DreamCatcherBlockEntity>> DREAM_CATCHER_BE = TILE_ENTITIES.register("dream_catcher_be", () -> BlockEntityType.Builder.of(DreamCatcherBlockEntity::new, BlockInit.DREAM_CATCHER.get()).build(null));
-    public static RegistryObject<BlockEntityType<TelepadBlockEntity>> TELEPAD_BE = TILE_ENTITIES.register("telepad_be", () -> BlockEntityType.Builder.of(TelepadBlockEntity::new, BlockInit.TELEPAD.get()).build(null));
+    public static RegistryObject<BlockEntityType<TelepadBlockEntity>> TELEPAD_BE = TILE_ENTITIES.register("telepad_be", () -> BlockEntityType.Builder.of(TelepadBlockEntity::new, BlockInit.TELEPAD.get(), BlockInit.TELEPAD_SLAB.get()).build(null));
 }

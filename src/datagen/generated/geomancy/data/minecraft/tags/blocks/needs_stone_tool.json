@@ -6,6 +6,9 @@
     "geomancy:end_lantern",
     "geomancy:end_lantern_block",
     "geomancy:mulmus_lantern",
-    "geomancy:mulmus_lantern_polished"
+    "geomancy:mulmus_lantern_polished",
+    "geomancy:telepad",
+    "geomancy:telepad_slab",
+    "geomancy:dream_catcher"
   ]
 }

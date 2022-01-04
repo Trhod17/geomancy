@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:telepad_slab"
+    ]
+  },
+  "criteria": {
+    "telepad": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "geomancy:telepad"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:telepad_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "telepad",
+      "has_the_recipe"
+    ]
+  ]
+}

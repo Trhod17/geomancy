@@ -172,6 +172,18 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.unlockedBy("concoction4", InventoryChangeTrigger.TriggerInstance.hasItems(Items.REDSTONE, Items.CHORUS_FLOWER, Items.DRAGON_BREATH, Items.ENDER_EYE, Items.GHAST_TEAR))
 		.save(consumer);
 		
+		ShapelessRecipeBuilder.shapeless(BlockInit.TELEPAD_SLAB.get())
+		.requires(BlockInit.TELEPAD.get())
+		.group(GemMod.MODID)
+		.unlockedBy("telepad", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.TELEPAD.get()))
+		.save(consumer);
+		
+		ShapelessRecipeBuilder.shapeless(BlockInit.TELEPAD.get())
+		.requires(BlockInit.TELEPAD_SLAB.get())
+		.group(GemMod.MODID)
+		.unlockedBy("telepad_slab", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.TELEPAD_SLAB.get()))
+		.save(consumer);
+		
 		InfusionRecipes(consumer);
 		DippingRecipes(consumer);
 	}

@@ -32,6 +32,8 @@ public class ModBlockLootTables extends BlockLoot {
             dropSelf(BlockInit.MULMUS_LANTERN.get());
             dropSelf(BlockInit.MULMUS_LANTERN_POLISHED.get());
             dropSelf(BlockInit.DREAM_CATCHER.get());
+            dropSelf(BlockInit.TELEPAD.get());
+            dropSelf(BlockInit.TELEPAD_SLAB.get());
             dropOther(BlockInit.CHASM_SIGN_WALL.get(), BlockInit.CHASM_SIGN.get());
             add(BlockInit.GEODE_ORE.get(), createOreDrop(BlockInit.GEODE_ORE.get(), ItemInit.GEODE.get()));
             add(BlockInit.CHASM_LEAVES.get(), createLeavesDrops(BlockInit.CHASM_LEAVES.get(), Blocks.OAK_SAPLING, 0.1f));

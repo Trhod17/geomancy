@@ -29,7 +29,7 @@ import net.minecraftforge.network.NetworkHooks;
 public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBlock, EntityBlock {
 
 	
-	//public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+//  public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 //	private static final Map<Direction, VoxelShape> SHAPES = new EnumMap<>(Direction.class);
 //	
 //	private static final Optional<VoxelShape> SHAPE = Optional.of(Stream.of(

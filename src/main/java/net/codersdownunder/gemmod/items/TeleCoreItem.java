@@ -2,7 +2,8 @@ package net.codersdownunder.gemmod.items;
 
 import java.util.List;
 
-import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
+import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
@@ -26,10 +27,8 @@ public class TeleCoreItem extends Item {
 	@Override
 	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 		
-		ItemStack stack = new ItemStack(this.asItem());
-		//System.out.println();
 		if (!itemstack.getOrCreateTag().isEmpty()) {
-			list.add(new TranslatableComponent("pos: ").append(itemstack.getOrCreateTag().get("X").toString().replace("}", "").replace("{", "").replace(",", " ")));
+			list.add(new TranslatableComponent("tooltip.pos.text").append(itemstack.getOrCreateTag().get("X").toString().replace("}", "").replace("{", "").replace(",", " ")));
 		} else {
 			list.add(new TranslatableComponent("No pos set"));
 		}
@@ -45,6 +44,7 @@ public class TeleCoreItem extends Item {
 	@Override
 	public InteractionResult useOn(UseOnContext pContext) {
 
+		try {
 		if (pContext.getLevel().isClientSide()) {
 			return InteractionResult.FAIL;
 		}
@@ -52,18 +52,14 @@ public class TeleCoreItem extends Item {
 		Block block = pContext.getLevel().getBlockState(pContext.getClickedPos()).getBlock();
 		ItemStack stack = new ItemStack(this);
 
-		if (block == BlockInit.TELEPAD.get() && pContext.getPlayer().isShiftKeyDown() && !stack.hasTag()) {
+		if ((block instanceof TelepadBlock || block instanceof TelepadSlab) && pContext.getPlayer().isShiftKeyDown() && !stack.hasTag()) {
 			CompoundTag pos;
 			pos = new CompoundTag();
-			System.out.println("test");
-
-			//stack.setTag(pos);
-	
 			pos.put("X", NbtUtils.writeBlockPos(pContext.getClickedPos().above()));
-			//stack.setTag(pos);
 			pContext.getItemInHand().setTag(pos);
+		}
+		} catch(Exception e)  {
 			
-			//System.out.println(stack.getTag().get("X"));
 		}
 
 		return InteractionResult.SUCCESS;
