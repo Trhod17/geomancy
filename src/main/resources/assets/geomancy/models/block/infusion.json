@@ -6,7 +6,7 @@
 		"3": "block/dark_oak_log",
 		"4": "block/dark_oak_log_top",
 		"5": "block/stripped_dark_oak_log",
-		"7": "geomancy:blocks/gem1",
+		"7": "minecraft:block/emerald_block",
 		"9": "geomancy:blocks/gem2",
 		"particle": "geomancy:blocks/infusion1"
 	},

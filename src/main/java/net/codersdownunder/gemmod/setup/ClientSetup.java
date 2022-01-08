@@ -5,6 +5,7 @@ import net.codersdownunder.gemmod.client.gui.DipperScreen;
 import net.codersdownunder.gemmod.client.gui.DreamCatcherScreen;
 import net.codersdownunder.gemmod.client.gui.InfusionTableScreen;
 import net.codersdownunder.gemmod.client.gui.TelepadScreen;
+import net.codersdownunder.gemmod.client.gui.TerraFirmaScreen;
 import net.codersdownunder.gemmod.client.renderer.DipperBlockEntityRenderer;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
@@ -28,6 +29,7 @@ public class ClientSetup {
 	        MenuScreens.register(MenuInit.DIPPER_CONTAINER.get(), DipperScreen::new);
 	        MenuScreens.register(MenuInit.DREAM_CATCHER_MENU.get(), DreamCatcherScreen::new);
 	        MenuScreens.register(MenuInit.TELEPAD_MENU.get(), TelepadScreen::new);
+	        MenuScreens.register(MenuInit.TERRA_FIRMA_MENU.get(), TerraFirmaScreen::new);
 	      
 	       
 	        //RenderTypeLookup.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
@@ -49,7 +51,7 @@ public class ClientSetup {
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.INFUSION_TABLE.get(), RenderType.cutoutMipped());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.DIPPER.get(), RenderType.cutout());    
-	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD.get(), RenderType.cutoutMipped());
-	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD_SLAB.get(), RenderType.cutoutMipped());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD_SLAB.get(), RenderType.cutout());
 	  }
 }

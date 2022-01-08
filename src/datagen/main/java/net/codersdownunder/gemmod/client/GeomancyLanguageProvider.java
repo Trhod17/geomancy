@@ -144,6 +144,12 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         
         add(ItemInit.GEODE.get(), "Geode Chunk");
         add(ItemInit.TELE_CORE.get(), "Tele-Core");
+        
+        add(ItemInit.CATCHER_RING.get(), "Catcher Ring");
+        add(ItemInit.DREAM_DUST.get(), "Dream Dust");
+        add(ItemInit.EMPTY_DISK.get(), "Empty Disk");
+        add(ItemInit.CONCENTRATION.get(), "Concentration");
+        add(ItemInit.NETHERRITE_NUGGET.get(), "Netherite Nugget");
     }
 
     private void addBlocks() {

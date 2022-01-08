@@ -15,6 +15,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.EntityBlock;
@@ -23,12 +24,13 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
 
 public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBlock, EntityBlock {
 
-	
 //  public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 //	private static final Map<Direction, VoxelShape> SHAPES = new EnumMap<>(Direction.class);
 //	
@@ -76,65 +78,78 @@ public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 //			Block.box(2.7632899999999996, -7.75, 7.01329, 4.01329, -4.5, 8.01329),
 //			Block.box(12.51329, -8, 8.01329, 13.76329, -5.5, 9.01329)
 //			).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get());
-	
+
 	public TelepadBlock(Properties p_49795_) {
 		super(p_49795_);
-		//registerDefaultState(this.stateDefinition.any().setValue(BlockStateProperties.WATERLOGGED, false).setValue(FACING, Direction.NORTH));
-		//runCalculation(SHAPE.orElse(Shapes.block()));
+		// registerDefaultState(this.stateDefinition.any().setValue(BlockStateProperties.WATERLOGGED,
+		// false).setValue(FACING, Direction.NORTH));
+		// runCalculation(SHAPE.orElse(Shapes.block()));
 	}
-	
+
 	@Override
 	public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-		 if (pState.hasBlockEntity() && pState.getBlock() != pNewState.getBlock()) {
-	            // drops everything in the inventory
-	            pLevel.getBlockEntity(pPos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-	                for (int i = 0; i < h.getSlots(); i++) {
-	                	popResource(pLevel, pPos, h.getStackInSlot(i));
-	                }
-	            });
-	            pLevel.removeBlockEntity(pPos);
-	        }
+		if (pState.hasBlockEntity() && pState.getBlock() != pNewState.getBlock()) {
+			// drops everything in the inventory
+			pLevel.getBlockEntity(pPos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+				for (int i = 0; i < h.getSlots(); i++) {
+					popResource(pLevel, pPos, h.getStackInSlot(i));
+				}
+			});
+			pLevel.removeBlockEntity(pPos);
+		}
 	}
 
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
-    {
-        return new TelepadBlockEntity(pos, state);
-    }
-    
-    @Override
-    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-    	
-    	if (pLevel.isClientSide) {
-    		return;
-    	}
-    	
-    	if (pEntity instanceof ServerPlayer) {
-    		ServerPlayer player = (ServerPlayer)pEntity;
-    		BlockEntity entity = pLevel.getBlockEntity(pPos);
-    		
-    		if (entity instanceof TelepadBlockEntity) {
-    			entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
-    				if (itemHandler.getStackInSlot(0).getItem() == ItemInit.TELE_CORE.get()) {
-    					if (!itemHandler.getStackInSlot(0).getOrCreateTag().isEmpty()) {
-    						if (player.isCrouching()) {
-    						BlockPos pos = NbtUtils.readBlockPos((CompoundTag) itemHandler.getStackInSlot(0).getOrCreateTag().get("X"));
-    						
-    						int X = pos.getX();
-    						int Y = pos.getY();
-    						int Z = pos.getZ();
-    						pEntity.moveTo(X + 0.5D, Y, Z + 0.5D);
-    						//pEntity.teleportToWithTicket(X, Y, Z);
-    						//pEntity.teleportTo(X, Y, Z);
-    						}
-    					}
-    				}
-    			});
-    		}
-    	}
-    }
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new TelepadBlockEntity(pos, state);
+	}
 
-    
+	@Override
+	public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
+
+		if (pLevel.isClientSide) {
+			return;
+		}
+
+		if (pEntity instanceof ServerPlayer) {
+			ServerPlayer player = (ServerPlayer) pEntity;
+			BlockEntity entity = pLevel.getBlockEntity(pPos);
+
+			if (entity instanceof TelepadBlockEntity) {
+				entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
+					if (itemHandler.getStackInSlot(0).getItem() == ItemInit.TELE_CORE.get()) {
+						if (!itemHandler.getStackInSlot(0).getOrCreateTag().isEmpty()) {
+							if (player.isCrouching()) {
+								BlockPos pos = NbtUtils.readBlockPos(
+										(CompoundTag) itemHandler.getStackInSlot(0).getOrCreateTag().get("X"));
+
+								int X = pos.getX();
+								int Y = pos.getY();
+								int Z = pos.getZ();
+								pEntity.moveTo(X + 0.5D, Y, Z + 0.5D);
+								// pEntity.teleportToWithTicket(X, Y, Z);
+								// pEntity.teleportTo(X, Y, Z);
+							}
+						}
+					}
+				});
+			}
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+		return super.getShape(pState, pLevel, pPos, pContext);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos,
+			CollisionContext pContext) {
+		return super.getCollisionShape(pState, pLevel, pPos, pContext);
+	}
+
 //    @Override
 //    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
 //    {
@@ -151,10 +166,10 @@ public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 //		for (Direction direction : Direction.values())
 //			SHAPES.put(direction, BlockUtils.calculateShapes(direction, shape));
 //	}
-    
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-     }
+
+	public RenderShape getRenderShape(BlockState pState) {
+		return RenderShape.MODEL;
+	}
 //    
 //    @SuppressWarnings("deprecation")
 //    @Override
@@ -173,7 +188,7 @@ public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 //    	// TODO Auto-generated method stub
 //    	return defaultBlockState().setValue(FACING, pContext.getHorizontalDirection());
 //    }
-    
+
 //    @Override
 //    @SuppressWarnings("deprecation")
 //    public FluidState getFluidState(BlockState state) {
@@ -186,32 +201,32 @@ public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 //    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
 //        pBuilder.add(WATERLOGGED).add(FACING);
 //     }
-    
-    @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult trace) {
-        if (!world.isClientSide) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof TelepadBlockEntity) {
-                MenuProvider containerProvider = new MenuProvider() {
-                    
-                    @Override
-                    public AbstractContainerMenu createMenu(int p_createMenu_1_, Inventory p_createMenu_2_, Player p_createMenu_3_)
-                    {
-                        return new TelepadMenu(p_createMenu_1_, world, pos, p_createMenu_2_, p_createMenu_3_);
-                    }
 
-                    @Override
-                    public Component getDisplayName()
-                    {
-                        return new TranslatableComponent("screen." + GemMod.MODID + ".telepad.text");
-                    }
-                };
-                NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
-            } else {
-                throw new IllegalStateException("Our named container provider is missing!");
-            }
-        }
-        return InteractionResult.SUCCESS;
-    }
-	
+	@Override
+	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
+			BlockHitResult trace) {
+		if (!world.isClientSide) {
+			BlockEntity tileEntity = world.getBlockEntity(pos);
+			if (tileEntity instanceof TelepadBlockEntity) {
+				MenuProvider containerProvider = new MenuProvider() {
+
+					@Override
+					public AbstractContainerMenu createMenu(int p_createMenu_1_, Inventory p_createMenu_2_,
+							Player p_createMenu_3_) {
+						return new TelepadMenu(p_createMenu_1_, world, pos, p_createMenu_2_, p_createMenu_3_);
+					}
+
+					@Override
+					public Component getDisplayName() {
+						return new TranslatableComponent("screen." + GemMod.MODID + ".telepad.text");
+					}
+				};
+				NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+			} else {
+				throw new IllegalStateException("Our named container provider is missing!");
+			}
+		}
+		return InteractionResult.SUCCESS;
+	}
+
 }

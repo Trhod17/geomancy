@@ -72,7 +72,7 @@ public class DipperScreen extends AbstractContainerScreen<DipperMenu> {
 	
 	@Override
 	protected void containerTick() {
-		// TODO Auto-generated method stub
+	
 		super.containerTick();
 		
 	}

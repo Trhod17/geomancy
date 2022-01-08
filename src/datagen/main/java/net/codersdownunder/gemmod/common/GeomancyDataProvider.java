@@ -1,6 +1,7 @@
 package net.codersdownunder.gemmod.common;
 
 import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.client.GeomancyItemModelProvider;
 import net.codersdownunder.gemmod.client.GeomancyLanguageProvider;
 import net.codersdownunder.gemmod.common.loottables.ModLootTables;
 import net.codersdownunder.gemmod.common.recipes.GeomancyRecipeProvider;
@@ -25,7 +26,7 @@ public class GeomancyDataProvider {
         
         if (event.includeClient()) {
         	gen.addProvider(new GeomancyLanguageProvider(gen));
-        	//System.out.println("********* IT HITS THIS **********");
+        	gen.addProvider(new GeomancyItemModelProvider(gen, event.getExistingFileHelper()));
         }
         
          if (event.includeServer()) {

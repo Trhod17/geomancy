@@ -71,6 +71,6 @@ public class InfusionTableScreen extends AbstractContainerScreen<InfusionTableMe
         RenderSystem.setShaderTexture(0, GUI);
         int relX = (this.width - 202) / 2;
         int relY = (this.height - 220) / 2;
-        this.blit(matrixStack, relX, relY, 0, 0, 202, 220);
+        this.blit(matrixStack, relX, relY, 0, 0, 202, 225);
     }
 }

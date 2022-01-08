@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:netherite_ingot"
+    ]
+  },
+  "criteria": {
+    "netherite_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "geomancy:netherrite_nugger"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:netherite_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "netherite_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}

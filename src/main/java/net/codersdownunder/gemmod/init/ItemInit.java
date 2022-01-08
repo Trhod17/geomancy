@@ -66,13 +66,13 @@ public class ItemInit
     public static final RegistryObject<Item> GEODE = ITEMS.register("geode", () -> new DreamingGemItem(new Item.Properties().tab((GemMod.gemsmoditemtab))));
     
     public static final RegistryObject<Item> TELE_CORE = ITEMS.register("tele_core", () -> new TeleCoreItem(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> CATCHER_RING = ITEMS.register("catcher_ring", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
     
+    public static final RegistryObject<Item> DREAM_DUST = ITEMS.register("dream_dust", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
     
-    
-    
-    
-    
-    
+    public static final RegistryObject<Item> EMPTY_DISK = ITEMS.register("empty_disk", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> CONCENTRATION = ITEMS.register("concentration", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> NETHERRITE_NUGGET = ITEMS.register("netherrite_nugger",  () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
     
     
     
@@ -107,5 +107,7 @@ public class ItemInit
     public static final RegistryObject<BlockItem> GEODE_ORE = ITEMS.register("geode_ore", () -> new BlockItem(BlockInit.GEODE_ORE.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TELEPAD = ITEMS.register("telepad", () -> new BlockItem(BlockInit.TELEPAD.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TELEPAD_SLAB = ITEMS.register("telepad_slab", () -> new BlockItem(BlockInit.TELEPAD_SLAB.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
-
+    public static final RegistryObject<BlockItem> TERRA_FIRMA = ITEMS.register("terra_firma", () -> new BlockItem(BlockInit.TERRA_FIRMA.get(), new Item.Properties()));
+    
+    
 }

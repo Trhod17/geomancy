@@ -11,10 +11,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
 
 public class GeomancyRecipeProvider extends RecipeProvider {
 
@@ -94,6 +91,15 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 		.save(consumer);
 		
+		ShapedRecipeBuilder.shaped(Items.NETHERITE_INGOT, 1)
+		.pattern("xxx")
+		.pattern("xxx")
+		.pattern("xxx")
+		.define('x', ItemInit.NETHERRITE_NUGGET.get())
+		.group(GemMod.MODID)
+		.unlockedBy("netherite_nugget", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.NETHERRITE_NUGGET.get()))
+		.save(consumer);
+
 		ShapedRecipeBuilder.shaped(BlockInit.CHASM_LOG_BARK.get(), 3)
 		.pattern("xx ")
 		.pattern("xx ")
@@ -139,7 +145,8 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.pattern(" f ")
 		.define('x', Items.PHANTOM_MEMBRANE)
 		.define('a', Items.LAPIS_LAZULI)
-		.define('s', PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER).getItem())
+		.define('s', Items.GLASS_BOTTLE
+				)
 		.define('d', Items.INK_SAC)
 		.define('f', Items.SLIME_BALL)
 		.group(GemMod.MODID)
@@ -164,7 +171,7 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.pattern("asd")
 		.pattern(" f ")
 		.define('x', Items.REDSTONE)
-		.define('a', Items.CHORUS_FLOWER)
+		.define('a', Items.POPPED_CHORUS_FRUIT)
 		.define('s', Items.DRAGON_BREATH)
 		.define('d', Items.ENDER_EYE)
 		.define('f', Items.GHAST_TEAR)
@@ -182,6 +189,12 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.requires(BlockInit.TELEPAD_SLAB.get())
 		.group(GemMod.MODID)
 		.unlockedBy("telepad_slab", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.TELEPAD_SLAB.get()))
+		.save(consumer);
+		
+		ShapelessRecipeBuilder.shapeless(ItemInit.NETHERRITE_NUGGET.get(), 9)
+		.requires(Items.NETHERITE_INGOT)
+		.group(GemMod.MODID)
+		.unlockedBy("netherite", InventoryChangeTrigger.TriggerInstance.hasItems(Items.NETHERITE_INGOT))
 		.save(consumer);
 		
 		InfusionRecipes(consumer);
