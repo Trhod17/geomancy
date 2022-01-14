@@ -2,6 +2,8 @@ package net.codersdownunder.gemmod.common.recipes;
 
 import java.util.function.Consumer;
 
+import com.mojang.datafixers.types.templates.Tag.TagType;
+
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.ItemInit;
@@ -11,7 +13,11 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.common.Tags;
 
 public class GeomancyRecipeProvider extends RecipeProvider {
 
@@ -228,7 +234,7 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.requires(Items.CAKE)
 		.requires(ItemInit.TOPAZ.get())
 		.requires(Items.OAK_LOG)
-		.requires(Items.REDSTONE)
+		.requires(ItemTags.LEAVES)
 		.requires(Items.IRON_INGOT)
 		.requires(Items.BUCKET)
 		.requires(ItemInit.CHAROITE.get())

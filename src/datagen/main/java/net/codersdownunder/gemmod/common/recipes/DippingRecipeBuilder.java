@@ -15,6 +15,7 @@ import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
@@ -75,6 +76,10 @@ public class DippingRecipeBuilder implements RecipeBuilder {
 
 	      return this;
 	   }
+	   
+	   public DippingRecipeBuilder requires(Tag<Item> pTag) {
+		      return this.requires(Ingredient.of(pTag));
+		   }
 
 	   /**
 	    * Adds an ingredient.
@@ -147,7 +152,11 @@ public class DippingRecipeBuilder implements RecipeBuilder {
 	         pJson.addProperty("amount", fluidAmount);
 	         pJson.add("output", jsonobject);
 	         } else {
-	        	 throw new IndexOutOfBoundsException("not enough items for dipping recipe: " + ingredients.size());
+	        	 if (ingredients.size() <= 13) {
+	        		 throw new IndexOutOfBoundsException("not enough items for dipping recipe: " + ingredients.size() + " should be 14");
+	        	 } else if (ingredients.size() >= 15) {
+	        		 throw new IndexOutOfBoundsException("to many items for dipping recipe: " + ingredients.size() + " should be 14");
+	        	 }
 	         }
 	      }
 

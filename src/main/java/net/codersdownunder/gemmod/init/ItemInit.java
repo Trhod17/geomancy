@@ -132,5 +132,26 @@ public class ItemInit
     public static final RegistryObject<BlockItem> TREADSTONE_5 = ITEMS.register("treadstone_5", () -> new BlockItem(BlockInit.TREADSTONE_5.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TREADSTONE_6 = ITEMS.register("treadstone_6", () -> new BlockItem(BlockInit.TREADSTONE_6.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TREADSTONE_7 = ITEMS.register("treadstone_7", () -> new BlockItem(BlockInit.TREADSTONE_7.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_SLAB_1 = ITEMS.register("treadstone_slab_1", () -> new BlockItem(BlockInit.TREADSTONE_SLAB_1.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_SLAB_2 = ITEMS.register("treadstone_slab_2", () -> new BlockItem(BlockInit.TREADSTONE_SLAB_2.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_SLAB_3 =  ITEMS.register("treadstone_slab_3", () -> new BlockItem(BlockInit.TREADSTONE_SLAB_3.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_SLAB_4 = ITEMS.register("treadstone_slab_4", () -> new BlockItem(BlockInit.TREADSTONE_SLAB_4.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_SLAB_5 = ITEMS.register("treadstone_slab_5", () -> new BlockItem(BlockInit.TREADSTONE_SLAB_5.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_SLAB_6 = ITEMS.register("treadstone_slab_6", () -> new BlockItem(BlockInit.TREADSTONE_SLAB_6.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_SLAB_7 = ITEMS.register("treadstone_slab_7", () -> new BlockItem(BlockInit.TREADSTONE_SLAB_7.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_STAIR_1 = ITEMS.register("treadstone_stair_1", () -> new BlockItem(BlockInit.TREADSTONE_STAIR_1.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_STAIR_2 = ITEMS.register("treadstone_stair_2", () -> new BlockItem(BlockInit.TREADSTONE_STAIR_2.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_STAIR_3 =  ITEMS.register("treadstone_stair_3", () -> new BlockItem(BlockInit.TREADSTONE_STAIR_3.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_STAIR_4 = ITEMS.register("treadstone_stair_4", () -> new BlockItem(BlockInit.TREADSTONE_STAIR_4.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_STAIR_5 = ITEMS.register("treadstone_stair_5", () -> new BlockItem(BlockInit.TREADSTONE_STAIR_5.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_STAIR_6 = ITEMS.register("treadstone_stair_6", () -> new BlockItem(BlockInit.TREADSTONE_STAIR_6.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_STAIR_7 = ITEMS.register("treadstone_stair_7", () -> new BlockItem(BlockInit.TREADSTONE_STAIR_7.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_CARPET_1 = ITEMS.register("treadstone_carpet_1", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_1.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_CARPET_2 = ITEMS.register("treadstone_carpet_2", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_2.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_CARPET_3 =  ITEMS.register("treadstone_carpet_3", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_3.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_CARPET_4 = ITEMS.register("treadstone_carpet_4", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_4.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_CARPET_5 = ITEMS.register("treadstone_carpet_5", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_5.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_CARPET_6 = ITEMS.register("treadstone_carpet_6", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_6.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_CARPET_7 = ITEMS.register("treadstone_carpet_7", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_7.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
    
 }

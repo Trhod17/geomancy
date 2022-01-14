@@ -40,7 +40,7 @@ public class Config {
 			builder.comment("Server Configuration Settings").push("server");
 			{
 				builder.comment("Dipper Configs").push("dipper");
-				this.dipperTime = builder.comment("Dipper Processing Time").translation(GemMod.MODID + ".config.server.dipper.dipper_time").defineInRange("DipperTime", 12000, 0, 400000);
+				this.dipperTime = builder.comment("Dipper Processing Time").translation(GemMod.MODID + ".config.server.dipper.dipper_time").defineInRange("DipperTime", 600, 0, 400000);
 				builder.pop();
 				
 				builder.comment("World Gen Configs").push("worldgen");
