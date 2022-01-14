@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "geomancy:blocks/treadstone2",
+    "bottom": "geomancy:blocks/treadstone2",
+    "top": "geomancy:blocks/treadstone2"
+  }
+}

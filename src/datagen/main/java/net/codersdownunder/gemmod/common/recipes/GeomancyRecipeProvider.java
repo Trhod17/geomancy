@@ -14,7 +14,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
 
 public class GeomancyRecipeProvider extends RecipeProvider {
-
+	
 	public GeomancyRecipeProvider(DataGenerator generatorIn) {
         super(generatorIn);
     }
