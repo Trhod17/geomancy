@@ -1,44 +1,27 @@
 package net.codersdownunder.gemmod.blocks.infusion;
 
-import java.util.Objects;
-
-import javax.annotation.Nullable;
-
-import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
-import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.utils.slots.GenericSlot;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.DataSlot;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-@SuppressWarnings("unused")
 public class InfusionTableMenu extends AbstractContainerMenu {
 
     private BlockEntity tileEntity;
     private Player playerEntity;
     private IItemHandler playerInventory;
-    private Level world;
-    private Player player;
     private InfusionTableBlockEntity table;
     private BlockPos pos;
 

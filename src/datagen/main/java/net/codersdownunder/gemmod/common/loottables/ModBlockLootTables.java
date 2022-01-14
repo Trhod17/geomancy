@@ -35,6 +35,41 @@ public class ModBlockLootTables extends BlockLoot {
             dropSelf(BlockInit.TELEPAD.get());
             dropSelf(BlockInit.TELEPAD_SLAB.get());
             dropSelf(BlockInit.TERRA_FIRMA.get());
+            
+            dropSelf(BlockInit.INFUSION_STAND.get());
+            
+            dropSelf(BlockInit.TREADSTONE_1.get());
+            dropSelf(BlockInit.TREADSTONE_2.get());
+            dropSelf(BlockInit.TREADSTONE_3.get());
+            dropSelf(BlockInit.TREADSTONE_4.get());
+            dropSelf(BlockInit.TREADSTONE_5.get());
+            dropSelf(BlockInit.TREADSTONE_6.get());
+            dropSelf(BlockInit.TREADSTONE_7.get());
+            
+            dropSelf(BlockInit.TREADSTONE_SLAB_1.get());
+            dropSelf(BlockInit.TREADSTONE_SLAB_2.get());
+            dropSelf(BlockInit.TREADSTONE_SLAB_3.get());
+            dropSelf(BlockInit.TREADSTONE_SLAB_4.get());
+            dropSelf(BlockInit.TREADSTONE_SLAB_5.get());
+            dropSelf(BlockInit.TREADSTONE_SLAB_6.get());
+            dropSelf(BlockInit.TREADSTONE_SLAB_7.get());
+            
+            dropSelf(BlockInit.TREADSTONE_STAIR_1.get());
+            dropSelf(BlockInit.TREADSTONE_STAIR_2.get());
+            dropSelf(BlockInit.TREADSTONE_STAIR_3.get());
+            dropSelf(BlockInit.TREADSTONE_STAIR_4.get());
+            dropSelf(BlockInit.TREADSTONE_STAIR_5.get());
+            dropSelf(BlockInit.TREADSTONE_STAIR_6.get());
+            dropSelf(BlockInit.TREADSTONE_STAIR_7.get());
+
+            dropSelf(BlockInit.TREADSTONE_CARPET_1.get());
+            dropSelf(BlockInit.TREADSTONE_CARPET_2.get());
+            dropSelf(BlockInit.TREADSTONE_CARPET_3.get());
+            dropSelf(BlockInit.TREADSTONE_CARPET_4.get());
+            dropSelf(BlockInit.TREADSTONE_CARPET_5.get());
+            dropSelf(BlockInit.TREADSTONE_CARPET_6.get());
+            dropSelf(BlockInit.TREADSTONE_CARPET_7.get());
+            
             dropOther(BlockInit.CHASM_SIGN_WALL.get(), BlockInit.CHASM_SIGN.get());
             add(BlockInit.GEODE_ORE.get(), createOreDrop(BlockInit.GEODE_ORE.get(), ItemInit.GEODE.get()));
             add(BlockInit.CHASM_LEAVES.get(), createLeavesDrops(BlockInit.CHASM_LEAVES.get(), Blocks.OAK_SAPLING, 0.1f));

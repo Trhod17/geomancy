@@ -9,6 +9,7 @@ import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -64,6 +65,8 @@ public class ItemInit
     public static final RegistryObject<Item> CONCOCTION_FOUR = ITEMS.register("concoction_four", () -> new Item(new Item.Properties().durability(2).tab((GemMod.gemsmoditemtab))));
 
     public static final RegistryObject<Item> GEODE = ITEMS.register("geode", () -> new DreamingGemItem(new Item.Properties().tab((GemMod.gemsmoditemtab))));
+    public static final RegistryObject<Item> RICH_GEODE = ITEMS.register("rich_geode", () -> new DreamingGemItem(new Item.Properties().tab((GemMod.gemsmoditemtab))));
+    public static final RegistryObject<Item> SPARSE_GEODE = ITEMS.register("sparse_geode", () -> new DreamingGemItem(new Item.Properties().tab((GemMod.gemsmoditemtab))));
     
     public static final RegistryObject<Item> TELE_CORE = ITEMS.register("tele_core", () -> new TeleCoreItem(new Item.Properties().tab(GemMod.gemsmoditemtab)));
     public static final RegistryObject<Item> CATCHER_RING = ITEMS.register("catcher_ring", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
@@ -72,7 +75,20 @@ public class ItemInit
     
     public static final RegistryObject<Item> EMPTY_DISK = ITEMS.register("empty_disk", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
     public static final RegistryObject<Item> CONCENTRATION = ITEMS.register("concentration", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
-    public static final RegistryObject<Item> NETHERRITE_NUGGET = ITEMS.register("netherrite_nugger",  () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> NETHERRITE_NUGGET = ITEMS.register("netherrite_nugget",  () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    
+    public static final RegistryObject<Item> EMPTY_TOTEM = ITEMS.register("empty_totem", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> NETHER_CRUX = ITEMS.register("nether_crux", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    
+    public static final RegistryObject<Item> ROSE_QUARTZ = ITEMS.register("rose_quartz", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    
+    public static final RegistryObject<Item> PLATE_FAILSAFE = ITEMS.register("plate_failsafe", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> PLATE_FUEL_COAL = ITEMS.register("plate_fuel_coal", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> PLATE_FUEL_TIME = ITEMS.register("plate_fuel_time", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> PLATE_SPEED_OVERDRIVE = ITEMS.register("plate_speed_overdrive", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> PLATE_SPEED_UP = ITEMS.register("plate_speed_up", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> PLATE_YIELD_ORE = ITEMS.register("plate_yield_ore", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    
     
     
     
@@ -108,6 +124,13 @@ public class ItemInit
     public static final RegistryObject<BlockItem> TELEPAD = ITEMS.register("telepad", () -> new BlockItem(BlockInit.TELEPAD.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TELEPAD_SLAB = ITEMS.register("telepad_slab", () -> new BlockItem(BlockInit.TELEPAD_SLAB.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TERRA_FIRMA = ITEMS.register("terra_firma", () -> new BlockItem(BlockInit.TERRA_FIRMA.get(), new Item.Properties()));
-    
-    
+    public static final RegistryObject<BlockItem> INFUSION_STAND = ITEMS.register("infusion_stand", () -> new BlockItem(BlockInit.INFUSION_STAND.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> TREADSTONE_1 = ITEMS.register("treadstone_1", () -> new BlockItem(BlockInit.TREADSTONE_1.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_2 = ITEMS.register("treadstone_2", () -> new BlockItem(BlockInit.TREADSTONE_2.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_3 =  ITEMS.register("treadstone_3", () -> new BlockItem(BlockInit.TREADSTONE_3.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_4 = ITEMS.register("treadstone_4", () -> new BlockItem(BlockInit.TREADSTONE_4.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_5 = ITEMS.register("treadstone_5", () -> new BlockItem(BlockInit.TREADSTONE_5.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_6 = ITEMS.register("treadstone_6", () -> new BlockItem(BlockInit.TREADSTONE_6.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TREADSTONE_7 = ITEMS.register("treadstone_7", () -> new BlockItem(BlockInit.TREADSTONE_7.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+   
 }

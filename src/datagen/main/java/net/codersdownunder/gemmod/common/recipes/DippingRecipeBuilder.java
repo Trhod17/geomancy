@@ -132,7 +132,7 @@ public class DippingRecipeBuilder implements RecipeBuilder {
 
 	         JsonArray jsonarray = new JsonArray();
 
-	         if (!(ingredients.size() <= 14) && !(ingredients.size() >= 16)) {
+	         if (!(ingredients.size() <= 13) && !(ingredients.size() >= 15)) {
 	         for(Ingredient ingredient : this.ingredients) {
 	            jsonarray.add(ingredient.toJson());
 	         }
@@ -147,7 +147,7 @@ public class DippingRecipeBuilder implements RecipeBuilder {
 	         pJson.addProperty("amount", fluidAmount);
 	         pJson.add("output", jsonobject);
 	         } else {
-	        	 throw new IndexOutOfBoundsException("not enough items for dipping recipe");
+	        	 throw new IndexOutOfBoundsException("not enough items for dipping recipe: " + ingredients.size());
 	         }
 	      }
 

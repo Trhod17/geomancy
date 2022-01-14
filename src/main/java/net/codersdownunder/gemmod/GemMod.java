@@ -39,7 +39,6 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -84,8 +83,6 @@ public class GemMod
         MinecraftForge.EVENT_BUS.register(LogStrippingEvent.class);
         MinecraftForge.EVENT_BUS.register(DreamCatcherEventHandler.class);
         MinecraftForge.EVENT_BUS.register(new WorldGenerationEvents());
-
- 
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -105,10 +102,12 @@ public class GemMod
        
     }
 
-    @SubscribeEvent
-    public void onServerStarting(FMLDedicatedServerSetupEvent event) {
-        
-    }
+    
+//    public void onServerStarting(FMLDedicatedServerSetupEvent event) {
+//        
+//    }
+    
+   
     
     @SubscribeEvent
     public void onItemTooltip(ItemTooltipEvent event) {

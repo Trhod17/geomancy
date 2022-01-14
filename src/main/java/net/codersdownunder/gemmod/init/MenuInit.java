@@ -5,6 +5,7 @@ import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
 import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.blocks.dream.DreamCatcherMenu;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
+import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandMenu;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadMenu;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaMenu;
 import net.minecraft.core.BlockPos;
@@ -24,6 +25,12 @@ public class MenuInit
         BlockPos pos = data.readBlockPos();
         Level world = inv.player.getCommandSenderWorld();
         return new InfusionTableMenu(windowId, world, pos, inv, inv.player);
+    }));
+    
+    public static final RegistryObject<MenuType<InfusionStandMenu>> INFUSION_STAND_MENU = CONTAINERS.register("infusion_stand", () -> IForgeMenuType.create((windowId, inv, data) -> {
+        BlockPos pos = data.readBlockPos();
+        Level world = inv.player.getCommandSenderWorld();
+        return new InfusionStandMenu(windowId, world, pos, inv, inv.player);
     }));
     
     public static final RegistryObject<MenuType<DipperMenu>> DIPPER_CONTAINER = CONTAINERS.register("dipper_container", () -> IForgeMenuType.create((windowId, inv, data) -> {

@@ -145,8 +145,7 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.pattern(" f ")
 		.define('x', Items.PHANTOM_MEMBRANE)
 		.define('a', Items.LAPIS_LAZULI)
-		.define('s', Items.GLASS_BOTTLE
-				)
+		.define('s', Items.GLASS_BOTTLE)
 		.define('d', Items.INK_SAC)
 		.define('f', Items.SLIME_BALL)
 		.group(GemMod.MODID)
@@ -234,11 +233,17 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.requires(Items.BUCKET)
 		.requires(ItemInit.CHAROITE.get())
 		.requires(Items.POTATO)
-		.requires(Items.EMERALD)
 		.group(GemMod.MODID)
 		.save(consumer);
 		
 		// Add more below
 		
 	}
+	
+//	private void InfusionStandRecipes(Consumer<FinishedRecipe> consumer) {
+//		
+//		
+//		//BrewingRecipeBuilder.Brewing(IngredientNBTWrapper.fromItemStack(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE)));
+//	}
+	
 }

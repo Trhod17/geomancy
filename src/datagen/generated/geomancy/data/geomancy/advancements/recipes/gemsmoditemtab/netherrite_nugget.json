@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "geomancy:netherrite_nugger"
+      "geomancy:netherrite_nugget"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "geomancy:netherrite_nugger"
+        "recipe": "geomancy:netherrite_nugget"
       }
     }
   },

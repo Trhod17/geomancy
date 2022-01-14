@@ -39,7 +39,7 @@ public class GeomancyLanguageProvider extends LanguageProvider {
     
     private void addJEIText() {
         add("category." + modid + ".infusing_recipe", "Infusing Recipes");
-        add("category." + modid + ".dipping_recipes", "Dipping Recipes");
+        add("category." + modid + ".dipping_recipe", "Dipping Recipes");
     }
     
     private void addToolTips() {
@@ -137,10 +137,10 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(ItemInit.EMERALD_DREAMING.get(), "Dreaming Emerald");
         add(ItemInit.MULMUS_BULB.get(), "Mulmus Bulb");
         
-        add(ItemInit.CONCOCTION_ONE.get(), "Concoction 1");
-        add(ItemInit.CONCOCTION_TWO.get(), "Concoction 2");
-        add(ItemInit.CONCOCTION_THREE.get(), "Concoction 3");
-        add(ItemInit.CONCOCTION_FOUR.get(), "Concoction 4");
+        add(ItemInit.CONCOCTION_ONE.get(), "Lime Solution");
+        add(ItemInit.CONCOCTION_TWO.get(), "Phantom Solution");
+        add(ItemInit.CONCOCTION_THREE.get(), "Glowing Solution");
+        add(ItemInit.CONCOCTION_FOUR.get(), "Void Solution");
         
         add(ItemInit.GEODE.get(), "Geode Chunk");
         add(ItemInit.TELE_CORE.get(), "Tele-Core");
@@ -150,6 +150,16 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(ItemInit.EMPTY_DISK.get(), "Empty Disk");
         add(ItemInit.CONCENTRATION.get(), "Concentration");
         add(ItemInit.NETHERRITE_NUGGET.get(), "Netherite Nugget");
+        
+        add(ItemInit.NETHER_CRUX.get(), "Nether Crux");
+        add(ItemInit.EMPTY_TOTEM.get(), "Empty Totem");
+        add(ItemInit.ROSE_QUARTZ.get(), "Rose Quartz");
+        add(ItemInit.PLATE_FAILSAFE.get(), "Upgrade FailSafe");
+        add(ItemInit.PLATE_FUEL_COAL.get(), "Upgrade Fuel: Coal");
+        add(ItemInit.PLATE_FUEL_TIME.get(), "Upgrade Fuel: Time");
+        add(ItemInit.PLATE_SPEED_OVERDRIVE.get(), "Upgrade Speed Overdrive");
+        add(ItemInit.PLATE_SPEED_UP.get(), "Upgrade Speed Up");
+        add(ItemInit.PLATE_YIELD_ORE.get(), "Upgrade Ore Yield");
     }
 
     private void addBlocks() {

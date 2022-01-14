@@ -3,6 +3,7 @@ package net.codersdownunder.gemmod.setup;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.client.gui.DipperScreen;
 import net.codersdownunder.gemmod.client.gui.DreamCatcherScreen;
+import net.codersdownunder.gemmod.client.gui.InfusionStandScreen;
 import net.codersdownunder.gemmod.client.gui.InfusionTableScreen;
 import net.codersdownunder.gemmod.client.gui.TelepadScreen;
 import net.codersdownunder.gemmod.client.gui.TerraFirmaScreen;
@@ -30,7 +31,7 @@ public class ClientSetup {
 	        MenuScreens.register(MenuInit.DREAM_CATCHER_MENU.get(), DreamCatcherScreen::new);
 	        MenuScreens.register(MenuInit.TELEPAD_MENU.get(), TelepadScreen::new);
 	        MenuScreens.register(MenuInit.TERRA_FIRMA_MENU.get(), TerraFirmaScreen::new);
-	      
+	        MenuScreens.register(MenuInit.INFUSION_STAND_MENU.get(), InfusionStandScreen::new);
 	       
 	        //RenderTypeLookup.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
 	        

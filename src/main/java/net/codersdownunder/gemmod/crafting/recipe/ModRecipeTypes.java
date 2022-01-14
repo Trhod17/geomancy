@@ -2,6 +2,8 @@ package net.codersdownunder.gemmod.crafting.recipe;
 
 import java.util.Map;
 
+import net.codersdownunder.gemmod.crafting.recipe.brewing.BrewingRecipe;
+import net.codersdownunder.gemmod.crafting.recipe.brewing.BrewingRecipeType;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipeType;
 import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
@@ -19,10 +21,12 @@ public class ModRecipeTypes {
 
     public static final RecipeType<InfusingRecipe> INFUSING_RECIPE = new InfusingRecipeType();
     public static final RecipeType<DippingRecipe> DIPPING_RECIPE = new DippingRecipeType();
+    public static final RecipeType<BrewingRecipe> BREWING_RECIPE = new BrewingRecipeType();
 
     public static void registerRecipes(Register<RecipeSerializer<?>> event) {
         registerRecipe(event, INFUSING_RECIPE, InfusingRecipe.SERIALIZER);
         registerRecipe(event, DIPPING_RECIPE, DippingRecipe.SERIALIZER);
+        registerRecipe(event, BREWING_RECIPE, BrewingRecipe.SERIALIZER);
     }
 
     private static void registerRecipe(Register<RecipeSerializer<?>> event, RecipeType<?> type,

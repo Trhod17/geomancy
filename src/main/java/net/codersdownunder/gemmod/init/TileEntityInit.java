@@ -4,6 +4,7 @@ import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
 import net.codersdownunder.gemmod.blocks.dream.DreamCatcherBlockEntity;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableBlockEntity;
+import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandBlockEntity;
 import net.codersdownunder.gemmod.blocks.sign.CustomSignBlockEntity;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlockEntity;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaBlockEntity;
@@ -23,5 +24,6 @@ public class TileEntityInit
     public static RegistryObject<BlockEntityType<DreamCatcherBlockEntity>> DREAM_CATCHER_BE = TILE_ENTITIES.register("dream_catcher_be", () -> BlockEntityType.Builder.of(DreamCatcherBlockEntity::new, BlockInit.DREAM_CATCHER.get()).build(null));
     public static RegistryObject<BlockEntityType<TelepadBlockEntity>> TELEPAD_BE = TILE_ENTITIES.register("telepad_be", () -> BlockEntityType.Builder.of(TelepadBlockEntity::new, BlockInit.TELEPAD.get(), BlockInit.TELEPAD_SLAB.get()).build(null));
     public static RegistryObject<BlockEntityType<TerraFirmaBlockEntity>> TERRA_FIRMA_BE = TILE_ENTITIES.register("terra_firma_be", () -> BlockEntityType.Builder.of(TerraFirmaBlockEntity::new, BlockInit.TERRA_FIRMA.get()).build(null));
-
+    
+    public static RegistryObject<BlockEntityType<InfusionStandBlockEntity>> INFUSION_STAND_BE = TILE_ENTITIES.register("infusion_stand_be",() -> BlockEntityType.Builder.of(InfusionStandBlockEntity::new, BlockInit.INFUSION_STAND.get()).build(null));
 }
