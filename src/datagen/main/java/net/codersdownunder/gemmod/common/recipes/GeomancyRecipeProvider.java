@@ -197,7 +197,7 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.define('h', Items.TRIPWIRE_HOOK)
 		.define('s', Items.STRING)
 		.define('f', Items.FEATHER)
-		.define('r', ItemInit.DREAM_CATCHER.get())
+		.define('r', ItemInit.CATCHER_RING.get())
 		.group(GemMod.MODID)
 		.unlockedBy("dreamcatcher", InventoryChangeTrigger.TriggerInstance.hasItems(Items.FEATHER, Items.STRING, Items.TRIPWIRE_HOOK, ItemInit.CATCHER_RING.get()))
 		.save(consumer);
