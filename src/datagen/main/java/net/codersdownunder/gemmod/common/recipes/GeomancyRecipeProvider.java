@@ -290,6 +290,61 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.requires(Items.SLIME_BALL)
 		.group(GemMod.MODID)
 		.save(consumer);
+		
+		DippingRecipeBuilder.dipping(ItemInit.JADE.get(), 1000)
+		.requires(Items.SLIME_BALL)
+		.requires(Items.GREEN_DYE)
+		.requires(Items.DIRT)
+		.requires(Items.CORNFLOWER)
+		.requires(Items.SUGAR_CANE)
+		.requires(ItemTags.SMALL_FLOWERS)
+		.requires(Items.DIRT)
+		.requires(Items.GREEN_DYE)
+		.requires(Items.SLIME_BALL)
+		.requires(ItemTags.SMALL_FLOWERS)
+		.requires(Items.SUGAR_CANE)
+		.requires(ItemTags.SMALL_FLOWERS)
+		.requires(Items.SUGAR_CANE)
+		.requires(Items.GREEN_DYE)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		DippingRecipeBuilder.dipping(ItemInit.PERIDOT.get(), 1000)
+		.requires(Items.HONEYCOMB)
+		.requires(Items.LAPIS_LAZULI)
+		.requires(Items.GRANITE)
+		.requires(Items.LAPIS_LAZULI)
+		.requires(Items.HONEYCOMB)
+		.requires(Items.HONEYCOMB)
+		.requires(Items.GRANITE)
+		.requires(Items.SLIME_BALL)
+		.requires(Items.HONEYCOMB)
+		.requires(Items.GRANITE)
+		.requires(Items.LAPIS_LAZULI)
+		.requires(Items.GRANITE)
+		.requires(Items.LAPIS_LAZULI)
+		.requires(Items.SLIME_BALL)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		DippingRecipeBuilder.dipping(ItemInit.TOPAZ.get(), 1000)
+		.requires(Items.REDSTONE)
+		.requires(Items.YELLOW_DYE)
+		.requires(Items.BASALT)
+		.requires(Items.BAMBOO)
+		.requires(Items.REDSTONE)
+		.requires(Items.BAMBOO)
+		.requires(Items.BASALT)
+		.requires(Items.YELLOW_DYE)
+		.requires(Items.REDSTONE)
+		.requires(Items.BASALT)
+		.requires(Items.BAMBOO)
+		.requires(Items.BASALT)
+		.requires(Items.BAMBOO)
+		.requires(Items.YELLOW_DYE)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
 		// Add more below
 		
 	}
