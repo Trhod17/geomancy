@@ -11,6 +11,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
 public class GeomancyRecipeProvider extends RecipeProvider {
@@ -236,6 +237,59 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.group(GemMod.MODID)
 		.save(consumer);
 		
+		DippingRecipeBuilder.dipping(ItemInit.AGATE.get(), 1000)
+		.requires(Items.CYAN_DYE)
+		.requires(Items.KELP)
+		.requires(Items.GRAVEL)
+		.requires(Items.PACKED_ICE)
+		.requires(Items.SLIME_BALL)
+		.requires(Items.PACKED_ICE)
+		.requires(Items.GRAVEL)
+		.requires(Items.KELP)
+		.requires(Items.CYAN_DYE)
+		.requires(Items.PRISMARINE)
+		.requires(Items.SLIME_BALL)
+		.requires(Items.PRISMARINE)
+		.requires(Items.SLIME_BALL)
+		.requires(Items.KELP)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		DippingRecipeBuilder.dipping(ItemInit.CHRYSOCOLLA.get(), 1000)
+		.requires(Items.PACKED_ICE)
+		.requires(Items.SNOWBALL)
+		.requires(Items.DIORITE)
+		.requires(Items.CLAY)
+		.requires(Items.PACKED_ICE)
+		.requires(Items.CLAY)
+		.requires(Items.DIORITE)
+		.requires(Items.SNOWBALL)
+		.requires(Items.PACKED_ICE)
+		.requires(Items.PACKED_ICE)
+		.requires(Items.ICE)
+		.requires(Items.PACKED_ICE)
+		.requires(Items.ICE)
+		.requires(Items.SNOWBALL)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		DippingRecipeBuilder.dipping(ItemInit.MALACHITE.get(), 1000)
+		.requires(ItemTags.LEAVES)
+		.requires(Items.SLIME_BALL)
+		.requires(Items.ANDESITE)
+		.requires(Items.WARPED_HYPHAE)
+		.requires(Items.WARPED_HYPHAE)
+		.requires(Items.WARPED_HYPHAE)
+		.requires(Items.ANDESITE)
+		.requires(Items.SLIME_BALL)
+		.requires(ItemTags.LEAVES)
+		.requires(Items.TWISTING_VINES)
+		.requires(Items.TWISTING_VINES)
+		.requires(Items.TWISTING_VINES)
+		.requires(Items.TWISTING_VINES)
+		.requires(Items.SLIME_BALL)
+		.group(GemMod.MODID)
+		.save(consumer);
 		// Add more below
 		
 	}
