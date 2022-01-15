@@ -179,6 +179,29 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.unlockedBy("concoction4", InventoryChangeTrigger.TriggerInstance.hasItems(Items.REDSTONE, Items.CHORUS_FLOWER, Items.DRAGON_BREATH, Items.ENDER_EYE, Items.GHAST_TEAR))
 		.save(consumer);
 		
+		ShapedRecipeBuilder.shaped(ItemInit.CATCHER_RING.get(), 1)
+		.pattern("xsx")
+		.pattern("sts")
+		.pattern("xsx")
+		.define('x', ItemTags.WOOL)
+		.define('s', Items.STICK)
+		.define('t', Items.STRING)
+		.group(GemMod.MODID)
+		.unlockedBy("catcherring", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHITE_WOOL, Items.STRING, Items.STICK))
+		.save(consumer);
+		
+		ShapedRecipeBuilder.shaped(ItemInit.DREAM_CATCHER.get(), 1)
+		.pattern(" h ")
+		.pattern("srs")
+		.pattern("frf")
+		.define('h', Items.TRIPWIRE_HOOK)
+		.define('s', Items.STRING)
+		.define('f', Items.FEATHER)
+		.define('r', ItemInit.DREAM_CATCHER.get())
+		.group(GemMod.MODID)
+		.unlockedBy("dreamcatcher", InventoryChangeTrigger.TriggerInstance.hasItems(Items.FEATHER, Items.STRING, Items.TRIPWIRE_HOOK, ItemInit.CATCHER_RING.get()))
+		.save(consumer);
+		
 		ShapelessRecipeBuilder.shapeless(BlockInit.TELEPAD_SLAB.get())
 		.requires(BlockInit.TELEPAD.get())
 		.group(GemMod.MODID)
