@@ -345,6 +345,42 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.group(GemMod.MODID)
 		.save(consumer);
 		
+		DippingRecipeBuilder.dipping(ItemInit.CITRINE.get(), 1000)
+		.requires(Items.RED_SAND)
+		.requires(Items.GLASS)
+		.requires(Items.ANDESITE)
+		.requires(Items.PURPUR_BLOCK)
+		.requires(Items.RED_SAND)
+		.requires(Items.PURPUR_BLOCK)
+		.requires(Items.ANDESITE)
+		.requires(Items.GLASS)
+		.requires(Items.RED_SAND)
+		.requires(Items.GRAVEL)
+		.requires(Items.SEA_LANTERN)
+		.requires(Items.GRAVEL)
+		.requires(Items.SEA_LANTERN)
+		.requires(Items.GLASS)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		DippingRecipeBuilder.dipping(ItemInit.JASPER.get(), 1000)
+		.requires(Items.CHARCOAL)
+		.requires(Items.ORANGE_DYE)
+		.requires(Items.MAGMA_BLOCK)
+		.requires(Items.REDSTONE)
+		.requires(Items.CAMPFIRE)
+		.requires(Items.GLOWSTONE)
+		.requires(Items.MAGMA_BLOCK)
+		.requires(Items.BASALT)
+		.requires(Items.CHARCOAL)
+		.requires(Items.RED_SAND)
+		.requires(Items.REDSTONE)
+		.requires(Items.RED_SAND)
+		.requires(Items.REDSTONE)
+		.requires(Items.RED_DYE)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
 		// Add more below
 		
 	}
