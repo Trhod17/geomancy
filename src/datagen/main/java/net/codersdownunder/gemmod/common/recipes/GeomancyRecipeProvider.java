@@ -381,6 +381,60 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.group(GemMod.MODID)
 		.save(consumer);
 		
+		DippingRecipeBuilder.dipping(ItemInit.RUBY.get(), 1000)
+		.requires(Items.SUGAR)
+		.requires(Items.FLINT)
+		.requires(Items.BLACKSTONE)
+		.requires(Items.CHARCOAL)
+		.requires(Items.OBSIDIAN)
+		.requires(Items.CHARCOAL)
+		.requires(Items.BLACKSTONE)
+		.requires(Items.FLINT)
+		.requires(Items.SUGAR)
+		.requires(Items.SUGAR)
+		.requires(Items.REDSTONE)
+		.requires(Items.SUGAR)
+		.requires(Items.REDSTONE)
+		.requires(Items.FLINT)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		DippingRecipeBuilder.dipping(ItemInit.GARNET.get(), 1000)
+		.requires(Items.SOUL_SAND)
+		.requires(Items.REDSTONE)
+		.requires(Items.POPPY)
+		.requires(Items.SOUL_SOIL)
+		.requires(Items.CRIMSON_HYPHAE)
+		.requires(Items.SOUL_SOIL)
+		.requires(Items.POPPY)
+		.requires(Items.BLACKSTONE)
+		.requires(Items.SOUL_SAND)
+		.requires(Items.CRIMSON_HYPHAE)
+		.requires(Items.BLACKSTONE)
+		.requires(Items.CRIMSON_HYPHAE)
+		.requires(Items.BLACKSTONE)
+		.requires(Items.REDSTONE)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		DippingRecipeBuilder.dipping(ItemInit.SPINEL.get(), 1000)
+		.requires(Items.BEETROOT)
+		.requires(Items.APPLE)
+		.requires(Items.GRANITE)
+		.requires(Items.PINK_TULIP)
+		.requires(Items.SOUL_CAMPFIRE)
+		.requires(Items.PINK_TULIP)
+		.requires(Items.GRANITE)
+		.requires(Items.APPLE)
+		.requires(Items.BEETROOT)
+		.requires(Items.DIRT)
+		.requires(Items.PINK_DYE)
+		.requires(Items.DIRT)
+		.requires(Items.PINK_DYE)
+		.requires(Items.APPLE)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
 		// Add more below
 		
 	}
