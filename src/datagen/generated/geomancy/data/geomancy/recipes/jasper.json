@@ -3,7 +3,7 @@
   "group": "geomancy",
   "ingredients": [
     {
-      "item": "minecraft:charcoal"
+      "item": "minecraft:basalt"
     },
     {
       "item": "minecraft:orange_dye"
@@ -18,7 +18,7 @@
       "item": "minecraft:campfire"
     },
     {
-      "item": "minecraft:glowstone"
+      "item": "minecraft:glowstone_dust"
     },
     {
       "item": "minecraft:magma_block"
@@ -33,7 +33,7 @@
       "item": "minecraft:red_sand"
     },
     {
-      "item": "minecraft:redstone"
+      "item": "minecraft:glowstone_dust"
     },
     {
       "item": "minecraft:red_sand"

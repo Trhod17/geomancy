@@ -12,7 +12,7 @@
       "item": "minecraft:dirt"
     },
     {
-      "item": "minecraft:cornflower"
+      "tag": "minecraft:small_flowers"
     },
     {
       "item": "minecraft:sugar_cane"
