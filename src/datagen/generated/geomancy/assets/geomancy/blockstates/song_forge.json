@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "facing=down,lit=false": {
+      "model": "geomancy:block/songforge",
+      "y": 270
+    },
+    "facing=up,lit=false": {
+      "model": "geomancy:block/songforge",
+      "y": 270
+    },
+    "facing=north,lit=false": {
+      "model": "geomancy:block/songforge"
+    },
+    "facing=south,lit=false": {
+      "model": "geomancy:block/songforge",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "geomancy:block/songforge",
+      "y": 270
+    },
+    "facing=east,lit=false": {
+      "model": "geomancy:block/songforge",
+      "y": 90
+    },
+    "facing=down,lit=true": {
+      "model": "geomancy:block/songforge_on",
+      "y": 270
+    },
+    "facing=up,lit=true": {
+      "model": "geomancy:block/songforge_on",
+      "y": 270
+    },
+    "facing=north,lit=true": {
+      "model": "geomancy:block/songforge_on"
+    },
+    "facing=south,lit=true": {
+      "model": "geomancy:block/songforge_on",
+      "y": 180
+    },
+    "facing=west,lit=true": {
+      "model": "geomancy:block/songforge_on",
+      "y": 270
+    },
+    "facing=east,lit=true": {
+      "model": "geomancy:block/songforge_on",
+      "y": 90
+    }
+  }
+}

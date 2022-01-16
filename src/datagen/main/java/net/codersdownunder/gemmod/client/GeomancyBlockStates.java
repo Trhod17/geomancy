@@ -1,12 +1,15 @@
 package net.codersdownunder.gemmod.client;
 
 import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class GeomancyBlockStates extends BlockStateProvider {
@@ -75,6 +78,22 @@ public class GeomancyBlockStates extends BlockStateProvider {
     	itemModels().withExistingParent("treadstone_stair_6", modLoc("block/treadstone_6_stairs"));
     	itemModels().withExistingParent("treadstone_stair_7", modLoc("block/treadstone_7_stairs"));
     	
+    	
+    	
+    	 ModelFile furnace = models().orientable("songforge", modLoc("blocks/songforge_side"), modLoc("blocks/songforge_front"), modLoc("blocks/songforge_top"));
+         ModelFile furnaceLit = models().orientable("songforge_on", modLoc("blocks/songforge_side"), modLoc("blocks/songforge_front_on"), modLoc("blocks/songforge_top"));
+         //ModelFile furnace_forge = models().orientable("songforge_forge", modLoc("blocks/songforge_side"), modLoc("blocks/songforge_front2"), modLoc("blocks/songforge_top"));
+         //ModelFile furnace_forgeLit = models().orientable("songforge_forge_on", modLoc("blocks/songforge_side"), modLoc("blocks/songforge_front2_on"), modLoc("blocks/songforge_top"));
+         
+        getVariantBuilder(BlockInit.SONG_FORGE.get())
+                .forAllStates(state -> ConfiguredModel.builder()
+                        .modelFile(state.getValue(SongForgeBlock.LIT) ? furnaceLit : furnace)
+                        //.modelFile(state.getValue(SongForgeBlock.FORGE) ? furnace_forgeLit : furnace_forge)
+                        .rotationY((int) state.getValue(SongForgeBlock.FACING).getOpposite().toYRot())
+                        .build()
+                );
+        
+        itemModels().withExistingParent("song_forge", modLoc("block/songforge"));
 
     }
 

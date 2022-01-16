@@ -24,7 +24,17 @@ public class GeomancyItemModelProvider extends ItemModelProvider {
     	this.singleTexture(ItemInit.CONCOCTION_FOUR.get(), "coc4");
     	this.singleTexture(ItemInit.CONCENTRATION.get(), "concentration");
     	this.singleTexture(ItemInit.NETHERRITE_NUGGET.get(), "netherite_nugget");
-    
+    	this.singleTexture(ItemInit.EMPTY_TOTEM.get(), "empty_totem");
+    	this.singleTexture(ItemInit.ROSE_QUARTZ.get(), "rose_quartz");
+    	this.singleTexture(ItemInit.NETHER_CRUX.get(), "nether_crux");
+    	this.singleTexture(ItemInit.PLATE_FAILSAFE.get(), "plate_failsave");
+    	this.singleTexture(ItemInit.PLATE_FUEL_COAL.get(), "plate_fuel_coal");
+    	this.singleTexture(ItemInit.PLATE_FUEL_TIME.get(), "plate_fuel_time");
+    	this.singleTexture(ItemInit.PLATE_SPEED_OVERDRIVE.get(), "plate_speed_overdrive");
+    	this.singleTexture(ItemInit.PLATE_SPEED_UP.get(), "plate_speed_up");
+    	this.singleTexture(ItemInit.PLATE_YIELD_ORE.get(), "plate_yield_ore");
+    	this.singleTexture(ItemInit.RICH_GEODE.get(), "rich_geode_item");
+    	this.singleTexture(ItemInit.SPARSE_GEODE.get(), "sparse_geode_item");
     	
 //    	withExistingParent("treadstone_stairs_1", modLoc("treadstone_stairs_1"));
 //    	withExistingParent("treadstone_1", modLoc("treadstone_1"));

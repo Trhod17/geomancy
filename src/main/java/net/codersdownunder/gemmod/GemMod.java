@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.mojang.serialization.Codec;
 
+import net.codersdownunder.gemmod.client.ClientSetup;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.handlers.DreamCatcherEventHandler;
 import net.codersdownunder.gemmod.handlers.LogStrippingEvent;
@@ -12,9 +13,7 @@ import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
-import net.codersdownunder.gemmod.init.VillagerInit;
 import net.codersdownunder.gemmod.network.GemModNetwork;
-import net.codersdownunder.gemmod.setup.ClientSetup;
 import net.codersdownunder.gemmod.utils.GemModItemGroup;
 import net.codersdownunder.gemmod.world.WorldGenerationEvents;
 import net.codersdownunder.gemmod.world.decorators.RNGPlacement;
@@ -72,8 +71,8 @@ public class GemMod
         BlockInit.BLOCKS.register(bus);
         MenuInit.CONTAINERS.register(bus);
         TileEntityInit.TILE_ENTITIES.register(bus);
-        VillagerInit.POINT_OF_INTEREST_TYPES.register(bus);
-        VillagerInit.VILLAGER_PROFESSIONS.register(bus);
+        //VillagerInit.POINT_OF_INTEREST_TYPES.register(bus);
+        //VillagerInit.VILLAGER_PROFESSIONS.register(bus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.serverSpec);
         //ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -93,7 +92,7 @@ public class GemMod
         event.enqueueWork(() -> {
         	WoodType.register(CHASM);
         });
-        VillagerInit.fillTradeData();
+        //VillagerInit.fillTradeData();
         GeomancyFeatures.initialize();
     }
 

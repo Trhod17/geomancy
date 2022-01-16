@@ -6,6 +6,7 @@ import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.blocks.dream.DreamCatcherMenu;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
 import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandMenu;
+import net.codersdownunder.gemmod.blocks.songforge.SongForgeMenu;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadMenu;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaMenu;
 import net.minecraft.core.BlockPos;
@@ -60,6 +61,12 @@ public class MenuInit
         BlockPos pos = data.readBlockPos();
         Level world = inv.player.getCommandSenderWorld();
         return new TerraFirmaMenu(windowId, world, pos, inv, inv.player);
+    }));
+    
+    public static final RegistryObject<MenuType<SongForgeMenu>> SONG_FORGE_MENU = CONTAINERS.register("song_forge_menu", () -> IForgeMenuType.create((windowId, inv, data) -> {
+        BlockPos pos = data.readBlockPos();
+        Level world = inv.player.getCommandSenderWorld();
+        return new SongForgeMenu(windowId, world, pos, inv, inv.player);
     }));
 
 }   

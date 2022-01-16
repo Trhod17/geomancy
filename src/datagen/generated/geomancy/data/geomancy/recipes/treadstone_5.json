@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "geomancy:treadstone_1"
+  },
+  "result": "geomancy:treadstone_5",
+  "count": 1
+}

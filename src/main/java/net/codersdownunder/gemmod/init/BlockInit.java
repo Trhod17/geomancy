@@ -7,6 +7,7 @@ import net.codersdownunder.gemmod.blocks.infusion.InfusionBlock;
 import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomStandingSignBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomWallSignBlock;
+import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaBlock;
@@ -83,8 +84,8 @@ public class BlockInit
    
    public static final RegistryObject<Block> GEODE_ORE = BLOCKS.register("geode_ore", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).requiresCorrectToolForDrops().sound(SoundType.STONE)));
    
-   public static final RegistryObject<Block> TELEPAD = BLOCKS.register("telepad", () -> new TelepadBlock(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion())); 
-   public static final RegistryObject<Block> TELEPAD_SLAB = BLOCKS.register("telepad_slab", () -> new TelepadSlab(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion())); 
+   public static final RegistryObject<Block> TELEPAD = BLOCKS.register("telepad", () -> new TelepadBlock(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion().lightLevel((p_235447_0_) -> {return 6;}))); 
+   public static final RegistryObject<Block> TELEPAD_SLAB = BLOCKS.register("telepad_slab", () -> new TelepadSlab(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion().lightLevel((p_235447_0_) -> {return 6;})));
    
    public static final RegistryObject<Block> TERRA_FIRMA = BLOCKS.register("terra_firma", () -> new TerraFirmaBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
    
@@ -122,6 +123,7 @@ public class BlockInit
    public static final RegistryObject<Block> TREADSTONE_CARPET_6 = BLOCKS.register("treadstone_carpet_6", () -> new CarpetBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE).speedFactor(1.2F)));
    public static final RegistryObject<Block> TREADSTONE_CARPET_7 = BLOCKS.register("treadstone_carpet_7", () -> new CarpetBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE).speedFactor(1.2F)));
    
+   public static final RegistryObject<Block> SONG_FORGE = BLOCKS.register("song_forge", () -> new SongForgeBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().sound(SoundType.STONE))); 
 
    //TODO Finish this later
    //public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new fire)

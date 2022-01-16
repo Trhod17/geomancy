@@ -34,6 +34,7 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add("screen." + modid + ".tank_empty", "Empty");
         add("screen." + modid + ".dreamcatcher.text", "Dream Catcher");
         add("screen." + modid + ".telepad.text", "Telepad");
+        add("screen." + modid + ".song_forge.text", "Song Forge");
         
     }
     
@@ -160,6 +161,9 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(ItemInit.PLATE_SPEED_OVERDRIVE.get(), "Upgrade Speed Overdrive");
         add(ItemInit.PLATE_SPEED_UP.get(), "Upgrade Speed Up");
         add(ItemInit.PLATE_YIELD_ORE.get(), "Upgrade Ore Yield");
+        
+        add(ItemInit.RICH_GEODE.get(), "Rich Geode Chunk");
+        add(ItemInit.SPARSE_GEODE.get(), "Sparse Geode Chunk");
     }
 
     private void addBlocks() {
@@ -189,6 +193,38 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(BlockInit.GEODE_ORE.get(), "Geode Ore");
         add(BlockInit.TELEPAD.get(), "Telepad");
         add(BlockInit.TELEPAD_SLAB.get(), "Telepad Slab");
+        
+        add(BlockInit.TREADSTONE_1.get(), "Treadstone");
+        add(BlockInit.TREADSTONE_2.get(), "Treadstone");
+        add(BlockInit.TREADSTONE_3.get(), "Treadstone");
+        add(BlockInit.TREADSTONE_4.get(), "Treadstone");
+        add(BlockInit.TREADSTONE_5.get(), "Treadstone");
+        add(BlockInit.TREADSTONE_6.get(), "Treadstone");
+        add(BlockInit.TREADSTONE_7.get(), "Treadstone");
+        
+        add(BlockInit.TREADSTONE_STAIR_1.get(), "Treadstone Stairs");
+        add(BlockInit.TREADSTONE_STAIR_2.get(), "Treadstone Stairs");
+        add(BlockInit.TREADSTONE_STAIR_3.get(), "Treadstone Stairs");
+        add(BlockInit.TREADSTONE_STAIR_4.get(), "Treadstone Stairs");
+        add(BlockInit.TREADSTONE_STAIR_5.get(), "Treadstone Stairs");
+        add(BlockInit.TREADSTONE_STAIR_6.get(), "Treadstone Stairs");
+        add(BlockInit.TREADSTONE_STAIR_7.get(), "Treadstone Stairs");
+        
+        add(BlockInit.TREADSTONE_SLAB_1.get(), "Treadstone Slab");
+        add(BlockInit.TREADSTONE_SLAB_2.get(), "Treadstone Slab");
+        add(BlockInit.TREADSTONE_SLAB_3.get(), "Treadstone Slab");
+        add(BlockInit.TREADSTONE_SLAB_4.get(), "Treadstone Slab");
+        add(BlockInit.TREADSTONE_SLAB_5.get(), "Treadstone Slab");
+        add(BlockInit.TREADSTONE_SLAB_6.get(), "Treadstone Slab");
+        add(BlockInit.TREADSTONE_SLAB_7.get(), "Treadstone Slab");
+        
+        add(BlockInit.TREADSTONE_CARPET_1.get(), "Treadstone Carpet");
+        add(BlockInit.TREADSTONE_CARPET_2.get(), "Treadstone Carpet");
+        add(BlockInit.TREADSTONE_CARPET_3.get(), "Treadstone Carpet");
+        add(BlockInit.TREADSTONE_CARPET_4.get(), "Treadstone Carpet");
+        add(BlockInit.TREADSTONE_CARPET_5.get(), "Treadstone Carpet");
+        add(BlockInit.TREADSTONE_CARPET_6.get(), "Treadstone Carpet");
+        add(BlockInit.TREADSTONE_CARPET_7.get(), "Treadstone Carpet");
     }
     
     private void addItemGroupText() {

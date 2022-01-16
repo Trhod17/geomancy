@@ -85,9 +85,9 @@ public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
         itemStackGroup.init(9, true, 13, 43);
       	itemStackGroup.init(10, true, 13, 61);
       	itemStackGroup.init(1, true, 13, 79);
-      	itemStackGroup.init(2, true, 66, 25);
-    	itemStackGroup.init(3, true, 66, 43);
-    	itemStackGroup.init(0, true, 66, 61);
+      	itemStackGroup.init(2, true, 67, 25);
+    	itemStackGroup.init(3, true, 67, 43);
+    	itemStackGroup.init(0, true, 67, 61);
     	itemStackGroup.init(11, true, 85, 43);
     	itemStackGroup.init(12, true, 85, 61);
     	itemStackGroup.init(13, true, 85, 79);
