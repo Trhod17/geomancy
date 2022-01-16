@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "geomancy",
+  "pattern": [
+    "xsx",
+    "sts",
+    "xsx"
+  ],
+  "key": {
+    "x": {
+      "tag": "minecraft:wool"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "t": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "geomancy:catcher_ring"
+  }
+}

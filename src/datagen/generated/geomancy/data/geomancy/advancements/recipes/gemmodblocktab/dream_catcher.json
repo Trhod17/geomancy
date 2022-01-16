@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:dream_catcher"
+    ]
+  },
+  "criteria": {
+    "dreamcatcher": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:feather"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:string"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:tripwire_hook"
+            ]
+          },
+          {
+            "items": [
+              "geomancy:catcher_ring"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:dream_catcher"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dreamcatcher",
+      "has_the_recipe"
+    ]
+  ]
+}
