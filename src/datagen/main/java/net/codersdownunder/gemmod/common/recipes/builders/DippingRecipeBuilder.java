@@ -1,4 +1,4 @@
-package net.codersdownunder.gemmod.common.recipes;
+package net.codersdownunder.gemmod.common.recipes.builders;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -9,7 +9,7 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
+import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.core.Registry;
@@ -22,69 +22,75 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 
-public class InfusionRecipeBuilder implements RecipeBuilder {
+public class DippingRecipeBuilder implements RecipeBuilder {
 	   private final Item result;
 	   private final int count;
 	   private final List<Ingredient> ingredients = Lists.newArrayList();
+	   private final int fluidAmount;
 	   private final Advancement.Builder advancement = Advancement.Builder.advancement();
 	   @Nullable
 	   private String group;
 
-	   public InfusionRecipeBuilder(ItemLike pResult, int pCount) {
+	   public DippingRecipeBuilder(ItemLike pResult, int fluidAmount, int pCount) {
 	      this.result = pResult.asItem();
+	      this.fluidAmount = fluidAmount;
 	      this.count = pCount;
 	   }
 
 	   /**
 	    * Creates a new builder for a shapeless recipe.
 	    */
-	   public static InfusionRecipeBuilder infusing(ItemLike pResult) {
-	      return new InfusionRecipeBuilder(pResult, 1);
+	   public static DippingRecipeBuilder dipping(ItemLike pResult, int fluidAmount) {
+	      return new DippingRecipeBuilder(pResult, fluidAmount,1);
 	   }
 
 	   /**
 	    * Creates a new builder for a shapeless recipe.
 	    */
-	   public static InfusionRecipeBuilder infusing(ItemLike pResult, int pCount) {
-	      return new InfusionRecipeBuilder(pResult, pCount);
+	   public static DippingRecipeBuilder dipping(ItemLike pResult, int pCount, int fluidAmount) {
+	      return new DippingRecipeBuilder(pResult, pCount, fluidAmount);
 	   }
 
 	   /**
 	    * Adds an ingredient that can be any item in the given tag.
 	    */
-	   public InfusionRecipeBuilder infusing(Tag<Item> pTag) {
-	      return this.requires(Ingredient.of(pTag));
+	   public DippingRecipeBuilder dipping(Tag<Item> pTag, int fluidAmount) {
+	      return this.requires(Ingredient.of(pTag), fluidAmount);
 	   }
 
 	   /**
 	    * Adds an ingredient of the given item.
 	    */
-	   public InfusionRecipeBuilder requires(ItemLike pItem) {
+	   public DippingRecipeBuilder requires(ItemLike pItem) {
 	      return this.requires(pItem, 1);
 	   }
 
 	   /**
 	    * Adds the given ingredient multiple times.
 	    */
-	   public InfusionRecipeBuilder requires(ItemLike pItem, int pQuantity) {
+	   public DippingRecipeBuilder requires(ItemLike pItem, int pQuantity) {
 	      for(int i = 0; i < pQuantity; ++i) {
 	         this.requires(Ingredient.of(pItem));
 	      }
 
 	      return this;
 	   }
+	   
+	   public DippingRecipeBuilder requires(Tag<Item> pTag) {
+		      return this.requires(Ingredient.of(pTag));
+		   }
 
 	   /**
 	    * Adds an ingredient.
 	    */
-	   public InfusionRecipeBuilder requires(Ingredient pIngredient) {
+	   public DippingRecipeBuilder requires(Ingredient pIngredient) {
 	      return this.requires(pIngredient, 1);
 	   }
 
 	   /**
 	    * Adds an ingredient multiple times.
 	    */
-	   public InfusionRecipeBuilder requires(Ingredient pIngredient, int pQuantity) {
+	   public DippingRecipeBuilder requires(Ingredient pIngredient, int pQuantity) {
 	      for(int i = 0; i < pQuantity; ++i) {
 	         this.ingredients.add(pIngredient);
 	      }
@@ -92,7 +98,7 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 	      return this;
 	   }
 
-	   public InfusionRecipeBuilder group(@Nullable String pGroupName) {
+	   public DippingRecipeBuilder group(@Nullable String pGroupName) {
 	      this.group = pGroupName;
 	      return this;
 	   }
@@ -102,23 +108,24 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 	   }
 
 	   public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
-	      pFinishedRecipeConsumer.accept(new InfusionRecipeBuilder.Result(pRecipeId, this.result, this.count, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
+	      pFinishedRecipeConsumer.accept(new DippingRecipeBuilder.Result(pRecipeId, this.result, this.count, this.fluidAmount, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
 	   }
 
 	   public static class Result implements FinishedRecipe {
 	      private final ResourceLocation id;
 	      private final Item result;
 	      private final int count;
+	      private final int fluidAmount;
 	      private final String group;
 	      private final List<Ingredient> ingredients;
 
-	      public Result(ResourceLocation pId, Item pResult, int pCount, String pGroup, List<Ingredient> pIngredients, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
+	      public Result(ResourceLocation pId, Item pResult, int pCount, int fluidAmount, String pGroup, List<Ingredient> pIngredients, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
 	         this.id = pId;
 	         this.result = pResult;
 	         this.count = pCount;
 	         this.group = pGroup;
 	         this.ingredients = pIngredients;
-
+	         this.fluidAmount = fluidAmount;
 	      }
 
 	      @SuppressWarnings("deprecation")
@@ -129,7 +136,7 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 
 	         JsonArray jsonarray = new JsonArray();
 
-	         if (!(ingredients.size() < 6) && !(ingredients.size() >= 8)) {
+	         if (!(ingredients.size() <= 14) && !(ingredients.size() >= 16)) {
 	         for(Ingredient ingredient : this.ingredients) {
 	            jsonarray.add(ingredient.toJson());
 	         }
@@ -141,13 +148,19 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 	         if (this.count > 1) {
 	            jsonobject.addProperty("count", this.count);
 	         }
-
+	         pJson.addProperty("amount", fluidAmount);
 	         pJson.add("output", jsonobject);
+	         } else {
+	        	 if (ingredients.size() <= 14) {
+	        		 throw new IndexOutOfBoundsException("not enough items for dipping recipe: " + ingredients.size() + " should be 14");
+	        	 } else if (ingredients.size() >= 16) {
+	        		 throw new IndexOutOfBoundsException("to many items for dipping recipe: " + ingredients.size() + " should be 14");
+	        	 }
 	         }
 	      }
 
 	      public RecipeSerializer<?> getType() {
-	         return InfusingRecipe.SERIALIZER;
+	         return DippingRecipe.SERIALIZER;
 	      }
 
 	      /**

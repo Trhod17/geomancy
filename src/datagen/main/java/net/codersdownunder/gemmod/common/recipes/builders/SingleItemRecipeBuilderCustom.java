@@ -1,4 +1,4 @@
-package net.codersdownunder.gemmod.common.recipes;
+package net.codersdownunder.gemmod.common.recipes.builders;
 
 import java.util.function.Consumer;
 

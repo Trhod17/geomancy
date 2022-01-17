@@ -2,6 +2,7 @@ package net.codersdownunder.gemmod.common.recipes;
 
 import java.util.function.Consumer;
 
+import net.codersdownunder.gemmod.common.recipes.builders.SingleItemRecipeBuilderCustom;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;

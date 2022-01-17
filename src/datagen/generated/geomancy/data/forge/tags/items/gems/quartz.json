@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:quartz",
+    "geomancy:rose_quartz"
+  ]
+}

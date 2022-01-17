@@ -48,7 +48,7 @@ public class DipperMenu extends AbstractContainerMenu {
 				//center line
 				addSlot(new SlotRestricted(h, 0, 67, -9, GeomancyTags.Items.STRING.getValues()));
 				addSlot(new SlotRestricted(h, 1, 67, 9, GeomancyTags.Items.STRING.getValues()));
-				addSlot(new SlotRestricted(h, 2, 67, 27, GeomancyTags.Items.SEED_CRYSTAL.getValues()));
+				addSlot(new GenericSlot(h, 2, 67, 27));
 				addSlot(new SlotRestricted(h, 3, 67, 45, GeomancyTags.Items.STRING.getValues()));
 				addSlot(new GenericSlot(h, 4, 67, 63));
 				addSlot(new GenericSlot(h, 5, 67, 81));

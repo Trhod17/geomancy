@@ -3,6 +3,9 @@
   "group": "geomancy",
   "ingredients": [
     {
+      "tag": "forge:gems/quartz"
+    },
+    {
       "item": "minecraft:red_sand"
     },
     {

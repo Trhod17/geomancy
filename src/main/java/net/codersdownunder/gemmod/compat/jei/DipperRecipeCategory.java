@@ -73,31 +73,30 @@ public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
         IGuiItemStackGroup itemStackGroup = recipeLayout.getItemStacks();
         IGuiFluidStackGroup fluidStackGroup = recipeLayout.getFluidStacks();
 
-        itemStackGroup.init(14, true, 49, 7);
-        itemStackGroup.init(15, true, 49, 25);
-        itemStackGroup.init(16, true, 49, 43);
+        itemStackGroup.init(15, true, 49, 7);
+        itemStackGroup.init(16, true, 49, 25);
+        itemStackGroup.init(0, true, 49, 43);
         itemStackGroup.init(17, true, 49, 61);
-        itemStackGroup.init(4, true, 49, 79);
-        itemStackGroup.init(7, true, 49, 97);
-        itemStackGroup.init(6, true, 31, 25);
-        itemStackGroup.init(5, true, 31, 43);
-        itemStackGroup.init(8, true, 31, 61);
-        itemStackGroup.init(9, true, 13, 43);
-      	itemStackGroup.init(10, true, 13, 61);
-      	itemStackGroup.init(1, true, 13, 79);
-      	itemStackGroup.init(2, true, 67, 25);
-    	itemStackGroup.init(3, true, 67, 43);
-    	itemStackGroup.init(0, true, 67, 61);
-    	itemStackGroup.init(11, true, 85, 43);
-    	itemStackGroup.init(12, true, 85, 61);
-    	itemStackGroup.init(13, true, 85, 79);
+        itemStackGroup.init(13, true, 49, 79);
+        itemStackGroup.init(8, true, 49, 97);
+        itemStackGroup.init(7, true, 31, 25);
+        itemStackGroup.init(6, true, 31, 43);
+        itemStackGroup.init(1, true, 31, 61);
+        itemStackGroup.init(10, true, 13, 43);
+      	itemStackGroup.init(5, true, 13, 61);
+      	itemStackGroup.init(2, true, 13, 79);
+      	itemStackGroup.init(3, true, 67, 25);
+    	itemStackGroup.init(4, true, 67, 43);
+    	itemStackGroup.init(9, true, 67, 61);
+    	itemStackGroup.init(12, true, 85, 43);
+    	itemStackGroup.init(11, true, 85, 61);
+    	itemStackGroup.init(14, true, 85, 79);
         itemStackGroup.init(18, false, 121, 43);
         fluidStackGroup.init(19, false, 122, 98);
         
         //itemStackGroup.setBackground(23, bac);
-        itemStackGroup.set(14, getString());
         itemStackGroup.set(15, getString());
-        itemStackGroup.set(16, getSeedCrystal());
+        itemStackGroup.set(16, getString());
         itemStackGroup.set(17, getString());
         itemStackGroup.set(ingredients);
         fluidStackGroup.set(19, AcceptedFluids.getAcceptedFluids());
@@ -113,17 +112,7 @@ public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
     	
     	return stack;
     }
-    
-    private static ArrayList<ItemStack> getSeedCrystal() {
-    	ArrayList<ItemStack> stack = new ArrayList<ItemStack>();
-    	
-    	for (int i = 0; i < GeomancyTags.Items.SEED_CRYSTAL.getValues().size(); i++) {
-			stack.add(new ItemStack(GeomancyTags.Items.SEED_CRYSTAL.getValues().get(i)));
-		}
-    	
-    	return stack;
-    }
-    
+
     private static abstract class AcceptedFluids {
 
         private static final ArrayList<FluidStack> acceptedFluids = new ArrayList<>();

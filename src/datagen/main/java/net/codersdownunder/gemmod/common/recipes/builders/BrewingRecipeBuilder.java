@@ -1,3 +1,4 @@
+package net.codersdownunder.gemmod.common.recipes.builders;
 //package net.codersdownunder.gemmod.common.recipes;
 //
 //import com.google.common.collect.Lists;

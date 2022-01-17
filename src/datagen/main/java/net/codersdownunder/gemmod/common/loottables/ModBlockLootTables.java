@@ -69,7 +69,8 @@ public class ModBlockLootTables extends BlockLoot {
             dropSelf(BlockInit.TREADSTONE_CARPET_5.get());
             dropSelf(BlockInit.TREADSTONE_CARPET_6.get());
             dropSelf(BlockInit.TREADSTONE_CARPET_7.get());
-
+            
+            
             dropOther(BlockInit.CHASM_SIGN_WALL.get(), BlockInit.CHASM_SIGN.get());
             add(BlockInit.GEODE_ORE.get(), createOreDrop(BlockInit.GEODE_ORE.get(), ItemInit.GEODE.get()));
             add(BlockInit.CHASM_LEAVES.get(), createLeavesDrops(BlockInit.CHASM_LEAVES.get(), Blocks.OAK_SAPLING, 0.1f));

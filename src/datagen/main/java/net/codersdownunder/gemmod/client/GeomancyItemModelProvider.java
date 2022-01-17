@@ -35,21 +35,6 @@ public class GeomancyItemModelProvider extends ItemModelProvider {
     	this.singleTexture(ItemInit.PLATE_YIELD_ORE.get(), "plate_yield_ore");
     	this.singleTexture(ItemInit.RICH_GEODE.get(), "rich_geode_item");
     	this.singleTexture(ItemInit.SPARSE_GEODE.get(), "sparse_geode_item");
-    	
-//    	withExistingParent("treadstone_stairs_1", modLoc("treadstone_stairs_1"));
-//    	withExistingParent("treadstone_1", modLoc("treadstone_1"));
-//    	withExistingParent("treadstone_stairs_2", modLoc("treadstone_stairs_2"));
-//    	withExistingParent("treadstone_2", modLoc("treadstone_2"));
-//    	withExistingParent("treadstone_stairs_3", modLoc("treadstone_stairs_3"));
-//    	withExistingParent("treadstone_3", modLoc("treadstone_3"));
-//    	withExistingParent("treadstone_stairs_4", modLoc("treadstone_stairs_4"));
-//    	withExistingParent("treadstone_4", modLoc("treadstone_4"));
-//    	withExistingParent("treadstone_stairs_5", modLoc("treadstone_stairs_5"));
-//    	withExistingParent("treadstone_5", modLoc("treadstone_5"));
-//    	withExistingParent("treadstone_stairs_6", modLoc("treadstone_stairs_6"));
-//    	withExistingParent("treadstone_6", modLoc("treadstone_6"));
-//    	withExistingParent("treadstone_stairs_7", modLoc("treadstone_stairs_7"));
-//    	withExistingParent("treadstone_7", modLoc("treadstone_7"));
 
     	
     }

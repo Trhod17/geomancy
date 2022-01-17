@@ -99,6 +99,8 @@ public class GeomancyItemTags extends ItemTagsProvider {
 		tag(ItemTags.WOODEN_FENCES).add(ItemInit.CHASM_FENCE.get());
 
 		tag(ItemTags.LEAVES).add(ItemInit.CHASM_LEAVES.get());
+		
+		tag(GeomancyTags.Items.QUARTZ).add(Items.QUARTZ).add(ItemInit.ROSE_QUARTZ.get());
 
 	}
 

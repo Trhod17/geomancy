@@ -225,6 +225,8 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(BlockInit.TREADSTONE_CARPET_5.get(), "Treadstone Carpet");
         add(BlockInit.TREADSTONE_CARPET_6.get(), "Treadstone Carpet");
         add(BlockInit.TREADSTONE_CARPET_7.get(), "Treadstone Carpet");
+        
+        add(BlockInit.SONG_FORGE.get(), "Song Forge");
     }
     
     private void addItemGroupText() {

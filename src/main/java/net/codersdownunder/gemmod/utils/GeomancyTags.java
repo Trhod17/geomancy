@@ -39,6 +39,8 @@ public class GeomancyTags {
 		
 		public static final Tags.IOptionalNamedTag<Item> DIPPING_FLUIDS = createTag("dipping_fluids");
 		
+		public static final Tags.IOptionalNamedTag<Item> QUARTZ = createForgeTag("gems/quartz");
+		
 		private static Tags.IOptionalNamedTag<Item> createTag(String name) {
 			return ItemTags.createOptional(new ResourceLocation(GemMod.MODID, name));
 		}
