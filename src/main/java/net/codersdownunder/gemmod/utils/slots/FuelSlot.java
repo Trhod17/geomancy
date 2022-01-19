@@ -2,6 +2,7 @@ package net.codersdownunder.gemmod.utils.slots;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.IItemHandler;
 
 public class FuelSlot extends GenericSlot {
@@ -17,8 +18,9 @@ public class FuelSlot extends GenericSlot {
 
 
     protected boolean isFuel(ItemStack pStack) {
-        return net.minecraftforge.common.ForgeHooks.getBurnTime(pStack, RecipeType.SMELTING) > 0;
+        return ForgeHooks.getBurnTime(pStack, RecipeType.SMELTING) > 0;
      }
+    
     
     
 //    @Override

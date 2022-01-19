@@ -7,7 +7,10 @@ public class OutputSlot extends GenericSlot {
 
 	public OutputSlot(IItemHandler inventory, int index, int x, int y) {
 		super(inventory, index, x, y);
+		
 	}
+	
+	
 	
 	@Override
 	public boolean mayPlace(ItemStack stack) {

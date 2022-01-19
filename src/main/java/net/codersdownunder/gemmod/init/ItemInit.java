@@ -152,6 +152,7 @@ public class ItemInit
     public static final RegistryObject<BlockItem> TREADSTONE_CARPET_5 = ITEMS.register("treadstone_carpet_5", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_5.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TREADSTONE_CARPET_6 = ITEMS.register("treadstone_carpet_6", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_6.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TREADSTONE_CARPET_7 = ITEMS.register("treadstone_carpet_7", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_7.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
-    public static final RegistryObject<BlockItem> SONG_FORGE = ITEMS.register("song_forge", () -> new BlockItem(BlockInit.SONG_FORGE.get(), new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<BlockItem> SONG_FORGE = ITEMS.register("song_forge", () -> new BlockItem(BlockInit.SONG_FORGE.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
+    public static final RegistryObject<BlockItem> TRELLIS = ITEMS.register("trellis", () -> new BlockItem(BlockInit.TRELLIS.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     
 }

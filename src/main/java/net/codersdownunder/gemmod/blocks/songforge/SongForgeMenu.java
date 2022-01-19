@@ -59,15 +59,15 @@ public class SongForgeMenu extends AbstractContainerMenu {
             	addSlot(new FuelSlot(h, 5, 43, 26));
             	
             	//output slots
-            	addSlot(new OutputSlot(h, 6, 139, -10));
+            	addSlot(new OutputSlot(h, 8, 139, -10));
             	addSlot(new OutputSlot(h, 7, 121, -10));
-            	addSlot(new OutputSlot(h, 8, 103, -10));
-            	addSlot(new	OutputSlot(h, 9, 139, 8));
+            	addSlot(new OutputSlot(h, 6, 103, -10));
+            	addSlot(new	OutputSlot(h, 11, 139, 8));
             	addSlot(new OutputSlot(h, 10, 121, 8));
-            	addSlot(new OutputSlot(h, 11, 103, 8));
-            	addSlot(new OutputSlot(h, 12, 139, 26));
+            	addSlot(new OutputSlot(h, 9, 103, 8));
+            	addSlot(new OutputSlot(h, 14, 139, 26));
             	addSlot(new OutputSlot(h, 13, 121, 26));
-            	addSlot(new OutputSlot(h, 14, 103, 26));
+            	addSlot(new OutputSlot(h, 12, 103, 26));
             	
             	//upgrade slots
             	addSlot(new GenericSlot(h, 15, 163, 39));

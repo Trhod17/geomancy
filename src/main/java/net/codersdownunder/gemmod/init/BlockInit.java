@@ -125,6 +125,15 @@ public class BlockInit
    
    public static final RegistryObject<Block> SONG_FORGE = BLOCKS.register("song_forge", () -> new SongForgeBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().sound(SoundType.STONE))); 
 
+   public static final RegistryObject<Block> TRELLIS = BLOCKS.register("trellis", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> TRELLIS_MOSS = BLOCKS.register("trellis_moss", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> TRELLIS_CAVE_VINES = BLOCKS.register("trellis_cave_vines", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> TRELLIS_CAVE_VINES2 = BLOCKS.register("trellis_cave_vines2", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> TRELLIS_LICHEN = BLOCKS.register("trellis_lichen", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> TRELLIS_VINE = BLOCKS.register("trellis_vine", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> TRELLIS_CHORUS1 = BLOCKS.register("trellis_chorus1", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> TRELLIS_CHORUS2 = BLOCKS.register("trellis_chorus2", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   
    //TODO Finish this later
    //public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new fire)
    //public static final RegistryObject<Block> CHASM_SAPLING = BLOCKS.register("chasm_sapling", () -> new SaplingBlock(new ChasmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
