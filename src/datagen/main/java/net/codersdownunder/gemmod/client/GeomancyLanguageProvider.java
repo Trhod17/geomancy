@@ -227,6 +227,15 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(BlockInit.TREADSTONE_CARPET_7.get(), "Treadstone Carpet");
         
         add(BlockInit.SONG_FORGE.get(), "Song Forge");
+        
+        add(BlockInit.TRELLIS.get(), "Trellis");
+        add(BlockInit.TRELLIS_CAVE_VINES.get(), "Trellis With Cave Wine");
+        add(BlockInit.TRELLIS_CHORUS.get(), "Trellis With Chorus");
+        add(BlockInit.TRELLIS_CRIMSON.get(), "Crimson Trellis");
+        add(BlockInit.TRELLIS_LICHEN.get(), "Trellis With Lichen");
+        add(BlockInit.TRELLIS_MOSS.get(), "Trellis With Moss");
+        add(BlockInit.TRELLIS_VINE.get(), "Trellis With Vine");
+        add(BlockInit.TRELLIS_WARP.get(), "Warped Trellis");
     }
     
     private void addItemGroupText() {

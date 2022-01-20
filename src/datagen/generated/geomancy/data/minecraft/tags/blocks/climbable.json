@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "geomancy:trellis",
+    "geomancy:trellis_cave_vines",
+    "geomancy:trellis_chorus",
+    "geomancy:trellis_crimson",
+    "geomancy:trellis_lichen",
+    "geomancy:trellis_moss",
+    "geomancy:trellis_vine",
+    "geomancy:trellis_warp"
+  ]
+}

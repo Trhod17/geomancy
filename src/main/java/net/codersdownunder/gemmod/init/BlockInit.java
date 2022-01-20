@@ -11,6 +11,7 @@ import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaBlock;
+import net.codersdownunder.gemmod.blocks.trellis.TrellisBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.DoorBlock;
@@ -125,14 +126,14 @@ public class BlockInit
    
    public static final RegistryObject<Block> SONG_FORGE = BLOCKS.register("song_forge", () -> new SongForgeBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().sound(SoundType.STONE))); 
 
-   public static final RegistryObject<Block> TRELLIS = BLOCKS.register("trellis", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-   public static final RegistryObject<Block> TRELLIS_MOSS = BLOCKS.register("trellis_moss", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-   public static final RegistryObject<Block> TRELLIS_CAVE_VINES = BLOCKS.register("trellis_cave_vines", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-   public static final RegistryObject<Block> TRELLIS_CAVE_VINES2 = BLOCKS.register("trellis_cave_vines2", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-   public static final RegistryObject<Block> TRELLIS_LICHEN = BLOCKS.register("trellis_lichen", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-   public static final RegistryObject<Block> TRELLIS_VINE = BLOCKS.register("trellis_vine", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-   public static final RegistryObject<Block> TRELLIS_CHORUS1 = BLOCKS.register("trellis_chorus1", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-   public static final RegistryObject<Block> TRELLIS_CHORUS2 = BLOCKS.register("trellis_chorus2", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> TRELLIS = BLOCKS.register("trellis", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_MOSS = BLOCKS.register("trellis_moss", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_CAVE_VINES = BLOCKS.register("trellis_cave_vines", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_LICHEN = BLOCKS.register("trellis_lichen", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion().lightLevel((p_235447_0_) -> {return 7;}))); 
+   public static final RegistryObject<Block> TRELLIS_VINE = BLOCKS.register("trellis_vine", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_CHORUS = BLOCKS.register("trellis_chorus", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_CRIMSON = BLOCKS.register("trellis_crimson", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_WARP = BLOCKS.register("trellis_warp", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion()));	
    
    //TODO Finish this later
    //public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new fire)

@@ -15,6 +15,14 @@
     "geomancy:chasm_sign_wall",
     "geomancy:chasm_slab",
     "geomancy:chasm_stairs",
-    "geomancy:chasm_trapdoor"
+    "geomancy:chasm_trapdoor",
+    "geomancy:trellis",
+    "geomancy:trellis_cave_vines",
+    "geomancy:trellis_chorus",
+    "geomancy:trellis_crimson",
+    "geomancy:trellis_lichen",
+    "geomancy:trellis_vine",
+    "geomancy:trellis_moss",
+    "geomancy:trellis_warp"
   ]
 }

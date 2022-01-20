@@ -70,6 +70,15 @@ public class ModBlockLootTables extends BlockLoot {
             dropSelf(BlockInit.TREADSTONE_CARPET_6.get());
             dropSelf(BlockInit.TREADSTONE_CARPET_7.get());
             
+            dropSelf(BlockInit.TRELLIS.get());
+            
+            dropOther(BlockInit.TRELLIS_CAVE_VINES.get(), BlockInit.TRELLIS.get());
+            dropOther(BlockInit.TRELLIS_CRIMSON.get(), BlockInit.TRELLIS.get());
+            dropOther(BlockInit.TRELLIS_CHORUS.get(), BlockInit.TRELLIS.get());
+            dropOther(BlockInit.TRELLIS_LICHEN.get(), BlockInit.TRELLIS.get());
+            dropOther(BlockInit.TRELLIS_MOSS.get(), BlockInit.TRELLIS.get());
+            dropOther(BlockInit.TRELLIS_VINE.get(), BlockInit.TRELLIS.get());
+            dropOther(BlockInit.TRELLIS_WARP.get(), BlockInit.TRELLIS.get());
             
             dropOther(BlockInit.CHASM_SIGN_WALL.get(), BlockInit.CHASM_SIGN.get());
             add(BlockInit.GEODE_ORE.get(), createOreDrop(BlockInit.GEODE_ORE.get(), ItemInit.GEODE.get()));

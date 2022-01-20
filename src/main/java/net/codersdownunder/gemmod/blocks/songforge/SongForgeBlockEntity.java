@@ -32,11 +32,20 @@ public class SongForgeBlockEntity extends BlockEntity {
 	private static boolean valid;
 	private static ItemStack output;
 	private static int input;
-	private static int counter;
-	private static int burntime;
+	private int counter;
+	//private int countermax;
+	private int burntime;
+	//private int burntimemax;
 	private static int fuel;
 	private static boolean crafting;
 	
+	public int getCounter() {
+		return counter;
+	}
+	
+	public int getBurn() {
+		return this.burntime;
+	}
 
 	private ItemStackHandler itemHandler = createHandler();
 
@@ -51,7 +60,8 @@ public class SongForgeBlockEntity extends BlockEntity {
 	public ItemStackHandler getItemStackHandler() {
 		return itemHandler;
 	}
-
+	
+	
 	public static int getSlots() {
 		return INPUT_SLOTS + OUTPUT_SLOTS + FUEL_SLOTS + UPGRADE_SLOTS + 1;
 	}
@@ -74,6 +84,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 			
 			if (valid) {
 				burntime = getBurnTime();
+				//burntimemax = burntime;
 				this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
 			}
 		}
@@ -92,7 +103,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 			} 
 			
 			
-			if (!crafting) {
+			if (valid && !crafting) {
 				crafting = true;
 			}
 		}
@@ -163,6 +174,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 			valid = true;
 			output = recipe.getResultItem().copy();
 			counter = recipe.getCookingTime();
+			//countermax = counter;
 			return true;
 
 

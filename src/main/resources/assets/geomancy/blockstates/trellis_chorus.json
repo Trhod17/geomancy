@@ -1,0 +1,13 @@
+{
+  "variants": {
+      "waterlogged=false,facing=north": { "model": "geomancy:block/trellis_chorus" },
+	  "waterlogged=false,facing=south": { "model": "geomancy:block/trellis_chorus", "y": 180 },
+	  "waterlogged=false,facing=west": { "model": "geomancy:block/trellis_chorus", "y": 270 },
+	  "waterlogged=false,facing=east": { "model": "geomancy:block/trellis_chorus", "y": 90 },
+   	  "waterlogged=true,facing=north": { "model": "geomancy:block/trellis_chorus" },
+	  "waterlogged=true,facing=south": { "model": "geomancy:block/trellis_chorus", "y": 180 },
+	  "waterlogged=true,facing=west": { "model": "geomancy:block/trellis_chorus", "y": 270 },
+	  "waterlogged=true,facing=east": { "model": "geomancy:block/trellis_chorus", "y": 90 }
+
+  }
+}

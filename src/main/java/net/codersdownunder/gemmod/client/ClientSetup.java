@@ -56,5 +56,13 @@ public class ClientSetup {
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.DIPPER.get(), RenderType.cutout());    
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD.get(), RenderType.cutout());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD_SLAB.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_VINE.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_CAVE_VINES.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_CHORUS.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_LICHEN.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_MOSS.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_CRIMSON.get(), RenderType.cutout());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_WARP.get(), RenderType.cutout());
 	  }
 }

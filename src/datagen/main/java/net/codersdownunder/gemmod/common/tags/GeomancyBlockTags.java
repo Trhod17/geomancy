@@ -83,7 +83,15 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         		.add(BlockInit.CHASM_SIGN_WALL.get())
         		.add(BlockInit.CHASM_SLAB.get())
         		.add(BlockInit.CHASM_STAIRS.get())
-        		.add(BlockInit.CHASM_TRAPDOOR.get());
+        		.add(BlockInit.CHASM_TRAPDOOR.get())
+        		.add(BlockInit.TRELLIS.get())
+        		.add(BlockInit.TRELLIS_CAVE_VINES.get())
+        		.add(BlockInit.TRELLIS_CHORUS.get())
+        		.add(BlockInit.TRELLIS_CRIMSON.get())
+        		.add(BlockInit.TRELLIS_LICHEN.get())
+        		.add(BlockInit.TRELLIS_VINE.get())
+        		.add(BlockInit.TRELLIS_MOSS.get())
+        		.add(BlockInit.TRELLIS_WARP.get());
         
         tag(BlockTags.LOGS)
         		.add(BlockInit.CHASM_LOG.get())
@@ -95,7 +103,7 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         		.add(BlockInit.CHASM_LOG.get())
         		.add(BlockInit.CHASM_LOG_BARK.get())
         		.add(BlockInit.CHASM_LOG_STRIPPED.get())
-        		.add(BlockInit.CHASM_LOG_STRIPPED_BARK.get());	
+        		.add(BlockInit.CHASM_LOG_STRIPPED_BARK.get());
         
         tag(BlockTags.PLANKS)
         	.add(BlockInit.CHASM_PLANKS.get());
@@ -154,6 +162,16 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         .add(BlockInit.TREADSTONE_CARPET_6.get())
         .add(BlockInit.TREADSTONE_CARPET_7.get());
         
+        
+        tag(BlockTags.CLIMBABLE)
+        	.add(BlockInit.TRELLIS.get())
+        	.add(BlockInit.TRELLIS_CAVE_VINES.get())
+        	.add(BlockInit.TRELLIS_CHORUS.get())
+        	.add(BlockInit.TRELLIS_CRIMSON.get())
+        	.add(BlockInit.TRELLIS_LICHEN.get())
+        	.add(BlockInit.TRELLIS_MOSS.get())
+        	.add(BlockInit.TRELLIS_VINE.get())
+        	.add(BlockInit.TRELLIS_WARP.get());
     }
 
     @Override

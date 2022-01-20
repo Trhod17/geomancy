@@ -13,7 +13,6 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -21,7 +20,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class SongForgeMenu extends AbstractContainerMenu {
 
-    private BlockEntity tileEntity;
+    private SongForgeBlockEntity tileEntity;
     private Player playerEntity;
     private IItemHandler playerInventory;
     private BlockPos pos;
@@ -32,6 +31,9 @@ public class SongForgeMenu extends AbstractContainerMenu {
     public static int id;
     private int CONTAINER_SIZE = 19;
     
+    private int counter;
+    public int burntime;
+    
     public SongForgeMenu() {
         super(MenuInit.SONG_FORGE_MENU.get(), id);
     }
@@ -39,11 +41,13 @@ public class SongForgeMenu extends AbstractContainerMenu {
     public SongForgeMenu(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player)  {
         super(MenuInit.SONG_FORGE_MENU.get(), windowId);
         SongForgeMenu.id = windowId;
-        tileEntity = world.getBlockEntity(pos);
+        this.tileEntity = (SongForgeBlockEntity) world.getBlockEntity(pos);
         this.playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
         this.pos = pos;
-
+        this.counter = tileEntity.getCounter();
+        this.burntime = tileEntity.getBurn();
+        
 
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
@@ -79,6 +83,21 @@ public class SongForgeMenu extends AbstractContainerMenu {
 
         
         layoutPlayerInventorySlots(PLAYER_INVENTORY_XPOS, PLAYER_INVENTORY_YPOS);
+    }
+    
+    public int getCookScaled(int pixels) {
+        int i = this.counter;
+        int j = this.counter - 10;
+        return j != 0 && i != 0 ? i * pixels / j : 0;
+    }
+
+    public int getBurnLeftScaled(int pixels) {
+        int i = this.burntime;
+        if (i == 0) {
+            i = 200;
+        }
+
+        return this.burntime * pixels / i;
     }
     
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
@@ -140,6 +159,11 @@ public class SongForgeMenu extends AbstractContainerMenu {
         // Hotbar
         topRow += 58;
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
+    }
+    
+    public SongForgeBlockEntity getTable()
+    {
+        return tileEntity;
     }
     
 }

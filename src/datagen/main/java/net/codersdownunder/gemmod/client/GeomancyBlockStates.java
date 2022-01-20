@@ -94,6 +94,8 @@ public class GeomancyBlockStates extends BlockStateProvider {
                 );
         
         itemModels().withExistingParent("song_forge", modLoc("block/songforge"));
+        
+        //directionalBlock(BlockInit.TRELLIS.get(), models().withExistingParent("trellis_empty", modLoc("block/trellis_empty")));
 
     }
 
