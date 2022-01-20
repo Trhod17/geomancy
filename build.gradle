@@ -168,6 +168,9 @@ minecraft {
   runs {
         client {
             workingDirectory file('../run')
+            
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
@@ -244,6 +247,8 @@ dependencies {
    	implementation fg.deobf('curse.maven:configured-457570:3559398')
    	implementation fg.deobf('curse.maven:catalogue-459701:3559402')
    	implementation fg.deobf('curse.maven:nbt-tool-451553:3569593')
+   	compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
 }
 

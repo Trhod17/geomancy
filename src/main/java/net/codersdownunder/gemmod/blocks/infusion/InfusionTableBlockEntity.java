@@ -50,14 +50,12 @@ public class InfusionTableBlockEntity extends BlockEntity {
         super.setRemoved();
         handler.invalidate();
     }
-
-    @Override
-    public CompoundTag save(CompoundTag tag) {
-        tag.put("inv", itemHandler.serializeNBT());
-
-        return super.save(tag);
-    }
     
+    @Override
+    protected void saveAdditional(CompoundTag pTag) {
+    	pTag.put("inv", itemHandler.serializeNBT());
+    }
+
     @Override
     public void load(CompoundTag tag) {
         itemHandler.deserializeNBT(tag.getCompound("inv"));

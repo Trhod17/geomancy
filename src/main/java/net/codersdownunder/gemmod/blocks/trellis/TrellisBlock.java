@@ -24,7 +24,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.MultifaceBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -84,7 +83,7 @@ public class TrellisBlock extends HorizontalDirectionalBlock implements SimpleWa
 	@Override
 	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos,
 			CollisionContext pContext) {
-		return SHAPE.get();
+		return SHAPE.get().getFaceShape(pState.getValue(FACING));
 	}
 
 	protected void runCalculation(VoxelShape shape) {
