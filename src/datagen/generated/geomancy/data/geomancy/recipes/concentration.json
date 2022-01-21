@@ -1,4 +1,18 @@
 {
   "type": "geomancy:infusing_recipe",
-  "group": "geomancy"
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "item": "geomancy:dream_dust"
+    },
+    {
+      "item": "geomancy:nether_crux"
+    }
+  ],
+  "output": {
+    "item": "geomancy:concentration"
+  }
 }

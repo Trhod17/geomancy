@@ -219,13 +219,13 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.pattern("pip")
 		.pattern("lgl")
 		.pattern("sss")
-		.define('p', ItemTags.PLANKS)
+		.define('p', Items.OAK_PLANKS)
 		.define('i', Items.IRON_INGOT)
 		.define('l', Items.OAK_LOG)
 		.define('g', Items.GLASS)
 		.define('s', Items.SMOOTH_STONE)
 		.group(GemMod.MODID)
-		.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BONE_MEAL, Items.IRON_INGOT, Items.OAK_LOG, Items.GLASS, Items.SMOOTH_STONE))
+		.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.OAK_PLANKS, Items.IRON_INGOT, Items.OAK_LOG, Items.GLASS, Items.SMOOTH_STONE))
 		.save(consumer);
 		
 		ShapedRecipeBuilder.shaped(BlockInit.INFUSION_TABLE.get(), 1)
@@ -261,10 +261,10 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.define('g', Items.GOLD_INGOT)
 		.define('b', Items.GOLD_BLOCK)
 		.define('r', Items.BLAZE_ROD)
-		.define('a', Items.GOLDEN_APPLE)
+		.define('a', Items.ENCHANTED_GOLDEN_APPLE)
 		.define('n', Items.GOLD_NUGGET)
 		.group(GemMod.MODID)
-		.unlockedBy("empty_totem", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT, Items.GOLD_BLOCK, Items.BLAZE_ROD, Items.GOLDEN_APPLE, Items.GOLD_NUGGET))
+		.unlockedBy("empty_totem", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT, Items.GOLD_BLOCK, Items.BLAZE_ROD, Items.ENCHANTED_GOLDEN_APPLE, Items.GOLD_NUGGET))
 		.save(consumer);
 		
 		ShapelessRecipeBuilder.shapeless(ItemInit.NETHER_CRUX.get())
