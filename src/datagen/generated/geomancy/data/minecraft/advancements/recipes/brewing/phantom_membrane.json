@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:phantom_membrane"
+    ]
+  },
+  "criteria": {
+    "dipper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glow_ink_sac"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:slime_ball"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:white_dye"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:egg"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:phantom_membrane"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dipper",
+      "has_the_recipe"
+    ]
+  ]
+}

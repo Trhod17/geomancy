@@ -275,7 +275,17 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.unlockedBy("nethercrux", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.NETHERRITE_NUGGET.get(),Items.END_CRYSTAL,Items.EMERALD))
 		.save(consumer, new ResourceLocation("nethercrux"));
 		
-
+		ShapedRecipeBuilder.shaped(Items.PHANTOM_MEMBRANE, 1)
+		.pattern(" g ")
+		.pattern("sbs")
+		.pattern(" e ")
+		.define('g', Items.GLOW_INK_SAC)
+		.define('s', Items.SLIME_BALL)
+		.define('b', Items.WHITE_DYE)
+		.define('e', Items.EGG)
+		.group(GemMod.MODID)
+		.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLOW_INK_SAC, Items.SLIME_BALL, Items.WHITE_DYE, Items.EGG))
+		.save(consumer);
 		
 		ShapelessRecipeBuilder.shapeless(ItemInit.NETHER_CRUX.get(), 8)
 		.requires(ItemInit.NETHERRITE_NUGGET.get())
