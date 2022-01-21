@@ -129,7 +129,7 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 
 	         JsonArray jsonarray = new JsonArray();
 
-	         if (!(ingredients.size() < 6) && !(ingredients.size() >= 8)) {
+	         if (!(ingredients.size() >= 8)) {
 	         for(Ingredient ingredient : this.ingredients) {
 	            jsonarray.add(ingredient.toJson());
 	         }
