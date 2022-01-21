@@ -129,10 +129,12 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "output"));
             //int infusingTime = JSONUtils.getAsInt(pJson, "time");
 
-            JsonArray ingredients = GsonHelper.getAsJsonArray(pJson, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(7, Ingredient.EMPTY);
+          
             
-            for (int i = 0; i < inputs.size(); i++) {
+            JsonArray ingredients = GsonHelper.getAsJsonArray(pJson, "ingredients");
+            NonNullList<Ingredient> inputs = NonNullList.withSize(ingredients.size(), Ingredient.EMPTY);
+            
+            for (int i = 0; i < ingredients.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
@@ -143,9 +145,11 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
         @Override
         public InfusingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer)
         {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(7, Ingredient.EMPTY);
-            pBuffer.readInt();
-            for (int i = 0; i < inputs.size(); i++) {
+        	int size = pBuffer.readInt();
+        	
+            NonNullList<Ingredient> inputs = NonNullList.withSize(size, Ingredient.EMPTY);
+            
+            for (int i = 0; i < size; i++) {
                 inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
 
