@@ -69,17 +69,6 @@ public class TrellisBlock extends HorizontalDirectionalBlock implements SimpleWa
 		return new ItemStack(BlockInit.TRELLIS.get());
 	}
 
-	private boolean canAttachTo(BlockGetter pBlockReader, BlockPos pPos, Direction pDirection) {
-		BlockState blockstate = pBlockReader.getBlockState(pPos);
-		return blockstate.isFaceSturdy(pBlockReader, pPos, pDirection);
-	}
-
-	@Override
-	public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-		Direction direction = pState.getValue(FACING);
-		return this.canAttachTo(pLevel, pPos.relative(direction.getOpposite()), direction);
-	}
-
 	@Override
 	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos,
 			CollisionContext pContext) {
