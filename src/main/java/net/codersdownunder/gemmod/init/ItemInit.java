@@ -92,10 +92,14 @@ public class ItemInit
     
     
     
-    /*
-     * Block Items Below this point
-     */
     
+    
+    
+    
+    
+    /*
+     * Block Items Only Below this point
+     */
     
     public static final RegistryObject<BlockItem> CHASM_SIGN = ITEMS.register("chasm_sign", () -> new SignItem((new Item.Properties()).stacksTo(16).tab(GemMod.gemsmodblocktab), BlockInit.CHASM_SIGN.get(), BlockInit.CHASM_SIGN_WALL.get()));
     public static final RegistryObject<BlockItem> END_LANTERN = ITEMS.register("end_lantern", () -> new BlockItem(BlockInit.END_LANTERN.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
