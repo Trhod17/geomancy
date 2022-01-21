@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:netherrite_nugget"
+    },
+    {
+      "item": "minecraft:end_crystal"
+    },
+    {
+      "item": "minecraft:emerald"
+    }
+  ],
+  "result": {
+    "item": "geomancy:nether_crux"
+  }
+}

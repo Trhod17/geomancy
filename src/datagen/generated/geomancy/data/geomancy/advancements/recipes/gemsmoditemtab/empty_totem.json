@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:empty_totem"
+    ]
+  },
+  "criteria": {
+    "empty_totem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gold_ingot"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:gold_block"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:blaze_rod"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:golden_apple"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:gold_nugget"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:empty_totem"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "empty_totem",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -30,6 +30,36 @@ public class GeomancyInfusionRecipeProvider extends RecipeProvider {
 		.group(GemMod.MODID)
 		.save(consumer);
 		
+		InfusionRecipeBuilder.infusing(Items.BELL)
+		.requires(Items.AMETHYST_SHARD)
+		.requires(Items.AMETHYST_SHARD)
+		.requires(Items.AMETHYST_SHARD)
+		.requires(Items.AMETHYST_SHARD)
+		// Item below is the item to be infused
+		.requires(Items.GOLD_INGOT)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		InfusionRecipeBuilder.infusing(Items.ENCHANTED_GOLDEN_APPLE)
+		.requires(ItemInit.JASPER_DREAMING.get())
+		.requires(ItemInit.SAPPHIRE_DREAMING.get())
+		.requires(ItemInit.AMETHYST_DREAMING.get())
+		.requires(ItemInit.SPINEL_DREAMING.get())
+		.requires(ItemInit.SPINEL_DREAMING.get())
+		.requires(ItemInit.SPHENE_DREAMING.get())
+		// Item below is the item to be infused
+		.requires(Items.GOLDEN_APPLE)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		InfusionRecipeBuilder.infusing(ItemInit.CONCENTRATION.get())
+		.requires(Items.PHANTOM_MEMBRANE)
+		.requires(ItemInit.DREAM_DUST.get())
+		// Item below is the item to be infused
+		.requires(ItemInit.NETHER_CRUX.get())
+		.group(GemMod.MODID)
+		.save(consumer);
+		
 		//Add more below
 	}
 	

@@ -2,17 +2,32 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "geomancy:telepad"
+      "minecraft:bell"
     ]
   },
   "criteria": {
-    "telepad_slab": {
+    "bell": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "geomancy:telepad_slab"
+              "minecraft:oak_log"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:gold_ingot"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:amethyst_block"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:gold_nugget"
             ]
           }
         ]
@@ -21,13 +36,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "geomancy:telepad"
+        "recipe": "minecraft:bell"
       }
     }
   },
   "requirements": [
     [
-      "telepad_slab",
+      "bell",
       "has_the_recipe"
     ]
   ]

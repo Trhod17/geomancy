@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "geomancy",
+  "pattern": [
+    "pip",
+    "lgl",
+    "sss"
+  ],
+  "key": {
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "l": {
+      "item": "minecraft:oak_log"
+    },
+    "g": {
+      "item": "minecraft:glass"
+    },
+    "s": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "geomancy:dipper"
+  }
+}

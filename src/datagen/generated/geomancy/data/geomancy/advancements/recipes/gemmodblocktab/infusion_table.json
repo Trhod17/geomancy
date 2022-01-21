@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:infusion_table"
+    ]
+  },
+  "criteria": {
+    "infusion_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:emerald"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:dark_oak_sapling"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:stripped_dark_oak_log"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:golden_apple"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:dark_oak_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:infusion_table"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "infusion_table",
+      "has_the_recipe"
+    ]
+  ]
+}

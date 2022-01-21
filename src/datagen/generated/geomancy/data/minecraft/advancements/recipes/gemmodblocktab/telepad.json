@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:telepad"
+    ]
+  },
+  "criteria": {
+    "telepad": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glass"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:dark_prismarine"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:sea_lantern"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:ender_pearl"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:amethyst_shard"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:telepad"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "telepad",
+      "has_the_recipe"
+    ]
+  ]
+}

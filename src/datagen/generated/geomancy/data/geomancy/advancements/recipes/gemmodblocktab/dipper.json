@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:dipper"
+    ]
+  },
+  "criteria": {
+    "dipper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bone_meal"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:iron_ingot"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:oak_log"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:glass"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:smooth_stone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:dipper"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dipper",
+      "has_the_recipe"
+    ]
+  ]
+}

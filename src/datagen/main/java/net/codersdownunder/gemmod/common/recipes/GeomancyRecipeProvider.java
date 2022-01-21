@@ -11,6 +11,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
@@ -190,7 +191,7 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.unlockedBy("catcherring", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHITE_WOOL, Items.STRING, Items.STICK))
 		.save(consumer);
 		
-		ShapedRecipeBuilder.shaped(ItemInit.DREAM_CATCHER.get(), 1)
+		ShapedRecipeBuilder.shaped(BlockInit.DREAM_CATCHER.get(), 1)
 		.pattern(" h ")
 		.pattern("srs")
 		.pattern("frf")
@@ -202,6 +203,88 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.unlockedBy("dreamcatcher", InventoryChangeTrigger.TriggerInstance.hasItems(Items.FEATHER, Items.STRING, Items.TRIPWIRE_HOOK, ItemInit.CATCHER_RING.get()))
 		.save(consumer);
 		
+		ShapedRecipeBuilder.shaped(Items.BELL, 1)
+		.pattern("lll")
+		.pattern("gag")
+		.pattern("gng")
+		.define('l', Items.OAK_LOG)
+		.define('g', Items.GOLD_INGOT)
+		.define('a', Items.AMETHYST_BLOCK)
+		.define('n', Items.GOLD_NUGGET)
+		.group(GemMod.MODID)
+		.unlockedBy("bell", InventoryChangeTrigger.TriggerInstance.hasItems(Items.OAK_LOG, Items.GOLD_INGOT, Items.AMETHYST_BLOCK, Items.GOLD_NUGGET))
+		.save(consumer);
+		
+		ShapedRecipeBuilder.shaped(BlockInit.DIPPER.get(), 1)
+		.pattern("pip")
+		.pattern("lgl")
+		.pattern("sss")
+		.define('p', ItemTags.PLANKS)
+		.define('i', Items.IRON_INGOT)
+		.define('l', Items.OAK_LOG)
+		.define('g', Items.GLASS)
+		.define('s', Items.SMOOTH_STONE)
+		.group(GemMod.MODID)
+		.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BONE_MEAL, Items.IRON_INGOT, Items.OAK_LOG, Items.GLASS, Items.SMOOTH_STONE))
+		.save(consumer);
+		
+		ShapedRecipeBuilder.shaped(BlockInit.INFUSION_TABLE.get(), 1)
+		.pattern("epe")
+		.pattern("sgs")
+		.pattern("ede")
+		.define('e', Items.EMERALD)
+		.define('p', Items.DARK_OAK_SAPLING)
+		.define('s', Items.STRIPPED_DARK_OAK_LOG)
+		.define('g', Items.GOLDEN_APPLE)
+		.define('d', Items.DARK_OAK_LOG)
+		.group(GemMod.MODID)
+		.unlockedBy("infusion_table", InventoryChangeTrigger.TriggerInstance.hasItems(Items.EMERALD, Items.DARK_OAK_SAPLING, Items.STRIPPED_DARK_OAK_LOG, Items.GOLDEN_APPLE, Items.DARK_OAK_LOG))
+		.save(consumer);
+		
+		ShapedRecipeBuilder.shaped(BlockInit.TELEPAD.get(), 1)
+		.pattern("ggg")
+		.pattern("dld")
+		.pattern("pap")
+		.define('g', Items.GLASS)
+		.define('d', Items.DARK_PRISMARINE)
+		.define('l', Items.SEA_LANTERN)
+		.define('p', Items.ENDER_PEARL)
+		.define('a', Items.AMETHYST_SHARD)
+		.group(GemMod.MODID)
+		.unlockedBy("telepad", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLASS, Items.DARK_PRISMARINE, Items.SEA_LANTERN, Items.ENDER_PEARL, Items.AMETHYST_SHARD))
+		.save(consumer, new ResourceLocation("telepad"));
+		
+		ShapedRecipeBuilder.shaped(ItemInit.EMPTY_TOTEM.get(), 1)
+		.pattern("gbg")
+		.pattern("rar")
+		.pattern("nbn")
+		.define('g', Items.GOLD_INGOT)
+		.define('b', Items.GOLD_BLOCK)
+		.define('r', Items.BLAZE_ROD)
+		.define('a', Items.GOLDEN_APPLE)
+		.define('n', Items.GOLD_NUGGET)
+		.group(GemMod.MODID)
+		.unlockedBy("empty_totem", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT, Items.GOLD_BLOCK, Items.BLAZE_ROD, Items.GOLDEN_APPLE, Items.GOLD_NUGGET))
+		.save(consumer);
+		
+		ShapelessRecipeBuilder.shapeless(ItemInit.NETHER_CRUX.get())
+		.requires(ItemInit.NETHERRITE_NUGGET.get())
+		.requires(Items.END_CRYSTAL)
+		.requires(Items.EMERALD)
+		.group(GemMod.MODID)
+		.unlockedBy("nethercrux", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.NETHERRITE_NUGGET.get(),Items.END_CRYSTAL,Items.EMERALD))
+		.save(consumer, new ResourceLocation("nethercrux"));
+		
+		ShapelessRecipeBuilder.shapeless(ItemInit.NETHER_CRUX.get(), 8)
+		.requires(ItemInit.NETHERRITE_NUGGET.get())
+		.requires(ItemInit.NETHERRITE_NUGGET.get())
+		.requires(Items.NETHER_STAR)
+		.requires(Items.END_CRYSTAL)
+		.requires(Items.EMERALD)
+		.group(GemMod.MODID)
+		.unlockedBy("nethercrux", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.NETHERRITE_NUGGET.get(),Items.END_CRYSTAL,Items.EMERALD,Items.NETHER_STAR))
+		.save(consumer, new ResourceLocation("nethercruxstar"));
+		
 		ShapelessRecipeBuilder.shapeless(BlockInit.TELEPAD_SLAB.get())
 		.requires(BlockInit.TELEPAD.get())
 		.group(GemMod.MODID)
@@ -212,7 +295,7 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.requires(BlockInit.TELEPAD_SLAB.get())
 		.group(GemMod.MODID)
 		.unlockedBy("telepad_slab", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.TELEPAD_SLAB.get()))
-		.save(consumer);
+		.save(consumer, new ResourceLocation("telepad_recraft"));
 		
 		ShapelessRecipeBuilder.shapeless(ItemInit.NETHERRITE_NUGGET.get(), 9)
 		.requires(Items.NETHERITE_INGOT)

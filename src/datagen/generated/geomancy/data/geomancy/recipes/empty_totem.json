@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "geomancy",
+  "pattern": [
+    "gbg",
+    "rar",
+    "nbn"
+  ],
+  "key": {
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "b": {
+      "item": "minecraft:gold_block"
+    },
+    "r": {
+      "item": "minecraft:blaze_rod"
+    },
+    "a": {
+      "item": "minecraft:golden_apple"
+    },
+    "n": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
+    "item": "geomancy:empty_totem"
+  }
+}

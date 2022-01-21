@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:nethercruxstar"
+    ]
+  },
+  "criteria": {
+    "nethercrux": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "geomancy:netherrite_nugget"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:end_crystal"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:emerald"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:nether_star"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:nethercruxstar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "nethercrux",
+      "has_the_recipe"
+    ]
+  ]
+}
