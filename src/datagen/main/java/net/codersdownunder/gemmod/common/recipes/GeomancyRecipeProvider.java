@@ -275,6 +275,8 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.unlockedBy("nethercrux", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.NETHERRITE_NUGGET.get(),Items.END_CRYSTAL,Items.EMERALD))
 		.save(consumer, new ResourceLocation("nethercrux"));
 		
+
+		
 		ShapelessRecipeBuilder.shapeless(ItemInit.NETHER_CRUX.get(), 8)
 		.requires(ItemInit.NETHERRITE_NUGGET.get())
 		.requires(ItemInit.NETHERRITE_NUGGET.get())
