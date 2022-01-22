@@ -287,6 +287,19 @@ public class GeomancyRecipeProvider extends RecipeProvider {
 		.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLOW_INK_SAC, Items.SLIME_BALL, Items.WHITE_DYE, Items.EGG))
 		.save(consumer);
 		
+		ShapedRecipeBuilder.shaped(ItemInit.SONG_FORGE.get())
+		.pattern("sps")
+		.pattern("scs")
+		.pattern("bgb")
+		.define('s', Items.AMETHYST_SHARD)
+		.define('p', Items.ENDER_PEARL)
+		.define('c', Items.OXIDIZED_COPPER)
+		.define('b', Items.AMETHYST_BLOCK)
+		.define('g', Items.GLOW_INK_SAC)
+		.group(GemMod.MODID)
+		.unlockedBy("song_forge", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLOW_INK_SAC, Items.AMETHYST_SHARD, Items.ENDER_PEARL, Items.OXIDIZED_COPPER, Items.AMETHYST_BLOCK, Items.GLOW_INK_SAC))
+		.save(consumer);
+		
 		ShapelessRecipeBuilder.shapeless(ItemInit.NETHER_CRUX.get(), 8)
 		.requires(ItemInit.NETHERRITE_NUGGET.get())
 		.requires(ItemInit.NETHERRITE_NUGGET.get())

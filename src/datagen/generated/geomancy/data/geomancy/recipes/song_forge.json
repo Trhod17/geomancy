@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "geomancy",
+  "pattern": [
+    "sps",
+    "scs",
+    "bgb"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "p": {
+      "item": "minecraft:ender_pearl"
+    },
+    "c": {
+      "item": "minecraft:oxidized_copper"
+    },
+    "b": {
+      "item": "minecraft:amethyst_block"
+    },
+    "g": {
+      "item": "minecraft:glow_ink_sac"
+    }
+  },
+  "result": {
+    "item": "geomancy:song_forge"
+  }
+}

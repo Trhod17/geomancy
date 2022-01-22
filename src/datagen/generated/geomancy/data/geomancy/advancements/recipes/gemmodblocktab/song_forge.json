@@ -1,0 +1,59 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:song_forge"
+    ]
+  },
+  "criteria": {
+    "song_forge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glow_ink_sac"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:amethyst_shard"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:ender_pearl"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:oxidized_copper"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:amethyst_block"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:glow_ink_sac"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:song_forge"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "song_forge",
+      "has_the_recipe"
+    ]
+  ]
+}

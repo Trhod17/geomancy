@@ -1,0 +1,30 @@
+{
+  "type": "geomancy:infusing_recipe",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:rhodonite"
+    },
+    {
+      "item": "geomancy:rhodonite"
+    },
+    {
+      "item": "geomancy:chrysocolla"
+    },
+    {
+      "item": "geomancy:chrysocolla"
+    },
+    {
+      "item": "geomancy:onyx"
+    },
+    {
+      "item": "geomancy:onyx"
+    },
+    {
+      "item": "minecraft:quartz_block"
+    }
+  ],
+  "output": {
+    "item": "geomancy:plate_yield_ore"
+  }
+}

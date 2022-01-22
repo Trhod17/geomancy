@@ -60,6 +60,78 @@ public class GeomancyInfusionRecipeProvider extends RecipeProvider {
 		.group(GemMod.MODID)
 		.save(consumer);
 		
+		InfusionRecipeBuilder.infusing(ItemInit.PLATE_FUEL_TIME.get())
+		.requires(ItemInit.CITRINE.get())
+		.requires(ItemInit.CITRINE.get())
+		.requires(ItemInit.SPHENE.get())
+		.requires(ItemInit.SPHENE.get())
+		.requires(ItemInit.GARNET.get())
+		.requires(ItemInit.GARNET.get())
+		// Item below is the item to be infused
+		.requires(Items.QUARTZ_BLOCK)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		InfusionRecipeBuilder.infusing(ItemInit.PLATE_FUEL_COAL.get())
+		.requires(ItemInit.JASPER.get())
+		.requires(ItemInit.JASPER.get())
+		.requires(ItemInit.JASPER.get())
+		.requires(ItemInit.RUBY.get())
+		.requires(ItemInit.RUBY.get())
+		.requires(ItemInit.RUBY.get())
+		// Item below is the item to be infused
+		.requires(Items.QUARTZ_BLOCK)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		InfusionRecipeBuilder.infusing(ItemInit.PLATE_SPEED_UP.get())
+		.requires(ItemInit.TOPAZ.get())
+		.requires(ItemInit.TOPAZ.get())
+		.requires(ItemInit.TOPAZ.get())
+		.requires(ItemInit.CITRINE.get())
+		.requires(ItemInit.CITRINE.get())
+		.requires(ItemInit.JASPER.get())
+		// Item below is the item to be infused
+		.requires(Items.QUARTZ_BLOCK)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		InfusionRecipeBuilder.infusing(ItemInit.PLATE_SPEED_OVERDRIVE.get())
+		.requires(ItemInit.TOPAZ.get())
+		.requires(ItemInit.TOPAZ.get())
+		.requires(ItemInit.TOPAZ.get())
+		.requires(ItemInit.MALACHITE.get())
+		.requires(ItemInit.MALACHITE.get())
+		.requires(ItemInit.MALACHITE.get())
+		// Item below is the item to be infused
+		.requires(Items.QUARTZ_BLOCK)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		InfusionRecipeBuilder.infusing(ItemInit.PLATE_YIELD_ORE.get())
+		.requires(ItemInit.RHODONITE.get())
+		.requires(ItemInit.RHODONITE.get())
+		.requires(ItemInit.CHRYSOCOLLA.get())
+		.requires(ItemInit.CHRYSOCOLLA.get())
+		.requires(ItemInit.ONYX.get())
+		.requires(ItemInit.ONYX.get())
+		// Item below is the item to be infused
+		.requires(Items.QUARTZ_BLOCK)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
+		InfusionRecipeBuilder.infusing(ItemInit.PLATE_FAILSAFE.get())
+		.requires(ItemInit.PERIDOT.get())
+		.requires(ItemInit.PERIDOT.get())
+		.requires(ItemInit.PERIDOT.get())
+		.requires(ItemInit.PERIDOT.get())
+		.requires(ItemInit.LILYSTAR.get())
+		.requires(ItemInit.AMETHYST.get())
+		// Item below is the item to be infused
+		.requires(Items.QUARTZ_BLOCK)
+		.group(GemMod.MODID)
+		.save(consumer);
+		
 		//Add more below
 	}
 	

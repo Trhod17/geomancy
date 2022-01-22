@@ -1,0 +1,30 @@
+{
+  "type": "geomancy:infusing_recipe",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:citrine"
+    },
+    {
+      "item": "geomancy:citrine"
+    },
+    {
+      "item": "geomancy:sphene"
+    },
+    {
+      "item": "geomancy:sphene"
+    },
+    {
+      "item": "geomancy:garnet"
+    },
+    {
+      "item": "geomancy:garnet"
+    },
+    {
+      "item": "minecraft:quartz_block"
+    }
+  ],
+  "output": {
+    "item": "geomancy:plate_fuel_time"
+  }
+}

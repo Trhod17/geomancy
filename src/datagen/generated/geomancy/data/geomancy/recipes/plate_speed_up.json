@@ -1,0 +1,30 @@
+{
+  "type": "geomancy:infusing_recipe",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:topaz"
+    },
+    {
+      "item": "geomancy:topaz"
+    },
+    {
+      "item": "geomancy:topaz"
+    },
+    {
+      "item": "geomancy:citrine"
+    },
+    {
+      "item": "geomancy:citrine"
+    },
+    {
+      "item": "geomancy:jasper"
+    },
+    {
+      "item": "minecraft:quartz_block"
+    }
+  ],
+  "output": {
+    "item": "geomancy:plate_speed_up"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "geomancy:infusing_recipe",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:peridot"
+    },
+    {
+      "item": "geomancy:peridot"
+    },
+    {
+      "item": "geomancy:peridot"
+    },
+    {
+      "item": "geomancy:peridot"
+    },
+    {
+      "item": "geomancy:lilystar"
+    },
+    {
+      "item": "geomancy:amethyst"
+    },
+    {
+      "item": "minecraft:quartz_block"
+    }
+  ],
+  "output": {
+    "item": "geomancy:plate_failsafe"
+  }
+}
