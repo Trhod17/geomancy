@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:plate_failsafe"
+    ]
+  },
+  "criteria": {
+    "dipper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "geomancy:rose_quartz"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:respawn_anchor"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:honeycomb_block"
+            ]
+          },
+          {
+            "items": [
+              "geomancy:nether_crux"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:plate_failsafe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dipper",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:plate_yield_ore"
+    ]
+  },
+  "criteria": {
+    "plate_ore_yield": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "geomancy:rose_quartz"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:obsidian"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:raw_copper_block"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:raw_gold_block"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:raw_iron_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:plate_yield_ore"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "plate_ore_yield",
+      "has_the_recipe"
+    ]
+  ]
+}

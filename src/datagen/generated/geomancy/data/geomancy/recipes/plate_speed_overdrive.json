@@ -9,7 +9,7 @@
       "item": "geomancy:topaz"
     },
     {
-      "item": "geomancy:topaz"
+      "item": "geomancy:topaz_dreaming"
     },
     {
       "item": "geomancy:malachite"
@@ -18,10 +18,10 @@
       "item": "geomancy:malachite"
     },
     {
-      "item": "geomancy:malachite"
+      "item": "geomancy:malachite_dreaming"
     },
     {
-      "item": "minecraft:quartz_block"
+      "item": "geomancy:plate_speed_overdrive"
     }
   ],
   "output": {

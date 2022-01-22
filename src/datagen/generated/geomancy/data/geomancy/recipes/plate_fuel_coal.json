@@ -3,13 +3,7 @@
   "group": "geomancy",
   "ingredients": [
     {
-      "item": "geomancy:jasper"
-    },
-    {
-      "item": "geomancy:jasper"
-    },
-    {
-      "item": "geomancy:jasper"
+      "item": "geomancy:jasper_dreaming"
     },
     {
       "item": "geomancy:ruby"
@@ -18,10 +12,7 @@
       "item": "geomancy:ruby"
     },
     {
-      "item": "geomancy:ruby"
-    },
-    {
-      "item": "minecraft:quartz_block"
+      "item": "geomancy:plate_fuel_coal"
     }
   ],
   "output": {

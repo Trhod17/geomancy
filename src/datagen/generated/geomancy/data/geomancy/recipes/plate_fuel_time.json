@@ -3,10 +3,10 @@
   "group": "geomancy",
   "ingredients": [
     {
-      "item": "geomancy:citrine"
+      "item": "geomancy:rhodonite_dreaming"
     },
     {
-      "item": "geomancy:citrine"
+      "item": "geomancy:citrine_dreaming"
     },
     {
       "item": "geomancy:sphene"
@@ -21,7 +21,7 @@
       "item": "geomancy:garnet"
     },
     {
-      "item": "minecraft:quartz_block"
+      "item": "geomancy:plate_fuel_time"
     }
   ],
   "output": {

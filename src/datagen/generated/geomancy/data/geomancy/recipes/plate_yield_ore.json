@@ -6,7 +6,7 @@
       "item": "geomancy:rhodonite"
     },
     {
-      "item": "geomancy:rhodonite"
+      "item": "geomancy:onyx_dreaming"
     },
     {
       "item": "geomancy:chrysocolla"
@@ -21,7 +21,7 @@
       "item": "geomancy:onyx"
     },
     {
-      "item": "minecraft:quartz_block"
+      "item": "geomancy:plate_yield_ore"
     }
   ],
   "output": {

@@ -3,7 +3,7 @@
   "group": "geomancy",
   "ingredients": [
     {
-      "item": "geomancy:peridot"
+      "item": "geomancy:peridot_dreaming"
     },
     {
       "item": "geomancy:peridot"
@@ -21,7 +21,7 @@
       "item": "geomancy:amethyst"
     },
     {
-      "item": "minecraft:quartz_block"
+      "item": "geomancy:plate_failsafe"
     }
   ],
   "output": {

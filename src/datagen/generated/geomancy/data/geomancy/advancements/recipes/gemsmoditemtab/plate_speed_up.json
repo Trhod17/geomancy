@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:plate_speed_up"
+    ]
+  },
+  "criteria": {
+    "plate_speed_up": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:flint"
+            ]
+          },
+          {
+            "items": [
+              "geomancy:rose_quartz"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:redstone_block"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:coal_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:plate_speed_up"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "plate_speed_up",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "geomancy:plate_speed_overdrive"
+    ]
+  },
+  "criteria": {
+    "plate_speed_overdrive": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "geomancy:rose_quartz"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:redstone_block"
+            ]
+          },
+          {
+            "items": [
+              "geomancy:concentration"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:diamond"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "geomancy:plate_speed_overdrive"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "plate_speed_overdrive",
+      "has_the_recipe"
+    ]
+  ]
+}

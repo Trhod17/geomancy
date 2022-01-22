@@ -3,25 +3,13 @@
   "group": "geomancy",
   "ingredients": [
     {
-      "item": "geomancy:topaz"
+      "item": "geomancy:topaz_dreaming"
     },
     {
-      "item": "geomancy:topaz"
+      "item": "geomancy:ruby_dreaming"
     },
     {
-      "item": "geomancy:topaz"
-    },
-    {
-      "item": "geomancy:citrine"
-    },
-    {
-      "item": "geomancy:citrine"
-    },
-    {
-      "item": "geomancy:jasper"
-    },
-    {
-      "item": "minecraft:quartz_block"
+      "item": "geomancy:plate_speed_up"
     }
   ],
   "output": {

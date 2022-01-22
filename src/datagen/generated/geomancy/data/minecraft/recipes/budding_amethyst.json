@@ -1,0 +1,24 @@
+{
+  "type": "geomancy:infusing_recipe",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:amethyst"
+    },
+    {
+      "item": "geomancy:jade"
+    },
+    {
+      "item": "geomancy:citrine"
+    },
+    {
+      "item": "geomancy:rhodonite"
+    },
+    {
+      "item": "minecraft:amethyst_block"
+    }
+  ],
+  "output": {
+    "item": "minecraft:budding_amethyst"
+  }
+}
