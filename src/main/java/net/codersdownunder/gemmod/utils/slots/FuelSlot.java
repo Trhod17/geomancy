@@ -13,7 +13,7 @@ public class FuelSlot extends GenericSlot {
 
     @Override
     public boolean mayPlace(ItemStack stack) {
-	return stack != null && container.canPlaceItem(getSlotIndex(), stack) && isFuel(stack);
+	return stack != null && isFuel(stack);
     }
 
 

@@ -135,6 +135,11 @@ public class BlockInit
    public static final RegistryObject<Block> TRELLIS_CRIMSON = BLOCKS.register("trellis_crimson", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion()));
    public static final RegistryObject<Block> TRELLIS_WARP = BLOCKS.register("trellis_warp", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion()));	
    
+   //public static final RegistryObject<Block> SUPERCHEST = BLOCKS.register("superchest", () -> new SuperChestBlock(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion());	
+   
+   
+   
+   
    //TODO Finish this later
    //public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new fire)
    //public static final RegistryObject<Block> CHASM_SAPLING = BLOCKS.register("chasm_sapling", () -> new SaplingBlock(new ChasmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));

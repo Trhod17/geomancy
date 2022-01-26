@@ -56,7 +56,7 @@ public class SongForgeScreen extends AbstractContainerScreen<SongForgeMenu>
         this.font.draw(matrixStack, this.playerInventoryTitle, PLAYER_INV_LABEL_XPOS, PLAYER_INV_LABEL_YPOS,
 				Color.darkGray.getRGB());	
     }
-    
+
 
     @Override
     protected void renderBg(PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
@@ -66,12 +66,12 @@ public class SongForgeScreen extends AbstractContainerScreen<SongForgeMenu>
         this.blit(matrixStack, relX, relY, 0, 0, 198, 220);
 
         int i;
-        
+
         if (container.getTable().getBurn() > 0) {
             i = this.container.getBurnLeftScaled(13);
             this.blit(matrixStack, relX + 10, relY + 36 + 12 - i, 30, 12 - i, 14, i + 1);
         }
-
+        
         i = container.getCookScaled(3);
         this.blit(matrixStack, relX + 79, relY + 34, 17, 14, i + 1, 16);
 

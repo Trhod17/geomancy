@@ -120,6 +120,7 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 	         this.ingredients = pIngredients;
 
 	      }
+	    
 
 	      @SuppressWarnings("deprecation")
 		public void serializeRecipeData(JsonObject pJson) {
@@ -131,6 +132,12 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 
 	         if (!(ingredients.size() >= 8)) {
 	         for(Ingredient ingredient : this.ingredients) {
+	        	
+//	        	if(ingredient == Ingredient.EMPTY) {
+//	        		
+//	        		continue;
+//	        	}
+	        	 
 	            jsonarray.add(ingredient.toJson());
 	         }
 	         

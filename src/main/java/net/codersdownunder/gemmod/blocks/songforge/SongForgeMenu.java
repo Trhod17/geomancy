@@ -86,7 +86,7 @@ public class SongForgeMenu extends AbstractContainerMenu {
     }
     
     public int getCookScaled(int pixels) {
-        int i = this.counter;
+        int i = getTable().getCounter();
         int j = this.counter - 10;
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
@@ -99,6 +99,11 @@ public class SongForgeMenu extends AbstractContainerMenu {
 
         return this.burntime * pixels / i;
     }
+    
+    public boolean isLit() {
+        return this.burntime > 0;
+     }
+
     
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
 	      ItemStack itemstack = ItemStack.EMPTY;

@@ -1,4 +1,4 @@
-package net.codersdownunder.gemmod.compat.jei;
+package net.codersdownunder.gemmod.compat.jei.categories;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -12,6 +13,9 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
+import net.codersdownunder.gemmod.compat.jei.categories.DipperRecipeCategory;
+import net.codersdownunder.gemmod.compat.jei.categories.InfusingRecipeCategory;
+import net.codersdownunder.gemmod.compat.jei.categories.SongForgeRecipeCategory;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.client.Minecraft;
@@ -40,12 +44,15 @@ public class GemModJEIPlugin implements IModPlugin
         
         registration.addRecipes(getRecipes(manager, ModRecipeTypes.INFUSING_RECIPE), InfusingRecipeCategory.ID);
         registration.addRecipes(getRecipes(manager, ModRecipeTypes.DIPPING_RECIPE), DipperRecipeCategory.ID);
+        registration.addRecipes(getRecipes(manager, RecipeType.SMELTING), SongForgeRecipeCategory.ID);
     }
     
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
     	registration.addRecipeCatalyst(new ItemStack(BlockInit.DIPPER.get()), DipperRecipeCategory.ID);
     	registration.addRecipeCatalyst(new ItemStack(BlockInit.INFUSION_TABLE.get()), InfusingRecipeCategory.ID);
+    	registration.addRecipeCatalyst(new ItemStack(BlockInit.SONG_FORGE.get()), VanillaRecipeCategoryUid.FUEL);
+    	registration.addRecipeCatalyst(new ItemStack(BlockInit.SONG_FORGE.get()), SongForgeRecipeCategory.ID);
     }
     
     @Override
@@ -54,6 +61,7 @@ public class GemModJEIPlugin implements IModPlugin
         
         registration.addRecipeCategories(new InfusingRecipeCategory(helper));
         registration.addRecipeCategories(new DipperRecipeCategory(helper));
+        registration.addRecipeCategories(new SongForgeRecipeCategory(helper));
     }
 
     @Override
@@ -61,10 +69,13 @@ public class GemModJEIPlugin implements IModPlugin
 
     	//registration.addRecipeTransferHandler(DipperMenu.class, DipperRecipeCategory.ID, 0, 18, 19, PLAYER_INV_SIZE);
     	registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.ID, 0, 6, 7, PLAYER_INV_SIZE);
+    	registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.ID, 0, 2, 19, PLAYER_INV_SIZE);
     }
     
     private static Collection<?> getRecipes(RecipeManager manager, RecipeType<?> type) {
         return manager.getRecipes().parallelStream().filter(recipe -> recipe.getType() == type).collect(Collectors.toList());
     }
+    
+    
 
 }
