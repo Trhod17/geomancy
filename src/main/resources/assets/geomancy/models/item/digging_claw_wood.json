@@ -1,11 +1,36 @@
 {
+  "parent": "forge:item/default",	
   "loader": "forge:separate-perspective",
   "base": {
-    "parent": "geomancy:item/digging_claw_wood_hand"
+     "parent": "item/generated",
+      	"textures": {
+      "layer0": "geomancy:items/claw_wood_item"
+    }
   },
   "perspectives": {
-    "gui": {
-      "parent": "geomancy:item/digging_claw_wood_inventory"
+    "first_person_right_hand": {
+      "parent": "geomancy:item/digging_claw_hand",
+      "textures": {
+      "texture": "geomancy:items/claw_wood"	
+      }
+    },
+    "first_person_left_hand": {
+      "parent": "geomancy:item/digging_claw_hand_left",
+      "textures": {
+      "texture": "geomancy:items/claw_wood"	
+      }
+    },
+    "third_person_right_hand": {
+       "parent": "geomancy:item/digging_claw_hand",
+      "textures": {
+      "texture": "geomancy:items/claw_wood"	
+      }
+    },
+    "third_person_left_hand": {
+      "parent": "geomancy:item/digging_claw_hand_left",
+      "textures": {
+      "texture": "geomancy:items/claw_wood"	
+      }
     }
   }
 }
