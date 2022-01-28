@@ -9,6 +9,7 @@ import net.codersdownunder.gemmod.common.recipes.GeomancyCuttingRecipeProvider;
 import net.codersdownunder.gemmod.common.recipes.GeomancyDippingRecipeProvider;
 import net.codersdownunder.gemmod.common.recipes.GeomancyInfusionRecipeProvider;
 import net.codersdownunder.gemmod.common.recipes.GeomancyRecipeProvider;
+import net.codersdownunder.gemmod.common.recipes.GeomancyUpgradeRecipeProvider;
 import net.codersdownunder.gemmod.common.tags.GeomancyBlockTags;
 import net.codersdownunder.gemmod.common.tags.GeomancyFluidTags;
 import net.codersdownunder.gemmod.common.tags.GeomancyItemTags;
@@ -40,6 +41,7 @@ public class GeomancyDataProvider {
          	gen.addProvider(new GeomancyCuttingRecipeProvider(gen));
          	gen.addProvider(new GeomancyDippingRecipeProvider(gen));
          	gen.addProvider(new GeomancyInfusionRecipeProvider(gen));
+         	gen.addProvider(new GeomancyUpgradeRecipeProvider(gen));
         	gen.addProvider(new ModLootTables(gen));
         	GeomancyBlockTags blockTags = new GeomancyBlockTags(gen, event.getExistingFileHelper());
             gen.addProvider(blockTags);

@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -14,6 +15,8 @@ import net.minecraftforge.common.Tags;
 public class GeomancyTags {
 
 	public static class Blocks {
+		
+		public static final Tags.IOptionalNamedTag<Block> claw = createTag("mineable/claw");
 		
 		private static Tags.IOptionalNamedTag<Block> createTag(String name) {
 			return BlockTags.createOptional(new ResourceLocation(GemMod.MODID, name));

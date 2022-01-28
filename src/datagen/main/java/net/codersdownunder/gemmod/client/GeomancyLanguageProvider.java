@@ -164,6 +164,13 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         
         add(ItemInit.RICH_GEODE.get(), "Rich Geode Chunk");
         add(ItemInit.SPARSE_GEODE.get(), "Sparse Geode Chunk");
+        
+        add(ItemInit.DIGGING_CLAW_WOOD.get(), "Wooden Digging Claw");
+        add(ItemInit.DIGGING_CLAW_STONE.get(), "Stone Digging Claw");
+        add(ItemInit.DIGGING_CLAW_IRON.get(), "Iron Digging Claw");
+        add(ItemInit.DIGGING_CLAW_GOLD.get(), "Golden Digging Claw");
+        add(ItemInit.DIGGING_CLAW_DIAMOND.get(), "Diamond Digging Claw");
+        add(ItemInit.DIGGING_CLAW_NETHERITE.get(), "Netherite Digging Claw");
     }
 
     private void addBlocks() {

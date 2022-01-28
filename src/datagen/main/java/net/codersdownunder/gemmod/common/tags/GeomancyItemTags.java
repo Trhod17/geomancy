@@ -19,6 +19,7 @@ public class GeomancyItemTags extends ItemTagsProvider {
 	@Override
 	protected void addTags() {
 		
+		
 		tag(GeomancyTags.Items.DREAM_COMMON)
 		.add(ItemInit.AGATE.get())
 		.add(ItemInit.AMETHYST.get())

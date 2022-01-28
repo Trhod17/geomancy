@@ -36,9 +36,13 @@ public class ClientSetup {
 	        MenuScreens.register(MenuInit.SONG_FORGE_MENU.get(), SongForgeScreen::new);
 	       
 	        //RenderTypeLookup.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
+ 
 	        
 	        event.enqueueWork(() -> {
 	         renderLayer();
+	         
+//	         ItemProperties.register(ItemInit.DIGGING_CLAW_WOOD.get(), new ResourceLocation(GemMod.MODID + ":flat"),(p_174625_, p_174626_, p_174627_, p_174628_) -> {
+//	             return p_174627_.isHolding(p_174625_.getItem()) ? 0.0F : 1.0F; });
 	        });
 	        
 	        BlockEntityRenderers.register(TileEntityInit.CUSTOM_SIGN.get(), SignRenderer::new);

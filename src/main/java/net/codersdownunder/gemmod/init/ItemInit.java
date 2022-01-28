@@ -1,14 +1,17 @@
 package net.codersdownunder.gemmod.init;
 
 import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.items.DiggingClawItem;
 import net.codersdownunder.gemmod.items.DreamingGemItem;
 import net.codersdownunder.gemmod.items.GemItem;
 import net.codersdownunder.gemmod.items.MulmusItem;
 import net.codersdownunder.gemmod.items.TeleCoreItem;
+import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -88,7 +91,12 @@ public class ItemInit
     public static final RegistryObject<Item> PLATE_SPEED_UP = ITEMS.register("plate_speed_up", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
     public static final RegistryObject<Item> PLATE_YIELD_ORE = ITEMS.register("plate_yield_ore", () -> new Item(new Item.Properties().tab(GemMod.gemsmoditemtab)));
     
-    
+    public static final RegistryObject<Item> DIGGING_CLAW_WOOD = ITEMS.register("digging_claw_wood", () -> new DiggingClawItem(1, -2.8F, Tiers.WOOD, GeomancyTags.Blocks.claw, new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> DIGGING_CLAW_STONE = ITEMS.register("digging_claw_stone", () -> new DiggingClawItem(1, -2.8F, Tiers.STONE, GeomancyTags.Blocks.claw, new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> DIGGING_CLAW_IRON = ITEMS.register("digging_claw_iron", () -> new DiggingClawItem(0, 0, Tiers.IRON, GeomancyTags.Blocks.claw, new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> DIGGING_CLAW_GOLD = ITEMS.register("digging_claw_gold", () -> new DiggingClawItem(1, -2.8F, Tiers.GOLD, GeomancyTags.Blocks.claw, new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> DIGGING_CLAW_DIAMOND = ITEMS.register("digging_claw_diamond", () -> new DiggingClawItem(1, -2.8F, Tiers.DIAMOND, GeomancyTags.Blocks.claw, new Item.Properties().tab(GemMod.gemsmoditemtab)));
+    public static final RegistryObject<Item> DIGGING_CLAW_NETHERITE = ITEMS.register("digging_claw_netherite", () -> new DiggingClawItem(1, -2.8F, Tiers.NETHERITE, GeomancyTags.Blocks.claw, new Item.Properties().tab(GemMod.gemsmoditemtab)));
     
     
     
