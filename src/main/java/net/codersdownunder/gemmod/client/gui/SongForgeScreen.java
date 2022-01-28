@@ -6,6 +6,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
+import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlockEntity;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeMenu;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -67,12 +69,12 @@ public class SongForgeScreen extends AbstractContainerScreen<SongForgeMenu>
 
         int i;
 
-        if (container.getTable().getBurn() > 0) {
+        if (SongForgeBlockEntity.burntime > 0) {
             i = this.container.getBurnLeftScaled(13);
             this.blit(matrixStack, relX + 10, relY + 36 + 12 - i, 30, 12 - i, 14, i + 1);
         }
         
-        i = container.getCookScaled(3);
+        i = container.getCookScaled(SongForgeBlockEntity.counter);
         this.blit(matrixStack, relX + 79, relY + 34, 17, 14, i + 1, 16);
 
     }

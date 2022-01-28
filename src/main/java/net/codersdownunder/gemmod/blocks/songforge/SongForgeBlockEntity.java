@@ -38,15 +38,15 @@ public class SongForgeBlockEntity extends BlockEntity {
 	private static final int FUEL_SLOTS = 3;
 	private static final int UPGRADE_SLOTS = 4;
 
-	private static boolean valid;
-	private static ItemStack output;
-	private static int input;
-	private int counter;
+	public static boolean valid;
+	public static ItemStack output;
+	public static int input;
+	public static int counter;
 	// private int countermax;
-	private int burntime;
+	public static int burntime;
 	// private int burntimemax;
-	private static int fuel;
-	private static boolean crafting;
+	public static int fuel;
+	public static boolean crafting;
 
 //	private CompoundTag updateTag;
 
@@ -55,7 +55,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 	}
 
 	public int getBurn() {
-		return this.burntime;
+		return burntime;
 	}
 
 	private ItemStackHandler itemHandler = createHandler();
@@ -204,7 +204,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 			return false;
 		}
 		
-		if (getBurnTime() > 0) {
+		if (burntime > 0) {
 
 		valid = true;
 		

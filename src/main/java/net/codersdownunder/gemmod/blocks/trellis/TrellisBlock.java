@@ -1,14 +1,13 @@
 package net.codersdownunder.gemmod.blocks.trellis;
 
-import java.util.EnumMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
 
+import javax.annotation.Nullable;
+
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
-import net.codersdownunder.gemmod.utils.BlockUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -22,13 +21,13 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -38,27 +37,48 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class TrellisBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	private static final Map<Direction, VoxelShape> SHAPES = new EnumMap<>(Direction.class);
-
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	
 	private static final Optional<VoxelShape> SHAPE = Optional.of(Stream
 			.of(Block.box(1.5, 0, 14, 3.5, 16, 16), Block.box(7, 0, 14, 9, 16, 16),
 					Block.box(0, 12.5, 14.5, 16, 14.5, 15.5), Block.box(0, 7, 14.5, 16, 9, 15.5),
 					Block.box(0, 1.5, 14.5, 16, 3.5, 15.5), Block.box(12.5, 0, 14, 14.5, 16, 16))
+			.reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get());
+	
+	private static final Optional<VoxelShape> SHAPE_WEST = Optional.of(Stream
+			.of(Block.box(14, 0, 12.5, 16, 16, 14.5),
+					Block.box(14, 0, 7, 16, 16, 9),
+					Block.box(14.5, 12.5, 0, 15.5, 14.5, 16),
+					Block.box(14.5, 7, 0, 15.5, 9, 16),
+					Block.box(14.5, 1.5, 0, 15.5, 3.5, 16),
+					Block.box(14, 0, 1.5, 16, 16, 3.5))
+			.reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get());
+	
+	private static final Optional<VoxelShape> SHAPE_EAST = Optional.of(Stream
+			.of(Block.box(0, 0, 12.5, 2, 16, 14.5),
+					Block.box(0, 0, 7, 2, 16, 9),
+					Block.box(0.5, 12.5, 0, 1.5, 14.5, 16),
+					Block.box(0.5, 7, 0, 1.5, 9, 16),
+					Block.box(0.5, 1.5, 0, 1.5, 3.5, 16),
+					Block.box(0, 0, 1.5, 2, 16, 3.5))
+			.reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get());
+	
+	private static final Optional<VoxelShape> SHAPE_SOUTH = Optional.of(Stream
+			.of(Block.box(1.5, 0, 0, 3.5, 16, 2),
+					Block.box(7, 0, 0, 9, 16, 2),
+					Block.box(0, 12.5, 0.5, 16, 14.5, 1.5),
+					Block.box(0, 7, 0.5, 16, 9, 1.5),
+					Block.box(0, 1.5, 0.5, 16, 3.5, 1.5),
+					Block.box(12.5, 0, 0, 14.5, 16, 2))
 			.reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get());
 
 	public TrellisBlock(Properties p_49795_) {
 		super(p_49795_);
 		registerDefaultState(this.stateDefinition.any().setValue(BlockStateProperties.WATERLOGGED, false)
 				.setValue(FACING, Direction.NORTH));
-		runCalculation(SHAPE.orElse(Shapes.block()));
-	}
-
-	@Override
-	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-		return SHAPES.get(pState.getValue(FACING));
 	}
 
 	@Override
@@ -67,16 +87,34 @@ public class TrellisBlock extends HorizontalDirectionalBlock implements SimpleWa
 
 		return new ItemStack(BlockInit.TRELLIS.get());
 	}
+	
+	@Override
+	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+		switch(pState.getValue(FACING)) {
+		case EAST:
+			return SHAPE_EAST.get();
+		case WEST:
+			return SHAPE_WEST.get();
+		case SOUTH:
+			return SHAPE_SOUTH.get();
+		default:
+			return SHAPE.get();
+		}
+	}
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos,
 			CollisionContext pContext) {
-		return SHAPE.get().getFaceShape(pState.getValue(FACING));
-	}
-
-	protected void runCalculation(VoxelShape shape) {
-		for (Direction direction : Direction.values())
-			SHAPES.put(direction, BlockUtils.calculateShapes(direction, shape));
+		switch(pState.getValue(FACING)) {
+		case EAST:
+			return SHAPE_EAST.get();
+		case WEST:
+			return SHAPE_WEST.get();
+		case SOUTH:
+			return SHAPE_SOUTH.get();
+		default:
+			return SHAPE.get();
+		}
 	}
 
 	public RenderShape getRenderShape(BlockState pState) {
@@ -96,12 +134,12 @@ public class TrellisBlock extends HorizontalDirectionalBlock implements SimpleWa
 
 	}
 
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-		// TODO Auto-generated method stub
-		return defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
-	}
-
+	@Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+	
 	@Override
 	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState state) {

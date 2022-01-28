@@ -159,6 +159,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
             ItemStack output = recipe.getResultItem();
             craftTheItem(output);
             setChanged();
+            return;
             //System.out.println(recipe.getIngredients());
 //            crafting = false;
             
@@ -179,6 +180,8 @@ public class InfusionTableBlockEntity extends BlockEntity {
         itemHandler.extractItem(5, 1, false);
         itemHandler.extractItem(6, 1, false);
         itemHandler.insertItem(6, output, false);
+        
+        return;
     }
     
     

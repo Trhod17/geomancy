@@ -64,8 +64,8 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
         
         itemStackGroup.init(0, true, 56, 86);
         itemStackGroup.init(1, true, 20, 68);
-        itemStackGroup.init(2, true, 91, 68);
-        itemStackGroup.init(3, true, 91, 32);
+        itemStackGroup.init(2, true, 92, 68);
+        itemStackGroup.init(3, true, 92, 32);
         itemStackGroup.init(4, true, 20, 32);
         itemStackGroup.init(5, true, 56, 14);
         itemStackGroup.init(6, true, 56, 50);
