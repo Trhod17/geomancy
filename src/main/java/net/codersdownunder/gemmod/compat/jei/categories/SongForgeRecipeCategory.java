@@ -64,7 +64,7 @@ public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
     public void setRecipe(IRecipeLayout recipeLayout, SmeltingRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup itemStackGroup = recipeLayout.getItemStacks();
       
-        itemStackGroup.init(0, true, 27, 4);
+        itemStackGroup.init(0, true, 27, 2);
         itemStackGroup.init(1, false, 123, 20);
 
 

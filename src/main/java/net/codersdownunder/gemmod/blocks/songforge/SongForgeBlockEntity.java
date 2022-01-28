@@ -99,10 +99,15 @@ public class SongForgeBlockEntity extends BlockEntity {
 		}
 
 		if (burntime == 0) {
-			counter = 0;
+			burntime = getBurnTime();
+			System.out.println(burntime);
+			if (burntime == 0) {
 			this.level.setBlock(this.worldPosition,
 					this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
+			}
 		}
+		
+		
 
 		if (counter <= 0) {
 
@@ -110,6 +115,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 				attemptCraft(output);
 				valid = false;
 				crafting = false;
+				output = null;
 			}
 
 			if (valid && !crafting) {
@@ -203,17 +209,14 @@ public class SongForgeBlockEntity extends BlockEntity {
 
 			return false;
 		}
-		
-		if (burntime > 0) {
 
 		valid = true;
 		
 		counter = recipe.getCookingTime();
 		// countermax = counter;
-		return true;
-		}
 		output = recipe.getResultItem().copy();
-		return false;
+		return true;
+
 
 	}
 
@@ -222,6 +225,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 		itemHandler.extractItem(input, 1, false);
 
 		getOuputSlot(output);
+		
 	}
 
 //    private void handleOutput(int slot, ItemStack output) {
@@ -253,6 +257,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 				if (itemHandler.getStackInSlot(i).isEmpty()) {
 					itemHandler.insertItem(i, result, false);
 					valid = false;
+					output = null;
 					break;
 				} else if (!itemHandler.getStackInSlot(i).isEmpty()
 						&& itemHandler.getStackInSlot(i).is(result.getItem())) {
@@ -260,6 +265,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 					item.grow(1);
 					itemHandler.setStackInSlot(i, item);
 					valid = false;
+					output = null;
 					break;
 				}
 			}

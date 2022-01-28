@@ -86,7 +86,7 @@ public class SongForgeMenu extends AbstractContainerMenu {
     }
     
     public int getCookScaled(int pixels) {
-        int i = getTable().getCounter();
+        int i = SongForgeBlockEntity.counter;
         int j = this.counter - 10;
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
