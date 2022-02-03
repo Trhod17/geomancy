@@ -1,0 +1,70 @@
+{
+    "name": "Dreaming Gems",
+    "icon": "geomancy:agate_dreaming",
+    "category": "geomancy:items",
+    "pages": [
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:agate_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:chrysocolla_dreaming",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:malachite_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:jade_dreaming",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:peridot_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:emerald_dreaming",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:topaz_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:citrine_dreaming",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:jasper_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:ruby_dreaming",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:garnet_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:spinel_dreaming",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:sapphire_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:lilystar_dreaming",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:onyx_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:sphene_dreaming",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:rhodonite_dreaming",
+            "text": "Test placeholder text",
+            "item2": "geomancy:charoite_dreaming",
+            "text2": "Test placeholder text"
+        }
+    ]
+}

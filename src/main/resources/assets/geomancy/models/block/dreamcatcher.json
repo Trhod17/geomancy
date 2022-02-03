@@ -1,16 +1,16 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/oak_planks",
-		"1": "block/white_wool",
-		"2": "block/blue_wool",
-		"3": "block/cyan_wool",
-		"4": "block/red_wool",
-		"5": "block/yellow_wool",
-		"6": "block/green_wool",
-		"7": "block/orange_wool",
-		"8": "block/pink_wool",
-		"particle": "block/oak_planks"
+		"0": "minecraft:block/oak_planks",
+		"1": "minecraft:block/white_wool",
+		"2": "minecraft:block/blue_wool",
+		"3": "minecraft:block/cyan_wool",
+		"4": "minecraft:block/red_wool",
+		"5": "minecraft:block/yellow_wool",
+		"6": "minecraft:block/green_wool",
+		"7": "minecraft:block/orange_wool",
+		"8": "minecraft:block/pink_wool",
+		"particle": "minecraft:block/oak_planks"
 	},
 	"elements": [
 		{

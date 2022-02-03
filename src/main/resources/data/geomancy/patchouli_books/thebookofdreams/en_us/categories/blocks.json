@@ -1,5 +1,5 @@
 {
     "name": "Blocks Category",
-    "description": "This is a category for all the non crafting blocks added by Geomancy",
+    "description": "Blocks added by geomancy (excluding tables)",
     "icon": "geomancy:trellis"
 }

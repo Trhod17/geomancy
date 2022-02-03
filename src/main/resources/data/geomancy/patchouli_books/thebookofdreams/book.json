@@ -1,6 +1,6 @@
 {
 	"name": "Book Of Dreams",
-	"landing_text": "Welcome ${playername) to the Book of Dreams",
+	"landing_text": "Welcome $(playername) to the Book of Dreams",
 	"version": 1,
 	"book_texture": "geomancy:textures/gui/patchouli.png",
 	"model": "geomancy:book",

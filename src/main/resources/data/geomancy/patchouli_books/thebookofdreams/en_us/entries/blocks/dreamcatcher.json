@@ -1,0 +1,36 @@
+{
+    "name": "Dream Catcher",
+    "icon": "geomancy:dream_catcher",
+    "category": "geomancy:blocks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "When placed 2 blocks above a bed it generates a couple of random gems each time you sleep."               
+        },
+        {
+      "type": "patchouli:multiblock",
+      "name": "Dream Catcher Setup",
+      "enable_visualize": false,
+      "multiblock": {
+        "pattern": [
+          [ "OOO" ],
+          [ "OD0" ],
+          [ "OOO" ],
+          [ "OXC" ]
+        ],
+        "mapping": {
+          "X": "minecraft:white_bed[part=head]",
+          "C": "minecraft:white_bed",
+          "0": "minecraft:air",
+          "O": "minecraft:air",
+          "D": "geomancy:dream_catcher",
+          "P": "minecraft:oak_planks"
+        },
+        
+        "symmetrical": true,
+        "offset"     : [0, 0, 0],
+        "view_offset": [0, 0, 0]
+      }
+    }
+    ]
+}

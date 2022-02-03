@@ -1,0 +1,75 @@
+{
+    "name": "Gems",
+    "icon": "geomancy:agate",
+    "category": "geomancy:items",
+    "pages": [
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:agate",
+            "text": "Test placeholder text",
+            "item2": "geomancy:chrysocolla",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:malachite",
+            "text": "Test placeholder text",
+            "item2": "geomancy:jade",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:peridot",
+            "text": "Test placeholder text",
+            "item2": "minecraft:emerald",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:topaz",
+            "text": "Test placeholder text",
+            "item2": "geomancy:citrine",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:jasper",
+            "text": "Test placeholder text",
+            "item2": "geomancy:ruby",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:garnet",
+            "text": "Test placeholder text",
+            "item2": "geomancy:spinel",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "minecraft:amethyst_shard",
+            "text": "Test placeholder text",
+            "item2": "geomancy:charoite",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:sapphire",
+            "text": "Test placeholder text",
+            "item2": "geomancy:lilystar",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:double_spotlight_text",
+            "item": "geomancy:onyx",
+            "text": "Test placeholder text",
+            "item2": "geomancy:sphene",
+            "text2": "Test placeholder text"
+        },
+        {
+            "type": "geomancy:spotlight",
+            "item": "geomancy:rhodonite",
+            "text": "Test placeholder text"
+        }
+    ]
+}
