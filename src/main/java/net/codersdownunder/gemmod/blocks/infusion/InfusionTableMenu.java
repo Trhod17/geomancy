@@ -3,6 +3,7 @@ package net.codersdownunder.gemmod.blocks.infusion;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.utils.slots.GenericSlot;
+import net.codersdownunder.gemmod.utils.slots.OutputSlot;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -26,7 +27,7 @@ public class InfusionTableMenu extends AbstractContainerMenu {
     private BlockPos pos;
 
     public static final int PLAYER_INVENTORY_XPOS = -5;
-    public static final int PLAYER_INVENTORY_YPOS = 117;
+    public static final int PLAYER_INVENTORY_YPOS = 113;
     
 //    public static final int INPUT_SLOTS_COUNT = 6;
 //    public static final int OUTPUT_SLOTS_COUNT = 1;
@@ -50,13 +51,25 @@ public class InfusionTableMenu extends AbstractContainerMenu {
 
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new GenericSlot(h, 0, 67, 63));
-                addSlot(new GenericSlot(h, 1, 31, 45));
-                addSlot(new GenericSlot(h, 2, 103, 45));
-                addSlot(new GenericSlot(h, 3, 103, 9));
-                addSlot(new GenericSlot(h, 4, 31, 9));
-                addSlot(new GenericSlot(h, 5, 67, -9));
-                addSlot(new GenericSlot(h, 6, 67, 27));
+            	
+            	//far right and left
+            	addSlot(new GenericSlot(h, 5, 130, 18));
+                addSlot(new GenericSlot(h, 0, 4, 18));
+                
+                
+                // right slots
+                addSlot(new GenericSlot(h, 2, 103, 36));
+                addSlot(new GenericSlot(h, 3, 103, 0));
+                
+                // left slots
+                addSlot(new GenericSlot(h, 1, 31, 36));
+                addSlot(new GenericSlot(h, 4, 31, 0));
+                
+                //base item slot
+                addSlot(new GenericSlot(h, 6, 67, 18));
+                
+                //output
+                addSlot(new OutputSlot(h, 7, 67, 63));
             });
         }
 

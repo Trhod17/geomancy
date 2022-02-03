@@ -7,11 +7,11 @@
     },
     {
       "item": "geomancy:dream_dust"
-    },
-    {
-      "item": "geomancy:nether_crux"
     }
   ],
+  "base": {
+    "item": "geomancy:nether_crux"
+  },
   "output": {
     "item": "geomancy:concentration"
   }

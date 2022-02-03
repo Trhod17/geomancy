@@ -1,0 +1,15 @@
+{
+    "name": "Tele-Core",
+    "icon": "geomancy:tele_core",
+    "category": "geomancy:items",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Shift right click on a telepad to save coordinates, Then place in second telepad to teleport to first telepad"               
+        },
+        {
+         "type": "patchouli:spotlight",
+		 "item": "geomancy:tele_core"
+    	}
+    ]
+}

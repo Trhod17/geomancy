@@ -39,6 +39,8 @@ public class DiggingClawItem extends DiggerItem
         this.tier = tier;
     }
     
+    
+    
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
         Level level = pContext.getLevel();
@@ -107,6 +109,7 @@ public class DiggingClawItem extends DiggerItem
     public boolean isCorrectToolForDrops(BlockState pBlock) {
         return pBlock.is(Blocks.COBWEB) || pBlock.is(Blocks.REDSTONE_WIRE) || pBlock.is(Blocks.TRIPWIRE);
      }
+
     
     @Override
     public net.minecraft.world.InteractionResult interactLivingEntity(ItemStack stack, net.minecraft.world.entity.player.Player playerIn, LivingEntity entity, net.minecraft.world.InteractionHand hand) {

@@ -19,11 +19,11 @@
     },
     {
       "item": "geomancy:malachite_dreaming"
-    },
-    {
-      "item": "geomancy:plate_speed_overdrive"
     }
   ],
+  "base": {
+    "item": "geomancy:plate_speed_overdrive"
+  },
   "output": {
     "item": "geomancy:plate_speed_overdrive"
   }

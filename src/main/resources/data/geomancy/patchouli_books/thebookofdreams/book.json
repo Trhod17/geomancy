@@ -1,9 +1,17 @@
 {
 	"name": "Book Of Dreams",
-	"landing_text": "LANDING TEXT",
+	"landing_text": "Welcome ${playername) to the Book of Dreams",
 	"version": 1,
 	"book_texture": "geomancy:textures/gui/patchouli.png",
 	"model": "geomancy:book",
 	"creative_tab": "gemsmoditemtab",
-	"show_progress": false
+	"show_progress": false,
+	"macros": {
+	"<list>": "$(list",
+	"<li>" : "$(li",
+	"<b>": "$(l)",
+    "<i>": "$(o)",
+    "</>": "$()",
+    "<br>": "$(br)"
+	}
 }

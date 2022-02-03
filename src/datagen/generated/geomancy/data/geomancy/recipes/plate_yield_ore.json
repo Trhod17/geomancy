@@ -19,11 +19,11 @@
     },
     {
       "item": "geomancy:onyx"
-    },
-    {
-      "item": "geomancy:plate_yield_ore"
     }
   ],
+  "base": {
+    "item": "geomancy:plate_yield_ore"
+  },
   "output": {
     "item": "geomancy:plate_yield_ore"
   }

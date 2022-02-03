@@ -23,7 +23,7 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
     private final IDrawable icon;
     
     public InfusingRecipeCategory(IGuiHelper helper) {
-        this.back = helper.drawableBuilder(GUI, 0, 0, 200, 120).trim(3, 0, 5, 35).build();
+        this.back = helper.drawableBuilder(GUI, 0, 0, 200, 120).trim(10, 10, 5, 27).build();
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.INFUSION_TABLE.get()));
     }
 
@@ -62,15 +62,16 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
     public void setRecipe(IRecipeLayout recipeLayout, InfusingRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup itemStackGroup = recipeLayout.getItemStacks();
         
-        itemStackGroup.init(0, true, 56, 86);
-        itemStackGroup.init(1, true, 20, 68);
-        itemStackGroup.init(2, true, 92, 68);
-        itemStackGroup.init(3, true, 92, 32);
-        itemStackGroup.init(4, true, 20, 32);
-        itemStackGroup.init(5, true, 56, 14);
-        itemStackGroup.init(6, true, 56, 50);
-        itemStackGroup.init(7, false, 137, 50);
+        itemStackGroup.init(0, true, 11, 34);
+        itemStackGroup.init(1, true, 38, 52);
+        itemStackGroup.init(2, true, 110, 52);
+        itemStackGroup.init(3, true, 137, 34);
+        itemStackGroup.init(4, true, 38, 16);
+        itemStackGroup.init(5, true, 110, 16);
+        itemStackGroup.init(6, true, 74, 34);
+        itemStackGroup.init(7, false, 74, 79);
         
+        itemStackGroup.set(6, recipe.getBaseItem());
         itemStackGroup.set(ingredients);
     }
 }

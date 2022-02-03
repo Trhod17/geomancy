@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -33,13 +34,15 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
     
     private final ResourceLocation id;
     private final ItemStack output;
+    private final ItemStack base;
     private final NonNullList<Ingredient> recipeItems;
 
 
-    public InfusingRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems) {
+    public InfusingRecipe(ResourceLocation id, ItemStack output, ItemStack base, NonNullList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
+        this.base = base;
        
         //System.out.print(id + " " + output + " " + recipeItems);
     }
@@ -49,40 +52,53 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
     {
         return ModRecipeTypes.INFUSING_RECIPE;
     }
-    
+
+    //TODO: fix baseitem matching
 
     @Override
     public boolean matches(SimpleContainer pInv, Level pLevel) {
         
         List<ItemStack> inputs = new ArrayList<>();
+        ItemStack baseItem = new ItemStack(Items.AIR);
         int matched = 0;
 
         //System.out.println(pInv.getItem(6));
         
         for (int i = 0; i < pInv.getContainerSize(); i++) {
             ItemStack stack = pInv.getItem(i);
-
+            
+           
             if (!stack.isEmpty()) {
-                inputs.add(stack);
-
-                matched++;
+            	if (stack.getItem() == this.getBaseItem().getItem()) {
+            		
+            		baseItem = stack;
+            		continue;
+            	}
+            		inputs.add(stack);
+            		matched++;
             }
         }
+      
+        if (baseItem.getItem() == getBaseItem().getItem()) {
 
-        return matched == inputs.size() && RecipeMatcher.findMatches(inputs, this.recipeItems) != null && this.matches(pInv, false);
+        	return matched == inputs.size() && RecipeMatcher.findMatches(inputs, this.recipeItems) != null;
+        }
+       
+        return false;
     }
     
-    private boolean matches(SimpleContainer pCraftingInventory, boolean pMirrored) {
-        
-              Ingredient ingredient = Ingredient.EMPTY;
-               ingredient = this.recipeItems.get(6);
-                 
-              if (!ingredient.test(pCraftingInventory.getItem(6))) {
-                 return false;
-              }
-
-        return true;
-     }
+//    private boolean matches(SimpleContainer pCraftingInventory) {
+//        
+//              Ingredient ingredient = Ingredient.EMPTY;
+//              ingredient = this.recipeItems.get(6);
+//                 
+//              if (!ingredient.test(pCraftingInventory.getItem(6))) {
+//            	  System.out.println("yes");
+//                 return false;
+//              }
+//              System.out.println("no");
+//        return true;
+//     }
 
 
     @Override
@@ -100,6 +116,10 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
     public ItemStack getResultItem()
     {
         return output.copy();
+    }
+    
+    public ItemStack getBaseItem() {
+    	return base;
     }
 
     public ItemStack getIcon() {
@@ -128,7 +148,8 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
         {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "output"));
             //int infusingTime = JSONUtils.getAsInt(pJson, "time");
-
+            
+            ItemStack base = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "base"));
           
             
             JsonArray ingredients = GsonHelper.getAsJsonArray(pJson, "ingredients");
@@ -138,7 +159,7 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new InfusingRecipe(pRecipeId, output, inputs);
+            return new InfusingRecipe(pRecipeId, output, base, inputs);
         }
 
         @Nullable
@@ -153,9 +174,10 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
                 inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
 
+            ItemStack base = pBuffer.readItem();
             ItemStack output = pBuffer.readItem();
             
-            return new InfusingRecipe(pRecipeId, output, inputs);
+            return new InfusingRecipe(pRecipeId, output, base, inputs);
         }
 
         @Override
@@ -165,7 +187,8 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
             for (Ingredient ing : pRecipe.getIngredients()) {
                 ing.toNetwork(pBuffer);
             }
-            
+
+            pBuffer.writeItemStack(pRecipe.base, false);
             pBuffer.writeItemStack(pRecipe.output, false);
 
         }

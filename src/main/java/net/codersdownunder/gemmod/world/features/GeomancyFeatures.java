@@ -12,7 +12,7 @@ public class GeomancyFeatures {
 	public static void initialize() {}
 	
 	public static final PlacementModifier RNG_DECORATOR = HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top());
-	//TODO: change to cobbled deepslate
-	public static CustomGeode DARKSTONE_GEORE = new CustomGeode("darkstone", BlockInit.GEODE_ORE.get(), Blocks.BLACKSTONE, Blocks.ANDESITE, Config.SERVER.rarity::get);
+	
+	public static CustomGeode DARKSTONE_GEORE = new CustomGeode("darkstone", BlockInit.GEODE_ORE.get(), Blocks.COBBLED_DEEPSLATE, Blocks.ANDESITE, Config.SERVER.rarity::get);
 
 }

@@ -10,11 +10,11 @@
     },
     {
       "item": "geomancy:ruby"
-    },
-    {
-      "item": "geomancy:plate_fuel_coal"
     }
   ],
+  "base": {
+    "item": "geomancy:plate_fuel_coal"
+  },
   "output": {
     "item": "geomancy:plate_fuel_coal"
   }

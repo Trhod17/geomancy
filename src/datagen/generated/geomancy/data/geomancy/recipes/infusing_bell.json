@@ -1,0 +1,24 @@
+{
+  "type": "geomancy:infusing_recipe",
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "base": {
+    "item": "minecraft:gold_ingot"
+  },
+  "output": {
+    "item": "minecraft:bell"
+  }
+}

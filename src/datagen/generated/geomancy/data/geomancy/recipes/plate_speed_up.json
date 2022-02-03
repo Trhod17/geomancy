@@ -7,11 +7,11 @@
     },
     {
       "item": "geomancy:ruby_dreaming"
-    },
-    {
-      "item": "geomancy:plate_speed_up"
     }
   ],
+  "base": {
+    "item": "geomancy:plate_speed_up"
+  },
   "output": {
     "item": "geomancy:plate_speed_up"
   }

@@ -13,11 +13,11 @@
     },
     {
       "item": "geomancy:rhodonite"
-    },
-    {
-      "item": "minecraft:amethyst_block"
     }
   ],
+  "base": {
+    "item": "minecraft:amethyst_block"
+  },
   "output": {
     "item": "minecraft:budding_amethyst"
   }

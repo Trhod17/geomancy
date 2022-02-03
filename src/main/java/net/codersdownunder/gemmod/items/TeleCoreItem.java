@@ -2,6 +2,7 @@ package net.codersdownunder.gemmod.items;
 
 import java.util.List;
 
+import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
 import net.minecraft.nbt.CompoundTag;
@@ -59,7 +60,7 @@ public class TeleCoreItem extends Item {
 			pContext.getItemInHand().setTag(pos);
 		}
 		} catch(Exception e)  {
-			
+			GemMod.LOGGER.debug("Telecore pos saving failed: ", e);
 		}
 
 		return InteractionResult.SUCCESS;

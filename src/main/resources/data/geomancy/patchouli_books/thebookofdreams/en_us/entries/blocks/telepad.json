@@ -1,0 +1,16 @@
+{
+    "name": "Telepad",
+    "icon": "geomancy:telepad",
+    "category": "geomancy:blocks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Teleports the player when they stand on the block and crouch. <br>Requires $(l:geomancy:items/telecore)Tele-Core$(/l) to set position"               
+        },
+        {
+         "type": "geomancy:double_spotlight",
+		 "item": "geomancy:telepad",
+		 "item2": "geomancy:telepad_slab"
+    	}
+    ]
+}

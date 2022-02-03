@@ -1,5 +1,7 @@
 package net.codersdownunder.gemmod.blocks.trellis;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -8,14 +10,17 @@ import javax.annotation.Nullable;
 
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.items.DiggingClawItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -74,6 +79,8 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 					Block.box(0, 1.5, 0.5, 16, 3.5, 1.5),
 					Block.box(12.5, 0, 0, 14.5, 16, 2))
 			.reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get());
+	
+	
 
 	public TrellisBlock(Properties p_49795_) {
 		super(p_49795_);
@@ -153,22 +160,35 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 		pBuilder.add(WATERLOGGED).add(FACING);
 	}
 	
-	static Random rand = new Random();
-	
+	@Override
+	public boolean onDestroyedByPlayer(BlockState state, Level world, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
+		
+		Item item = player.getMainHandItem().getItem();
+		
+		if(player != null && item instanceof ShearsItem || item instanceof DiggingClawItem) {
+			// TODO : drop the appropriate item
+			world.setBlockAndUpdate(pos, BlockInit.TRELLIS.get().defaultBlockState()
+					.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
+			return false;
+		}
+		return super.onDestroyedByPlayer(state, world, pos, player, willHarvest, fluid);
+	}
+
 	@Override
 	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
 		
 		Block trellis = BlockInit.TRELLIS.get();
 		Block current = this.defaultBlockState().getBlock();
-
 		
-		switch (pickDirection()) {
+		int number = pRandom.nextInt(12);
+		
+		switch (number) {
 		case 0: {
 			break;
 		}
 		case 1: {
 			if (pLevel.getBlockState(pPos.above()).getBlock() == trellis) {
-				if (spreadChance() <= 70) {
+				if (spreadChance(pRandom) <= 70) {
 					pLevel.setBlockAndUpdate(pPos.above(), current.defaultBlockState()
 							.setValue(FACING, pState.getValue(FACING)).setValue(WATERLOGGED, pState.getValue(WATERLOGGED)));
 				}
@@ -183,7 +203,7 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 		}
 		case 4: {
 			if (pLevel.getBlockState(pPos.below()).getBlock() == trellis) {
-				if (spreadChance() <= 70) {
+				if (spreadChance(pRandom) <= 70) {
 					pLevel.setBlockAndUpdate(pPos.below(), current.defaultBlockState()
 							.setValue(FACING, pState.getValue(FACING)).setValue(WATERLOGGED, pState.getValue(WATERLOGGED)));
 				}
@@ -198,7 +218,7 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 		}
 		case 7: {
 			if (pLevel.getBlockState(pPos.east()).getBlock() == trellis) {
-				if (spreadChance() <= 70) {
+				if (spreadChance(pRandom) <= 70) {
 					pLevel.setBlockAndUpdate(pPos.east(), current.defaultBlockState()
 							.setValue(FACING, pState.getValue(FACING)).setValue(WATERLOGGED, pState.getValue(WATERLOGGED)));
 				}
@@ -213,7 +233,7 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 		}
 		case 10: {
 			if (pLevel.getBlockState(pPos.west()).getBlock() == trellis) {
-				if (spreadChance() <= 70) {
+				if (spreadChance(pRandom) <= 70) {
 					pLevel.setBlockAndUpdate(pPos.west(), current.defaultBlockState()
 							.setValue(FACING, pState.getValue(FACING)).setValue(WATERLOGGED, pState.getValue(WATERLOGGED)));
 				}
@@ -231,64 +251,48 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 		}
 	}
 	
-	private int spreadChance() {
+	private int spreadChance(Random rand) {
 		int spread = rand.nextInt(100);
 		
 		return spread;
 	}
-	
-	private int pickDirection() {
-		
-		int number = rand.nextInt(12);
-		
-		return number;
-		
-	}
+
+	private List<Item> list = Arrays.asList(new Item[]{Items.VINE, Items.MOSS_BLOCK, Items.MOSS_CARPET, Items.WEEPING_VINES, Items.TWISTING_VINES, Items.GLOW_BERRIES, Items.CHORUS_FRUIT, Items.GLOW_LICHEN});
 
 	@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
 			BlockHitResult trace) {
 		if (!world.isClientSide) {
 
-			// Item item;
-
-			if (player.getItemInHand(hand).getItem() == Items.VINE) {
-				world.setBlockAndUpdate(pos, BlockInit.TRELLIS_VINE.get().defaultBlockState()
-						.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
-			}
+			Item itemInHand = player.getItemInHand(hand).getItem();
 			
-			if (player.getItemInHand(hand).getItem() == Items.MOSS_BLOCK || player.getItemInHand(hand).getItem() == Items.MOSS_CARPET) {
-				world.setBlockAndUpdate(pos, BlockInit.TRELLIS_MOSS.get().defaultBlockState()
-						.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
+			if (list.contains(itemInHand)) {
+			if (itemInHand  == list.get(0)) {
+				updateTrellis(world, pos, state, BlockInit.TRELLIS_VINE.get());
+			} else if (itemInHand  == list.get(1) || player.getItemInHand(hand).getItem() == list.get(2)) {
+				updateTrellis(world, pos, state, BlockInit.TRELLIS_MOSS.get());
+			} else if (itemInHand  == list.get(3)) {
+				updateTrellis(world, pos, state, BlockInit.TRELLIS_CRIMSON.get());
+			} else if (itemInHand  == list.get(4)) {
+				updateTrellis(world, pos, state, BlockInit.TRELLIS_WARP.get());
+			} else if (itemInHand  == list.get(5)) {
+				updateTrellis(world, pos, state, BlockInit.TRELLIS_CAVE_VINES.get());
+			} else if (itemInHand  == list.get(6)) {
+				updateTrellis(world, pos, state, BlockInit.TRELLIS_CHORUS.get());
+			} else if (itemInHand  == list.get(7)) {
+				updateTrellis(world, pos, state, BlockInit.TRELLIS_LICHEN.get());
 			}
-			
-			if (player.getItemInHand(hand).getItem() == Items.WEEPING_VINES) {
-				world.setBlockAndUpdate(pos, BlockInit.TRELLIS_CRIMSON.get().defaultBlockState()
-						.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
-			}
-			
-			if (player.getItemInHand(hand).getItem() == Items.TWISTING_VINES) {
-				world.setBlockAndUpdate(pos, BlockInit.TRELLIS_WARP.get().defaultBlockState()
-						.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
-			}
-			
-			if (player.getItemInHand(hand).getItem() == Items.GLOW_BERRIES) {
-				world.setBlockAndUpdate(pos, BlockInit.TRELLIS_CAVE_VINES.get().defaultBlockState()
-						.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
-			}
-			
-			if (player.getItemInHand(hand).getItem() == Items.CHORUS_FRUIT) {
-				world.setBlockAndUpdate(pos, BlockInit.TRELLIS_CHORUS.get().defaultBlockState()
-						.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
-			}
-			
-			if (player.getItemInHand(hand).getItem() == Items.GLOW_LICHEN) {
-				world.setBlockAndUpdate(pos, BlockInit.TRELLIS_LICHEN.get().defaultBlockState()
-						.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
+			} else {
+				GemMod.LOGGER.debug("Item: ", itemInHand, ", Is not valid for trellis");
 			}
 
 		}
 		return InteractionResult.SUCCESS;
+	}
+	
+	private void updateTrellis(Level world, BlockPos pos, BlockState state, Block block) {
+		world.setBlockAndUpdate(pos, block.defaultBlockState()
+				.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
 	}
 
 }

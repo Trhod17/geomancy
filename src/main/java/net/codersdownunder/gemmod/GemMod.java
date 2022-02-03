@@ -20,11 +20,13 @@ import net.codersdownunder.gemmod.world.decorators.RNGPlacement;
 import net.codersdownunder.gemmod.world.features.GeomancyFeatures;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
+import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
@@ -61,6 +63,12 @@ public class GemMod
 
     //public static final ResourceLocation simpleChannelRL = new ResourceLocation(MODID, "gemmodchannel");
     
+    public static String find(String name)
+	{
+		return MODID + ":" + name;
+	}
+
+    
     public GemMod() {
         
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -91,6 +99,12 @@ public class GemMod
     	
         event.enqueueWork(() -> {
         	WoodType.register(CHASM);
+        	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_WOOD.get(), new ShearsDispenseItemBehavior());
+        	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_STONE.get(), new ShearsDispenseItemBehavior());
+        	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_IRON.get(), new ShearsDispenseItemBehavior());
+        	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_GOLD.get(), new ShearsDispenseItemBehavior());
+        	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_DIAMOND.get(), new ShearsDispenseItemBehavior());
+        	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_NETHERITE.get(), new ShearsDispenseItemBehavior());
         });
         //VillagerInit.fillTradeData();
         GeomancyFeatures.initialize();

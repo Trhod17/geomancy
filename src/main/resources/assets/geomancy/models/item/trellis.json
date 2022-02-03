@@ -1,3 +1,6 @@
 {
-  "parent": "geomancy:block/trellis_empty"
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "geomancy:items/trellis_item"
+    }
 }

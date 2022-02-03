@@ -22,9 +22,6 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class InfusionTableBlockEntity extends BlockEntity {
 
-    public static final int INPUT_SLOTS = 6;
-    public static final int OUTPUT_SLOTS = 1;
-
     private ItemStackHandler itemHandler = createHandler();
 
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -38,11 +35,6 @@ public class InfusionTableBlockEntity extends BlockEntity {
     
     public ItemStackHandler getItemStackHandler() {
         return itemHandler;
-    }
-   
-    public static int getInputSlots()
-    {
-        return 7;
     }
  
     @Override
@@ -93,7 +85,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
 
 
     private ItemStackHandler createHandler() {
-        return new ItemStackHandler(7) {
+        return new ItemStackHandler(8) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -106,7 +98,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
 
             @Override
             public int getSlotLimit(int slot) {
-                return 1;
+                return 64;
             }
 
             @Nonnull
@@ -134,13 +126,15 @@ public class InfusionTableBlockEntity extends BlockEntity {
     public void craft() {
        SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
             
+       		inv.setItem(6, itemHandler.getStackInSlot(6));
             inv.setItem(0, itemHandler.getStackInSlot(0));
             inv.setItem(1, itemHandler.getStackInSlot(1));
             inv.setItem(2, itemHandler.getStackInSlot(2));
             inv.setItem(3, itemHandler.getStackInSlot(3));
             inv.setItem(4, itemHandler.getStackInSlot(4));
             inv.setItem(5, itemHandler.getStackInSlot(5));
-            inv.setItem(6, itemHandler.getStackInSlot(6));
+            
+            //inv.setItem(7, itemHandler.getStackInSlot(7));
           
             //System.out.println(inv + " " + level);
           
@@ -179,7 +173,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
         itemHandler.extractItem(4, 1, false);
         itemHandler.extractItem(5, 1, false);
         itemHandler.extractItem(6, 1, false);
-        itemHandler.insertItem(6, output, false);
+        itemHandler.insertItem(7, output, false);
         
         return;
     }

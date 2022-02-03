@@ -25,28 +25,31 @@ import net.minecraft.world.level.ItemLike;
 public class InfusionRecipeBuilder implements RecipeBuilder {
 	   private final Item result;
 	   private final int count;
+	   private final Item base;
 	   private final List<Ingredient> ingredients = Lists.newArrayList();
 	   private final Advancement.Builder advancement = Advancement.Builder.advancement();
+	   
 	   @Nullable
 	   private String group;
 
-	   public InfusionRecipeBuilder(ItemLike pResult, int pCount) {
+	   public InfusionRecipeBuilder(ItemLike pResult, int pCount, ItemLike base) {
 	      this.result = pResult.asItem();
 	      this.count = pCount;
+	      this.base = base.asItem();
 	   }
 
 	   /**
 	    * Creates a new builder for a shapeless recipe.
 	    */
-	   public static InfusionRecipeBuilder infusing(ItemLike pResult) {
-	      return new InfusionRecipeBuilder(pResult, 1);
+	   public static InfusionRecipeBuilder infusing(ItemLike pResult, ItemLike base) {
+	      return new InfusionRecipeBuilder(pResult, 1, base);
 	   }
 
 	   /**
 	    * Creates a new builder for a shapeless recipe.
 	    */
-	   public static InfusionRecipeBuilder infusing(ItemLike pResult, int pCount) {
-	      return new InfusionRecipeBuilder(pResult, pCount);
+	   public static InfusionRecipeBuilder infusing(ItemLike pResult, int pCount, ItemLike base) {
+	      return new InfusionRecipeBuilder(pResult, pCount, base);
 	   }
 
 	   /**
@@ -100,29 +103,35 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 	   public Item getResult() {
 	      return this.result;
 	   }
+	   
+	   public Item getBase() {
+		   return this.base;
+	   }
 
 	   public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
-	      pFinishedRecipeConsumer.accept(new InfusionRecipeBuilder.Result(pRecipeId, this.result, this.count, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
+	      pFinishedRecipeConsumer.accept(new InfusionRecipeBuilder.Result(pRecipeId, this.result, this.count, this.base, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
 	   }
 
 	   public static class Result implements FinishedRecipe {
 	      private final ResourceLocation id;
 	      private final Item result;
 	      private final int count;
+	      private final Item base;
 	      private final String group;
 	      private final List<Ingredient> ingredients;
 
-	      public Result(ResourceLocation pId, Item pResult, int pCount, String pGroup, List<Ingredient> pIngredients, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
+	      public Result(ResourceLocation pId, Item pResult, int pCount, Item base, String pGroup, List<Ingredient> pIngredients, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
 	         this.id = pId;
 	         this.result = pResult;
 	         this.count = pCount;
 	         this.group = pGroup;
 	         this.ingredients = pIngredients;
+	         this.base = base;
 
 	      }
 	    
 
-	      @SuppressWarnings("deprecation")
+	    @SuppressWarnings("deprecation")
 		public void serializeRecipeData(JsonObject pJson) {
 	         if (!this.group.isEmpty()) {
 	            pJson.addProperty("group", this.group);
@@ -137,12 +146,18 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 //	        		
 //	        		continue;
 //	        	}
-	        	 
 	            jsonarray.add(ingredient.toJson());
 	         }
 	         
 
 	         pJson.add("ingredients", jsonarray);
+	         
+	         JsonObject jsonobject1 = new JsonObject();
+	         jsonobject1.addProperty("item", Registry.ITEM.getKey(this.base).toString());
+
+	         pJson.add("base", jsonobject1);
+	         
+	         
 	         JsonObject jsonobject = new JsonObject();
 	         jsonobject.addProperty("item", Registry.ITEM.getKey(this.result).toString());
 	         if (this.count > 1) {

@@ -19,11 +19,11 @@
     },
     {
       "item": "geomancy:garnet"
-    },
-    {
-      "item": "geomancy:plate_fuel_time"
     }
   ],
+  "base": {
+    "item": "geomancy:plate_fuel_time"
+  },
   "output": {
     "item": "geomancy:plate_fuel_time"
   }

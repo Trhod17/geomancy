@@ -1,0 +1,17 @@
+{
+    "name": "Trellis",
+    "icon": "geomancy:trellis",
+    "category": "geomancy:blocks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The Trellis is a block used to grow vines. <br>The following items when right clicked will grow different kinds of vines <br> $(li) Vine $(li2) Trellis with vine $(li) Moss Block or Moss Carpet$(li2) Trellis covered in moss $(li) Weeping Vines $(li2) Crimson Trellis $(li) Twisting Vines $(li2) Warped Trellis"               
+        },
+        {
+         "type": "patchouli:spotlight",
+		 "item": "geomancy:trellis",
+		 "link_recipe": true,
+		 "text": "$(li) Glow Berries $(li2) Trellis with Cave Vines $(li) Chorus Fruit $(li2) Trellis with Chorus Vine $(li) Glow Lichen $(li2) Trellis with Glow Lichen"
+    	}
+    ]
+}

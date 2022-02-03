@@ -3,8 +3,6 @@ package net.codersdownunder.gemmod.blocks.infusionstand;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
-import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -150,28 +148,29 @@ public class InfusionStandBlockEntity extends BlockEntity {
               return;
           }
           
-        InfusingRecipe recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.INFUSING_RECIPE, inv, level).orElse(null);
-        
-            if (recipe == null) {
-                return;
-            }
-            
-            //if (InfusingRecipes.getAll(level).)
-            
-            ItemStack output = recipe.getResultItem();
-            craftTheItem(output);
-            setChanged();
-            //System.out.println(recipe.getIngredients());
-//            crafting = false;
-            
-//        recipe.ifPresent(iRecipe -> {
-//            ItemStack output = iRecipe.getResultItem();
+//        InfusingRecipe recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.INFUSING_RECIPE, inv, level).orElse(null);
+//        
+//            if (recipe == null) {
+//                return;
+//            }
+//            
+//            //if (InfusingRecipes.getAll(level).)
+//            
+//            ItemStack output = recipe.getResultItem();
 //            craftTheItem(output);
 //            setChanged();
-//        });
+//            //System.out.println(recipe.getIngredients());
+////            crafting = false;
+//            
+////        recipe.ifPresent(iRecipe -> {
+////            ItemStack output = iRecipe.getResultItem();
+////            craftTheItem(output);
+////            setChanged();
+////        });
     }
 
-    private void craftTheItem(ItemStack output) {
+    @SuppressWarnings("unused")
+	private void craftTheItem(ItemStack output) {
         
         itemHandler.extractItem(0, 1, false);
         itemHandler.extractItem(1, 1, false);

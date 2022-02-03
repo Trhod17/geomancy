@@ -6,24 +6,24 @@
       "item": "geomancy:jasper_dreaming"
     },
     {
+      "item": "geomancy:sphene_dreaming"
+    },
+    {
+      "item": "geomancy:spinel_dreaming"
+    },
+    {
+      "item": "geomancy:spinel_dreaming"
+    },
+    {
       "item": "geomancy:sapphire_dreaming"
     },
     {
       "item": "geomancy:amethyst_dreaming"
-    },
-    {
-      "item": "geomancy:spinel_dreaming"
-    },
-    {
-      "item": "geomancy:spinel_dreaming"
-    },
-    {
-      "item": "geomancy:sphene_dreaming"
-    },
-    {
-      "item": "minecraft:golden_apple"
     }
   ],
+  "base": {
+    "item": "minecraft:golden_apple"
+  },
   "output": {
     "item": "minecraft:enchanted_golden_apple"
   }

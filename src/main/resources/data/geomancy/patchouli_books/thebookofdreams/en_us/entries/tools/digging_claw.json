@@ -1,0 +1,27 @@
+{
+    "name": "Digging Claws",
+    "icon": "geomancy:digging_claw_wood",
+    "category": "geomancy:tools",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Digging Claws function as a combination of pickaxe, shovel and shears"               
+        },
+        {
+         "type": "geomancy:double_spotlight",
+		 "item": "geomancy:digging_claw_wood",
+		 "item2": "geomancy:digging_claw_stone"
+    	},
+    	{
+         "type": "geomancy:double_spotlight",
+		 "item": "geomancy:digging_claw_iron",
+		 "item2": "geomancy:digging_claw_gold"
+    	},
+    	{
+         "type": "geomancy:double_spotlight",
+		 "item": "geomancy:digging_claw_diamond",
+		 "item2": "geomancy:digging_claw_netherite"
+    	}
+    	
+    ]
+}

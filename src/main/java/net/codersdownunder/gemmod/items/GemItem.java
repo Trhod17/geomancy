@@ -23,75 +23,77 @@ public class GemItem extends Item
     @Override
     public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag)
     {
-        if (this.asItem() == ItemInit.AGATE.get())
+    	Item current = this.asItem();
+    	
+        if (current == ItemInit.AGATE.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_agate.text"));
         }
-        if (this.asItem() == ItemInit.CHRYSOCOLLA.get())
+        else if (current == ItemInit.CHRYSOCOLLA.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_chrysocolla.text"));
         }
-        if (this.asItem() == ItemInit.MALACHITE.get())
+        else if (current == ItemInit.MALACHITE.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_malachite.text"));
         }
-        if (this.asItem() == ItemInit.JADE.get())
+        else if (current == ItemInit.JADE.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_jade.text"));
         }
-        if (this.asItem() == ItemInit.PERIDOT.get())
+        else if (current == ItemInit.PERIDOT.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_peridot.text"));
         }
-        if (this.asItem() == ItemInit.TOPAZ.get())
+        else if (current == ItemInit.TOPAZ.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_topaz.text"));
         }
-        if (this.asItem() == ItemInit.CITRINE.get())
+        else if (current == ItemInit.CITRINE.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_citrine.text"));
         }
-        if (this.asItem() == ItemInit.JASPER.get())
+        else if (current == ItemInit.JASPER.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_jasper.text"));
         }
-        if (this.asItem() == ItemInit.RUBY.get())
+        else if (current == ItemInit.RUBY.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_ruby.text"));
         }
-        if (this.asItem() == ItemInit.GARNET.get())
+        else if (current == ItemInit.GARNET.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_garnet.text"));
         }
-        if (this.asItem() == ItemInit.SPINEL.get())
+        else if (this.asItem() == ItemInit.SPINEL.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_spinel.text"));
         }
-        if (this.asItem() == ItemInit.AMETHYST.get())
+        else if (current == ItemInit.AMETHYST.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_amethyst.text"));
         }
-        if (this.asItem() == ItemInit.CHAROITE.get())
+        else if (current == ItemInit.CHAROITE.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_charoite.text"));
         }
-        if (this.asItem() == ItemInit.SAPPHIRE.get())
+        else if (current == ItemInit.SAPPHIRE.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_sapphire.text"));
         }
-        if (this.asItem() == ItemInit.LILYSTAR.get())
+        else if (current == ItemInit.LILYSTAR.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_lilystar.text"));
         }
-        if (this.asItem() == ItemInit.ONYX.get())
+        else if (current == ItemInit.ONYX.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_onyx.text"));
         }
-        if (this.asItem() == ItemInit.SPHENE.get())
+        else if (current == ItemInit.SPHENE.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_sphene.text"));
         }
-        if (this.asItem() == ItemInit.RHODONITE.get())
+        else if (current == ItemInit.RHODONITE.get())
         {
             list.add(new TranslatableComponent("tooltip.gem_rhodonite.text"));
         }

@@ -66,9 +66,6 @@ public class SongForgeBlockEntity extends BlockEntity {
 		super(TileEntityInit.SONG_FORGE_BE.get(), pos, blockState);
 	}
 
-	public ItemStackHandler getItemStackHandler() {
-		return itemHandler;
-	}
 
 	public static int getSlots() {
 		return INPUT_SLOTS + OUTPUT_SLOTS + FUEL_SLOTS + UPGRADE_SLOTS + 1;
@@ -382,10 +379,10 @@ public class SongForgeBlockEntity extends BlockEntity {
 	}
 	
     ArrayList<LazyOptional<?>> capabilities = new ArrayList<>(Arrays.asList(
-            LazyOptional.of(this::getItemStackHandler),
-            LazyOptional.of(() -> new RangedWrapper(getItemStackHandler(), 3, 5)),
-            LazyOptional.of(() -> new RangedWrapper(getItemStackHandler(), 0, 2)),
-            LazyOptional.of(() -> new RangedWrapper(getItemStackHandler(), 6, 14))
+            LazyOptional.of(this::createHandler),
+            LazyOptional.of(() -> new RangedWrapper(itemHandler, 3, 5)),
+            LazyOptional.of(() -> new RangedWrapper(itemHandler, 0, 2)),
+            LazyOptional.of(() -> new RangedWrapper(itemHandler, 6, 14))
     ));
 
 	@Nonnull

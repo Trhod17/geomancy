@@ -19,11 +19,11 @@
     },
     {
       "item": "geomancy:amethyst"
-    },
-    {
-      "item": "geomancy:plate_failsafe"
     }
   ],
+  "base": {
+    "item": "geomancy:plate_failsafe"
+  },
   "output": {
     "item": "geomancy:plate_failsafe"
   }

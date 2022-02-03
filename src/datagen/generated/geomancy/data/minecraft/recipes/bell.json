@@ -1,24 +1,26 @@
 {
-  "type": "geomancy:infusing_recipe",
+  "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "ingredients": [
-    {
-      "item": "minecraft:amethyst_shard"
-    },
-    {
-      "item": "minecraft:amethyst_shard"
-    },
-    {
-      "item": "minecraft:amethyst_shard"
-    },
-    {
-      "item": "minecraft:amethyst_shard"
-    },
-    {
-      "item": "minecraft:gold_ingot"
-    }
+  "pattern": [
+    "lll",
+    "gag",
+    "gng"
   ],
-  "output": {
+  "key": {
+    "l": {
+      "item": "minecraft:oak_log"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "a": {
+      "item": "minecraft:amethyst_block"
+    },
+    "n": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
     "item": "minecraft:bell"
   }
 }
