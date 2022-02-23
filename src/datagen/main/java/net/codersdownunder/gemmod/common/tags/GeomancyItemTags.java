@@ -102,7 +102,9 @@ public class GeomancyItemTags extends ItemTagsProvider {
 		tag(ItemTags.LEAVES).add(ItemInit.CHASM_LEAVES.get());
 		
 		tag(GeomancyTags.Items.QUARTZ).add(Items.QUARTZ).add(ItemInit.ROSE_QUARTZ.get());
-
+		
+		tag(ItemTags.SAPLINGS)
+		.add(ItemInit.CHASM_SAPLING.get());
 	}
 
 	@Override

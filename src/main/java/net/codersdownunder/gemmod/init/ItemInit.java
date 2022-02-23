@@ -166,5 +166,5 @@ public class ItemInit
     public static final RegistryObject<BlockItem> TREADSTONE_CARPET_7 = ITEMS.register("treadstone_carpet_7", () -> new BlockItem(BlockInit.TREADSTONE_CARPET_7.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> SONG_FORGE = ITEMS.register("song_forge", () -> new BlockItem(BlockInit.SONG_FORGE.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TRELLIS = ITEMS.register("trellis", () -> new BlockItem(BlockInit.TRELLIS.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
-    
+    public static final RegistryObject<BlockItem> CHASM_SAPLING = ITEMS.register("chasm_sapling", () -> new BlockItem(BlockInit.CHASM_SAPLING.get(), new Item.Properties().tab(GemMod.gemsmodblocktab)));
 }

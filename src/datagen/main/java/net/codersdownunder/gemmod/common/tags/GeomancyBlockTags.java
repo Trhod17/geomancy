@@ -93,6 +93,9 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         		.add(BlockInit.TRELLIS_MOSS.get())
         		.add(BlockInit.TRELLIS_WARP.get());
         
+        tag(BlockTags.SAPLINGS)
+        	.add(BlockInit.CHASM_SAPLING.get());
+        
         tag(BlockTags.LOGS)
         		.add(BlockInit.CHASM_LOG.get())
         		.add(BlockInit.CHASM_LOG_BARK.get())

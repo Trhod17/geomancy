@@ -7,7 +7,6 @@ import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 
@@ -27,6 +26,7 @@ public class ModBlockLootTables extends BlockLoot {
             dropSelf(BlockInit.CHASM_SIGN.get());
             dropSelf(BlockInit.CHASM_STAIRS.get());
             dropSelf(BlockInit.CHASM_TRAPDOOR.get());
+            dropSelf(BlockInit.CHASM_SAPLING.get());
             dropSelf(BlockInit.END_LANTERN.get());
             dropSelf(BlockInit.END_LANTERN_BLOCK.get());
             dropSelf(BlockInit.MULMUS_LANTERN.get());
@@ -82,7 +82,7 @@ public class ModBlockLootTables extends BlockLoot {
             
             dropOther(BlockInit.CHASM_SIGN_WALL.get(), BlockInit.CHASM_SIGN.get());
             add(BlockInit.GEODE_ORE.get(), createOreDrop(BlockInit.GEODE_ORE.get(), ItemInit.GEODE.get()));
-            add(BlockInit.CHASM_LEAVES.get(), createLeavesDrops(BlockInit.CHASM_LEAVES.get(), Blocks.OAK_SAPLING, 0.1f));
+            add(BlockInit.CHASM_LEAVES.get(), createLeavesDrops(BlockInit.CHASM_LEAVES.get(), BlockInit.CHASM_SAPLING.get(), 0.1f));
             add(BlockInit.CHASM_DOOR.get(), createDoorTable(BlockInit.CHASM_DOOR.get()));
             add(BlockInit.INFUSION_TABLE.get(), createNameableBlockEntityTable(BlockInit.INFUSION_TABLE.get()));
             add(BlockInit.DIPPER.get(), createNameableBlockEntityTable(BlockInit.DIPPER.get()));

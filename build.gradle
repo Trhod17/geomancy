@@ -164,7 +164,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-   	mappings channel: 'parchment', version: '2022.01.23-1.18.1'
+   	mappings channel: 'parchment', version: '2022.02.13-1.18.1'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')

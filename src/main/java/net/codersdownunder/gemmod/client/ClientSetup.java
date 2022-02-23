@@ -57,6 +57,7 @@ public class ClientSetup {
 		  ItemBlockRenderTypes.setRenderLayer(BlockInit.END_LANTERN.get(), RenderType.cutoutMipped());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.INFUSION_TABLE.get(), RenderType.cutoutMipped());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.CHASM_LEAVES.get(), RenderType.cutoutMipped());
+	      ItemBlockRenderTypes.setRenderLayer(BlockInit.CHASM_SAPLING.get(), RenderType.cutoutMipped());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.DIPPER.get(), RenderType.cutout());    
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD.get(), RenderType.cutout());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TELEPAD_SLAB.get(), RenderType.cutout());
@@ -68,5 +69,6 @@ public class ClientSetup {
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_MOSS.get(), RenderType.cutout());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_CRIMSON.get(), RenderType.cutout());
 	      ItemBlockRenderTypes.setRenderLayer(BlockInit.TRELLIS_WARP.get(), RenderType.cutout());
+	      
 	  }
 }

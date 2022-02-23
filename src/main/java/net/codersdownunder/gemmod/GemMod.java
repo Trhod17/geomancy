@@ -15,6 +15,7 @@ import net.codersdownunder.gemmod.init.ItemInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.network.GemModNetwork;
 import net.codersdownunder.gemmod.utils.GemModItemGroup;
+import net.codersdownunder.gemmod.utils.ModVanillaCompat;
 import net.codersdownunder.gemmod.world.WorldGenerationEvents;
 import net.codersdownunder.gemmod.world.decorators.RNGPlacement;
 import net.codersdownunder.gemmod.world.features.GeomancyFeatures;
@@ -105,6 +106,8 @@ public class GemMod
         	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_GOLD.get(), new ShearsDispenseItemBehavior());
         	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_DIAMOND.get(), new ShearsDispenseItemBehavior());
         	DispenserBlock.registerBehavior(ItemInit.DIGGING_CLAW_NETHERITE.get(), new ShearsDispenseItemBehavior());
+        	
+        	ModVanillaCompat.compat();
         });
         //VillagerInit.fillTradeData();
         GeomancyFeatures.initialize();

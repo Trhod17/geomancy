@@ -45,7 +45,7 @@ public class GeomancyBlockStates extends BlockStateProvider {
     	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_6.get(), BlockInit.TREADSTONE_6.get().getRegistryName(), modLoc("blocks/treadstone6"));
     	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_7.get(), BlockInit.TREADSTONE_7.get().getRegistryName(), modLoc("blocks/treadstone7"));
   
-
+    	
 //    	models().carpet("treadstone1", modLoc("blocks/treadstone1"));
 //    	models().carpet("treadstone2", modLoc("blocks/treadstone2"));
 //    	models().carpet("treadstone3", modLoc("blocks/treadstone3"));

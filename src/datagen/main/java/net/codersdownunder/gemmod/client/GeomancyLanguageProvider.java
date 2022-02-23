@@ -243,6 +243,8 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(BlockInit.TRELLIS_MOSS.get(), "Trellis With Moss");
         add(BlockInit.TRELLIS_VINE.get(), "Trellis With Vine");
         add(BlockInit.TRELLIS_WARP.get(), "Warped Trellis");
+        
+        add(BlockInit.CHASM_SAPLING.get(), "Chasm Sapling");
     }
     
     private void addItemGroupText() {
