@@ -9,19 +9,11 @@ import net.codersdownunder.gemmod.utils.slots.GenericSlot;
 import net.codersdownunder.gemmod.utils.slots.OutputSlot;
 import net.codersdownunder.gemmod.utils.slots.SlotRestricted;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
-import net.minecraft.tags.Tag.TagEntry;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -29,8 +21,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import net.minecraftforge.registries.ForgeRegistryEntry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class DipperMenu extends AbstractContainerMenu {
 
@@ -53,7 +43,7 @@ public class DipperMenu extends AbstractContainerMenu {
 		this.playerEntity = player;
 		this.playerInventory = new InvWrapper(playerInventory);
 		this.tile = tile;
-		Item item;
+		
 		
 		if (blockEntity != null) {
 			blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
