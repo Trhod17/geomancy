@@ -43,10 +43,10 @@ public class SongForgeBlockEntity extends BlockEntity {
 	public static int input;
 	public static int counter;
 	// private int countermax;
-	public static int burntime;
-	// private int burntimemax;
+	public static int burntime = 0;
+	private boolean burning;
 	public static int fuel;
-	public static boolean crafting;
+	//public static boolean crafting;
 
 //	private CompoundTag updateTag;
 
@@ -75,50 +75,91 @@ public class SongForgeBlockEntity extends BlockEntity {
 
 		if (level.isClientSide)
 			return;
-
-		if (counter > 0) {
-			counter--;
-		}
-
+		
 		if (burntime != 0) {
-			burntime--;
+			burntime -= 1;
 		}
+		
+		if (itemHandler.getStackInSlot(3).isEmpty()) {
+			System.out.println("3 empty");
+		}
+		if (itemHandler.getStackInSlot(4).isEmpty()) {
+			System.out.println("4 empty");
+		}
+		if (itemHandler.getStackInSlot(5).isEmpty()) {
+			System.out.println("5 empty");
+		}
+		
+		if (burntime <= 0) {
+			//System.out.println(getBurnTime());
+			if (getBurnTime() != 0) {
+				burntime = getBurnTime();
+				System.out.println("burntime is " + burntime);
+				this.level.setBlock(this.worldPosition,
+						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
+				burning = true;
+			} else {
+				burning = false;
+				this.level.setBlock(this.worldPosition,
+						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
+			}
 
-		if (!valid) {
+		}
+		
+		if (!valid && burning) {
 			isRecipeValid();
 
 			if (valid) {
-				burntime = getBurnTime();
-				// burntimemax = burntime;
-				this.level.setBlock(this.worldPosition,
-						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
-			}
-		}
-
-		if (burntime == 0) {
-			burntime = getBurnTime();
-			System.out.println(burntime);
-			if (burntime == 0) {
-			this.level.setBlock(this.worldPosition,
-					this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
+				
+				System.out.println("is valid and burning");
+				
 			}
 		}
 		
-		
 
-		if (counter <= 0) {
-
-			if (valid && crafting && outputRoom()) {
-				attemptCraft(output);
-				valid = false;
-				crafting = false;
-				output = null;
-			}
-
-			if (valid && !crafting) {
-				crafting = true;
-			}
-		}
+//		if (counter > 0) {
+//			counter--;
+//		}
+//
+//		if (burntime != 0) {
+//			burntime--;
+//		}
+//
+//		if (!valid) {
+//			isRecipeValid();
+//
+//			if (valid) {
+//				burntime = getBurnTime();
+//				// burntimemax = burntime;
+//				this.level.setBlock(this.worldPosition,
+//						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
+//			}
+//		}
+//
+//		if (burntime == 0) {
+//			burntime = getBurnTime();
+//			//System.out.println(burntime);
+//			if (burntime == 0) {
+//			this.level.setBlock(this.worldPosition,
+//					this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
+//			}
+//		}
+//		
+//		
+//
+//		if (counter <= 0) {
+//
+//			if (valid) {
+//				attemptCraft(output);
+//				valid = false;
+//				//crafting = false;
+//				output = null;
+//			}
+//
+//			if (valid) {
+//				//crafting = true;
+//			}
+//		}
 	}
 	
 	private boolean outputRoom() {
@@ -167,9 +208,10 @@ public class SongForgeBlockEntity extends BlockEntity {
 		}
 
 		ItemStack item;
-
+		
 		item = itemHandler.getStackInSlot(fuel).copy();
 		item.shrink(0);
+		//System.out.println(item);
 		itemHandler.setStackInSlot(fuel, item);
 		return ForgeHooks.getBurnTime(inv.getItem(0), RecipeType.SMELTING);
 	}
@@ -297,7 +339,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 		pTag.put("inv", itemHandler.serializeNBT());
 		pTag.putInt("counter", counter);
 		pTag.putInt("burntime", burntime);
-		pTag.putBoolean("crafting", crafting);
+		//pTag.putBoolean("crafting", crafting);
 		pTag.putBoolean("valid", valid);
 		
 		super.saveAdditional(pTag);
@@ -308,7 +350,7 @@ public class SongForgeBlockEntity extends BlockEntity {
 		itemHandler.deserializeNBT(tag.getCompound("inv"));
 		counter = tag.getInt("counter");
 		burntime = tag.getInt("burntime");
-		crafting = tag.getBoolean("crafting");
+		//crafting = tag.getBoolean("crafting");
 		valid = tag.getBoolean("valid");
 		super.load(tag);
 	}

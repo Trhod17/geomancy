@@ -10,6 +10,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -33,7 +34,7 @@ public class DiggingClawItem extends DiggerItem
 	
 	private Tier tier;
 
-    public DiggingClawItem(float attackDamageBaseLine, float attackDamageBaseline, Tiers tier, Tag<Block> blocks, Properties p_i48487_1_)
+    public DiggingClawItem(float attackDamageBaseLine, float attackDamageBaseline, Tiers tier, TagKey<Block> blocks, Properties p_i48487_1_)
     {
         super(attackDamageBaseline, attackDamageBaseline, tier, blocks, p_i48487_1_);
         this.tier = tier;

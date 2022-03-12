@@ -50,11 +50,12 @@ public class InfusionStandBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag tag) {
-        tag.put("inv", itemHandler.serializeNBT());
-
-        return super.save(tag);
+    protected void saveAdditional(CompoundTag pTag) {
+    	super.saveAdditional(pTag);
+    	 pTag.put("inv", itemHandler.serializeNBT());
     }
+    
+
     
     @Override
     public void load(CompoundTag tag) {

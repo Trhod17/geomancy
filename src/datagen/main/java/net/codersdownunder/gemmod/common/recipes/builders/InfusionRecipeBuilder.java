@@ -17,6 +17,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -55,7 +56,7 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
 	   /**
 	    * Adds an ingredient that can be any item in the given tag.
 	    */
-	   public InfusionRecipeBuilder infusing(Tag<Item> pTag) {
+	   public InfusionRecipeBuilder infusing(TagKey<Item> pTag) {
 	      return this.requires(Ingredient.of(pTag));
 	   }
 

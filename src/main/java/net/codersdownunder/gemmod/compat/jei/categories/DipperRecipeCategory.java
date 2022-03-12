@@ -15,6 +15,7 @@ import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
+import net.codersdownunder.gemmod.utils.TagUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +23,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+
+
+/*
+ * TODO: Update to new non deprecated jei methods
+ */
 
 public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
 {
@@ -67,11 +73,12 @@ public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
         ingredients.setInputIngredients(recipe.getIngredients());
         ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
     }
+
     
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, DippingRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup itemStackGroup = recipeLayout.getItemStacks();
-        IGuiFluidStackGroup fluidStackGroup = recipeLayout.getFluidStacks();
+		IGuiFluidStackGroup fluidStackGroup = recipeLayout.getFluidStacks();
 
         itemStackGroup.init(15, true, 49, 7);
         itemStackGroup.init(16, true, 49, 25);
@@ -106,8 +113,8 @@ public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
     private static ArrayList<ItemStack> getString() {
     	ArrayList<ItemStack> stack = new ArrayList<ItemStack>();
     	
-    	for (int i = 0; i < GeomancyTags.Items.STRING.getValues().size(); i++) {
-			stack.add(new ItemStack(GeomancyTags.Items.STRING.getValues().get(i)));
+    	for (int i = 0; i < TagUtils.getValues(GeomancyTags.Items.STRING).size(); i++) {
+			stack.add(new ItemStack(TagUtils.getValues(GeomancyTags.Items.STRING).get(i)));
 		}
     	
     	return stack;
@@ -123,7 +130,7 @@ public class DipperRecipeCategory implements IRecipeCategory<DippingRecipe>
             Collection<Fluid> fluidList = ForgeRegistries.FLUIDS.getValues();
 
             for (Fluid fluid : fluidList) {
-                if (GeomancyTags.Fluids.DIPPING_FLUIDS.getValues().contains(fluid) && fluid.isSource(fluid.defaultFluidState()))
+                if (TagUtils.getValuesFluid(GeomancyTags.Fluids.DIPPING_FLUIDS).contains(fluid) && fluid.isSource(fluid.defaultFluidState()))
                     acceptedFluids.add(new FluidStack(fluid, 700));
             }
             return acceptedFluids;

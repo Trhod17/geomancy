@@ -16,9 +16,6 @@ import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.network.GemModNetwork;
 import net.codersdownunder.gemmod.utils.GemModItemGroup;
 import net.codersdownunder.gemmod.utils.ModVanillaCompat;
-import net.codersdownunder.gemmod.world.WorldGenerationEvents;
-import net.codersdownunder.gemmod.world.decorators.RNGPlacement;
-import net.codersdownunder.gemmod.world.features.GeomancyFeatures;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
@@ -90,7 +87,7 @@ public class GemMod
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(LogStrippingEvent.class);
         MinecraftForge.EVENT_BUS.register(DreamCatcherEventHandler.class);
-        MinecraftForge.EVENT_BUS.register(new WorldGenerationEvents());
+        //MinecraftForge.EVENT_BUS.register(new WorldGenerationEvents());
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -110,7 +107,7 @@ public class GemMod
         	ModVanillaCompat.compat();
         });
         //VillagerInit.fillTradeData();
-        GeomancyFeatures.initialize();
+        //GeomancyFeatures.initialize();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -150,12 +147,12 @@ public class GemMod
     }
     
     
-    public static final PlacementModifierType<RNGPlacement> RNG_DECORATOR = register("rng_initializer", RNGPlacement.CODEC);
-    
-    private static <P extends PlacementModifier> PlacementModifierType<P> register(String name, Codec<P> codec) {
-		return Registry.register(Registry.PLACEMENT_MODIFIERS, name, () -> {
-			return codec;
-		});
-	}
+//    public static final PlacementModifierType<RNGPlacement> RNG_DECORATOR = register("rng_initializer", RNGPlacement.CODEC);
+//    
+//    private static <P extends PlacementModifier> PlacementModifierType<P> register(String name, Codec<P> codec) {
+//		return Registry.register(Registry.PLACEMENT_MODIFIERS, name, () -> {
+//			return codec;
+//		});
+//	}
     
     }

@@ -24,6 +24,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 
+/*
+ * TODO: Update to new non deprecated jei methods
+ */
 @JeiPlugin
 public class GemModJEIPlugin implements IModPlugin
 {

@@ -1,17 +1,27 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
+
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
+import net.codersdownunder.gemmod.utils.TagUtils;
 import net.codersdownunder.gemmod.utils.slots.GenericSlot;
 import net.codersdownunder.gemmod.utils.slots.OutputSlot;
 import net.codersdownunder.gemmod.utils.slots.SlotRestricted;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
+import net.minecraft.tags.Tag.TagEntry;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,6 +29,8 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class DipperMenu extends AbstractContainerMenu {
 
@@ -41,15 +53,15 @@ public class DipperMenu extends AbstractContainerMenu {
 		this.playerEntity = player;
 		this.playerInventory = new InvWrapper(playerInventory);
 		this.tile = tile;
-		
+		Item item;
 		
 		if (blockEntity != null) {
 			blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
 				//center line
-				addSlot(new SlotRestricted(h, 0, 67, -9, GeomancyTags.Items.STRING.getValues()));
-				addSlot(new SlotRestricted(h, 1, 67, 9, GeomancyTags.Items.STRING.getValues()));
+				addSlot(new SlotRestricted(h, 0, 67, -9, TagUtils.getValues(GeomancyTags.Items.STRING)));
+				addSlot(new SlotRestricted(h, 1, 67, 9, TagUtils.getValues(GeomancyTags.Items.STRING)));
 				addSlot(new GenericSlot(h, 2, 67, 27));
-				addSlot(new SlotRestricted(h, 3, 67, 45, GeomancyTags.Items.STRING.getValues()));
+				addSlot(new SlotRestricted(h, 3, 67, 45, TagUtils.getValues(GeomancyTags.Items.STRING)));
 				addSlot(new GenericSlot(h, 4, 67, 63));
 				addSlot(new GenericSlot(h, 5, 67, 81));
 				//center left
@@ -69,10 +81,10 @@ public class DipperMenu extends AbstractContainerMenu {
 				addSlot(new GenericSlot(h, 16, 103, 45));
 				addSlot(new GenericSlot(h, 17, 103, 63));
 				//concoctions
-				addSlot(new SlotRestricted(h, 18, -5, 27, GeomancyTags.Items.CONCOCTIONS_TIER_4.getValues()));
-				addSlot(new SlotRestricted(h, 19, -5, 45, GeomancyTags.Items.CONCOCTIONS_TIER_3.getValues()));
-				addSlot(new SlotRestricted(h, 20, -5, 63, GeomancyTags.Items.CONCOCTIONS_TIER_2.getValues()));
-				addSlot(new SlotRestricted(h, 21, -5, 81, GeomancyTags.Items.CONCOCTIONS_TIER_1.getValues()));
+				addSlot(new SlotRestricted(h, 18, -5, 27, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_4)));
+				addSlot(new SlotRestricted(h, 19, -5, 45, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_3)));
+				addSlot(new SlotRestricted(h, 20, -5, 63, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_2)));
+				addSlot(new SlotRestricted(h, 21, -5, 81, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_1)));
 				//output
 				addSlot(new OutputSlot(h, 22, 139, 27));
 			});

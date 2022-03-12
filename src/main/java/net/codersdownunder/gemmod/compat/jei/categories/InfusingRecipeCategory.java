@@ -15,6 +15,9 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
+/*
+ * TODO: Update to new non deprecated jei methods
+ */
 public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
 {
     public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, ".infusion_recipe_category");

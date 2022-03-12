@@ -151,7 +151,7 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 	        
 	        if (FluidUtil.interactWithFluidHandler(player, hand, world, pos, hit.getDirection()) ||
 	                held.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).isPresent() && 
-	                GeomancyTags.Items.DIPPING_FLUIDS.getValues().contains(held.getItem())) {
+	                held.is(GeomancyTags.Items.DIPPING_FLUIDS)) {
 	            return InteractionResult.SUCCESS;
 	        } else {
 				openGUI(state, world, pos, player, hand, hit);

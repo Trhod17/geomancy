@@ -17,6 +17,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -54,7 +55,7 @@ public class DippingRecipeBuilder implements RecipeBuilder {
 	   /**
 	    * Adds an ingredient that can be any item in the given tag.
 	    */
-	   public DippingRecipeBuilder dipping(Tag<Item> pTag, int fluidAmount) {
+	   public DippingRecipeBuilder dipping(TagKey<Item> pTag, int fluidAmount) {
 	      return this.requires(Ingredient.of(pTag), fluidAmount);
 	   }
 
@@ -76,7 +77,7 @@ public class DippingRecipeBuilder implements RecipeBuilder {
 	      return this;
 	   }
 	   
-	   public DippingRecipeBuilder requires(Tag<Item> pTag) {
+	   public DippingRecipeBuilder requires(TagKey<Item> pTag) {
 		      return this.requires(Ingredient.of(pTag));
 		   }
 

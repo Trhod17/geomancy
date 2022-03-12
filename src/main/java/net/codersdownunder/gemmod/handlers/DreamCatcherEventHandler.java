@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
+import net.codersdownunder.gemmod.utils.TagUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -39,14 +40,14 @@ public class DreamCatcherEventHandler {
 				
 				if (val > 90D) {
 
-					insert(chest, GeomancyTags.Items.DREAM_RARE.getValues().get(rand.nextInt(GeomancyTags.Items.DREAM_RARE.getValues().size())), 1);
+					insert(chest, TagUtils.getValues(GeomancyTags.Items.DREAM_RARE).get(rand.nextInt(TagUtils.getValues(GeomancyTags.Items.DREAM_RARE).size())), 1);
 				}
 				
 				if (val < 70D) {
 					int items = rand.nextInt(5);
 					
 					for (int i = 0; i < items; i++) {
-						insert(chest, GeomancyTags.Items.DREAM_COMMON.getValues().get(rand.nextInt(GeomancyTags.Items.DREAM_COMMON.getValues().size())), rand.nextInt(3));
+						insert(chest, TagUtils.getValues(GeomancyTags.Items.DREAM_COMMON).get(rand.nextInt(TagUtils.getValues(GeomancyTags.Items.DREAM_RARE).size())), rand.nextInt(3));
 					}
 				}
 

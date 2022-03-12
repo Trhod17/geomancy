@@ -15,6 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 
+/*
+ * TODO: Update to new non deprecated jei methods
+ */
 public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
 {
     public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, ".songforge_recipe_category");
