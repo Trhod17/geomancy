@@ -106,8 +106,9 @@ public class DipperBlockEntity extends BlockEntity {
             setChanged();
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
         } else {
+            ItemStack outputStack = itemHandler.getStackInSlot(DipperMenu.OUTPUT_SLOT);
             // Complete crafting
-            if (isCrafting && itemHandler.getStackInSlot(DipperMenu.OUTPUT_SLOT).isEmpty() && hasValidRecipe() && cachedRecipe != null) {
+            if (isCrafting && hasValidRecipe() && cachedRecipe != null && (outputStack.isEmpty() || outputStack.getItem().equals(cachedRecipe.getResultItem().getItem()))) {
                 isCrafting = false;
                 attemptCraft(output, cachedRecipe.getFluidAmount());
                 setChanged();
@@ -115,7 +116,7 @@ public class DipperBlockEntity extends BlockEntity {
             }
 
             // Initiate crafting if valid recipe exists
-            if (!isCrafting && itemHandler.getStackInSlot(DipperMenu.OUTPUT_SLOT).isEmpty() && hasValidRecipe()) {
+            if (!isCrafting && hasValidRecipe() && (outputStack.isEmpty() || outputStack.getItem().equals(cachedRecipe.getResultItem().getItem()))) {
                 counter = Config.SERVER.dipperTime.get();
                 isCrafting = true;
                 setChanged();
@@ -305,10 +306,10 @@ public class DipperBlockEntity extends BlockEntity {
                 level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE);
             }
 
-            @Override
-            public int getSlotLimit(int slot) {
-                return ArrayUtils.contains(DipperMenu.STRING_SLOTS, slot) || slot == DipperMenu.QUARTZ_SLOT ? 1 : 64;
-            }
+//            @Override
+//            public int getSlotLimit(int slot) {
+//                return ArrayUtils.contains(DipperMenu.STRING_SLOTS, slot) || slot == DipperMenu.QUARTZ_SLOT ? 1 : 64;
+//            }
 //
 //	            @Override
 //	            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
