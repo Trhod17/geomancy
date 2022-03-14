@@ -1,17 +1,14 @@
 package net.codersdownunder.gemmod.utils;
 
 import net.codersdownunder.gemmod.GemMod;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.Tags;
 
 @SuppressWarnings("unused")
 public class GeomancyTags {
@@ -39,7 +36,7 @@ public class GeomancyTags {
 		public static final TagKey<Item> DREAM_COMMON = createTag("dream_common");
 		public static final TagKey<Item> DREAM_RARE = createTag("dream_rare");
 		
-		public static final TagKey<Item> STRING = createTag("string");
+		public static final TagKey<Item> STRING = createForgeTag("string");
 		public static final TagKey<Item> SEED_CRYSTAL = createTag("seed_crystal");
 		
 		public static final TagKey<Item> DIPPING_FLUIDS = createTag("dipping_fluids");

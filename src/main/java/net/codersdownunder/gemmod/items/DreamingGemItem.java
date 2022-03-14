@@ -1,7 +1,5 @@
 package net.codersdownunder.gemmod.items;
 
-import java.util.List;
-
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -9,6 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
 
 
 public class DreamingGemItem extends Item

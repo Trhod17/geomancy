@@ -1,26 +1,32 @@
 package net.codersdownunder.gemmod.compat.jei.categories;
 
+import com.mojang.datafixers.util.Pair;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
-/*
- * TODO: Update to new non deprecated jei methods
- */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
 {
-    public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, ".infusion_recipe_category");
+    public static final RecipeType<InfusingRecipe> INFUSION = RecipeType.create(GemMod.MODID, "infusion_recipe", InfusingRecipe.class);
+    public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, "infusion_recipe");
     public static final ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/infusion_recipe.png");
     private final IDrawable back;
     private final IDrawable icon;
@@ -30,14 +36,21 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.INFUSION_TABLE.get()));
     }
 
+    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return ID;
     }
 
+    @SuppressWarnings("removal")
     @Override
     public Class<? extends InfusingRecipe> getRecipeClass() {
         return InfusingRecipe.class;
+    }
+
+    @Override
+    public RecipeType<InfusingRecipe> getRecipeType() {
+        return INFUSION;
     }
 
     @Override
@@ -56,25 +69,27 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
     }
 
     @Override
-    public void setIngredients(InfusingRecipe recipe, IIngredients ingredients) {
-        ingredients.setInputIngredients(recipe.getIngredients());
-        ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
-    }
-    
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, InfusingRecipe recipe, IIngredients ingredients) {
-        IGuiItemStackGroup itemStackGroup = recipeLayout.getItemStacks();
-        
-        itemStackGroup.init(0, true, 11, 34);
-        itemStackGroup.init(1, true, 38, 52);
-        itemStackGroup.init(2, true, 110, 52);
-        itemStackGroup.init(3, true, 137, 34);
-        itemStackGroup.init(4, true, 38, 16);
-        itemStackGroup.init(5, true, 110, 16);
-        itemStackGroup.init(6, true, 74, 34);
-        itemStackGroup.init(7, false, 74, 79);
-        
-        itemStackGroup.set(6, recipe.getBaseItem());
-        itemStackGroup.set(ingredients);
+    public void setRecipe(IRecipeLayoutBuilder builder, InfusingRecipe recipe, IFocusGroup focuses) {
+        List<Pair<Integer, Integer>> ingredientPositions = new ArrayList<>() {{
+            add(Pair.of(12, 35));
+            add(Pair.of(39, 53));
+            add(Pair.of(111, 53));
+            add(Pair.of(138, 35));
+            add(Pair.of(39, 17));
+            add(Pair.of(111, 17));
+            add(Pair.of(75, 35));
+        }};
+
+        NonNullList<Ingredient> ingredients = recipe.getIngredients();
+        int ingredientSize = ingredients.size();
+        IntStream.range(0, ingredientSize).forEach(value -> {
+            builder.addSlot(RecipeIngredientRole.INPUT, ingredientPositions.get(value).getFirst(), ingredientPositions.get(value).getSecond())
+                    .addIngredients(ingredients.get(value))
+                    .setSlotName("ingredient" + value);
+        });
+
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 75, 80)
+                .addIngredient(VanillaTypes.ITEM, recipe.getResultItem())
+                .setSlotName("result");
     }
 }

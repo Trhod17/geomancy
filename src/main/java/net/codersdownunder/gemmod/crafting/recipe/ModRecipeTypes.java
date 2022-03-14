@@ -1,7 +1,5 @@
 package net.codersdownunder.gemmod.crafting.recipe;
 
-import java.util.Map;
-
 import net.codersdownunder.gemmod.crafting.recipe.brewing.BrewingRecipe;
 import net.codersdownunder.gemmod.crafting.recipe.brewing.BrewingRecipeType;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
@@ -16,6 +14,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+
+import java.util.Map;
 
 public class ModRecipeTypes {
 

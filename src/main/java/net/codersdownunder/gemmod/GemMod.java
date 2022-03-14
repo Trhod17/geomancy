@@ -1,23 +1,17 @@
 package net.codersdownunder.gemmod;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.mojang.serialization.Codec;
-
 import net.codersdownunder.gemmod.client.ClientSetup;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.handlers.DreamCatcherEventHandler;
 import net.codersdownunder.gemmod.handlers.LogStrippingEvent;
 import net.codersdownunder.gemmod.init.BlockInit;
-import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.init.ItemInit;
+import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.network.GemModNetwork;
 import net.codersdownunder.gemmod.utils.GemModItemGroup;
 import net.codersdownunder.gemmod.utils.ModVanillaCompat;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.Registry;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -26,8 +20,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -40,6 +32,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 // The value here should match an entry in the META-INF/mods.toml file

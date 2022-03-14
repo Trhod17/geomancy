@@ -1,18 +1,14 @@
 package net.codersdownunder.gemmod;
 
-import java.util.List;
-
-import org.apache.commons.lang3.tuple.Pair;
-
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.List;
 
 public class Config {
 
 	public static class Client {
-		
-		
-		
 		Client(ForgeConfigSpec.Builder builder) {
 			builder.comment("Client Configuration Settings").push("client");
 			{

@@ -18,7 +18,7 @@
       "item": "minecraft:andesite"
     },
     {
-      "item": "minecraft:deepslate"
+      "item": "minecraft:gravel"
     },
     {
       "item": "minecraft:andesite"
@@ -42,13 +42,16 @@
       "item": "minecraft:coal"
     },
     {
-      "item": "minecraft:gravel"
+      "item": "minecraft:deepslate"
     },
     {
       "item": "minecraft:blackstone"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:onyx"
   }

@@ -1,13 +1,7 @@
 package net.codersdownunder.gemmod.crafting.recipe.brewing;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.init.BlockInit;
@@ -25,6 +19,10 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.util.RecipeMatcher;
 import net.minecraftforge.registries.ForgeRegistryEntry;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BrewingRecipe implements Recipe<SimpleContainer>
 {

@@ -18,7 +18,7 @@
       "item": "minecraft:deepslate"
     },
     {
-      "item": "minecraft:obsidian"
+      "item": "minecraft:dark_oak_log"
     },
     {
       "item": "minecraft:deepslate"
@@ -42,13 +42,16 @@
       "item": "minecraft:lapis_lazuli"
     },
     {
-      "item": "minecraft:dark_oak_log"
+      "item": "minecraft:obsidian"
     },
     {
       "item": "minecraft:dark_oak_log"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:sapphire"
   }

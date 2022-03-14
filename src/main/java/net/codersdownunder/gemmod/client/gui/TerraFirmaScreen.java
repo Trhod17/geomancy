@@ -1,12 +1,7 @@
 package net.codersdownunder.gemmod.client.gui;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaMenu;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -16,6 +11,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class TerraFirmaScreen extends AbstractContainerScreen<TerraFirmaMenu>

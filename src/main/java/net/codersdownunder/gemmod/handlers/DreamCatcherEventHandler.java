@@ -1,7 +1,5 @@
 package net.codersdownunder.gemmod.handlers;
 
-import java.util.Random;
-
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.codersdownunder.gemmod.utils.TagUtils;
@@ -13,6 +11,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
+
+import java.util.Random;
 
 public class DreamCatcherEventHandler {
 

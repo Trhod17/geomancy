@@ -1,7 +1,5 @@
 package net.codersdownunder.gemmod.items;
 
-import java.util.List;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
@@ -17,6 +15,8 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+
+import java.util.List;
 
 public class TeleCoreItem extends Item {
 

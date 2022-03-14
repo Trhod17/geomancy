@@ -1,8 +1,5 @@
 package net.codersdownunder.gemmod.blocks.dream;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,6 +13,9 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class DreamCatcherBlockEntity extends BlockEntity {
 

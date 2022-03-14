@@ -1,8 +1,5 @@
 package net.codersdownunder.gemmod.blocks.infusion;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;
@@ -19,6 +16,9 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class InfusionTableBlockEntity extends BlockEntity {
 

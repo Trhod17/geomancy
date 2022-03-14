@@ -1,10 +1,6 @@
 package net.codersdownunder.gemmod.utils;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import com.mojang.blaze3d.systems.RenderSystem;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -16,6 +12,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class FluidUtils {
 	

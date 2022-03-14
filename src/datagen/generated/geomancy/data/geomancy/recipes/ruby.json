@@ -18,7 +18,7 @@
       "item": "minecraft:charcoal"
     },
     {
-      "item": "minecraft:obsidian"
+      "item": "minecraft:redstone"
     },
     {
       "item": "minecraft:charcoal"
@@ -42,13 +42,16 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:redstone"
+      "item": "minecraft:obsidian"
     },
     {
       "item": "minecraft:flint"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:ruby"
   }

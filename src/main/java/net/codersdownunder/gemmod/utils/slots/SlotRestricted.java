@@ -1,13 +1,13 @@
 package net.codersdownunder.gemmod.utils.slots;
 
-import java.util.Arrays;
-import java.util.List;
-
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.IItemHandler;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class SlotRestricted extends GenericSlot {
 

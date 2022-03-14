@@ -18,7 +18,7 @@
       "item": "minecraft:redstone"
     },
     {
-      "item": "minecraft:campfire"
+      "item": "minecraft:redstone"
     },
     {
       "item": "minecraft:glowstone_dust"
@@ -42,13 +42,16 @@
       "item": "minecraft:red_sand"
     },
     {
-      "item": "minecraft:redstone"
+      "item": "minecraft:campfire"
     },
     {
       "item": "minecraft:red_dye"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:jasper"
   }
