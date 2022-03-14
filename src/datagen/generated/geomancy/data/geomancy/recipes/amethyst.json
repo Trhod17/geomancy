@@ -18,7 +18,7 @@
       "item": "minecraft:soul_torch"
     },
     {
-      "item": "minecraft:soul_sand"
+      "item": "minecraft:purple_dye"
     },
     {
       "item": "minecraft:soul_torch"
@@ -42,13 +42,16 @@
       "item": "minecraft:purple_stained_glass"
     },
     {
-      "item": "minecraft:purple_dye"
+      "item": "minecraft:soul_sand"
     },
     {
       "item": "minecraft:stripped_crimson_hyphae"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:amethyst"
   }

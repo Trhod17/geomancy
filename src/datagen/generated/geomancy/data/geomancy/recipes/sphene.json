@@ -18,7 +18,7 @@
       "item": "minecraft:glowstone_dust"
     },
     {
-      "item": "minecraft:glowstone_dust"
+      "item": "minecraft:orange_dye"
     },
     {
       "item": "minecraft:glowstone_dust"
@@ -42,13 +42,16 @@
       "item": "minecraft:glowstone"
     },
     {
-      "item": "minecraft:orange_dye"
+      "item": "minecraft:glowstone_dust"
     },
     {
       "item": "minecraft:sugar"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:sphene"
   }

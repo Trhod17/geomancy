@@ -1,11 +1,12 @@
 package net.codersdownunder.gemmod.compat.jei.categories;
 
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
@@ -15,12 +16,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 
-/*
- * TODO: Update to new non deprecated jei methods
- */
 public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
 {
-    public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, ".songforge_recipe_category");
+    public static final RecipeType<SmeltingRecipe> SMELTING = RecipeType.create(GemMod.MODID, "songforge_recipe", SmeltingRecipe.class);
+    public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, "songforge_recipe");
     public static final ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/song_forge.png");
     private final IDrawable back;
     private final IDrawable icon;
@@ -28,17 +27,23 @@ public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
     public SongForgeRecipeCategory(IGuiHelper helper) {
         this.back = helper.drawableBuilder(GUI, 0, 0, 190, 70).trim(14, 0, 10, 20).build();
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.SONG_FORGE.get()));
-        
     }
 
+    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return ID;
     }
 
+    @SuppressWarnings("removal")
     @Override
     public Class<? extends SmeltingRecipe> getRecipeClass() {
         return SmeltingRecipe.class;
+    }
+
+    @Override
+    public RecipeType<SmeltingRecipe> getRecipeType() {
+        return SMELTING;
     }
 
     @Override
@@ -57,20 +62,12 @@ public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
     }
 
     @Override
-    public void setIngredients(SmeltingRecipe recipe, IIngredients ingredients) {
-    	
-        ingredients.setInputIngredients(recipe.getIngredients());
-        ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
-    }
-    
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, SmeltingRecipe recipe, IIngredients ingredients) {
-        IGuiItemStackGroup itemStackGroup = recipeLayout.getItemStacks();
-      
-        itemStackGroup.init(0, true, 27, 2);
-        itemStackGroup.init(1, false, 123, 20);
-
-
-		itemStackGroup.set(ingredients);
+    public void setRecipe(IRecipeLayoutBuilder builder, SmeltingRecipe recipe, IFocusGroup focuses) {
+        builder.addSlot(RecipeIngredientRole.INPUT, 28, 3)
+                .addIngredients(recipe.getIngredients().get(0))
+                .setSlotName("ingredient");
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 124, 21)
+                .addIngredient(VanillaTypes.ITEM, recipe.getResultItem())
+                .setSlotName("result");
     }
 }

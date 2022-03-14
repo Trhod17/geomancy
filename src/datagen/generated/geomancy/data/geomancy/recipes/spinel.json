@@ -18,7 +18,7 @@
       "item": "minecraft:pink_tulip"
     },
     {
-      "item": "minecraft:soul_campfire"
+      "item": "minecraft:pink_dye"
     },
     {
       "item": "minecraft:pink_tulip"
@@ -42,13 +42,16 @@
       "item": "minecraft:dirt"
     },
     {
-      "item": "minecraft:pink_dye"
+      "item": "minecraft:soul_campfire"
     },
     {
       "item": "minecraft:apple"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:spinel"
   }

@@ -18,7 +18,7 @@
       "item": "minecraft:warped_stem"
     },
     {
-      "item": "minecraft:rotten_flesh"
+      "item": "minecraft:bone_meal"
     },
     {
       "item": "minecraft:crimson_stem"
@@ -42,13 +42,16 @@
       "item": "minecraft:dirt"
     },
     {
-      "item": "minecraft:bone_meal"
+      "item": "minecraft:rotten_flesh"
     },
     {
       "item": "minecraft:purple_dye"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:charoite"
   }

@@ -1,11 +1,7 @@
 package net.codersdownunder.gemmod.init;
 
 import net.codersdownunder.gemmod.GemMod;
-import net.codersdownunder.gemmod.items.DiggingClawItem;
-import net.codersdownunder.gemmod.items.DreamingGemItem;
-import net.codersdownunder.gemmod.items.GemItem;
-import net.codersdownunder.gemmod.items.MulmusItem;
-import net.codersdownunder.gemmod.items.TeleCoreItem;
+import net.codersdownunder.gemmod.items.*;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.BlockItem;

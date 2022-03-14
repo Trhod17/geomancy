@@ -18,7 +18,7 @@
       "item": "minecraft:clay"
     },
     {
-      "item": "minecraft:packed_ice"
+      "item": "minecraft:ice"
     },
     {
       "item": "minecraft:clay"
@@ -42,13 +42,16 @@
       "item": "minecraft:packed_ice"
     },
     {
-      "item": "minecraft:ice"
+      "item": "minecraft:packed_ice"
     },
     {
       "item": "minecraft:snowball"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:chrysocolla"
   }

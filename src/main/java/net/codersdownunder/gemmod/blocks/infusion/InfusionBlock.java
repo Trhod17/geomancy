@@ -1,7 +1,5 @@
 package net.codersdownunder.gemmod.blocks.infusion;
 
-import java.util.stream.Stream;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -35,6 +33,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
+
+import java.util.stream.Stream;
 
 public class InfusionBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
     

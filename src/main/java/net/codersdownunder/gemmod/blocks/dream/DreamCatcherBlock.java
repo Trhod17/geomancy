@@ -1,8 +1,5 @@
 package net.codersdownunder.gemmod.blocks.dream;
 
-import java.util.Optional;
-import java.util.stream.Stream;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,6 +35,9 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
+
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class DreamCatcherBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
 

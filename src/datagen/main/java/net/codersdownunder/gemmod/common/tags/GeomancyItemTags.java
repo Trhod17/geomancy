@@ -62,8 +62,6 @@ public class GeomancyItemTags extends ItemTagsProvider {
 		.add(Items.EMERALD)
 		.add(ItemInit.EMERALD_DREAMING.get());
 		
-		tag(GeomancyTags.Items.STRING).add(Items.STRING);
-
 		tag(GeomancyTags.Items.SEED_CRYSTAL).add(Items.QUARTZ);
 
 		tag(GeomancyTags.Items.CONCOCTIONS_TIER_1).add(ItemInit.CONCOCTION_ONE.get());

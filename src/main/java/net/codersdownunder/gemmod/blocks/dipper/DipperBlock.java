@@ -1,10 +1,5 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
-import java.util.List;
-import java.util.stream.Stream;
-
-import javax.annotation.Nullable;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.ChatFormatting;
@@ -40,6 +35,10 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 
@@ -122,9 +121,7 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 			}
 		};
 	}
-//	
-//	
-//	
+//
 //    private void setRetainedFluidInTank(Level world, BlockPos pos, BlockState state, ItemStack stack) {
 //        if (stack.hasTag()) {
 //            final DipperBlockEntity tank = (DipperBlockEntity) world.getBlockEntity(pos);

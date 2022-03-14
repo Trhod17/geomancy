@@ -1,9 +1,5 @@
 package net.codersdownunder.gemmod.blocks.songforge;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -39,6 +35,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class SongForgeBlock extends BaseEntityBlock implements EntityBlock {
 

@@ -1,13 +1,5 @@
 package net.codersdownunder.gemmod.blocks.trellis;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.stream.Stream;
-
-import javax.annotation.Nullable;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.items.DiggingClawItem;
@@ -41,6 +33,13 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.stream.Stream;
 
 public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 

@@ -1,8 +1,5 @@
 package net.codersdownunder.gemmod.handlers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -14,6 +11,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LogStrippingEvent
 {

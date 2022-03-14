@@ -1,10 +1,7 @@
 package net.codersdownunder.gemmod.client.gui;
 
-import java.awt.Color;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlockEntity;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeMenu;
@@ -12,6 +9,8 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+
+import java.awt.*;
 
 public class SongForgeScreen extends AbstractContainerScreen<SongForgeMenu>
 {

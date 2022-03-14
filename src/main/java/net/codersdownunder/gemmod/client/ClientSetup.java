@@ -1,13 +1,7 @@
 package net.codersdownunder.gemmod.client;
 
 import net.codersdownunder.gemmod.GemMod;
-import net.codersdownunder.gemmod.client.gui.DipperScreen;
-import net.codersdownunder.gemmod.client.gui.DreamCatcherScreen;
-import net.codersdownunder.gemmod.client.gui.InfusionStandScreen;
-import net.codersdownunder.gemmod.client.gui.InfusionTableScreen;
-import net.codersdownunder.gemmod.client.gui.SongForgeScreen;
-import net.codersdownunder.gemmod.client.gui.TelepadScreen;
-import net.codersdownunder.gemmod.client.gui.TerraFirmaScreen;
+import net.codersdownunder.gemmod.client.gui.*;
 import net.codersdownunder.gemmod.client.renderer.DipperBlockEntityRenderer;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;

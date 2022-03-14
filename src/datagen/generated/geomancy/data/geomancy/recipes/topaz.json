@@ -18,7 +18,7 @@
       "item": "minecraft:bamboo"
     },
     {
-      "item": "minecraft:redstone"
+      "item": "minecraft:bamboo"
     },
     {
       "item": "minecraft:bamboo"
@@ -42,13 +42,16 @@
       "item": "minecraft:basalt"
     },
     {
-      "item": "minecraft:bamboo"
+      "item": "minecraft:redstone"
     },
     {
       "item": "minecraft:yellow_dye"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:topaz"
   }

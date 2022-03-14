@@ -18,7 +18,7 @@
       "item": "minecraft:blackstone"
     },
     {
-      "item": "minecraft:black_dye"
+      "item": "minecraft:charcoal"
     },
     {
       "item": "minecraft:blackstone"
@@ -42,13 +42,16 @@
       "item": "minecraft:end_stone"
     },
     {
-      "item": "minecraft:charcoal"
+      "item": "minecraft:black_dye"
     },
     {
       "item": "minecraft:lapis_lazuli"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:rhodonite"
   }

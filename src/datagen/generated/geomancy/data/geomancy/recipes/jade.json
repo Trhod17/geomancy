@@ -48,7 +48,10 @@
       "item": "minecraft:green_dye"
     }
   ],
-  "amount": 1000,
+  "fluid": {
+    "tag": "geomancy:dipping_fluids",
+    "amount": 1000
+  },
   "output": {
     "item": "geomancy:jade"
   }
