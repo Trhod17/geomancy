@@ -41,6 +41,10 @@ public class DipperMenu extends AbstractContainerMenu {
     public static final int[] STRING_SLOTS = new int[]{0, 1, 3};
     public static final int QUARTZ_SLOT = 2;
     public static final int OUTPUT_SLOT = 22;
+    public static final int CONCOCTION_1_SLOT = 21;
+    public static final int CONCOCTION_2_SLOT = 20;
+    public static final int CONCOCTION_3_SLOT = 19;
+    public static final int CONCOCTION_4_SLOT = 18;
 
     public DipperMenu(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, DipperBlockEntity tile) {
         super(MenuInit.DIPPER_CONTAINER.get(), windowId);

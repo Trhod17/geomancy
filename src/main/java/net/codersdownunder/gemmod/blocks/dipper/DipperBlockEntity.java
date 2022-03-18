@@ -4,6 +4,7 @@ import net.codersdownunder.gemmod.Config;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;
+import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -131,26 +132,24 @@ public class DipperBlockEntity extends BlockEntity {
         ItemStack concoction4 = itemHandler.getStackInSlot(18);
 
         outputQuantity = 1;
-        if (!concoction1.isEmpty()) {
-            if (concoction2.isEmpty()) {
-                shrink(21, 1);
-                outputQuantity = 2;
-            } else if (concoction3.isEmpty()) {
-                shrink(21, 1);
-                shrink(20, 1);
-                outputQuantity = 4;
-            } else if (concoction4.isEmpty()) {
-                shrink(21, 1);
-                shrink(20, 1);
-                shrink(19, 1);
-                outputQuantity = 8;
-            } else {
-                shrink(21, 1);
-                shrink(20, 1);
-                shrink(19, 1);
-                shrink(18, 1);
-                outputQuantity = 16;
-            }
+        if (concoction1.is(GeomancyTags.Items.CONCOCTIONS_TIER_1)) {
+            shrink(DipperMenu.CONCOCTION_1_SLOT, 1);
+            outputQuantity = 2;
+        }
+
+        if (outputQuantity == 2 && concoction2.is(GeomancyTags.Items.CONCOCTIONS_TIER_2)) {
+            shrink(DipperMenu.CONCOCTION_2_SLOT, 1);
+            outputQuantity = 4;
+        }
+
+        if (outputQuantity == 4 && concoction3.is(GeomancyTags.Items.CONCOCTIONS_TIER_3)) {
+            shrink(DipperMenu.CONCOCTION_3_SLOT, 1);
+            outputQuantity = 8;
+        }
+
+        if (outputQuantity == 8 && concoction4.is(GeomancyTags.Items.CONCOCTIONS_TIER_4)) {
+            shrink(DipperMenu.CONCOCTION_4_SLOT, 1);
+            outputQuantity = 16;
         }
     }
 
@@ -306,15 +305,31 @@ public class DipperBlockEntity extends BlockEntity {
                 level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE);
             }
 
-//            @Override
+            //            @Override
 //            public int getSlotLimit(int slot) {
 //                return ArrayUtils.contains(DipperMenu.STRING_SLOTS, slot) || slot == DipperMenu.QUARTZ_SLOT ? 1 : 64;
 //            }
 //
-//	            @Override
-//	            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-//	                return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
-//	            }
+            @Override
+            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+                if (slot == DipperMenu.CONCOCTION_1_SLOT && !stack.is(GeomancyTags.Items.CONCOCTIONS_TIER_1)) {
+                    return false;
+                }
+                if (slot == DipperMenu.CONCOCTION_2_SLOT && !stack.is(GeomancyTags.Items.CONCOCTIONS_TIER_2)) {
+                    return false;
+                }
+                if (slot == DipperMenu.CONCOCTION_3_SLOT && !stack.is(GeomancyTags.Items.CONCOCTIONS_TIER_3)) {
+                    return false;
+                }
+                if (slot == DipperMenu.CONCOCTION_4_SLOT && !stack.is(GeomancyTags.Items.CONCOCTIONS_TIER_4)) {
+                    return false;
+                }
+                if (ArrayUtils.contains(DipperMenu.STRING_SLOTS, slot) && !stack.is(GeomancyTags.Items.STRING)) {
+                    return false;
+                }
+
+                return slot != DipperMenu.OUTPUT_SLOT;
+            }
 //
 //	            @Nonnull
 //	            @Override
