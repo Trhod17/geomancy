@@ -3,8 +3,10 @@ package net.codersdownunder.gemmod.blocks.dipper;
 
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
+import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.codersdownunder.gemmod.utils.TagUtils;
+import net.codersdownunder.gemmod.utils.slots.AutomatableSlot;
 import net.codersdownunder.gemmod.utils.slots.GenericSlot;
 import net.codersdownunder.gemmod.utils.slots.OutputSlot;
 import net.codersdownunder.gemmod.utils.slots.SlotRestricted;
@@ -54,37 +56,39 @@ public class DipperMenu extends AbstractContainerMenu {
         this.tile = tile;
 
         if (blockEntity != null) {
-            blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                //center line
-                addSlot(new SlotRestricted(h, 0, 80, 18, TagUtils.getValues(GeomancyTags.Items.STRING)));
-                addSlot(new SlotRestricted(h, 1, 80, 36, TagUtils.getValues(GeomancyTags.Items.STRING)));
-                addSlot(new GenericSlot(h, QUARTZ_SLOT, 80, 54));
-                addSlot(new SlotRestricted(h, 3, 80, 72, TagUtils.getValues(GeomancyTags.Items.STRING)));
-                addSlot(new GenericSlot(h, 4, 80, 90));
-                addSlot(new GenericSlot(h, 5, 80, 108));
-                //center left
-                addSlot(new GenericSlot(h, 6, 62, 36));
-                addSlot(new GenericSlot(h, 7, 62, 54));
-                addSlot(new GenericSlot(h, 8, 62, 72));
-                //left
-                addSlot(new GenericSlot(h, 9, 44, 54));
-                addSlot(new GenericSlot(h, 10, 44, 72));
-                addSlot(new GenericSlot(h, 11, 44, 90));
-                //center right
-                addSlot(new GenericSlot(h, 12, 98, 54));
-                addSlot(new GenericSlot(h, 13, 98, 72));
-                addSlot(new GenericSlot(h, 14, 98, 36));
-                //right
-                addSlot(new GenericSlot(h, 15, 116, 54));
-                addSlot(new GenericSlot(h, 16, 116, 72));
-                addSlot(new GenericSlot(h, 17, 116, 90));
-                //concoctions
-                addSlot(new SlotRestricted(h, 18, 8, 54, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_4)));
-                addSlot(new SlotRestricted(h, 19, 8, 72, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_3)));
-                addSlot(new SlotRestricted(h, 20, 8, 90, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_2)));
-                addSlot(new SlotRestricted(h, 21, 8, 108, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_1)));
-                //output
-                addSlot(new OutputSlot(h, OUTPUT_SLOT, 152, 54));
+            blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+                if (handler instanceof AutomatableItemStackHandler h) {
+                    //center line
+                    addSlot(new AutomatableSlot(h, STRING_SLOTS[0], 80, 18, TagUtils.getValues(GeomancyTags.Items.STRING)));
+                    addSlot(new AutomatableSlot(h, STRING_SLOTS[1], 80, 36, TagUtils.getValues(GeomancyTags.Items.STRING)));
+                    addSlot(new AutomatableSlot(h, QUARTZ_SLOT, 80, 54));
+                    addSlot(new AutomatableSlot(h, STRING_SLOTS[2], 80, 72, TagUtils.getValues(GeomancyTags.Items.STRING)));
+                    addSlot(new AutomatableSlot(h, 4, 80, 90));
+                    addSlot(new AutomatableSlot(h, 5, 80, 108));
+                    //center left
+                    addSlot(new AutomatableSlot(h, 6, 62, 36));
+                    addSlot(new AutomatableSlot(h, 7, 62, 54));
+                    addSlot(new AutomatableSlot(h, 8, 62, 72));
+                    //left
+                    addSlot(new AutomatableSlot(h, 9, 44, 54));
+                    addSlot(new AutomatableSlot(h, 10, 44, 72));
+                    addSlot(new AutomatableSlot(h, 11, 44, 90));
+                    //center right
+                    addSlot(new AutomatableSlot(h, 12, 98, 54));
+                    addSlot(new AutomatableSlot(h, 13, 98, 72));
+                    addSlot(new AutomatableSlot(h, 14, 98, 36));
+                    //right
+                    addSlot(new AutomatableSlot(h, 15, 116, 54));
+                    addSlot(new AutomatableSlot(h, 16, 116, 72));
+                    addSlot(new AutomatableSlot(h, 17, 116, 90));
+                    //concoctions
+                    addSlot(new AutomatableSlot(h, CONCOCTION_4_SLOT, 8, 54, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_4)));
+                    addSlot(new AutomatableSlot(h, CONCOCTION_3_SLOT, 8, 72, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_3)));
+                    addSlot(new AutomatableSlot(h, CONCOCTION_2_SLOT, 8, 90, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_2)));
+                    addSlot(new AutomatableSlot(h, CONCOCTION_1_SLOT, 8, 108, TagUtils.getValues(GeomancyTags.Items.CONCOCTIONS_TIER_1)));
+                    //output
+                    addSlot(new AutomatableSlot(h, OUTPUT_SLOT, 152, 54));
+                }
             });
         }
 
