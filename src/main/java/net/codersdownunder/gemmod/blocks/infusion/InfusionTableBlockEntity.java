@@ -1,6 +1,5 @@
 package net.codersdownunder.gemmod.blocks.infusion;
 
-import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;

@@ -1,7 +1,6 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
 import net.codersdownunder.gemmod.Config;
-import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;
