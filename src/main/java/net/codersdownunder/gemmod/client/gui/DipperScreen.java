@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DipperScreen extends AbstractContainerScreen<DipperMenu> {
-
+public class DipperScreen extends AbstractContainerScreen<DipperMenu>
+{
     final static int FONT_Y_SPACING = 10;
     final static int PLAYER_INV_LABEL_XPOS = DipperMenu.PLAYER_INVENTORY_XPOS;
     final static int PLAYER_INV_LABEL_YPOS = DipperMenu.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;

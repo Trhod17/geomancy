@@ -88,6 +88,10 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
                     .setSlotName("ingredient" + value);
         });
 
+        builder.addSlot(RecipeIngredientRole.INPUT, 80, 40)
+                .addIngredient(VanillaTypes.ITEM, recipe.getBaseItem())
+                .setSlotName("base");
+
         builder.addSlot(RecipeIngredientRole.OUTPUT, 75, 80)
                 .addIngredient(VanillaTypes.ITEM, recipe.getResultItem())
                 .setSlotName("result");

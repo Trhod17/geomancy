@@ -11,16 +11,24 @@ public class AutomatableItemStackHandler extends ItemStackHandler {
         super(size);
     }
 
+    /**
+     * Use this to disable piping into output slots
+     */
     public boolean isInputSlot(int slot) {
         return true;
     }
-
+    /**
+     * Use this to disable piping into specific slots entirely
+     */
     public boolean isInsertableSlot(int slot) {
         return isInputSlot(slot);
     }
 
+    /**
+     * Use this to limit certain slots to certain items when piping items in
+     */
     public boolean isInputSlotItem(int slot, ItemStack stack) {
-        return true;
+        return isInputSlot(slot);
     }
 
     @Override

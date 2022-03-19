@@ -2,8 +2,8 @@ package net.codersdownunder.gemmod.blocks.infusion;
 
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
-import net.codersdownunder.gemmod.utils.slots.GenericSlot;
-import net.codersdownunder.gemmod.utils.slots.OutputSlot;
+import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
+import net.codersdownunder.gemmod.utils.slots.AutomatableSlot;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -26,20 +26,15 @@ public class InfusionTableMenu extends AbstractContainerMenu {
     private InfusionTableBlockEntity table;
     private BlockPos pos;
 
-    public static final int PLAYER_INVENTORY_XPOS = -5;
-    public static final int PLAYER_INVENTORY_YPOS = 113;
-    
-//    public static final int INPUT_SLOTS_COUNT = 6;
-//    public static final int OUTPUT_SLOTS_COUNT = 1;
-//    public static final int FURNACE_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
+    public static final int PLAYER_INVENTORY_XPOS = 8;
+    public static final int PLAYER_INVENTORY_YPOS = 140;
     
     public static int id;
     private static int CONTAINER_SIZE = 6;
-    
-    public InfusionTableMenu() {
-        super(MenuInit.INFUSION_TABLE_CONTAINER.get(), id);
-    }
-    
+
+    public static final int BASE_SLOT = 6;
+    public static final int OUTPUT_SLOT = 7;
+
     public InfusionTableMenu(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player)  {
         super(MenuInit.INFUSION_TABLE_CONTAINER.get(), windowId);
         InfusionTableMenu.id = windowId;
@@ -48,32 +43,30 @@ public class InfusionTableMenu extends AbstractContainerMenu {
         this.playerInventory = new InvWrapper(playerInventory);
         this.pos = pos;
 
-
         if (tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            	
-            	//far right and left
-            	addSlot(new GenericSlot(h, 5, 130, 18));
-                addSlot(new GenericSlot(h, 0, 4, 18));
-                
-                
-                // right slots
-                addSlot(new GenericSlot(h, 2, 103, 36));
-                addSlot(new GenericSlot(h, 3, 103, 0));
-                
-                // left slots
-                addSlot(new GenericSlot(h, 1, 31, 36));
-                addSlot(new GenericSlot(h, 4, 31, 0));
-                
-                //base item slot
-                addSlot(new GenericSlot(h, 6, 67, 18));
-                
-                //output
-                addSlot(new OutputSlot(h, 7, 67, 63));
+            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+                if (handler instanceof AutomatableItemStackHandler h) {
+                    //far right and left
+                    addSlot(new AutomatableSlot(h, 5, 143, 45));
+                    addSlot(new AutomatableSlot(h, 0, 17, 45));
+
+                    // right slots
+                    addSlot(new AutomatableSlot(h, 2, 116, 63));
+                    addSlot(new AutomatableSlot(h, 3, 116, 27));
+
+                    // left slots
+                    addSlot(new AutomatableSlot(h, 1, 44, 63));
+                    addSlot(new AutomatableSlot(h, 4, 44, 27));
+
+                    //base item slot
+                    addSlot(new AutomatableSlot(h, BASE_SLOT, 80, 45));
+
+                    //output
+                    addSlot(new AutomatableSlot(h, OUTPUT_SLOT, 80, 90));
+                }
             });
         }
 
-        
         layoutPlayerInventorySlots(PLAYER_INVENTORY_XPOS, PLAYER_INVENTORY_YPOS);
     }
     
@@ -105,13 +98,11 @@ public class InfusionTableMenu extends AbstractContainerMenu {
         return this.pos;
     }
 
-
     @Override
     public boolean stillValid(Player playerIn) {
         return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, BlockInit.INFUSION_TABLE.get());
     }
 
-    
     private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
         for (int i = 0 ; i < amount ; i++) {
             addSlot(new SlotItemHandler(handler, index, x, y));
@@ -138,10 +129,8 @@ public class InfusionTableMenu extends AbstractContainerMenu {
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
     
-    public InfusionTableBlockEntity getTable()
+    public InfusionTableBlockEntity getBlockEntity()
     {
         return table;
     }
-
-
 }

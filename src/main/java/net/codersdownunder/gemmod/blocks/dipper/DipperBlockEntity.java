@@ -193,6 +193,7 @@ public class DipperBlockEntity extends BlockEntity {
 
         // No crafting if the output slot is full
         if (resultSlotStack.getCount() > resultSlotStack.getMaxStackSize()) {
+            resultSlotStack.shrink(outputQuantity);
             return false;
         }
 
@@ -349,7 +350,7 @@ public class DipperBlockEntity extends BlockEntity {
                     return false;
                 }
 
-                return isInputSlot(slot);
+                return super.isInputSlotItem(slot, stack);
             }
         };
     }
