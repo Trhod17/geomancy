@@ -91,7 +91,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
 
         itemHandler.setStackInSlot(InfusionTableMenu.OUTPUT_SLOT, resultSlotStack);
 
-        for (int slot : new int[]{0, 1, 2, 4, 5}) {
+        for (int slot : new int[]{0, 1, 2, 3, 4, 5}) {
             itemHandler.extractItem(slot, 1, false, false);
         }
         itemHandler.extractItem(InfusionTableMenu.BASE_SLOT, 1, false, false);
