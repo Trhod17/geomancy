@@ -47,8 +47,6 @@ public class InfusionCraftingMessage
                    success.set(true);
                }
            }
-           //InfusionTableContainer.id = getContainerId();
-           
         });
         supplier.get().setPacketHandled(true);
         return success.get();

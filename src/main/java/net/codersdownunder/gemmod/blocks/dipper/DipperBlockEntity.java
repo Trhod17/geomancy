@@ -4,6 +4,8 @@ import net.codersdownunder.gemmod.Config;
 import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
 import net.codersdownunder.gemmod.init.TileEntityInit;
+import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
+import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -26,7 +28,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.annotation.Nonnull;
@@ -36,7 +37,7 @@ import java.util.Objects;
 
 public class DipperBlockEntity extends BlockEntity {
 
-    private final ItemStackHandler itemHandler = createHandler();
+    private final AutomatableItemStackHandler itemHandler = createHandler();
     private FluidTank tank;
 
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -51,7 +52,6 @@ public class DipperBlockEntity extends BlockEntity {
     private boolean valid;
     private boolean isCrafting;
     private ItemStack output;
-    private int outputQuantity;
 
     public DipperBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(TileEntityInit.DIPPER_BE.get(), pWorldPosition, pBlockState);
@@ -109,47 +109,21 @@ public class DipperBlockEntity extends BlockEntity {
             ItemStack outputStack = itemHandler.getStackInSlot(DipperMenu.OUTPUT_SLOT);
             // Complete crafting
             if (isCrafting && hasValidRecipe() && cachedRecipe != null && (outputStack.isEmpty() || outputStack.getItem().equals(cachedRecipe.getResultItem().getItem()))) {
-                isCrafting = false;
-                attemptCraft(output, cachedRecipe.getFluidAmount());
-                setChanged();
-                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+                if (attemptCraft(output, cachedRecipe.getFluidAmount())) {
+                    isCrafting = false;
+                    setChanged();
+                    level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+                }
             }
 
             // Initiate crafting if valid recipe exists
-            if (!isCrafting && hasValidRecipe() && (outputStack.isEmpty() || outputStack.getItem().equals(cachedRecipe.getResultItem().getItem()))) {
-                counter = Config.SERVER.dipperTime.get();
-                isCrafting = true;
-                setChanged();
-            }
-        }
-    }
-
-    private void setOutputQuantity() {
-        ItemStack concoction1 = itemHandler.getStackInSlot(21);
-        ItemStack concoction2 = itemHandler.getStackInSlot(20);
-        ItemStack concoction3 = itemHandler.getStackInSlot(19);
-        ItemStack concoction4 = itemHandler.getStackInSlot(18);
-
-        outputQuantity = 1;
-        if (!concoction1.isEmpty()) {
-            if (concoction2.isEmpty()) {
-                shrink(21, 1);
-                outputQuantity = 2;
-            } else if (concoction3.isEmpty()) {
-                shrink(21, 1);
-                shrink(20, 1);
-                outputQuantity = 4;
-            } else if (concoction4.isEmpty()) {
-                shrink(21, 1);
-                shrink(20, 1);
-                shrink(19, 1);
-                outputQuantity = 8;
-            } else {
-                shrink(21, 1);
-                shrink(20, 1);
-                shrink(19, 1);
-                shrink(18, 1);
-                outputQuantity = 16;
+            if (!isCrafting && hasValidRecipe() && (outputStack.isEmpty() || (outputStack.getItem().equals(cachedRecipe.getResultItem().getItem())))) {
+                int qty = getOutputQuantity();
+                if (outputStack.getCount() + qty <= outputStack.getMaxStackSize()) {
+                    counter = Config.SERVER.dipperTime.get();
+                    isCrafting = true;
+                    setChanged();
+                }
             }
         }
     }
@@ -158,13 +132,13 @@ public class DipperBlockEntity extends BlockEntity {
     private void shrink(int slot, int amount) {
         ItemStack stack = itemHandler.getStackInSlot(slot);
         if (stack.isDamageableItem()) {
-            if (stack.getDamageValue() > 1 || !stack.isDamaged()) {
-                stack.setDamageValue(stack.getDamageValue() - 1);
+            if (stack.getDamageValue() + amount < stack.getMaxDamage() || !stack.isDamaged()) {
+                stack.setDamageValue(stack.getDamageValue() + amount);
             } else {
-                itemHandler.extractItem(slot, 1, false);
+                itemHandler.extractItem(slot, 1, false, false);
             }
         } else {
-            itemHandler.extractItem(slot, 1, false);
+            itemHandler.extractItem(slot, 1, false, false);
         }
     }
 
@@ -206,21 +180,72 @@ public class DipperBlockEntity extends BlockEntity {
         return valid && hasValidFluid;
     }
 
-    private void attemptCraft(ItemStack output, int fluidAmount) {
-        setOutputQuantity();
+    private boolean attemptCraft(ItemStack output, int fluidAmount) {
+        int outputQuantity = getOutputQuantity();
+
+        ItemStack resultSlotStack = itemHandler.getStackInSlot(DipperMenu.OUTPUT_SLOT);
+        if (resultSlotStack.isEmpty()) {
+            resultSlotStack = new ItemStack(output.getItem(), outputQuantity);
+        } else {
+            resultSlotStack.grow(outputQuantity);
+        }
+
+        // No crafting if the output slot is full
+        if (resultSlotStack.getCount() > resultSlotStack.getMaxStackSize()) {
+            resultSlotStack.shrink(outputQuantity);
+            return false;
+        }
+
+        itemHandler.setStackInSlot(DipperMenu.OUTPUT_SLOT, resultSlotStack);
 
         for (int slot : DipperMenu.STRING_SLOTS) {
-            itemHandler.extractItem(slot, 1, false);
+            itemHandler.extractItem(slot, 1, false, false);
         }
         for (int slot : DipperMenu.INPUT_SLOTS) {
-            itemHandler.extractItem(slot, 1, false);
+            itemHandler.extractItem(slot, 1, false, false);
         }
 
-        itemHandler.insertItem(DipperMenu.OUTPUT_SLOT, new ItemStack(output.getItem(), outputQuantity), false);
+        if (outputQuantity >= 2) {
+            shrink(DipperMenu.CONCOCTION_1_SLOT, 1);
+        }
+        if (outputQuantity >= 4) {
+            shrink(DipperMenu.CONCOCTION_2_SLOT, 1);
+        }
+        if (outputQuantity >= 8) {
+            shrink(DipperMenu.CONCOCTION_3_SLOT, 1);
+        }
+        if (outputQuantity == 16) {
+            shrink(DipperMenu.CONCOCTION_4_SLOT, 1);
+        }
 
         tank.drain(fluidAmount, FluidAction.EXECUTE);
 
         counter = 0;
+
+        return true;
+    }
+
+    private int getOutputQuantity() {
+        ItemStack concoction1 = itemHandler.getStackInSlot(DipperMenu.CONCOCTION_1_SLOT);
+        ItemStack concoction2 = itemHandler.getStackInSlot(DipperMenu.CONCOCTION_2_SLOT);
+        ItemStack concoction3 = itemHandler.getStackInSlot(DipperMenu.CONCOCTION_3_SLOT);
+        ItemStack concoction4 = itemHandler.getStackInSlot(DipperMenu.CONCOCTION_4_SLOT);
+
+        int outputQuantity = 1;
+        if (concoction1.is(GeomancyTags.Items.CONCOCTIONS_TIER_1)) {
+            outputQuantity = 2;
+        }
+        if (outputQuantity == 2 && concoction2.is(GeomancyTags.Items.CONCOCTIONS_TIER_2)) {
+            outputQuantity = 4;
+        }
+        if (outputQuantity == 4 && concoction3.is(GeomancyTags.Items.CONCOCTIONS_TIER_3)) {
+            outputQuantity = 8;
+        }
+        if (outputQuantity == 8 && concoction4.is(GeomancyTags.Items.CONCOCTIONS_TIER_4)) {
+            outputQuantity = 16;
+        }
+
+        return outputQuantity;
     }
 
     @Override
@@ -279,7 +304,6 @@ public class DipperBlockEntity extends BlockEntity {
         super.saveAdditional(pTag);
     }
 
-
     @Override
     public void onLoad() {
         super.onLoad();
@@ -288,13 +312,9 @@ public class DipperBlockEntity extends BlockEntity {
     public FluidStack getFluid() {
         return this.tank.getFluid();
     }
-//
-//	public FluidTank getTank() {
-//		return this.tank;
-//	}
 
-    private ItemStackHandler createHandler() {
-        return new ItemStackHandler(24) {
+    private AutomatableItemStackHandler createHandler() {
+        return new AutomatableItemStackHandler(24) {
 
             @Override
             protected void onContentsChanged(int slot) {
@@ -306,24 +326,31 @@ public class DipperBlockEntity extends BlockEntity {
                 level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE);
             }
 
-//            @Override
-//            public int getSlotLimit(int slot) {
-//                return ArrayUtils.contains(DipperMenu.STRING_SLOTS, slot) || slot == DipperMenu.QUARTZ_SLOT ? 1 : 64;
-//            }
-//
-//	            @Override
-//	            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-//	                return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
-//	            }
-//
-//	            @Nonnull
-//	            @Override
-//	            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-//	                if (ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) <= 0) {
-//	                    return stack;
-//	                }
-//	                return super.insertItem(slot, stack, simulate);
-//	            }
+            @Override
+            public boolean isInputSlot(int slot) {
+                return slot != DipperMenu.OUTPUT_SLOT;
+            }
+
+            @Override
+            public boolean isInputSlotItem(int slot, ItemStack stack) {
+                if (slot == DipperMenu.CONCOCTION_1_SLOT && !stack.is(GeomancyTags.Items.CONCOCTIONS_TIER_1)) {
+                    return false;
+                }
+                if (slot == DipperMenu.CONCOCTION_2_SLOT && !stack.is(GeomancyTags.Items.CONCOCTIONS_TIER_2)) {
+                    return false;
+                }
+                if (slot == DipperMenu.CONCOCTION_3_SLOT && !stack.is(GeomancyTags.Items.CONCOCTIONS_TIER_3)) {
+                    return false;
+                }
+                if (slot == DipperMenu.CONCOCTION_4_SLOT && !stack.is(GeomancyTags.Items.CONCOCTIONS_TIER_4)) {
+                    return false;
+                }
+                if (ArrayUtils.contains(DipperMenu.STRING_SLOTS, slot) && !stack.is(GeomancyTags.Items.STRING)) {
+                    return false;
+                }
+
+                return super.isInputSlotItem(slot, stack);
+            }
         };
     }
 
@@ -338,69 +365,4 @@ public class DipperBlockEntity extends BlockEntity {
         }
         return super.getCapability(cap, side);
     }
-
-    public LazyOptional<IFluidHandler> getFluidCap() {
-        return fluidHandler;
-    }
-
-    public FluidTank getTank() {
-        return this.tank;
-    }
-
-//	@Override
-//	public int getTanks() {
-//
-//		return 1;
-//	}
-//
-//	@Override
-//	public FluidStack getFluidInTank(int tank) {
-//
-//		return this.tank.getFluid();
-//	}
-//
-//	@Override
-//	public int getTankCapacity(int tank) {
-//
-//		return capacity;
-//	}
-//
-//	@Override
-//	public boolean isFluidValid(int tank, FluidStack stack) {
-//
-//		return true;
-//	}
-//
-//	public boolean interactWithItemFluidHandler(IFluidHandlerItem fluidHandler) {
-//		if (fluidHandler.getTanks() == 0)
-//			return false;
-//
-//		FluidStack tankFluid = fluidHandler.getFluidInTank(1);
-//
-//		if (tankFluid.isEmpty()) {
-//			if (!this.tank.isEmpty()) {
-//				int amount = fluidHandler.fill(this.tank.getFluid(), FluidAction.SIMULATE);
-//				if (amount > 0) {
-//					amount = fluidHandler.fill(this.tank.getFluid(), FluidAction.EXECUTE);
-//					fluidHandler.drain(amount, FluidAction.EXECUTE);
-//					this.setChanged();
-//					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-//					return true;
-//				}
-//			}
-//		} else if (this.tank.isEmpty()) {
-//			tankFluid = tankFluid.copy();
-//			tankFluid.setAmount(this.tank.getCapacity() - this.tank.getFluidAmount());
-//			FluidStack amount = fluidHandler.drain(tankFluid, FluidAction.EXECUTE);
-//			if (!amount.isEmpty() && (this.tank.isEmpty())) {
-//				amount.grow(this.tank.getFluidAmount());
-//				this.fluidStack = amount;
-//				this.setChanged();
-//				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-
 }
