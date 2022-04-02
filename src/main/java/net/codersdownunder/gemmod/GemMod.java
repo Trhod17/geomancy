@@ -11,6 +11,8 @@ import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.network.GemModNetwork;
 import net.codersdownunder.gemmod.utils.GemModItemGroup;
 import net.codersdownunder.gemmod.utils.ModVanillaCompat;
+import net.codersdownunder.gemmod.world.WorldGenerationEvents;
+import net.codersdownunder.gemmod.world.features.GeomancyFeatures;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -73,7 +75,7 @@ public class GemMod
         TileEntityInit.TILE_ENTITIES.register(bus);
         //VillagerInit.POINT_OF_INTEREST_TYPES.register(bus);
         //VillagerInit.VILLAGER_PROFESSIONS.register(bus);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.serverSpec);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.commonSpec);
         //ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.addListener(ClientSetup::doClientStuff));
@@ -81,7 +83,7 @@ public class GemMod
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(LogStrippingEvent.class);
         MinecraftForge.EVENT_BUS.register(DreamCatcherEventHandler.class);
-        //MinecraftForge.EVENT_BUS.register(new WorldGenerationEvents());
+        MinecraftForge.EVENT_BUS.register(new WorldGenerationEvents());
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -101,7 +103,7 @@ public class GemMod
         	ModVanillaCompat.compat();
         });
         //VillagerInit.fillTradeData();
-        //GeomancyFeatures.initialize();
+        GeomancyFeatures.initialize();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

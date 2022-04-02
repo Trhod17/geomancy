@@ -89,7 +89,7 @@ public class DipperScreen extends AbstractContainerScreen<DipperMenu>
             blit(matrixStack, relX + 150, relY + 43 - k, 176, 27 - k, 12, k);
         }
         if (container.getBlockEntity().counter > 0) {
-            int k = (int) (27F - ((1.0F * container.getBlockEntity().counter) / (1.0F * Config.SERVER.dipperTime.get())) * 27F);
+            int k = (int) (27F - ((1.0F * container.getBlockEntity().counter) / (1.0F * Config.COMMON.dipperTime.get())) * 27F);
             blit(matrixStack, relX + 163, relY + 43 - k, 188, 27 - k, 5, k);
         }
 
