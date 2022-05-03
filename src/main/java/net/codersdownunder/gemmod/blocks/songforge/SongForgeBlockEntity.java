@@ -79,16 +79,6 @@ public class SongForgeBlockEntity extends BlockEntity {
 			burntime -= 1;
 		}
 		
-		if (itemHandler.getStackInSlot(3).isEmpty()) {
-			System.out.println("3 empty");
-		}
-		if (itemHandler.getStackInSlot(4).isEmpty()) {
-			System.out.println("4 empty");
-		}
-		if (itemHandler.getStackInSlot(5).isEmpty()) {
-			System.out.println("5 empty");
-		}
-		
 		if (burntime <= 0) {
 			//System.out.println(getBurnTime());
 			if (getBurnTime() != 0) {

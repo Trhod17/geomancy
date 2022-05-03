@@ -34,11 +34,11 @@ public class GemModJEIPlugin implements IModPlugin {
         return PLUGIN_ID;
     }
 
-    @SuppressWarnings("resource")
+    @SuppressWarnings({ "resource", "removal" })
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
-
+        
         registration.addRecipes(getRecipes(manager, ModRecipeTypes.INFUSING_RECIPE), InfusingRecipeCategory.ID);
         registration.addRecipes(getRecipes(manager, ModRecipeTypes.DIPPING_RECIPE), DippingRecipeCategory.ID);
         registration.addRecipes(getRecipes(manager, RecipeType.SMELTING), SongForgeRecipeCategory.ID);

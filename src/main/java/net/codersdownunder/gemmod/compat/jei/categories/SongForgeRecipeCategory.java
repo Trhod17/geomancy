@@ -29,13 +29,11 @@ public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.SONG_FORGE.get()));
     }
 
-    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return ID;
     }
 
-    @SuppressWarnings("removal")
     @Override
     public Class<? extends SmeltingRecipe> getRecipeClass() {
         return SmeltingRecipe.class;

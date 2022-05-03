@@ -36,13 +36,11 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.INFUSION_TABLE.get()));
     }
 
-    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return ID;
     }
 
-    @SuppressWarnings("removal")
     @Override
     public Class<? extends InfusingRecipe> getRecipeClass() {
         return InfusingRecipe.class;
@@ -68,7 +66,8 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
         return icon;
     }
 
-    @Override
+    @SuppressWarnings("serial")
+	@Override
     public void setRecipe(IRecipeLayoutBuilder builder, InfusingRecipe recipe, IFocusGroup focuses) {
         List<Pair<Integer, Integer>> ingredientPositions = new ArrayList<>() {{
             add(Pair.of(12, 35));
