@@ -15,7 +15,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.RecipeMatcher;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.minecraftforge.registries.ForgeDeferredRegistriesSetup;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -130,7 +130,7 @@ public class InfusingRecipe implements Recipe<SimpleContainer>
         return SERIALIZER;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>>
+    public static class Serializer extends ForgeDeferredRegistriesSetup<RecipeSerializer<?>>
             implements RecipeSerializer<InfusingRecipe> {
 
         Serializer() {

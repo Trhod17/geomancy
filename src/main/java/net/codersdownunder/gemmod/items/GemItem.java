@@ -1,8 +1,8 @@
 package net.codersdownunder.gemmod.items;
 
 import net.codersdownunder.gemmod.init.ItemInit;
+import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -27,75 +27,75 @@ public class GemItem extends Item
     	
         if (current == ItemInit.AGATE.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_agate.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_agate.text"));
         }
         else if (current == ItemInit.CHRYSOCOLLA.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_chrysocolla.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_chrysocolla.text"));
         }
         else if (current == ItemInit.MALACHITE.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_malachite.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_malachite.text"));
         }
         else if (current == ItemInit.JADE.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_jade.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_jade.text"));
         }
         else if (current == ItemInit.PERIDOT.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_peridot.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_peridot.text"));
         }
         else if (current == ItemInit.TOPAZ.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_topaz.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_topaz.text"));
         }
         else if (current == ItemInit.CITRINE.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_citrine.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_citrine.text"));
         }
         else if (current == ItemInit.JASPER.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_jasper.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_jasper.text"));
         }
         else if (current == ItemInit.RUBY.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_ruby.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_ruby.text"));
         }
         else if (current == ItemInit.GARNET.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_garnet.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_garnet.text"));
         }
         else if (this.asItem() == ItemInit.SPINEL.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_spinel.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_spinel.text"));
         }
         else if (current == ItemInit.AMETHYST.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_amethyst.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_amethyst.text"));
         }
         else if (current == ItemInit.CHAROITE.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_charoite.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_charoite.text"));
         }
         else if (current == ItemInit.SAPPHIRE.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_sapphire.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_sapphire.text"));
         }
         else if (current == ItemInit.LILYSTAR.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_lilystar.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_lilystar.text"));
         }
         else if (current == ItemInit.ONYX.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_onyx.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_onyx.text"));
         }
         else if (current == ItemInit.SPHENE.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_sphene.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_sphene.text"));
         }
         else if (current == ItemInit.RHODONITE.get())
         {
-            list.add(new TranslatableComponent("tooltip.gem_rhodonite.text"));
+            list.add(TextUtils.Tooltip("tooltip.gem_rhodonite.text"));
         }
 
     }

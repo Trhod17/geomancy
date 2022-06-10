@@ -22,7 +22,7 @@ public class ModBlockLootTables extends BlockLoot {
         @Override
         protected Iterable<Block> getKnownBlocks() {
             return ForgeRegistries.BLOCKS.getValues().stream()
-                    .filter(block -> Additions.MODID.equals(block.getRegistryName().getNamespace()))
+                    .filter(block -> Additions.MODID.equals(block.getName()))
                     .collect(Collectors.toSet());
         }
 }

@@ -2,11 +2,11 @@ package net.codersdownunder.gemmod.blocks.dipper;
 
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
+import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -73,15 +73,15 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 	@Override
 	public void appendHoverText(ItemStack pStack, BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
 		if (Screen.hasControlDown()) {
-			pTooltip.add(new TranslatableComponent(GemMod.MODID + ".dipper.tooltip.add_fluid").withStyle(ChatFormatting.GREEN));
+			pTooltip.add(TextUtils.FormattedTooltip(GemMod.MODID + ".dipper.tooltip.add_fluid", ChatFormatting.GREEN));
 		} else {
-			pTooltip.add(new TranslatableComponent(GemMod.MODID + ".dipper.tooltip.add_fluid_unpressed").withStyle(ChatFormatting.GREEN));
+			pTooltip.add(TextUtils.FormattedTooltip(GemMod.MODID + ".dipper.tooltip.add_fluid_unpressed", ChatFormatting.GREEN));
 		}
 		
 		if (Screen.hasShiftDown()) {
-			pTooltip.add(new TranslatableComponent(GemMod.MODID + ".dipper.tooltip.use_case").withStyle(ChatFormatting.GREEN));
+			pTooltip.add(TextUtils.FormattedTooltip(GemMod.MODID + ".dipper.tooltip.use_case", ChatFormatting.GREEN));
 		} else {
-			pTooltip.add(new TranslatableComponent(GemMod.MODID + ".dipper.tooltip.use_case_unpressed").withStyle(ChatFormatting.GREEN));
+			pTooltip.add(TextUtils.FormattedTooltip(GemMod.MODID + ".dipper.tooltip.use_case_unpressed", ChatFormatting.GREEN));
 		}
 		
 	}
@@ -174,7 +174,7 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 
 					@Override
 					public Component getDisplayName() {
-						return new TranslatableComponent("screen.geomancy.dipper.text");
+						return Component.translatable("screen.geomancy.dipper.text");
 					}
 				};
 				NetworkHooks.openGui((ServerPlayer) pPlayer, containerProvider, blockEntity.getBlockPos());

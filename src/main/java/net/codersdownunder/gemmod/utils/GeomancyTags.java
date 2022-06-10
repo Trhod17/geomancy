@@ -16,6 +16,7 @@ public class GeomancyTags {
 	public static class Blocks {
 		
 		public static final TagKey<Block> claw = createTag("mineable/claw");
+		public static final TagKey<Block> carpets = createForgeTag("carpets");
 		
 		private static TagKey<Block> createTag(String name) {
 			return BlockTags.create(new ResourceLocation(GemMod.MODID, name));

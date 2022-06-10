@@ -29,25 +29,20 @@ public class GeomancyDataProvider {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
         
-        if (event.includeClient()) {
-        	gen.addProvider(new GeomancyLanguageProvider(gen));
-        	gen.addProvider(new GeomancyBlockStates(gen, event.getExistingFileHelper()));
-        	gen.addProvider(new GeomancyItemModelProvider(gen, event.getExistingFileHelper()));
-        	
-        }
-        
-         if (event.includeServer()) {
-         	gen.addProvider(new GeomancyRecipeProvider(gen));
-         	gen.addProvider(new GeomancyCuttingRecipeProvider(gen));
-         	gen.addProvider(new GeomancyDippingRecipeProvider(gen));
-         	gen.addProvider(new GeomancyInfusionRecipeProvider(gen));
-         	gen.addProvider(new GeomancyUpgradeRecipeProvider(gen));
-        	gen.addProvider(new ModLootTables(gen));
+        	gen.addProvider(event.includeClient(), new GeomancyLanguageProvider(gen));
+        	gen.addProvider(event.includeClient(), new GeomancyBlockStates(gen, event.getExistingFileHelper()));
+        	gen.addProvider(event.includeClient(), new GeomancyItemModelProvider(gen, event.getExistingFileHelper()));
+
+         	gen.addProvider(event.includeServer(), new GeomancyRecipeProvider(gen));
+         	gen.addProvider(event.includeServer(), new GeomancyCuttingRecipeProvider(gen));
+         	gen.addProvider(event.includeServer(), new GeomancyDippingRecipeProvider(gen));
+         	gen.addProvider(event.includeServer(), new GeomancyInfusionRecipeProvider(gen));
+         	gen.addProvider(event.includeServer(), new GeomancyUpgradeRecipeProvider(gen));
+        	gen.addProvider(event.includeServer(), new ModLootTables(gen));
         	GeomancyBlockTags blockTags = new GeomancyBlockTags(gen, event.getExistingFileHelper());
-            gen.addProvider(blockTags);
-            gen.addProvider(new GeomancyItemTags(gen, blockTags, event.getExistingFileHelper()));
-            gen.addProvider(new GeomancyFluidTags(gen, event.getExistingFileHelper()));
-            
-        }
+            gen.addProvider(event.includeServer(), blockTags);
+            gen.addProvider(event.includeServer(), new GeomancyItemTags(gen, blockTags, event.getExistingFileHelper()));
+            gen.addProvider(event.includeServer(), new GeomancyFluidTags(gen, event.getExistingFileHelper()));
+
     }
 }

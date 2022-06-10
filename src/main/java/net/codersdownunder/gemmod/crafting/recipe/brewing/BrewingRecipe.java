@@ -18,7 +18,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.util.RecipeMatcher;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -124,7 +124,7 @@ public class BrewingRecipe implements Recipe<SimpleContainer>
         return SERIALIZER;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>>
+    public static class Serializer extends ForgeRegistries<RecipeSerializer<?>>
             implements RecipeSerializer<BrewingRecipe> {
 
         Serializer() {

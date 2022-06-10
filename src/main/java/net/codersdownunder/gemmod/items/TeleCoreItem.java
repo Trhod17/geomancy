@@ -3,10 +3,10 @@ package net.codersdownunder.gemmod.items;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
+import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,9 +29,9 @@ public class TeleCoreItem extends Item {
 	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 		
 		if (!itemstack.getOrCreateTag().isEmpty()) {
-			list.add(new TranslatableComponent("tooltip.pos.text").append(itemstack.getOrCreateTag().get("X").toString().replace("}", "").replace("{", "").replace(",", " ")));
+			list.add(TextUtils.AppendedTooltip("tooltip.pos.text", itemstack.getOrCreateTag().get("X").toString().replace("}", "").replace("{", "").replace(",", " ")));
 		} else {
-			list.add(new TranslatableComponent("No pos set"));
+			list.add(TextUtils.Tooltip("No pos set"));
 		}
 		
 	}

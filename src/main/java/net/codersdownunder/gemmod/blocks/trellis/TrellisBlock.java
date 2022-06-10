@@ -6,6 +6,7 @@ import net.codersdownunder.gemmod.items.DiggingClawItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -33,12 +34,13 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fml.config.IConfigEvent.ConfigConfig;
+import net.minecraftforge.registries.ForgeDeferredRegistriesSetup;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Stream;
 
 public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
@@ -172,9 +174,9 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 		}
 		return super.onDestroyedByPlayer(state, world, pos, player, willHarvest, fluid);
 	}
-
+	
 	@Override
-	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
+	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
 		
 		Block trellis = BlockInit.TRELLIS.get();
 		Block current = this.defaultBlockState().getBlock();
@@ -250,8 +252,8 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 		}
 	}
 	
-	private int spreadChance(Random rand) {
-		int spread = rand.nextInt(100);
+	private int spreadChance(RandomSource pRandom) {
+		int spread = pRandom.nextInt(100);
 		
 		return spread;
 	}
@@ -282,7 +284,9 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 				updateTrellis(world, pos, state, BlockInit.TRELLIS_LICHEN.get());
 			}
 			} else {
-				GemMod.LOGGER.debug("Item: ", itemInHand, ", Is not valid for trellis");
+				return InteractionResult.PASS;
+				
+				//GemMod.LOGGER.debug("Item: ", itemInHand, ", Is not valid for trellis");
 			}
 
 		}

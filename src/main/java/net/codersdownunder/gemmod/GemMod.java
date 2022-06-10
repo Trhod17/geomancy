@@ -1,7 +1,9 @@
 package net.codersdownunder.gemmod;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.codersdownunder.gemmod.client.ClientSetup;
-import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.handlers.DreamCatcherEventHandler;
 import net.codersdownunder.gemmod.handlers.LogStrippingEvent;
 import net.codersdownunder.gemmod.init.BlockInit;
@@ -11,15 +13,13 @@ import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.network.GemModNetwork;
 import net.codersdownunder.gemmod.utils.GemModItemGroup;
 import net.codersdownunder.gemmod.utils.ModVanillaCompat;
-import net.codersdownunder.gemmod.world.WorldGenerationEvents;
-import net.codersdownunder.gemmod.world.features.GeomancyFeatures;
+import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,8 +34,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -67,7 +65,7 @@ public class GemMod
         
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         
-        bus.addGenericListener(RecipeSerializer.class, ModRecipeTypes::registerRecipes);
+        //bus.addListener(RecipeSerializer.class, ModRecipeTypes::registerRecipes);
         
         ItemInit.ITEMS.register(bus);
         BlockInit.BLOCKS.register(bus);
@@ -83,7 +81,7 @@ public class GemMod
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(LogStrippingEvent.class);
         MinecraftForge.EVENT_BUS.register(DreamCatcherEventHandler.class);
-        MinecraftForge.EVENT_BUS.register(new WorldGenerationEvents());
+        //MinecraftForge.EVENT_BUS.register(new WorldGenerationEvents());
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -103,7 +101,7 @@ public class GemMod
         	ModVanillaCompat.compat();
         });
         //VillagerInit.fillTradeData();
-        GeomancyFeatures.initialize();
+        //GeomancyFeatures.initialize();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -122,23 +120,23 @@ public class GemMod
     public void onItemTooltip(ItemTooltipEvent event) {
        
         if (event.getItemStack().getItem() == Items.EMERALD) {
-            event.getToolTip().add(new TranslatableComponent("tooltip.gem_emerald.text").withStyle(ChatFormatting.LIGHT_PURPLE));
+            event.getToolTip().add(TextUtils.FormattedTooltip("tooltip.gem_emerald.text", ChatFormatting.LIGHT_PURPLE));
         }
         
         if (event.getItemStack().getItem() == ItemInit.CONCOCTION_ONE.get()) {
-        	event.getToolTip().add(new TranslatableComponent("tooltip.concoction.one").withStyle(ChatFormatting.GREEN));
+        	event.getToolTip().add(TextUtils.FormattedTooltip("tooltip.concoction.one", ChatFormatting.GREEN));
         }
         
         if (event.getItemStack().getItem() == ItemInit.CONCOCTION_TWO.get()) {
-        	event.getToolTip().add(new TranslatableComponent("tooltip.concoction.two").withStyle(ChatFormatting.GREEN));
+        	event.getToolTip().add(TextUtils.FormattedTooltip("tooltip.concoction.two", ChatFormatting.GREEN));
         }
         
         if (event.getItemStack().getItem() == ItemInit.CONCOCTION_THREE.get()) {
-        	event.getToolTip().add(new TranslatableComponent("tooltip.concoction.three").withStyle(ChatFormatting.GREEN));
+        	event.getToolTip().add(TextUtils.FormattedTooltip("tooltip.concoction.three", ChatFormatting.GREEN));
         }
         
         if (event.getItemStack().getItem() == ItemInit.CONCOCTION_FOUR.get()) {
-        	event.getToolTip().add(new TranslatableComponent("tooltip.concoction.four").withStyle(ChatFormatting.GREEN));
+        	event.getToolTip().add(TextUtils.FormattedTooltip("tooltip.concoction.four", ChatFormatting.GREEN));
         }
     }
     

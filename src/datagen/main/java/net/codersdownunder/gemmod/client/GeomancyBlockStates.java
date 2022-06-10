@@ -37,13 +37,14 @@ public class GeomancyBlockStates extends BlockStateProvider {
     	stairsBlock((StairBlock) BlockInit.TREADSTONE_STAIR_6.get(), "treadstone_6", new ResourceLocation(GemMod.MODID, "blocks/treadstone6"));
     	stairsBlock((StairBlock) BlockInit.TREADSTONE_STAIR_7.get(), "treadstone_7", new ResourceLocation(GemMod.MODID, "blocks/treadstone7"));
     	
-    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_1.get(), BlockInit.TREADSTONE_1.get().getRegistryName(), modLoc("blocks/treadstone1"));
-    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_2.get(), BlockInit.TREADSTONE_2.get().getRegistryName(), modLoc("blocks/treadstone2"));
-    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_3.get(), BlockInit.TREADSTONE_3.get().getRegistryName(), modLoc("blocks/treadstone3"));
-    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_4.get(), BlockInit.TREADSTONE_4.get().getRegistryName(), modLoc("blocks/treadstone4"));
-    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_5.get(), BlockInit.TREADSTONE_5.get().getRegistryName(), modLoc("blocks/treadstone5"));
-    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_6.get(), BlockInit.TREADSTONE_6.get().getRegistryName(), modLoc("blocks/treadstone6"));
-    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_7.get(), BlockInit.TREADSTONE_7.get().getRegistryName(), modLoc("blocks/treadstone7"));
+    	//TODO: Fix the slab blockstates
+//    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_1.get(), BlockInit.TREADSTONE_1.get().getName()., modLoc("blocks/treadstone1"));
+//    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_2.get(), BlockInit.TREADSTONE_2.get().getName(), modLoc("blocks/treadstone2"));
+//    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_3.get(), BlockInit.TREADSTONE_3.get().getName(), modLoc("blocks/treadstone3"));
+//    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_4.get(), BlockInit.TREADSTONE_4.get().getName(), modLoc("blocks/treadstone4"));
+//    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_5.get(), BlockInit.TREADSTONE_5.get().getName(), modLoc("blocks/treadstone5"));
+//    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_6.get(), BlockInit.TREADSTONE_6.get().getName(), modLoc("blocks/treadstone6"));
+//    	slabBlock((SlabBlock)BlockInit.TREADSTONE_SLAB_7.get(), BlockInit.TREADSTONE_7.get().getName(), modLoc("blocks/treadstone7"));
   
     	
 //    	models().carpet("treadstone1", modLoc("blocks/treadstone1"));
