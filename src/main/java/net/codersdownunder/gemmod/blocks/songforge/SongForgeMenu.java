@@ -2,6 +2,8 @@ package net.codersdownunder.gemmod.blocks.songforge;
 
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
+import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
+import net.codersdownunder.gemmod.utils.slots.AutomatableSlot;
 import net.codersdownunder.gemmod.utils.slots.FuelSlot;
 import net.codersdownunder.gemmod.utils.slots.GenericSlot;
 import net.codersdownunder.gemmod.utils.slots.OutputSlot;
@@ -50,34 +52,35 @@ public class SongForgeMenu extends AbstractContainerMenu {
         
 
         if (tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            	
-            	//input slot
-            	addSlot(new GenericSlot(h, 0, 7, -10));
-            	addSlot(new GenericSlot(h, 1, 25, -10));
-            	addSlot(new GenericSlot(h, 2, 43, -10));
-            	
-            	//fuel slots
-            	addSlot(new FuelSlot(h, 3, 7, 26));
-            	addSlot(new FuelSlot(h, 4, 25, 26));
-            	addSlot(new FuelSlot(h, 5, 43, 26));
-            	
-            	//output slots
-            	addSlot(new OutputSlot(h, 8, 139, -10));
-            	addSlot(new OutputSlot(h, 7, 121, -10));
-            	addSlot(new OutputSlot(h, 6, 103, -10));
-            	addSlot(new	OutputSlot(h, 11, 139, 8));
-            	addSlot(new OutputSlot(h, 10, 121, 8));
-            	addSlot(new OutputSlot(h, 9, 103, 8));
-            	addSlot(new OutputSlot(h, 14, 139, 26));
-            	addSlot(new OutputSlot(h, 13, 121, 26));
-            	addSlot(new OutputSlot(h, 12, 103, 26));
-            	
-            	//upgrade slots
-            	addSlot(new GenericSlot(h, 15, 163, 39));
-            	addSlot(new GenericSlot(h, 16, 163, 57));
-            	addSlot(new GenericSlot(h, 17, 163, 75));
-            	addSlot(new GenericSlot(h, 18, 163, 93));
+            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+                if (handler instanceof AutomatableItemStackHandler h) {
+                    //input slot
+                    addSlot(new AutomatableSlot(h, 0, 7, -10));
+                    addSlot(new AutomatableSlot(h, 1, 25, -10));
+                    addSlot(new AutomatableSlot(h, 2, 43, -10));
+
+                    //fuel slots
+                    addSlot(new FuelSlot(h, 3, 7, 26));
+                    addSlot(new FuelSlot(h, 4, 25, 26));
+                    addSlot(new FuelSlot(h, 5, 43, 26));
+
+                    //output slots
+                    addSlot(new AutomatableSlot(h, 6, 103, -10));
+                    addSlot(new AutomatableSlot(h, 7, 121, -10));
+                    addSlot(new AutomatableSlot(h, 8, 139, -10));
+                    addSlot(new AutomatableSlot(h, 9, 103, 8));
+                    addSlot(new AutomatableSlot(h, 10, 121, 8));
+                    addSlot(new AutomatableSlot(h, 11, 139, 8));
+                    addSlot(new AutomatableSlot(h, 12, 103, 26));
+                    addSlot(new AutomatableSlot(h, 13, 121, 26));
+                    addSlot(new AutomatableSlot(h, 14, 139, 26));
+
+                    //upgrade slots
+                    addSlot(new AutomatableSlot(h, 15, 163, 39));
+                    addSlot(new AutomatableSlot(h, 16, 163, 57));
+                    addSlot(new AutomatableSlot(h, 17, 163, 75));
+                    addSlot(new AutomatableSlot(h, 18, 163, 93));
+                }
             });
         }
 

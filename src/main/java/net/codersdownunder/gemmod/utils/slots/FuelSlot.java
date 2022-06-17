@@ -1,13 +1,13 @@
 package net.codersdownunder.gemmod.utils.slots;
 
+import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.items.IItemHandler;
 
-public class FuelSlot extends GenericSlot {
+public class FuelSlot extends AutomatableSlot {
 
-    public FuelSlot(IItemHandler inventory, int index, int x, int y) {
+    public FuelSlot(AutomatableItemStackHandler inventory, int index, int x, int y) {
     	super(inventory, index, x, y);
     }
 
@@ -21,11 +21,4 @@ public class FuelSlot extends GenericSlot {
         return ForgeHooks.getBurnTime(pStack, RecipeType.SMELTING) > 0;
      }
     
-    
-    
-//    @Override
-//    public void setChanged() {
-//    	tile.setChanged();
-//    }
-
 }

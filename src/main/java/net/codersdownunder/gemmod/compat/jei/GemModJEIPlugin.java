@@ -66,7 +66,7 @@ public class GemModJEIPlugin implements IModPlugin {
 
         //registration.addRecipeTransferHandler(DipperMenu.class, DipperRecipeCategory.ID, 0, 18, 19, PLAYER_INV_SIZE);
         registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 6, 7, PLAYER_INV_SIZE);
-        registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 2, 19, PLAYER_INV_SIZE);
+//        registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 2, 19, PLAYER_INV_SIZE);
     }
 
     private static Collection<?> getRecipes(RecipeManager manager, RecipeType<?> type) {

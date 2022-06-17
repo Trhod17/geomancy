@@ -32,393 +32,281 @@ import java.util.List;
 
 public class SongForgeBlockEntity extends BlockEntity {
 
-	private static final int INPUT_SLOTS = 3;
-	private static final int OUTPUT_SLOTS = 9;
-	private static final int FUEL_SLOTS = 3;
-	private static final int UPGRADE_SLOTS = 4;
+    private static final int INPUT_SLOTS = 3;
+    private static final int OUTPUT_SLOTS = 9;
+    private static final int FUEL_SLOTS = 3;
+    private static final int UPGRADE_SLOTS = 4;
 
-	public static boolean valid;
-	public static ItemStack output;
-	public static int input;
-	public static int counter;
-	// private int countermax;
-	public static int burntime = 0;
-	private boolean burning;
-	public static int fuel;
-	//public static boolean crafting;
+    public static boolean valid;
+    public static ItemStack output;
+    public static int input;
+    public static int counter;
+    public static int burntime = 0;
+    private boolean burning;
+    public static int fuel;
 
-//	private CompoundTag updateTag;
+    public int getCounter() {
+        return counter;
+    }
 
-	public int getCounter() {
-		return counter;
-	}
+    public int getBurn() {
+        return burntime;
+    }
 
-	public int getBurn() {
-		return burntime;
-	}
+    private ItemStackHandler itemHandler = createHandler();
 
-	private ItemStackHandler itemHandler = createHandler();
+    private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
-	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-
-	public SongForgeBlockEntity(BlockPos pos, BlockState blockState) {
-		super(TileEntityInit.SONG_FORGE_BE.get(), pos, blockState);
-	}
+    public SongForgeBlockEntity(BlockPos pos, BlockState blockState) {
+        super(TileEntityInit.SONG_FORGE_BE.get(), pos, blockState);
+    }
 
 
-	public static int getSlots() {
-		return INPUT_SLOTS + OUTPUT_SLOTS + FUEL_SLOTS + UPGRADE_SLOTS + 1;
-	}
-	
-	public void tickServer() {
+    public static int getSlots() {
+        return INPUT_SLOTS + OUTPUT_SLOTS + FUEL_SLOTS + UPGRADE_SLOTS + 1;
+    }
 
-		if (level.isClientSide)
-			return;
-		
-		if (burntime != 0) {
-			burntime -= 1;
-		}
-		
-		if (itemHandler.getStackInSlot(3).isEmpty()) {
-			System.out.println("3 empty");
-		}
-		if (itemHandler.getStackInSlot(4).isEmpty()) {
-			System.out.println("4 empty");
-		}
-		if (itemHandler.getStackInSlot(5).isEmpty()) {
-			System.out.println("5 empty");
-		}
-		
-		if (burntime <= 0) {
-			//System.out.println(getBurnTime());
-			if (getBurnTime() != 0) {
-				burntime = getBurnTime();
-				System.out.println("burntime is " + burntime);
-				this.level.setBlock(this.worldPosition,
-						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
-				burning = true;
-			} else {
-				burning = false;
-				this.level.setBlock(this.worldPosition,
-						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
-			}
+    public void tickServer() {
 
-		}
-		
-		if (!valid && burning) {
-			isRecipeValid();
+        if (level.isClientSide)
+            return;
 
-			if (valid) {
-				
-				System.out.println("is valid and burning");
-				
-			}
-		}
-		
+        if (burntime != 0) {
+            burntime -= 1;
+        }
 
-//		if (counter > 0) {
-//			counter--;
-//		}
-//
-//		if (burntime != 0) {
-//			burntime--;
-//		}
-//
-//		if (!valid) {
-//			isRecipeValid();
-//
-//			if (valid) {
-//				burntime = getBurnTime();
-//				// burntimemax = burntime;
-//				this.level.setBlock(this.worldPosition,
-//						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
-//			}
-//		}
-//
-//		if (burntime == 0) {
-//			burntime = getBurnTime();
-//			//System.out.println(burntime);
-//			if (burntime == 0) {
-//			this.level.setBlock(this.worldPosition,
-//					this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
-//			}
-//		}
-//		
-//		
-//
-//		if (counter <= 0) {
-//
-//			if (valid) {
-//				attemptCraft(output);
-//				valid = false;
-//				//crafting = false;
-//				output = null;
-//			}
-//
-//			if (valid) {
-//				//crafting = true;
-//			}
-//		}
-	}
-	
-	private boolean outputRoom() {
-		
-		if (output != null) {
-		SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
-		
-		inv.setItem(0, itemHandler.getStackInSlot(6));
-		inv.setItem(0, itemHandler.getStackInSlot(7));
-		inv.setItem(0, itemHandler.getStackInSlot(8));
-		inv.setItem(0, itemHandler.getStackInSlot(9));
-		inv.setItem(0, itemHandler.getStackInSlot(10));
-		inv.setItem(0, itemHandler.getStackInSlot(11));
-		inv.setItem(0, itemHandler.getStackInSlot(12));
-		inv.setItem(0, itemHandler.getStackInSlot(13));
-		inv.setItem(0, itemHandler.getStackInSlot(14));
-		
-		if (inv.isEmpty()) {
-			return true;
-		}
-		
-		if (inv.canAddItem(output)) {
-			return true;
-		}
-		}
-		
-		return false;
-	}
+        if (burntime <= 0) {
+            if (getBurnTime() != 0) {
+                burntime = getBurnTime();
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
+                burning = true;
+            } else {
+                burning = false;
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
+            }
+        }
 
-	private int getBurnTime() {
-		SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
+        if (!valid && burning) {
+            isRecipeValid();
 
-		if (!itemHandler.getStackInSlot(3).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(3));
-			fuel = 0;
-		}
+            if (valid) {
 
-		if (!itemHandler.getStackInSlot(4).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(4));
-			fuel = 1;
-		}
+                System.out.println("is valid and burning");
 
-		if (!itemHandler.getStackInSlot(5).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(5));
-			fuel = 4;
-		}
+            }
+        }
+    }
 
-		ItemStack item;
-		
-		item = itemHandler.getStackInSlot(fuel).copy();
-		item.shrink(0);
-		//System.out.println(item);
-		itemHandler.setStackInSlot(fuel, item);
-		return ForgeHooks.getBurnTime(inv.getItem(0), RecipeType.SMELTING);
-	}
+    private boolean outputRoom() {
 
-	private boolean isRecipeValid() {
+        if (output != null) {
+            SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
 
-		SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
+            inv.setItem(0, itemHandler.getStackInSlot(6));
+            inv.setItem(0, itemHandler.getStackInSlot(7));
+            inv.setItem(0, itemHandler.getStackInSlot(8));
+            inv.setItem(0, itemHandler.getStackInSlot(9));
+            inv.setItem(0, itemHandler.getStackInSlot(10));
+            inv.setItem(0, itemHandler.getStackInSlot(11));
+            inv.setItem(0, itemHandler.getStackInSlot(12));
+            inv.setItem(0, itemHandler.getStackInSlot(13));
+            inv.setItem(0, itemHandler.getStackInSlot(14));
 
-		if (!itemHandler.getStackInSlot(0).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(0));
-			input = 0;
-		}
+            if (inv.isEmpty()) {
+                return true;
+            }
 
-		if (!itemHandler.getStackInSlot(1).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(1));
-			input = 1;
-		}
+            if (inv.canAddItem(output)) {
+                return true;
+            }
+        }
 
-		if (!itemHandler.getStackInSlot(2).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(2));
-			input = 2;
-		}
+        return false;
+    }
 
-		if (level == null) {
-			valid = false;
-			return false;
-		}
-		// System.out.println(inv);
+    private int getBurnTime() {
+        SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
 
-		SmeltingRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, inv, level).orElse(null);
-		// System.out.print(recipe);
-		if (recipe == null) {
-			valid = false;
+        if (!itemHandler.getStackInSlot(3).isEmpty()) {
+            inv.setItem(0, itemHandler.getStackInSlot(3));
+            fuel = 0;
+        }
 
-			return false;
-		}
+        if (!itemHandler.getStackInSlot(4).isEmpty()) {
+            inv.setItem(0, itemHandler.getStackInSlot(4));
+            fuel = 1;
+        }
 
-		valid = true;
-		
-		counter = recipe.getCookingTime();
-		// countermax = counter;
-		output = recipe.getResultItem().copy();
-		return true;
+        if (!itemHandler.getStackInSlot(5).isEmpty()) {
+            inv.setItem(0, itemHandler.getStackInSlot(5));
+            fuel = 4;
+        }
+
+        ItemStack item;
+
+        item = itemHandler.getStackInSlot(fuel).copy();
+        item.shrink(0);
+        itemHandler.setStackInSlot(fuel, item);
+        return ForgeHooks.getBurnTime(inv.getItem(0), RecipeType.SMELTING);
+    }
+
+    private boolean isRecipeValid() {
+
+        SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
+
+        if (!itemHandler.getStackInSlot(0).isEmpty()) {
+            inv.setItem(0, itemHandler.getStackInSlot(0));
+            input = 0;
+        }
+
+        if (!itemHandler.getStackInSlot(1).isEmpty()) {
+            inv.setItem(0, itemHandler.getStackInSlot(1));
+            input = 1;
+        }
+
+        if (!itemHandler.getStackInSlot(2).isEmpty()) {
+            inv.setItem(0, itemHandler.getStackInSlot(2));
+            input = 2;
+        }
+
+        if (level == null) {
+            valid = false;
+            return false;
+        }
+
+        SmeltingRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, inv, level).orElse(null);
+        if (recipe == null) {
+            valid = false;
+
+            return false;
+        }
+
+        valid = true;
+
+        counter = recipe.getCookingTime();
+        output = recipe.getResultItem().copy();
+        return true;
 
 
-	}
+    }
 
-	private void attemptCraft(ItemStack output) {
+    private void attemptCraft(ItemStack output) {
 
-		itemHandler.extractItem(input, 1, false);
+        itemHandler.extractItem(input, 1, false);
 
-		getOuputSlot(output);
-		
-	}
+        getOuputSlot(output);
 
-//    private void handleOutput(int slot, ItemStack output) {
-//    	
-//    	if (itemHandler.getStackInSlot(slot).isEmpty()) {
-//    		
-//    	}
-//    }
-//    
-//    private void setOuput(ItemStack output) {
-//
-//    	var slot = getOuputSlot(output);
-//    	
-//    	
-//    	
-//
-//    }
+    }
 
-	private void getOuputSlot(ItemStack result) {
-		var outputMin = 6;
-		var outputMax = 14;
 
-		// int slot = 0;
+    private void getOuputSlot(ItemStack result) {
+        var outputMin = 6;
+        var outputMax = 14;
 
-		ItemStack item;
+        // int slot = 0;
 
-		for (int i = outputMin; i <= outputMax; i++) {
-			if (itemHandler.getStackInSlot(i).getCount() < 64) {
-				if (itemHandler.getStackInSlot(i).isEmpty()) {
-					itemHandler.insertItem(i, result, false);
-					valid = false;
-					output = null;
-					break;
-				} else if (!itemHandler.getStackInSlot(i).isEmpty()
-						&& itemHandler.getStackInSlot(i).is(result.getItem())) {
-					item = itemHandler.getStackInSlot(i).copy();
-					item.grow(1);
-					itemHandler.setStackInSlot(i, item);
-					valid = false;
-					output = null;
-					break;
-				}
-			}
-			continue;
-		}
+        ItemStack item;
 
-//		
-//			if (itemHandler.getStackInSlot(i).isEmpty()) {
-//				slot = i;
-//				itemHandler.insertItem(slot, output, false);
-//				break;
-//			} else if (!itemHandler.getStackInSlot(slot).isEmpty()
-//					&& itemHandler.getStackInSlot(slot).is(output.getItem())) {
-//				slot = i;
-//				item = itemHandler.getStackInSlot(slot).copy();
-//				item.grow(1);
-//				itemHandler.setStackInSlot(slot, item);
-//				valid = false;
-//				break;
-//			}
-//		}
-	}
+        for (int i = outputMin; i <= outputMax; i++) {
+            if (itemHandler.getStackInSlot(i).getCount() < 64) {
+                if (itemHandler.getStackInSlot(i).isEmpty()) {
+                    itemHandler.insertItem(i, result, false);
+                    valid = false;
+                    output = null;
+                    break;
+                } else if (!itemHandler.getStackInSlot(i).isEmpty()
+                        && itemHandler.getStackInSlot(i).is(result.getItem())) {
+                    item = itemHandler.getStackInSlot(i).copy();
+                    item.grow(1);
+                    itemHandler.setStackInSlot(i, item);
+                    valid = false;
+                    output = null;
+                    break;
+                }
+            }
+            continue;
+        }
+    }
 
-	@Override
-	public void setRemoved() {
-		super.setRemoved();
-		handler.invalidate();
-	}
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        handler.invalidate();
+    }
 
-	@Override
-	protected void saveAdditional(CompoundTag pTag) {
-		pTag.put("inv", itemHandler.serializeNBT());
-		pTag.putInt("counter", counter);
-		pTag.putInt("burntime", burntime);
-		//pTag.putBoolean("crafting", crafting);
-		pTag.putBoolean("valid", valid);
-		
-		super.saveAdditional(pTag);
-	}
+    @Override
+    protected void saveAdditional(CompoundTag pTag) {
+        pTag.put("inv", itemHandler.serializeNBT());
+        pTag.putInt("counter", counter);
+        pTag.putInt("burntime", burntime);
+        pTag.putBoolean("valid", valid);
 
-	@Override
-	public void load(CompoundTag tag) {
-		itemHandler.deserializeNBT(tag.getCompound("inv"));
-		counter = tag.getInt("counter");
-		burntime = tag.getInt("burntime");
-		//crafting = tag.getBoolean("crafting");
-		valid = tag.getBoolean("valid");
-		super.load(tag);
-	}
+        super.saveAdditional(pTag);
+    }
 
-//	@Override
-//	public CompoundTag getUpdateTag() {
-//		this.saveAdditional(updateTag);
-//		return updateTag;
-//	}
+    @Override
+    public void load(CompoundTag tag) {
+        itemHandler.deserializeNBT(tag.getCompound("inv"));
+        counter = tag.getInt("counter");
+        burntime = tag.getInt("burntime");
+        valid = tag.getBoolean("valid");
+        super.load(tag);
+    }
 
-	@Override
-	public ClientboundBlockEntityDataPacket getUpdatePacket() {
-		return ClientboundBlockEntityDataPacket.create(this);
-	}
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
 
-	@Override
-	public void handleUpdateTag(CompoundTag tag) {
-		this.load(tag);
-	}
+    @Override
+    public void handleUpdateTag(CompoundTag tag) {
+        this.load(tag);
+    }
 
-//	@Override
-//	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-//		this.load(pkt.getTag());
-//	}
+    @SuppressWarnings("resource")
+    public void sendToClients() {
+        if (this.getLevel().isClientSide()) {
+            return;
+        }
 
-	@SuppressWarnings("resource")
-	public void sendToClients() {
-		if (this.getLevel().isClientSide()) {
-			return;
-		}
+        ServerLevel world = (ServerLevel) this.getLevel();
+        List<ServerPlayer> entities = world.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.getBlockPos()),
+                false);
+        ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
+        entities.forEach(e -> e.connection.send(packet));
+        setChanged();
+    }
 
-		ServerLevel world = (ServerLevel) this.getLevel();
-		List<ServerPlayer> entities = world.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.getBlockPos()),
-				false);
-		ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
-		entities.forEach(e -> e.connection.send(packet));
-		setChanged();
-	}
+    private ItemStackHandler createHandler() {
+        return new ItemStackHandler(SongForgeBlockEntity.getSlots()) {
+            @Override
+            protected void onContentsChanged(int slot) {
+                super.onContentsChanged(slot);
+                setChanged();
+            }
 
-	private ItemStackHandler createHandler() {
-		return new ItemStackHandler(SongForgeBlockEntity.getSlots()) {
-			@Override
-			protected void onContentsChanged(int slot) {
-				super.onContentsChanged(slot);
-				setChanged();
-			}
+            @Override
+            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+                return true;
+            }
 
-			@Override
-			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-				return true;
-			}
+            @Override
+            public int getSlotLimit(int slot) {
+                return 64;
+            }
 
-			@Override
-			public int getSlotLimit(int slot) {
-				return 64;
-			}
+            @Nonnull
+            @Override
+            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+                if (!isItemValid(slot, stack)) {
+                    return stack;
+                }
 
-			@Nonnull
-			@Override
-			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!isItemValid(slot, stack)) {
-					return stack;
-				}
+                return super.insertItem(slot, stack, simulate);
+            }
+        };
+    }
 
-				return super.insertItem(slot, stack, simulate);
-			}
-		};
-	}
-	
     ArrayList<LazyOptional<?>> capabilities = new ArrayList<>(Arrays.asList(
             LazyOptional.of(this::createHandler),
             LazyOptional.of(() -> new RangedWrapper(itemHandler, 3, 5)),
@@ -426,33 +314,32 @@ public class SongForgeBlockEntity extends BlockEntity {
             LazyOptional.of(() -> new RangedWrapper(itemHandler, 6, 14))
     ));
 
-	@Nonnull
-	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 
-			if (side == null) return capabilities.get(0).cast();
-			return switch (side) {
-			case UP -> capabilities.get(2).cast();
-			case DOWN -> capabilities.get(3).cast();
-			default -> capabilities.get(1).cast();
-			};
-		}
-		return super.getCapability(cap, side);
-	}
+            if (side == null) return capabilities.get(0).cast();
+            return switch (side) {
+                case UP -> capabilities.get(2).cast();
+                case DOWN -> capabilities.get(3).cast();
+                default -> capabilities.get(1).cast();
+            };
+        }
+        return super.getCapability(cap, side);
+    }
 
-	public boolean canPlayerAccessInventory(Player playerIn) {
-		if (this.level.getBlockEntity(this.worldPosition) != this) {
-			return false;
-		}
+    public boolean canPlayerAccessInventory(Player playerIn) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
+            return false;
+        }
 
-		final double X_CENTRE_OFFSET = 0.5;
-		final double Y_CENTRE_OFFSET = 0.5;
-		final double Z_CENTRE_OFFSET = 0.5;
-		final double MAXIMUM_DIST_SQ = 8.0 * 8.0;
+        final double X_CENTRE_OFFSET = 0.5;
+        final double Y_CENTRE_OFFSET = 0.5;
+        final double Z_CENTRE_OFFSET = 0.5;
+        final double MAXIMUM_DIST_SQ = 8.0 * 8.0;
 
-		return playerIn.distanceToSqr(worldPosition.getX() + X_CENTRE_OFFSET, worldPosition.getY() + Y_CENTRE_OFFSET,
-				worldPosition.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DIST_SQ;
-	}
-
+        return playerIn.distanceToSqr(worldPosition.getX() + X_CENTRE_OFFSET, worldPosition.getY() + Y_CENTRE_OFFSET,
+                worldPosition.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DIST_SQ;
+    }
 }
