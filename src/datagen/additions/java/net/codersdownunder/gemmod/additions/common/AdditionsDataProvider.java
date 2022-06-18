@@ -22,16 +22,13 @@ public class AdditionsDataProvider {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
         
-        if (event.includeClient()) {
-        	gen.addProvider(new AdditionsLanguageProvider(gen));
-        }
-        
-         if (event.includeServer()) {
-        	gen.addProvider(new AdditionsRecipeProvider(gen));
-        	gen.addProvider(new ModLootTables(gen));
+        	gen.addProvider(event.includeClient(), new AdditionsLanguageProvider(gen));
+ 
+        	gen.addProvider(event.includeServer(), new AdditionsRecipeProvider(gen));
+        	gen.addProvider(event.includeServer(), new ModLootTables(gen));
         	AdditionsBlockTags blockTags = new AdditionsBlockTags(gen, event.getExistingFileHelper());
-            gen.addProvider(blockTags);
-            gen.addProvider(new AdditionsItemTags(gen, blockTags, event.getExistingFileHelper()));
-        }
+            gen.addProvider(event.includeServer(), blockTags);
+            gen.addProvider(event.includeServer(), new AdditionsItemTags(gen, blockTags, event.getExistingFileHelper()));
+        
     }
 }

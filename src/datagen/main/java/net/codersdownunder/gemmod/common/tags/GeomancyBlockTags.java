@@ -2,6 +2,7 @@ package net.codersdownunder.gemmod.common.tags;
 
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
@@ -156,7 +157,7 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         .add(BlockInit.TREADSTONE_STAIR_6.get())
         .add(BlockInit.TREADSTONE_STAIR_7.get());
         
-        tag(BlockTags.CARPETS)
+        tag(GeomancyTags.Blocks.carpets)
         .add(BlockInit.TREADSTONE_CARPET_1.get())
         .add(BlockInit.TREADSTONE_CARPET_2.get())
         .add(BlockInit.TREADSTONE_CARPET_3.get())

@@ -7,9 +7,9 @@ import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
 import net.codersdownunder.gemmod.client.gui.widgets.GemModButton;
 import net.codersdownunder.gemmod.network.GemModNetwork;
 import net.codersdownunder.gemmod.network.messages.InfusionCraftingMessage;
+import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -33,7 +33,7 @@ public class InfusionTableScreen extends AbstractContainerScreen<InfusionTableMe
     protected void init() {
         super.init();
 
-        this.addRenderableWidget(new GemModButton(this.width / 2 - 42, this.height / 2 - 1, 84, 20, new TranslatableComponent("screen.geomancy.infusion_table.button.text"),
+        this.addRenderableWidget(new GemModButton(this.width / 2 - 42, this.height / 2 - 1, 84, 20, TextUtils.Tooltip("screen.geomancy.infusion_table.button.text"),
                 button -> {
                     GemModNetwork.CHANNEL.sendToServer(new InfusionCraftingMessage(this.getMenu().getPos()));
                 }));

@@ -92,8 +92,9 @@ public class ModBlockLootTables extends BlockLoot {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
+        	// i dont know if this works
             return ForgeRegistries.BLOCKS.getValues().stream()
-                    .filter(block -> GemMod.MODID.equals(block.getRegistryName().getNamespace()))
+                    .filter(block -> GemMod.MODID.equals(block.getName().getString(8)))
                     .collect(Collectors.toSet());
         }
 }

@@ -120,7 +120,7 @@ public class DipperBlockEntity extends BlockEntity {
             if (!isCrafting && hasValidRecipe() && (outputStack.isEmpty() || (outputStack.getItem().equals(cachedRecipe.getResultItem().getItem())))) {
                 int qty = getOutputQuantity();
                 if (outputStack.getCount() + qty <= outputStack.getMaxStackSize()) {
-                    counter = Config.SERVER.dipperTime.get();
+                    counter = Config.COMMON.dipperTime.get();
                     isCrafting = true;
                     setChanged();
                 }

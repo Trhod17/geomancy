@@ -4,6 +4,7 @@ import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -40,7 +41,8 @@ public class GeomancyItemModelProvider extends ItemModelProvider {
     }
     
     private void singleTexture(Item item, String texture) {
-    	singleTexture(item.getRegistryName().getPath(),
+    	//Not sure if this works
+    	singleTexture(item.toString(),
                 mcLoc("item/generated"),
                 "layer0", modLoc("items/" + texture));
     }

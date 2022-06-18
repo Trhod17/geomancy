@@ -8,11 +8,11 @@ import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
 import net.codersdownunder.gemmod.blocks.dipper.DipperMenu;
 import net.codersdownunder.gemmod.utils.FluidUtils;
+import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.InventoryMenu;
@@ -54,16 +54,16 @@ public class DipperScreen extends AbstractContainerScreen<DipperMenu>
         // Fluid tooltip
         if (mouseX >= this.leftPos + 152 && mouseX <= this.leftPos + 167 && mouseY >= this.topPos + 81 && mouseY <= this.topPos + 124) {
             List<Component> tooltip = new ArrayList<>();
-            tooltip.add(ent.getFluid().isEmpty() ? new TranslatableComponent("screen." + GemMod.MODID + ".tank_empty") : ent.getFluid().getDisplayName());
+            tooltip.add(ent.getFluid().isEmpty() ? TextUtils.Tooltip("screen." + GemMod.MODID + ".tank_empty") : ent.getFluid().getDisplayName());
             DecimalFormat f = new DecimalFormat("#,##0");
-            tooltip.add(new TranslatableComponent("screen." + GemMod.MODID + ".liquid_amount", f.format(ent.getFluid().getAmount()), f.format(DipperBlockEntity.capacity)));
+            tooltip.add(Component.translatable("screen." + GemMod.MODID + ".liquid_amount", f.format(ent.getFluid().getAmount()), f.format(DipperBlockEntity.capacity)));
             float percentage;
             if (DipperBlockEntity.capacity == 0) {
                 percentage = 0;
             } else {
                 percentage = ent.getFluid().getAmount() * 100.0F / DipperBlockEntity.capacity;
             }
-            tooltip.add(new TranslatableComponent("screen." + GemMod.MODID + ".liquid_percentage", String.format("%.2f", percentage)).append("%").withStyle(percentage < 60 ? ChatFormatting.GREEN : percentage < 90 ? ChatFormatting.YELLOW : ChatFormatting.RED));
+            tooltip.add(Component.translatable("screen." + GemMod.MODID + ".liquid_percentage", String.format("%.2f", percentage)).append("%").withStyle(percentage < 60 ? ChatFormatting.GREEN : percentage < 90 ? ChatFormatting.YELLOW : ChatFormatting.RED));
             this.renderTooltip(matrixStack, Lists.transform(tooltip, Component::getVisualOrderText), mouseX, mouseY);
         }
     }
@@ -89,7 +89,7 @@ public class DipperScreen extends AbstractContainerScreen<DipperMenu>
             blit(matrixStack, relX + 150, relY + 43 - k, 176, 27 - k, 12, k);
         }
         if (container.getBlockEntity().counter > 0) {
-            int k = (int) (27F - ((1.0F * container.getBlockEntity().counter) / (1.0F * Config.SERVER.dipperTime.get())) * 27F);
+            int k = (int) (27F - ((1.0F * container.getBlockEntity().counter) / (1.0F * Config.COMMON.dipperTime.get())) * 27F);
             blit(matrixStack, relX + 163, relY + 43 - k, 188, 27 - k, 5, k);
         }
 

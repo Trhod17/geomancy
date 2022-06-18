@@ -4,10 +4,12 @@
 //
 //import net.codersdownunder.gemmod.GemMod;
 //import net.codersdownunder.gemmod.world.features.GeomancyFeatures;
-//import net.codersdownunder.gemmod.world.gen.ModTreeGeneration;
 //import net.minecraft.core.Registry;
 //import net.minecraft.resources.ResourceKey;
+//import net.minecraft.tags.BiomeTags;
 //import net.minecraft.world.level.biome.Biome;
+//import net.minecraft.world.level.biome.Biomes;
+//import net.minecraft.world.level.levelgen.GenerationStep;
 //import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 //import net.minecraftforge.common.BiomeDictionary;
 //import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
@@ -25,13 +27,18 @@
 //		
 //		
 //		   ResourceKey<Biome> key = ResourceKey.create(Registry.BIOME_REGISTRY, event.getName());
-//	        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
+//	        Set<BiomeTags> types = BiomeTags;
 //
-//	        if(types.contains(BiomeDictionary.Type.OVERWORLD)) {
+//	        if(types.contains(BiomeTags.IS_OVERWORLD)) {
 //			builder.addFeature(Decoration.LOCAL_MODIFICATIONS, GeomancyFeatures.DARKSTONE_GEORE.getPlacedFeature());
 //	        }
+//	        
+//			if (types.contains(BiomeTags.IS_END)) {
+//				if (GeomancyFeatures.doesBiomeMatch(event.getName(), Biomes.THE_END) || GeomancyFeatures.doesBiomeMatch(event.getName(), Biomes.END_HIGHLANDS) || GeomancyFeatures.doesBiomeMatch(event.getName(), Biomes.END_HIGHLANDS) || GeomancyFeatures.doesBiomeMatch(event.getName(), Biomes.SMALL_END_ISLANDS)) {
+//					builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GeomancyFeatures.PLACABLE_CHASM_TREE);
+//				}
 //
-//			ModTreeGeneration.generateTrees(event);
+//			}
 //	}
 //	
 //

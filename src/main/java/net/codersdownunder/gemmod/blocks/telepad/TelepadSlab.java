@@ -7,7 +7,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -159,7 +158,7 @@ public class TelepadSlab extends BaseEntityBlock implements SimpleWaterloggedBlo
                     @Override
                     public Component getDisplayName()
                     {
-                        return new TranslatableComponent("screen." + GemMod.MODID + ".telepad.text");
+                        return Component.translatable("screen." + GemMod.MODID + ".telepad.text");
                     }
                 };
                 NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
