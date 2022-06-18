@@ -9,20 +9,16 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.codersdownunder.gemmod.GemMod;
-import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
 import net.codersdownunder.gemmod.compat.jei.categories.DippingRecipeCategory;
 import net.codersdownunder.gemmod.compat.jei.categories.InfusingRecipeCategory;
 import net.codersdownunder.gemmod.compat.jei.categories.SongForgeRecipeCategory;
-import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.RecipeInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
-
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 @JeiPlugin
 public class GemModJEIPlugin implements IModPlugin {
@@ -34,14 +30,14 @@ public class GemModJEIPlugin implements IModPlugin {
         return PLUGIN_ID;
     }
 
-    @SuppressWarnings("resource")
+    @SuppressWarnings({ "resource", "removal" })
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
 
-        registration.addRecipes(getRecipes(manager, ModRecipeTypes.INFUSING_RECIPE), InfusingRecipeCategory.ID);
-        registration.addRecipes(getRecipes(manager, ModRecipeTypes.DIPPING_RECIPE), DippingRecipeCategory.ID);
-        registration.addRecipes(getRecipes(manager, RecipeType.SMELTING), SongForgeRecipeCategory.ID);
+        registration.addRecipes(InfusingRecipeCategory.INFUSION, manager.getAllRecipesFor(RecipeInit.INFUSING_TYPE.get()).stream().toList());
+        registration.addRecipes(DippingRecipeCategory.DIPPING, manager.getAllRecipesFor(RecipeInit.DIPPING_TYPE.get()));
+        registration.addRecipes(SongForgeRecipeCategory.SMELTING, manager.getAllRecipesFor(RecipeType.SMELTING));
     }
 
     @Override
@@ -65,11 +61,7 @@ public class GemModJEIPlugin implements IModPlugin {
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
 
         //registration.addRecipeTransferHandler(DipperMenu.class, DipperRecipeCategory.ID, 0, 18, 19, PLAYER_INV_SIZE);
-        registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 6, 7, PLAYER_INV_SIZE);
+//        registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 6, 7, PLAYER_INV_SIZE);
 //        registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 2, 19, PLAYER_INV_SIZE);
-    }
-
-    private static Collection<?> getRecipes(RecipeManager manager, RecipeType<?> type) {
-        return manager.getRecipes().parallelStream().filter(recipe -> recipe.getType() == type).collect(Collectors.toList());
     }
 }

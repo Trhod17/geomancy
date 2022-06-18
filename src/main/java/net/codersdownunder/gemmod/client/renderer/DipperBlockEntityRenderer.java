@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.InventoryMenu;
@@ -42,9 +43,9 @@ public class DipperBlockEntityRenderer implements BlockEntityRenderer<DipperBloc
         Matrix4f matrix4f = matrix.last().pose();
         Matrix3f matrix3f = matrix.last().normal();
 
-        TextureAtlasSprite fluidTexture = RenderProperties.get(fluidStack).getStillTexture();
+        TextureAtlasSprite fluidTexture = getFluidStillSprite(fluidStack);
 
-        int color = RenderProperties.get(fluidStack).getColorTint();
+        int color = RenderProperties.get(fluidStack.getFluid()).getColorTint();
 
         VertexConsumer builder = buffer.getBuffer(RenderType.translucent());
 
@@ -128,10 +129,8 @@ public class DipperBlockEntityRenderer implements BlockEntityRenderer<DipperBloc
                 .endVertex();
     }
 
-    private TextureAtlasSprite getFluidStillSprite(FluidAttributes attributes, FluidStack fluidStack) {
-        return Minecraft.getInstance()
-                .getTextureAtlas(InventoryMenu.BLOCK_ATLAS)
-                .apply(attributes.getStillTexture(fluidStack));
+    private TextureAtlasSprite getFluidStillSprite(FluidStack fluidStack) {
+        return Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(RenderProperties.get(fluidStack.getFluid()).getStillTexture());
     }
 
 }

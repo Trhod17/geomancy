@@ -9,7 +9,8 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
+import net.codersdownunder.gemmod.crafting.recipe.DippingRecipe;
+import net.codersdownunder.gemmod.init.RecipeInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -168,7 +169,7 @@ public class DippingRecipeBuilder implements RecipeBuilder {
         }
 
         public RecipeSerializer<?> getType() {
-            return DippingRecipe.SERIALIZER;
+            return RecipeInit.DIPPING.get();
         }
 
         /**

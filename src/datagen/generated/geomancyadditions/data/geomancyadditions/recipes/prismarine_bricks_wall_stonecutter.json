@@ -1,9 +1,9 @@
 {
   "type": "minecraft:stonecutting",
+  "count": 1,
   "group": "geomancyadditions",
   "ingredient": {
     "item": "minecraft:prismarine_bricks"
   },
-  "result": "geomancyadditions:prismarine_bricks_wall",
-  "count": 1
+  "result": "geomancyadditions:prismarine_bricks_wall"
 }

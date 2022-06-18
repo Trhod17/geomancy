@@ -1,7 +1,13 @@
 package net.codersdownunder.gemmod.compat.jei.categories;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 import com.mojang.datafixers.util.Pair;
+
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -11,24 +17,15 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
-import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
+import net.codersdownunder.gemmod.crafting.recipe.DippingRecipe;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.codersdownunder.gemmod.utils.TagUtils;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.IntStream;
 
 public class DippingRecipeCategory implements IRecipeCategory<DippingRecipe> {
     public static final RecipeType<DippingRecipe> DIPPING = RecipeType.create(GemMod.MODID, "dipping_recipe", DippingRecipe.class);
@@ -39,19 +36,7 @@ public class DippingRecipeCategory implements IRecipeCategory<DippingRecipe> {
 
     public DippingRecipeCategory(IGuiHelper helper) {
         this.back = helper.drawableBuilder(GUI, 0, 0, 180, 130).trim(10, 0, 30, 10).build();
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.DIPPER.get()));
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public ResourceLocation getUid() {
-        return ID;
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends DippingRecipe> getRecipeClass() {
-        return DippingRecipe.class;
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockInit.DIPPER.get()));
     }
 
     @Override
@@ -61,7 +46,7 @@ public class DippingRecipeCategory implements IRecipeCategory<DippingRecipe> {
 
     @Override
     public Component getTitle() {
-        return new TranslatableComponent("category." + GemMod.MODID + ".dipping_recipe");
+        return Component.translatable("category." + GemMod.MODID + ".dipping_recipe");
     }
 
     @Override
@@ -74,7 +59,8 @@ public class DippingRecipeCategory implements IRecipeCategory<DippingRecipe> {
         return icon;
     }
 
-    @Override
+    @SuppressWarnings("serial")
+	@Override
     public void setRecipe(IRecipeLayoutBuilder builder, DippingRecipe recipe, IFocusGroup focuses) {
         List<Pair<Integer, Integer>> ingredientPositions = new ArrayList<>() {{
             add(Pair.of(50, 44));
@@ -109,22 +95,22 @@ public class DippingRecipeCategory implements IRecipeCategory<DippingRecipe> {
 
         ArrayList<ItemStack> strings = getStringStacks();
         builder.addSlot(RecipeIngredientRole.INPUT, ingredientPositions.get(15).getFirst(), ingredientPositions.get(15).getSecond())
-                .addIngredients(VanillaTypes.ITEM, strings)
+                .addIngredients(VanillaTypes.ITEM_STACK, strings)
                 .setSlotName("string1");
         builder.addSlot(RecipeIngredientRole.INPUT, ingredientPositions.get(16).getFirst(), ingredientPositions.get(16).getSecond())
-                .addIngredients(VanillaTypes.ITEM, strings)
+                .addIngredients(VanillaTypes.ITEM_STACK, strings)
                 .setSlotName("string2");
         builder.addSlot(RecipeIngredientRole.INPUT, ingredientPositions.get(17).getFirst(), ingredientPositions.get(17).getSecond())
-                .addIngredients(VanillaTypes.ITEM, strings)
+                .addIngredients(VanillaTypes.ITEM_STACK, strings)
                 .setSlotName("string3");
 
         builder.addSlot(RecipeIngredientRole.INPUT, 122, 71)
-                .addIngredients(VanillaTypes.FLUID, recipe.getFluids())
+                .addIngredients(ForgeTypes.FLUID_STACK, recipe.getFluids())
                 .setFluidRenderer(DipperBlockEntity.capacity, true, 16, 43)
                 .setSlotName("fluid");
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 122, 44)
-                .addIngredient(VanillaTypes.ITEM, recipe.getResultItem())
+                .addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem())
                 .setSlotName("result");
     }
 
@@ -138,21 +124,21 @@ public class DippingRecipeCategory implements IRecipeCategory<DippingRecipe> {
         return stack;
     }
 
-    private static abstract class AcceptedFluids {
-
-        private static final ArrayList<FluidStack> acceptedFluids = new ArrayList<>();
-
-        public static ArrayList<FluidStack> getAcceptedFluids(DippingRecipe recipe) {
-            acceptedFluids.clear();
-            Collection<Fluid> fluidList = ForgeRegistries.FLUIDS.getValues();
-
-            List<Fluid> drippingFluids = TagUtils.getValuesFluid(GeomancyTags.Fluids.DIPPING_FLUIDS);
-            for (Fluid fluid : fluidList) {
-                if (drippingFluids.contains(fluid) && fluid.isSource(fluid.defaultFluidState())) {
-                    acceptedFluids.add(new FluidStack(fluid, recipe.getFluidAmount()));
-                }
-            }
-            return acceptedFluids;
-        }
-    }
+//    private static abstract class AcceptedFluids {
+//
+//        private static final ArrayList<FluidStack> acceptedFluids = new ArrayList<>();
+//
+//        public static ArrayList<FluidStack> getAcceptedFluids(DippingRecipe recipe) {
+//            acceptedFluids.clear();
+//            Collection<Fluid> fluidList = ForgeRegistries.FLUIDS.getValues();
+//
+//            List<Fluid> drippingFluids = TagUtils.getValuesFluid(GeomancyTags.Fluids.DIPPING_FLUIDS);
+//            for (Fluid fluid : fluidList) {
+//                if (drippingFluids.contains(fluid) && fluid.isSource(fluid.defaultFluidState())) {
+//                    acceptedFluids.add(new FluidStack(fluid, recipe.getFluidAmount()));
+//                }
+//            }
+//            return acceptedFluids;
+//        }
+//    }
 }

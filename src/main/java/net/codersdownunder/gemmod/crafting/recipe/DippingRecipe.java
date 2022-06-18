@@ -1,12 +1,11 @@
-package net.codersdownunder.gemmod.crafting.recipe.dipping;
+package net.codersdownunder.gemmod.crafting.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
-import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
-import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.RecipeInit;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.NonNullList;
@@ -24,7 +23,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.util.RecipeMatcher;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -33,8 +31,6 @@ import java.util.List;
 
 public class DippingRecipe implements Recipe<SimpleContainer>
 {
-    public static final Serializer SERIALIZER = new Serializer();
-
     private List<FluidStack> acceptedFluids = new ArrayList<>();
     private final ResourceLocation id;
     private final ItemStack output;
@@ -51,7 +47,7 @@ public class DippingRecipe implements Recipe<SimpleContainer>
     @Override
     public RecipeType<?> getType()
     {
-        return ModRecipeTypes.DIPPING_RECIPE;
+        return RecipeInit.DIPPING_TYPE.get();
     }
     
     @Override
@@ -100,7 +96,7 @@ public class DippingRecipe implements Recipe<SimpleContainer>
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RecipeInit.DIPPING.get();
     }
 
     public List<FluidStack> getFluids() {
@@ -125,13 +121,13 @@ public class DippingRecipe implements Recipe<SimpleContainer>
         return acceptedFluids;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>>
-            implements RecipeSerializer<DippingRecipe> {
+    public static class Serializer<T extends DippingRecipe> implements RecipeSerializer<DippingRecipe> {
+        final DippingRecipe.Serializer.IRecipeFactory<T> factory;
 
-        Serializer() {
-            this.setRegistryName(GemMod.MODID, "dipping_recipe");
+        public Serializer(DippingRecipe.Serializer.IRecipeFactory<T> factory) {
+            this.factory = factory;
         }
-        
+
         @Override
         public DippingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson)
         {
@@ -170,7 +166,7 @@ public class DippingRecipe implements Recipe<SimpleContainer>
 
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "output"));
 
-            return new DippingRecipe(pRecipeId, output, inputs, fluidInput);
+            return this.factory.create(pRecipeId, output, inputs, fluidInput);
         }
 
         @Nullable
@@ -187,7 +183,7 @@ public class DippingRecipe implements Recipe<SimpleContainer>
             Pair<String, Integer> fluidInput = Pair.of(pBuffer.readUtf(), pBuffer.readInt());
             ItemStack output = pBuffer.readItem();
 
-            return new DippingRecipe(pRecipeId, output, inputs, fluidInput);
+            return this.factory.create(pRecipeId, output, inputs, fluidInput);
         }
 
         @Override
@@ -200,6 +196,11 @@ public class DippingRecipe implements Recipe<SimpleContainer>
             pBuffer.writeUtf(pRecipe.fluid.getFirst());
             pBuffer.writeInt(pRecipe.fluid.getSecond());
             pBuffer.writeItemStack(pRecipe.output, false);
+        }
+
+        public interface IRecipeFactory<T extends DippingRecipe>
+        {
+            T create(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems, Pair<String, Integer> fluid);
         }
     }
 

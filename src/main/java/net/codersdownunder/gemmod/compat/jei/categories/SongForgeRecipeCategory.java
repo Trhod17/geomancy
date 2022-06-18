@@ -11,7 +11,6 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
@@ -23,22 +22,10 @@ public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
     public static final ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/song_forge.png");
     private final IDrawable back;
     private final IDrawable icon;
-    
+
     public SongForgeRecipeCategory(IGuiHelper helper) {
         this.back = helper.drawableBuilder(GUI, 0, 0, 190, 70).trim(14, 0, 10, 20).build();
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.SONG_FORGE.get()));
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public ResourceLocation getUid() {
-        return ID;
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends SmeltingRecipe> getRecipeClass() {
-        return SmeltingRecipe.class;
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockInit.SONG_FORGE.get()));
     }
 
     @Override
@@ -48,7 +35,7 @@ public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
 
     @Override
     public Component getTitle() {
-        return new TranslatableComponent("category." + GemMod.MODID + ".songforge_recipe");
+        return Component.translatable("category." + GemMod.MODID + ".songforge_recipe");
     }
 
     @Override
@@ -67,7 +54,7 @@ public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
                 .addIngredients(recipe.getIngredients().get(0))
                 .setSlotName("ingredient");
         builder.addSlot(RecipeIngredientRole.OUTPUT, 124, 21)
-                .addIngredient(VanillaTypes.ITEM, recipe.getResultItem())
+                .addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem())
                 .setSlotName("result");
     }
 }

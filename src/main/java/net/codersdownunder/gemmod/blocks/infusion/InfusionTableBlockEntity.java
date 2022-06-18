@@ -1,7 +1,7 @@
 package net.codersdownunder.gemmod.blocks.infusion;
 
-import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
-import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
+import net.codersdownunder.gemmod.crafting.recipe.InfusingRecipe;
+import net.codersdownunder.gemmod.init.RecipeInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
 import net.minecraft.core.BlockPos;
@@ -65,7 +65,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
         inv.setItem(5, itemHandler.getStackInSlot(5));
         inv.setItem(6, itemHandler.getStackInSlot(InfusionTableMenu.BASE_SLOT));
 
-        InfusingRecipe recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.INFUSING_RECIPE, inv, level).orElse(null);
+        InfusingRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeInit.INFUSING_TYPE.get(), inv, level).orElse(null);
 
         if (recipe == null) {
             return;

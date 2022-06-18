@@ -1,8 +1,8 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
 import net.codersdownunder.gemmod.Config;
-import net.codersdownunder.gemmod.crafting.recipe.ModRecipeTypes;
-import net.codersdownunder.gemmod.crafting.recipe.dipping.DippingRecipe;
+import net.codersdownunder.gemmod.crafting.recipe.DippingRecipe;
+import net.codersdownunder.gemmod.init.RecipeInit;
 import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
@@ -163,7 +163,7 @@ public class DipperBlockEntity extends BlockEntity {
 
         DippingRecipe recipe = cachedRecipe;
         if (recipe == null || !recipe.matches(inv, level)) {
-            recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.DIPPING_RECIPE, inv, level).orElse(null);
+            recipe = level.getRecipeManager().getRecipeFor(RecipeInit.DIPPING_TYPE.get(), inv, level).orElse(null);
         }
 
         boolean hasValidFluid = false;

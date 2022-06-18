@@ -10,11 +10,10 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.codersdownunder.gemmod.GemMod;
-import net.codersdownunder.gemmod.crafting.recipe.infusing.InfusingRecipe;
+import net.codersdownunder.gemmod.crafting.recipe.InfusingRecipe;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -30,22 +29,10 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
     public static final ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/infusion_recipe.png");
     private final IDrawable back;
     private final IDrawable icon;
-    
+
     public InfusingRecipeCategory(IGuiHelper helper) {
         this.back = helper.drawableBuilder(GUI, 0, 0, 200, 120).trim(10, 10, 5, 27).build();
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockInit.INFUSION_TABLE.get()));
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public ResourceLocation getUid() {
-        return ID;
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends InfusingRecipe> getRecipeClass() {
-        return InfusingRecipe.class;
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockInit.INFUSION_TABLE.get()));
     }
 
     @Override
@@ -55,7 +42,7 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
 
     @Override
     public Component getTitle() {
-        return new TranslatableComponent("category." + GemMod.MODID + ".infusing_recipe");
+        return Component.translatable("category." + GemMod.MODID + ".infusing_recipe");
     }
 
     @Override
@@ -68,7 +55,8 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
         return icon;
     }
 
-    @Override
+    @SuppressWarnings("serial")
+	@Override
     public void setRecipe(IRecipeLayoutBuilder builder, InfusingRecipe recipe, IFocusGroup focuses) {
         List<Pair<Integer, Integer>> ingredientPositions = new ArrayList<>() {{
             add(Pair.of(12, 35));
@@ -88,12 +76,12 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
                     .setSlotName("ingredient" + value);
         });
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 75, 35)
-                .addIngredient(VanillaTypes.ITEM, recipe.getBaseItem())
+        builder.addSlot(RecipeIngredientRole.INPUT, 80, 40)
+                .addIngredient(VanillaTypes.ITEM_STACK, recipe.getBaseItem())
                 .setSlotName("base");
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 75, 80)
-                .addIngredient(VanillaTypes.ITEM, recipe.getResultItem())
+                .addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem())
                 .setSlotName("result");
     }
 }
