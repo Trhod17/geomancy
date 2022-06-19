@@ -3,7 +3,7 @@ package net.codersdownunder.gemmod.init;
 import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlock;
 import net.codersdownunder.gemmod.blocks.dream.DreamCatcherBlock;
-import net.codersdownunder.gemmod.blocks.infusion.InfusionBlock;
+import net.codersdownunder.gemmod.blocks.infusion.InfusionTableBlock;
 import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomStandingSignBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomWallSignBlock;
@@ -36,10 +36,12 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+@Mod.EventBusSubscriber(modid = GemMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockInit
 {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GemMod.MODID);
@@ -84,7 +86,7 @@ public class BlockInit
        return 15;
     })));
    
-   public static final RegistryObject<Block> INFUSION_TABLE = BLOCKS.register("infusion_table", () -> new InfusionBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> INFUSION_TABLE = BLOCKS.register("infusion_table", () -> new InfusionTableBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
    
    public static final RegistryObject<Block> DIPPER = BLOCKS.register("dipper", () -> new DipperBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WATER).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
    

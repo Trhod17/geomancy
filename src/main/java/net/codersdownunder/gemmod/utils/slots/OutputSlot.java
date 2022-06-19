@@ -10,8 +10,6 @@ public class OutputSlot extends GenericSlot {
 		
 	}
 	
-	
-	
 	@Override
 	public boolean mayPlace(ItemStack stack) {
 		return false;

@@ -1,13 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "geomancyadditions:prismarine_bricks_wall_stonecutter"
-    ]
-  },
   "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "geomancyadditions:prismarine_bricks_wall_stonecutter"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
     "prismarine_bricks": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -16,13 +16,8 @@
             ]
           }
         ]
-      }
-    },
-    "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "geomancyadditions:prismarine_bricks_wall_stonecutter"
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
@@ -30,5 +25,10 @@
       "prismarine_bricks",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "rewards": {
+    "recipes": [
+      "geomancyadditions:prismarine_bricks_wall_stonecutter"
+    ]
+  }
 }

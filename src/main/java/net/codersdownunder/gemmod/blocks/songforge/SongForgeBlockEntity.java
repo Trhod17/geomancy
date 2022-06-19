@@ -416,33 +416,32 @@ public class SongForgeBlockEntity extends BlockEntity {
             LazyOptional.of(() -> new RangedWrapper(itemHandler, 6, 14))
     ));
 
-	@Nonnull
-	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 
-			if (side == null) return capabilities.get(0).cast();
-			return switch (side) {
-			case UP -> capabilities.get(2).cast();
-			case DOWN -> capabilities.get(3).cast();
-			default -> capabilities.get(1).cast();
-			};
-		}
-		return super.getCapability(cap, side);
-	}
+            if (side == null) return capabilities.get(0).cast();
+            return switch (side) {
+                case UP -> capabilities.get(2).cast();
+                case DOWN -> capabilities.get(3).cast();
+                default -> capabilities.get(1).cast();
+            };
+        }
+        return super.getCapability(cap, side);
+    }
 
-	public boolean canPlayerAccessInventory(Player playerIn) {
-		if (this.level.getBlockEntity(this.worldPosition) != this) {
-			return false;
-		}
+    public boolean canPlayerAccessInventory(Player playerIn) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
+            return false;
+        }
 
-		final double X_CENTRE_OFFSET = 0.5;
-		final double Y_CENTRE_OFFSET = 0.5;
-		final double Z_CENTRE_OFFSET = 0.5;
-		final double MAXIMUM_DIST_SQ = 8.0 * 8.0;
+        final double X_CENTRE_OFFSET = 0.5;
+        final double Y_CENTRE_OFFSET = 0.5;
+        final double Z_CENTRE_OFFSET = 0.5;
+        final double MAXIMUM_DIST_SQ = 8.0 * 8.0;
 
-		return playerIn.distanceToSqr(worldPosition.getX() + X_CENTRE_OFFSET, worldPosition.getY() + Y_CENTRE_OFFSET,
-				worldPosition.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DIST_SQ;
-	}
-
+        return playerIn.distanceToSqr(worldPosition.getX() + X_CENTRE_OFFSET, worldPosition.getY() + Y_CENTRE_OFFSET,
+                worldPosition.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DIST_SQ;
+    }
 }

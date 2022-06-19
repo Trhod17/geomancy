@@ -35,7 +35,7 @@ import net.minecraftforge.network.NetworkHooks;
 
 import java.util.stream.Stream;
 
-public class InfusionBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
+public class InfusionTableBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
     
 	private static final VoxelShape SHAPE = Stream.of(
                 Block.box(6, 1, 14, 10, 7, 14),
@@ -67,7 +67,7 @@ public class InfusionBlock extends Block implements SimpleWaterloggedBlock, Enti
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public InfusionBlock(Properties propertiesIn) {
+    public InfusionTableBlock(Properties propertiesIn) {
         super(propertiesIn);
         this.registerDefaultState(this.stateDefinition.any().setValue(BlockStateProperties.WATERLOGGED, false));
         

@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancyadditions",
-  "pattern": [
-    "xxx",
-    "xxx"
-  ],
   "key": {
     "x": {
       "item": "minecraft:dark_prismarine"
     }
   },
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
   "result": {
-    "item": "geomancyadditions:dark_prismarine_wall",
-    "count": 6
+    "count": 6,
+    "item": "geomancyadditions:dark_prismarine_wall"
   }
 }
