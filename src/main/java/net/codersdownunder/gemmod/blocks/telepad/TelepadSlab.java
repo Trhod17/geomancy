@@ -36,6 +36,7 @@ import net.minecraftforge.network.NetworkHooks;
 
 import java.util.stream.Stream;
 
+
 public class TelepadSlab extends BaseEntityBlock implements SimpleWaterloggedBlock, EntityBlock {
 
 	
@@ -161,7 +162,7 @@ public class TelepadSlab extends BaseEntityBlock implements SimpleWaterloggedBlo
                         return Component.translatable("screen." + GemMod.MODID + ".telepad.text");
                     }
                 };
-                NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+                NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }

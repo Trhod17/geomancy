@@ -1,5 +1,8 @@
 {
-  "type": "geomancy:infusing_recipe",
+  "type": "geomancy:infusing",
+  "base": {
+    "item": "geomancy:nether_crux"
+  },
   "group": "geomancy",
   "ingredients": [
     {
@@ -9,9 +12,6 @@
       "item": "geomancy:dream_dust"
     }
   ],
-  "base": {
-    "item": "geomancy:nether_crux"
-  },
   "output": {
     "item": "geomancy:concentration"
   }

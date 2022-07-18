@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "hanging=false,waterlogged=false": {
+      "model": "geomancy:block/end_lantern"
+    },
+    "hanging=false,waterlogged=true": {
+      "model": "geomancy:block/end_lantern"
+    },
+    "hanging=true,waterlogged=false": {
+      "model": "geomancy:block/end_lantern"
+    },
+    "hanging=true,waterlogged=true": {
+      "model": "geomancy:block/end_lantern"
+    }
+  }
+}

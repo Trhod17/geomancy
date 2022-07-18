@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "geomancy:items/nether_crux"
+    "layer0": "geomancy:item/nether_crux"
   }
 }

@@ -1,16 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    "xxx"
-  ],
   "key": {
     "x": {
       "item": "geomancy:chasm_planks"
     }
   },
+  "pattern": [
+    "xxx"
+  ],
   "result": {
-    "item": "geomancy:chasm_slab",
-    "count": 6
+    "count": 6,
+    "item": "geomancy:chasm_slab"
   }
 }

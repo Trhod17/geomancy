@@ -24,10 +24,10 @@ public final class GemModNetwork
     public static void init() {
     	int index = 0;
         CHANNEL.messageBuilder(InfusionCraftingMessage.class, index++, NetworkDirection.PLAY_TO_SERVER)
-        .encoder(InfusionCraftingMessage::encode).decoder(InfusionCraftingMessage::new).consumer(InfusionCraftingMessage::handle).add();
+        .encoder(InfusionCraftingMessage::encode).decoder(InfusionCraftingMessage::new).consumerMainThread(InfusionCraftingMessage::handle).add();
         
         CHANNEL.messageBuilder(InfusionStandCraftingMessage.class, index++, NetworkDirection.PLAY_TO_SERVER)
-        .encoder(InfusionStandCraftingMessage::encode).decoder(InfusionStandCraftingMessage::new).consumer(InfusionStandCraftingMessage::handle).add();
+        .encoder(InfusionStandCraftingMessage::encode).decoder(InfusionStandCraftingMessage::new).consumerMainThread(InfusionStandCraftingMessage::handle).add();
     }
    
 

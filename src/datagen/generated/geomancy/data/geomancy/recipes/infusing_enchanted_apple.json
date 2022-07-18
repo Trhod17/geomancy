@@ -1,5 +1,8 @@
 {
-  "type": "geomancy:infusing_recipe",
+  "type": "geomancy:infusing",
+  "base": {
+    "item": "minecraft:golden_apple"
+  },
   "group": "geomancy",
   "ingredients": [
     {
@@ -21,9 +24,6 @@
       "item": "geomancy:amethyst_dreaming"
     }
   ],
-  "base": {
-    "item": "minecraft:golden_apple"
-  },
   "output": {
     "item": "minecraft:enchanted_golden_apple"
   }

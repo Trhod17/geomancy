@@ -28,6 +28,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
 
+
 public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBlock, EntityBlock {
 
 //  public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -220,7 +221,7 @@ public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 						return Component.translatable("screen." + GemMod.MODID + ".telepad.text");
 					}
 				};
-				NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+				NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);
 			} else {
 				throw new IllegalStateException("Our named container provider is missing!");
 			}

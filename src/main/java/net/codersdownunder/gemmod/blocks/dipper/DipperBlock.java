@@ -177,7 +177,7 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 						return Component.translatable("screen.geomancy.dipper.text");
 					}
 				};
-				NetworkHooks.openGui((ServerPlayer) pPlayer, containerProvider, blockEntity.getBlockPos());
+				NetworkHooks.openScreen((ServerPlayer) pPlayer, containerProvider, blockEntity.getBlockPos());
 			} else {
 				throw new IllegalStateException("Our named container provider is missing!");
 			}

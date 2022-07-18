@@ -1,25 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    " g ",
-    "sbs",
-    " e "
-  ],
   "key": {
-    "g": {
-      "item": "minecraft:glow_ink_sac"
-    },
-    "s": {
-      "item": "minecraft:slime_ball"
-    },
     "b": {
       "item": "minecraft:white_dye"
     },
     "e": {
       "item": "minecraft:egg"
+    },
+    "g": {
+      "item": "minecraft:glow_ink_sac"
+    },
+    "s": {
+      "item": "minecraft:slime_ball"
     }
   },
+  "pattern": [
+    " g ",
+    "sbs",
+    " e "
+  ],
   "result": {
     "item": "minecraft:phantom_membrane"
   }

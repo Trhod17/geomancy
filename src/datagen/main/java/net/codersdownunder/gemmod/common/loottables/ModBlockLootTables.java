@@ -1,13 +1,10 @@
 package net.codersdownunder.gemmod.common.loottables;
 
-import java.util.stream.Collectors;
-
-import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 
 public class ModBlockLootTables extends BlockLoot {
@@ -92,9 +89,6 @@ public class ModBlockLootTables extends BlockLoot {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-        	// i dont know if this works
-            return ForgeRegistries.BLOCKS.getValues().stream()
-                    .filter(block -> GemMod.MODID.equals(block.getName().getString(8)))
-                    .collect(Collectors.toSet());
+        	return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).toList();
         }
 }

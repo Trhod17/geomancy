@@ -26,12 +26,12 @@ public class LogStrippingEvent
     @SubscribeEvent
     public static void onBlockClicked(PlayerInteractEvent.RightClickBlock event) {
         if (event.getItemStack().getItem() instanceof AxeItem) {
-            Level world = event.getWorld();
+            Level world = event.getLevel();
             BlockPos blockpos = event.getPos();
             BlockState blockstate = world.getBlockState(blockpos);
             Block block = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
             if (block != null) {
-                Player playerentity = event.getPlayer();
+                Player playerentity = event.getEntity();
                 world.playSound(playerentity, blockpos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
                 if (!world.isClientSide) {
                     world.setBlockAndUpdate(blockpos, block.defaultBlockState());

@@ -9,6 +9,7 @@ import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
@@ -56,7 +57,7 @@ public class DipperBlockEntity extends BlockEntity {
     public DipperBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(TileEntityInit.DIPPER_BE.get(), pWorldPosition, pBlockState);
 
-        updateTag = getTileData();
+        updateTag = getUpdateTag();
 
         this.tank = new FluidTank(capacity) {
             @Override

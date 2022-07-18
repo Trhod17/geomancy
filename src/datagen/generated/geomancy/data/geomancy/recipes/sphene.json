@@ -1,5 +1,9 @@
 {
   "type": "geomancy:dipping",
+  "fluid": {
+    "amount": 1000,
+    "tag": "geomancy:dipping_fluids"
+  },
   "group": "geomancy",
   "ingredients": [
     {
@@ -48,10 +52,6 @@
       "item": "minecraft:sugar"
     }
   ],
-  "fluid": {
-    "tag": "geomancy:dipping_fluids",
-    "amount": 1000
-  },
   "output": {
     "item": "geomancy:sphene"
   }

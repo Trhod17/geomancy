@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "x": {
+      "item": "geomancy:chasm_planks"
+    }
+  },
   "pattern": [
     "xsx",
     "xsx"
   ],
-  "key": {
-    "x": {
-      "item": "geomancy:chasm_planks"
-    },
-    "s": {
-      "item": "minecraft:stick"
-    }
-  },
   "result": {
-    "item": "geomancy:chasm_fence",
-    "count": 3
+    "count": 3,
+    "item": "geomancy:chasm_fence"
   }
 }

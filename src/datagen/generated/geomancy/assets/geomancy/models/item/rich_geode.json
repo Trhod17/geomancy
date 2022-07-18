@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "geomancy:items/rich_geode_item"
+    "layer0": "geomancy:item/rich_geode_item"
   }
 }

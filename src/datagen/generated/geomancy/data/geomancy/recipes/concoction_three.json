@@ -1,28 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    " x ",
-    "asd",
-    " f "
-  ],
   "key": {
-    "x": {
-      "item": "minecraft:honeycomb"
-    },
     "a": {
       "item": "minecraft:glowstone_dust"
-    },
-    "s": {
-      "item": "minecraft:honey_bottle"
     },
     "d": {
       "item": "minecraft:blaze_powder"
     },
     "f": {
       "item": "minecraft:nether_wart"
+    },
+    "s": {
+      "item": "minecraft:honey_bottle"
+    },
+    "x": {
+      "item": "minecraft:honeycomb"
     }
   },
+  "pattern": [
+    " x ",
+    "asd",
+    " f "
+  ],
   "result": {
     "item": "geomancy:concoction_three"
   }

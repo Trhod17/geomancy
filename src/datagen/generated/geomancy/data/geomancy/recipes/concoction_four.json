@@ -1,28 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    " x ",
-    "asd",
-    " f "
-  ],
   "key": {
-    "x": {
-      "item": "minecraft:redstone"
-    },
     "a": {
       "item": "minecraft:popped_chorus_fruit"
-    },
-    "s": {
-      "item": "minecraft:dragon_breath"
     },
     "d": {
       "item": "minecraft:ender_eye"
     },
     "f": {
       "item": "minecraft:ghast_tear"
+    },
+    "s": {
+      "item": "minecraft:dragon_breath"
+    },
+    "x": {
+      "item": "minecraft:redstone"
     }
   },
+  "pattern": [
+    " x ",
+    "asd",
+    " f "
+  ],
   "result": {
     "item": "geomancy:concoction_four"
   }

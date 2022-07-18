@@ -1,28 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    "epe",
-    "sgs",
-    "ede"
-  ],
   "key": {
+    "d": {
+      "item": "minecraft:dark_oak_log"
+    },
     "e": {
       "item": "minecraft:emerald"
+    },
+    "g": {
+      "item": "minecraft:golden_apple"
     },
     "p": {
       "item": "minecraft:dark_oak_sapling"
     },
     "s": {
       "item": "minecraft:stripped_dark_oak_log"
-    },
-    "g": {
-      "item": "minecraft:golden_apple"
-    },
-    "d": {
-      "item": "minecraft:dark_oak_log"
     }
   },
+  "pattern": [
+    "epe",
+    "sgs",
+    "ede"
+  ],
   "result": {
     "item": "geomancy:infusion_table"
   }

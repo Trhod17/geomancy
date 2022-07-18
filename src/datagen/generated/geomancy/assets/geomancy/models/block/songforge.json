@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "geomancy:blocks/songforge_side",
-    "front": "geomancy:blocks/songforge_front",
-    "top": "geomancy:blocks/songforge_top"
-  }
-}

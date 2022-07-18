@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "geomancy:block/treadstone_slab_4_top"
-    },
     "type=bottom": {
       "model": "geomancy:block/treadstone_slab_4"
     },
     "type=double": {
-      "model": "geomancy:block/treadstone_4"
+      "model": "geomancy:block/treadstone_slab_4"
+    },
+    "type=top": {
+      "model": "geomancy:block/treadstone_slab_4_top"
     }
   }
 }

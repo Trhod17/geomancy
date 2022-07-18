@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout_mipped",
 	"ambientocclusion": false,
 	"textures": {
 		"0": "minecraft:block/oak_log",

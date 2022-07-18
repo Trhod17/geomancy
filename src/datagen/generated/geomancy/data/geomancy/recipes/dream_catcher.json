@@ -1,25 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
+  "key": {
+    "f": {
+      "item": "minecraft:feather"
+    },
+    "h": {
+      "item": "minecraft:tripwire_hook"
+    },
+    "r": {
+      "item": "geomancy:catcher_ring"
+    },
+    "s": {
+      "item": "minecraft:string"
+    }
+  },
   "pattern": [
     " h ",
     "srs",
     "frf"
   ],
-  "key": {
-    "h": {
-      "item": "minecraft:tripwire_hook"
-    },
-    "s": {
-      "item": "minecraft:string"
-    },
-    "f": {
-      "item": "minecraft:feather"
-    },
-    "r": {
-      "item": "geomancy:catcher_ring"
-    }
-  },
   "result": {
     "item": "geomancy:dream_catcher"
   }

@@ -1,30 +1,29 @@
 {
-  "type": "geomancy:infusing_recipe",
+  "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "ingredients": [
-    {
-      "item": "geomancy:rhodonite"
+  "key": {
+    "c": {
+      "item": "minecraft:raw_copper_block"
     },
-    {
-      "item": "geomancy:onyx_dreaming"
+    "g": {
+      "item": "minecraft:raw_gold_block"
     },
-    {
-      "item": "geomancy:chrysocolla"
+    "i": {
+      "item": "minecraft:raw_iron_block"
     },
-    {
-      "item": "geomancy:chrysocolla"
+    "o": {
+      "item": "minecraft:obsidian"
     },
-    {
-      "item": "geomancy:onyx"
-    },
-    {
-      "item": "geomancy:onyx"
+    "x": {
+      "item": "geomancy:rose_quartz"
     }
-  ],
-  "base": {
-    "item": "geomancy:plate_yield_ore"
   },
-  "output": {
+  "pattern": [
+    "xcx",
+    "ogo",
+    "xix"
+  ],
+  "result": {
     "item": "geomancy:plate_yield_ore"
   }
 }

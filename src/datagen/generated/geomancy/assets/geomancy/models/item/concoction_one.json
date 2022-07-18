@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "geomancy:items/coc1"
+    "layer0": "geomancy:item/coc1"
   }
 }

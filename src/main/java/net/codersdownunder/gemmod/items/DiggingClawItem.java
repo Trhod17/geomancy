@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.TierSortingRegistry;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
+
 
 public class DiggingClawItem extends DiggerItem
 {
@@ -118,8 +120,7 @@ public class DiggingClawItem extends DiggerItem
            net.minecraftforge.common.IForgeShearable target = (net.minecraftforge.common.IForgeShearable)entity;
           BlockPos pos = new BlockPos(entity.getX(), entity.getY(), entity.getZ());
           if (target.isShearable(stack, entity.level, pos)) {
-             java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.level, pos,
-                     net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.BLOCK_FORTUNE, stack));
+             java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.level, pos, stack.getEnchantmentLevel(Enchantments.BLOCK_FORTUNE));
              java.util.Random rand = new java.util.Random();
              drops.forEach(d -> {
                 net.minecraft.world.entity.item.ItemEntity ent = entity.spawnAtLocation(d, 1.0F);

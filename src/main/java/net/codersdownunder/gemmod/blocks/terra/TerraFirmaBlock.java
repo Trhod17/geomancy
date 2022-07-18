@@ -20,6 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
 
+
 public class TerraFirmaBlock extends Block implements EntityBlock {
 
 	
@@ -127,7 +128,7 @@ public class TerraFirmaBlock extends Block implements EntityBlock {
                         return Component.translatable("screen." + GemMod.MODID + ".dreamcatcher.text");
                     }
                 };
-                NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+                NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }

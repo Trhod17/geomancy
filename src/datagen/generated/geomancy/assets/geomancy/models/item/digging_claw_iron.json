@@ -1,0 +1,36 @@
+{
+  "parent": "forge:item/default",
+  "base": {
+    "parent": "minecraft:item/generated",
+    "textures": {
+      "layer0": "geomancy:item/claw_iron_item"
+    }
+  },
+  "loader": "forge:separate_transforms",
+  "perspectives": {
+    "firstperson_lefthand": {
+      "parent": "geomancy:item/digging_claw_hand_left",
+      "textures": {
+        "texture": "geomancy:item/claw_iron"
+      }
+    },
+    "firstperson_righthand": {
+      "parent": "geomancy:item/digging_claw_hand",
+      "textures": {
+        "texture": "geomancy:item/claw_iron"
+      }
+    },
+    "thirdperson_lefthand": {
+      "parent": "geomancy:item/digging_claw_hand_left",
+      "textures": {
+        "texture": "geomancy:item/claw_iron"
+      }
+    },
+    "thirdperson_righthand": {
+      "parent": "geomancy:item/digging_claw_hand",
+      "textures": {
+        "texture": "geomancy:item/claw_iron"
+      }
+    }
+  }
+}

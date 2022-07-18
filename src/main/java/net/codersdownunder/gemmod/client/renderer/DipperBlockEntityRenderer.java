@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
+
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -15,10 +16,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.BlockAndTintGetter;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.client.RenderProperties;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 
 public class DipperBlockEntityRenderer implements BlockEntityRenderer<DipperBlockEntity> {
@@ -45,7 +44,8 @@ public class DipperBlockEntityRenderer implements BlockEntityRenderer<DipperBloc
 
         TextureAtlasSprite fluidTexture = getFluidStillSprite(fluidStack);
 
-        int color = RenderProperties.get(fluidStack.getFluid()).getColorTint();
+        int color = IClientFluidTypeExtensions.of(fluidStack.getFluid()).getTintColor();
+//        int color = RenderProperties.get(fluidStack.getFluid()).getColorTint();
 
         VertexConsumer builder = buffer.getBuffer(RenderType.translucent());
 
@@ -129,8 +129,9 @@ public class DipperBlockEntityRenderer implements BlockEntityRenderer<DipperBloc
                 .endVertex();
     }
 
-    private TextureAtlasSprite getFluidStillSprite(FluidStack fluidStack) {
-        return Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(RenderProperties.get(fluidStack.getFluid()).getStillTexture());
+    @SuppressWarnings("deprecation")
+	private TextureAtlasSprite getFluidStillSprite(FluidStack fluidStack) {
+        return Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(IClientFluidTypeExtensions.of(fluidStack.getFluid()).getStillTexture());
     }
 
 }

@@ -1,28 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    "ggg",
-    "dld",
-    "pap"
-  ],
   "key": {
-    "g": {
-      "item": "minecraft:glass"
+    "a": {
+      "item": "minecraft:amethyst_shard"
     },
     "d": {
       "item": "minecraft:dark_prismarine"
+    },
+    "g": {
+      "item": "minecraft:glass"
     },
     "l": {
       "item": "minecraft:sea_lantern"
     },
     "p": {
       "item": "minecraft:ender_pearl"
-    },
-    "a": {
-      "item": "minecraft:amethyst_shard"
     }
   },
+  "pattern": [
+    "ggg",
+    "dld",
+    "pap"
+  ],
   "result": {
     "item": "geomancy:telepad"
   }

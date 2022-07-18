@@ -21,9 +21,9 @@ public class DreamCatcherEventHandler {
 	@SubscribeEvent
 	public static void sleepEvent(PlayerWakeUpEvent event) {
 
-		if (!event.getPlayer().level.isClientSide) {
-			Level world = event.getPlayer().level;
-			BlockPos pos = event.getPlayer().getOnPos();
+		if (!event.getEntity().level.isClientSide) {
+			Level world = event.getEntity().level;
+			BlockPos pos = event.getEntity().getOnPos();
 			// BlockState block = world.getBlockState(pos);
 
 			if (world.getBlockState(pos.above(2)).getBlock() == BlockInit.DREAM_CATCHER.get()) {

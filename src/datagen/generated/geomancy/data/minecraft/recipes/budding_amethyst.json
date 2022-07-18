@@ -1,5 +1,8 @@
 {
-  "type": "geomancy:infusing_recipe",
+  "type": "geomancy:infusing",
+  "base": {
+    "item": "minecraft:amethyst_block"
+  },
   "group": "geomancy",
   "ingredients": [
     {
@@ -15,9 +18,6 @@
       "item": "geomancy:rhodonite"
     }
   ],
-  "base": {
-    "item": "minecraft:amethyst_block"
-  },
   "output": {
     "item": "minecraft:budding_amethyst"
   }

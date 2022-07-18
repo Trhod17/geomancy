@@ -7,10 +7,10 @@ import net.codersdownunder.gemmod.additions.common.recipes.AdditionsRecipeProvid
 import net.codersdownunder.gemmod.additions.common.tags.AdditionsBlockTags;
 import net.codersdownunder.gemmod.additions.common.tags.AdditionsItemTags;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @EventBusSubscriber(modid = Additions.MODID, bus = Bus.MOD)
 public class AdditionsDataProvider {

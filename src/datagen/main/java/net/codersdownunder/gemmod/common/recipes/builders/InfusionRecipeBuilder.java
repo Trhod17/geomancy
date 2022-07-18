@@ -9,7 +9,6 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import net.codersdownunder.gemmod.crafting.recipe.InfusingRecipe;
 import net.codersdownunder.gemmod.init.RecipeInit;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;

@@ -38,6 +38,7 @@ import net.minecraftforge.network.NetworkHooks;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+
 public class DreamCatcherBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
 
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -332,7 +333,7 @@ public class DreamCatcherBlock extends Block implements SimpleWaterloggedBlock, 
                         return Component.translatable("screen." + GemMod.MODID + ".dreamcatcher.text");
                     }
                 };
-                NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+                NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }

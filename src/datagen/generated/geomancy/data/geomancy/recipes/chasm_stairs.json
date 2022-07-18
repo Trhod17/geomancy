@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    "x  ",
-    "xx ",
-    "xxx"
-  ],
   "key": {
     "x": {
       "item": "geomancy:chasm_planks"
     }
   },
+  "pattern": [
+    "x  ",
+    "xx ",
+    "xxx"
+  ],
   "result": {
-    "item": "geomancy:chasm_stairs",
-    "count": 8
+    "count": 8,
+    "item": "geomancy:chasm_stairs"
   }
 }

@@ -1,28 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    " x ",
-    "asd",
-    " f "
-  ],
   "key": {
-    "x": {
-      "item": "minecraft:phantom_membrane"
-    },
     "a": {
       "item": "minecraft:lapis_lazuli"
-    },
-    "s": {
-      "item": "minecraft:glass_bottle"
     },
     "d": {
       "item": "minecraft:ink_sac"
     },
     "f": {
       "item": "minecraft:slime_ball"
+    },
+    "s": {
+      "item": "minecraft:glass_bottle"
+    },
+    "x": {
+      "item": "minecraft:phantom_membrane"
     }
   },
+  "pattern": [
+    " x ",
+    "asd",
+    " f "
+  ],
   "result": {
     "item": "geomancy:concoction_two"
   }

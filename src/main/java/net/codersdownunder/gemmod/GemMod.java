@@ -13,7 +13,6 @@ import net.codersdownunder.gemmod.utils.ModVanillaCompat;
 import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Items;

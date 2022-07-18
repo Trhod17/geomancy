@@ -28,6 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
 
+
 public class InfusionStandBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
     
 //	private static final VoxelShape SHAPE = Stream.of(
@@ -147,7 +148,7 @@ public class InfusionStandBlock extends Block implements SimpleWaterloggedBlock,
                         return Component.translatable("screen." + GemMod.MODID + ".infusion_stand.text");
                     }
                 };
-                NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+                NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }

@@ -38,6 +38,7 @@ import net.minecraftforge.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+
 public class SongForgeBlock extends BaseEntityBlock implements EntityBlock {
 
 	public static final BooleanProperty FORGE = BooleanProperty.create("forgefront");
@@ -174,7 +175,7 @@ public class SongForgeBlock extends BaseEntityBlock implements EntityBlock {
 						return Component.translatable("screen." + GemMod.MODID + ".song_forge.text");
 					}
 				};
-				NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+				NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);
 			} else {
 				throw new IllegalStateException("Our named container provider is missing!");
 			}

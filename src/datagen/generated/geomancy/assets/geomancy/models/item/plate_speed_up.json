@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "geomancy:items/plate_speed_up"
+    "layer0": "geomancy:item/plate_speed_up"
   }
 }

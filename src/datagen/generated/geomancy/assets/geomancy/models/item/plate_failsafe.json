@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "geomancy:items/plate_failsave"
+    "layer0": "geomancy:item/plate_failsave"
   }
 }

@@ -154,7 +154,7 @@ public class InfusionTableBlock extends Block implements SimpleWaterloggedBlock,
                         return Component.translatable("screen." + GemMod.MODID + ".infusion_table.text");
                     }
                 };
-                NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+                NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }

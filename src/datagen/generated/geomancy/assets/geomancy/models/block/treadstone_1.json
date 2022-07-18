@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "geomancy:blocks/treadstone1"
+    "all": "geomancy:block/treadstone1"
   }
 }

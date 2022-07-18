@@ -1,30 +1,26 @@
 {
-  "type": "geomancy:infusing_recipe",
+  "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "ingredients": [
-    {
-      "item": "geomancy:peridot_dreaming"
+  "key": {
+    "c": {
+      "item": "minecraft:honeycomb_block"
     },
-    {
-      "item": "geomancy:peridot"
+    "n": {
+      "item": "geomancy:nether_crux"
     },
-    {
-      "item": "geomancy:peridot"
+    "r": {
+      "item": "minecraft:respawn_anchor"
     },
-    {
-      "item": "geomancy:peridot"
-    },
-    {
-      "item": "geomancy:lilystar"
-    },
-    {
-      "item": "geomancy:amethyst"
+    "x": {
+      "item": "geomancy:rose_quartz"
     }
-  ],
-  "base": {
-    "item": "geomancy:plate_failsafe"
   },
-  "output": {
+  "pattern": [
+    "xnx",
+    "crc",
+    "xcx"
+  ],
+  "result": {
     "item": "geomancy:plate_failsafe"
   }
 }

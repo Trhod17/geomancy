@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout_mipped",
 	"textures": {
 		"1": "minecraft:block/spruce_planks",
 		"10": "geomancy:blocks/trellis_chorus1",

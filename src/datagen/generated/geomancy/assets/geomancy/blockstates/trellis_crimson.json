@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,waterlogged=false": {
+      "model": "geomancy:block/trellis_crimson",
+      "y": 90
+    },
+    "facing=east,waterlogged=true": {
+      "model": "geomancy:block/trellis_crimson",
+      "y": 90
+    },
+    "facing=north,waterlogged=false": {
+      "model": "geomancy:block/trellis_crimson"
+    },
+    "facing=north,waterlogged=true": {
+      "model": "geomancy:block/trellis_crimson"
+    },
+    "facing=south,waterlogged=false": {
+      "model": "geomancy:block/trellis_crimson",
+      "y": 180
+    },
+    "facing=south,waterlogged=true": {
+      "model": "geomancy:block/trellis_crimson",
+      "y": 180
+    },
+    "facing=west,waterlogged=false": {
+      "model": "geomancy:block/trellis_crimson",
+      "y": 270
+    },
+    "facing=west,waterlogged=true": {
+      "model": "geomancy:block/trellis_crimson",
+      "y": 270
+    }
+  }
+}

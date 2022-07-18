@@ -34,14 +34,13 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.fml.config.IConfigEvent.ConfigConfig;
-import net.minecraftforge.registries.ForgeDeferredRegistriesSetup;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 
 public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 

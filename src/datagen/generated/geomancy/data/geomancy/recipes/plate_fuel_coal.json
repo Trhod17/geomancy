@@ -1,21 +1,26 @@
 {
-  "type": "geomancy:infusing_recipe",
+  "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "ingredients": [
-    {
-      "item": "geomancy:jasper_dreaming"
+  "key": {
+    "c": {
+      "item": "minecraft:coal_block"
     },
-    {
-      "item": "geomancy:ruby"
+    "f": {
+      "item": "minecraft:blast_furnace"
     },
-    {
-      "item": "geomancy:ruby"
+    "m": {
+      "item": "minecraft:magma_block"
+    },
+    "x": {
+      "item": "geomancy:rose_quartz"
     }
-  ],
-  "base": {
-    "item": "geomancy:plate_fuel_coal"
   },
-  "output": {
+  "pattern": [
+    "xmx",
+    "cfc",
+    "xmx"
+  ],
+  "result": {
     "item": "geomancy:plate_fuel_coal"
   }
 }

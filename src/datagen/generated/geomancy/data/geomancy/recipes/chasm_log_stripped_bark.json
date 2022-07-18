@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    "xx ",
-    "xx "
-  ],
   "key": {
     "x": {
       "item": "geomancy:chasm_log_stripped"
     }
   },
+  "pattern": [
+    "xx ",
+    "xx "
+  ],
   "result": {
-    "item": "geomancy:chasm_log_stripped_bark",
-    "count": 3
+    "count": 3,
+    "item": "geomancy:chasm_log_stripped_bark"
   }
 }

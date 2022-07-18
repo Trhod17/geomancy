@@ -14,10 +14,10 @@ import net.codersdownunder.gemmod.common.tags.GeomancyBlockTags;
 import net.codersdownunder.gemmod.common.tags.GeomancyFluidTags;
 import net.codersdownunder.gemmod.common.tags.GeomancyItemTags;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @EventBusSubscriber(modid = GemMod.MODID, bus = Bus.MOD)
 public class GeomancyDataProvider {

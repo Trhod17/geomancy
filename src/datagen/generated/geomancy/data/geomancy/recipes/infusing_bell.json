@@ -1,5 +1,8 @@
 {
-  "type": "geomancy:infusing_recipe",
+  "type": "geomancy:infusing",
+  "base": {
+    "item": "minecraft:gold_ingot"
+  },
   "group": "geomancy",
   "ingredients": [
     {
@@ -15,9 +18,6 @@
       "item": "minecraft:amethyst_shard"
     }
   ],
-  "base": {
-    "item": "minecraft:gold_ingot"
-  },
   "output": {
     "item": "minecraft:bell"
   }

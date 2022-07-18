@@ -22,7 +22,9 @@ import net.minecraft.world.item.crafting.RecipeType;
 
 @JeiPlugin
 public class GemModJEIPlugin implements IModPlugin {
-    private static final int PLAYER_INV_SIZE = 4 * 9;
+	//TODO: remove this if not needed
+    @SuppressWarnings("unused")
+	private static final int PLAYER_INV_SIZE = 4 * 9;
     private static final ResourceLocation PLUGIN_ID = new ResourceLocation(GemMod.MODID, "jei_plugin");
 
     @Override
@@ -30,7 +32,7 @@ public class GemModJEIPlugin implements IModPlugin {
         return PLUGIN_ID;
     }
 
-    @SuppressWarnings({ "resource", "removal" })
+    @SuppressWarnings({ "resource" })
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
@@ -61,7 +63,7 @@ public class GemModJEIPlugin implements IModPlugin {
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
 
         //registration.addRecipeTransferHandler(DipperMenu.class, DipperRecipeCategory.ID, 0, 18, 19, PLAYER_INV_SIZE);
-//        registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 6, 7, PLAYER_INV_SIZE);
-//        registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 2, 19, PLAYER_INV_SIZE);
+    	//registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 6, 7, PLAYER_INV_SIZE);
+    	//registration.addRecipeTransferHandler(InfusionTableMenu.class, InfusingRecipeCategory.INFUSION, 0, 2, 19, PLAYER_INV_SIZE);
     }
 }

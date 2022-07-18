@@ -1,21 +1,20 @@
 package net.codersdownunder.gemmod.utils;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.client.RenderProperties;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class FluidUtils {
 	
@@ -42,7 +41,7 @@ public class FluidUtils {
 
     @Nullable
     public static TextureAtlasSprite getFluidTexture(@Nonnull FluidStack stack) {
-        return Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(RenderProperties.get(stack.getFluid()).getStillTexture());
+        return Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(IClientFluidTypeExtensions.of(stack.getFluid()).getStillTexture());
     }
 
     public static int getLiquidColorWithBiome(@Nonnull FluidStack fluid, Level world, BlockPos pos) {
@@ -51,7 +50,7 @@ public class FluidUtils {
                 return BiomeColors.getAverageWaterColor(world, pos) | 0xFF000000;
             }
         }
-        return RenderProperties.get(fluid.getFluid()).getColorTint();
+        return IClientFluidTypeExtensions.of(fluid.getFluid()).getTintColor();
     }
 
     public static int getLiquidColorWithBiome(@Nonnull FluidStack fluid, @Nonnull BlockEntity tileEntity) {

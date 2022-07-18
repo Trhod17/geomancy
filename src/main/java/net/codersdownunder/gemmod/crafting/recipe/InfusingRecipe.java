@@ -2,7 +2,6 @@ package net.codersdownunder.gemmod.crafting.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.mojang.datafixers.util.Pair;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.RecipeInit;
 import net.minecraft.core.NonNullList;

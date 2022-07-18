@@ -1,25 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "geomancy",
-  "pattern": [
-    "lll",
-    "gag",
-    "gng"
-  ],
   "key": {
-    "l": {
-      "item": "minecraft:oak_log"
+    "a": {
+      "item": "minecraft:amethyst_block"
     },
     "g": {
       "item": "minecraft:gold_ingot"
     },
-    "a": {
-      "item": "minecraft:amethyst_block"
+    "l": {
+      "item": "minecraft:oak_log"
     },
     "n": {
       "item": "minecraft:gold_nugget"
     }
   },
+  "pattern": [
+    "lll",
+    "gag",
+    "gng"
+  ],
   "result": {
     "item": "minecraft:bell"
   }

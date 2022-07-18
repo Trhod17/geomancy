@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "bottom": "geomancy:block/chasm_planks",
+    "side": "geomancy:block/chasm_planks",
+    "top": "geomancy:block/chasm_planks"
+  }
+}

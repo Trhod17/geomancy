@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "geomancy:items/netherite_nugget"
+    "layer0": "geomancy:item/netherite_nugget"
   }
 }

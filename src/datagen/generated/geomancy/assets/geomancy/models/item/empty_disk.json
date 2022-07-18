@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "geomancy:items/empty_disc"
+    "layer0": "geomancy:item/empty_disc"
   }
 }

@@ -19,7 +19,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class TileEntityInit
 {
     
-    public static DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, GemMod.MODID);
+    public static DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, GemMod.MODID);
     
     public static RegistryObject<BlockEntityType<CustomSignBlockEntity>> CUSTOM_SIGN = TILE_ENTITIES.register("custom_sign", () -> BlockEntityType.Builder.of(CustomSignBlockEntity::new, BlockInit.CHASM_SIGN_WALL.get(), BlockInit.CHASM_SIGN.get()).build(null));
     public static RegistryObject<BlockEntityType<InfusionTableBlockEntity>> INFUSION_TABLE = TILE_ENTITIES.register("infusion_table",() -> BlockEntityType.Builder.of(InfusionTableBlockEntity::new, BlockInit.INFUSION_TABLE.get()).build(null));
