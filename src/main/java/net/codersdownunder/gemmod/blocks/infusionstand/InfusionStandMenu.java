@@ -12,7 +12,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -49,7 +49,7 @@ public class InfusionStandMenu extends AbstractContainerMenu {
 
 
         if (tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+            tileEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(h -> {
                 addSlot(new GenericSlot(h, 0, 67, 63));
                 addSlot(new GenericSlot(h, 1, 31, 45));
                 addSlot(new GenericSlot(h, 2, 103, 45));

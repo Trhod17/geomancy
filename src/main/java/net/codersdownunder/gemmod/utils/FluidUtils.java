@@ -60,7 +60,7 @@ public class FluidUtils {
     public static int getFluidScaled(int pixels, FluidStack fluid, int maxLiquidAmount) {
         if(maxLiquidAmount == 0)
             return pixels;
-        Long currentLiquidAmount = (long) fluid.getAmount();
+        long currentLiquidAmount = (long) fluid.getAmount();
         long x = currentLiquidAmount * pixels / maxLiquidAmount;
         return pixels - (int) x;
     }

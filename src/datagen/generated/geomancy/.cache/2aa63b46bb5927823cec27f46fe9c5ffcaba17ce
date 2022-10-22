@@ -1,4 +1,4 @@
-// 1.19	2022-07-11T14:38:18.206626917	Geomancy - Loot Tables
+// 1.19.2	2022-08-21T18:22:14.244494161	Geomancy LootTables
 507ea5a152b79689c90f9d677ef932dbe035b7ab data/geomancy/loot_tables/blocks/chasm_button.json
 deee973c46d74e8488c0699708a9ec327077af46 data/geomancy/loot_tables/blocks/chasm_door.json
 d2a00f74375f9c947a7309efc755f8f33f161871 data/geomancy/loot_tables/blocks/chasm_fence.json
@@ -58,10 +58,10 @@ b1d0d76d934712293791e98a5569a9ec4bc26107 data/geomancy/loot_tables/blocks/treads
 5a9482de0093e437753d7b2acbfb8c34ad5aff53 data/geomancy/loot_tables/blocks/treadstone_stair_6.json
 627a2c57d38d16d1fa2c2429b5b348d96e83a2b1 data/geomancy/loot_tables/blocks/treadstone_stair_7.json
 e9129eacbee13de29565ae4eb59052efaf3ace67 data/geomancy/loot_tables/blocks/trellis.json
-e9129eacbee13de29565ae4eb59052efaf3ace67 data/geomancy/loot_tables/blocks/trellis_cave_vines.json
-e9129eacbee13de29565ae4eb59052efaf3ace67 data/geomancy/loot_tables/blocks/trellis_chorus.json
-e9129eacbee13de29565ae4eb59052efaf3ace67 data/geomancy/loot_tables/blocks/trellis_crimson.json
-e9129eacbee13de29565ae4eb59052efaf3ace67 data/geomancy/loot_tables/blocks/trellis_lichen.json
-e9129eacbee13de29565ae4eb59052efaf3ace67 data/geomancy/loot_tables/blocks/trellis_moss.json
-e9129eacbee13de29565ae4eb59052efaf3ace67 data/geomancy/loot_tables/blocks/trellis_vine.json
-e9129eacbee13de29565ae4eb59052efaf3ace67 data/geomancy/loot_tables/blocks/trellis_warp.json
+e883c9bc3c26f1ef7c54f7aa8a6d29fa7b168a5f data/geomancy/loot_tables/blocks/trellis_cave_vines.json
+9a94b884bc84ff0b5d7d61bc42ab41c249ff0903 data/geomancy/loot_tables/blocks/trellis_chorus.json
+f17c5e91208f2e889258464a96ec0b8f553e3cec data/geomancy/loot_tables/blocks/trellis_crimson.json
+b730a9c07ffd812e7c6f886f4910fc7472c3130b data/geomancy/loot_tables/blocks/trellis_lichen.json
+66bb1a472ddb92692de098f0af5d58c7a2ffb209 data/geomancy/loot_tables/blocks/trellis_moss.json
+bacd88cb8eedab1722066da2a97d4e9912b9c86e data/geomancy/loot_tables/blocks/trellis_vine.json
+1f7ff7627e6f5e274a3a64ab4454a7b00e07e342 data/geomancy/loot_tables/blocks/trellis_warp.json

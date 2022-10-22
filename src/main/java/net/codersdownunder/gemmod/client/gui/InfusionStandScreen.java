@@ -41,7 +41,6 @@ public class InfusionStandScreen extends AbstractContainerScreen<InfusionStandMe
     
     @Override
     protected void containerTick() {
-    	// TODO Auto-generated method stub
     	super.containerTick();
     }
 

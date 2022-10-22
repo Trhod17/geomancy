@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.network.NetworkHooks;
 
 
@@ -41,7 +41,7 @@ public class TerraFirmaBlock extends Block implements EntityBlock {
 	public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 		 if (pState.hasBlockEntity() && pState.getBlock() != pNewState.getBlock()) {
 	            // drops everything in the inventory
-	            pLevel.getBlockEntity(pPos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+	            pLevel.getBlockEntity(pPos).getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(h -> {
 	                for (int i = 0; i < h.getSlots(); i++) {
 	                	popResource(pLevel, pPos, h.getStackInSlot(i));
 	                }
@@ -92,7 +92,7 @@ public class TerraFirmaBlock extends Block implements EntityBlock {
 //    
 //    @Override
 //    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-//    	// TODO Auto-generated method stub
+//    	//
 //    	return defaultBlockState().setValue(FACING, pContext.getHorizontalDirection());
 //    }
 //    

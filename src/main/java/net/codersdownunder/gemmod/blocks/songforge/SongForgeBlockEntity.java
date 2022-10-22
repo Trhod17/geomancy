@@ -1,447 +1,340 @@
 package net.codersdownunder.gemmod.blocks.songforge;
 
-import net.codersdownunder.gemmod.init.TileEntityInit;
+import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.init.BlockEntityInit;
+import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
+import net.codersdownunder.gemmod.utils.WrappedHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.Containers;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.RangedWrapper;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-public class SongForgeBlockEntity extends BlockEntity {
+public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
 
-	private static final int INPUT_SLOTS = 3;
-	private static final int OUTPUT_SLOTS = 9;
-	private static final int FUEL_SLOTS = 3;
-	private static final int UPGRADE_SLOTS = 4;
+    private final AutomatableItemStackHandler itemHandler = createHandler();
+    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    protected final ContainerData data;
+    private int progress = 0;
+    private int maxProgress = 78;
+    private static int currentInput = 0;
+    private static int firstAvailableOutput = 0;
+    private boolean isBurning = false;
+    private int maxFuel = 0;
+    private int fuel = 0;
+    private int currentFuelSlot = 0;
 
-	public static boolean valid;
-	public static ItemStack output;
-	public static int input;
-	public static int counter;
-	// private int countermax;
-	public static int burntime = 0;
-	private boolean burning;
-	public static int fuel;
-	//public static boolean crafting;
+    public SongForgeBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(BlockEntityInit.SONG_FORGE_BE.get(), pPos, pBlockState);
+        this.data = new ContainerData() {
+            @Override
+            public int get(int pIndex) {
+                return switch (pIndex) {
+                    case 0 -> SongForgeBlockEntity.this.progress;
+                    case 1 -> SongForgeBlockEntity.this.maxProgress;
+                    case 2 -> SongForgeBlockEntity.this.fuel;
+                    case 3 -> SongForgeBlockEntity.this.maxFuel;
+                    default -> 0;
+                };
+            }
 
-//	private CompoundTag updateTag;
+            @Override
+            public void set(int pIndex, int pValue) {
+                switch (pIndex) {
+                    case 0 -> SongForgeBlockEntity.this.progress = pValue;
+                    case 1 -> SongForgeBlockEntity.this.maxProgress = pValue;
+                    case 2 -> SongForgeBlockEntity.this.fuel = pValue;
+                    case 3 -> SongForgeBlockEntity.this.maxFuel = pValue;
+                };
+            }
 
-	public int getCounter() {
-		return counter;
-	}
+            @Override
+            public int getCount() {
+                return 4;
+            }
+        };
+    }
 
-	public int getBurn() {
-		return burntime;
-	}
-
-	private ItemStackHandler itemHandler = createHandler();
-
-	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-
-	public SongForgeBlockEntity(BlockPos pos, BlockState blockState) {
-		super(TileEntityInit.SONG_FORGE_BE.get(), pos, blockState);
-	}
-
-
-	public static int getSlots() {
-		return INPUT_SLOTS + OUTPUT_SLOTS + FUEL_SLOTS + UPGRADE_SLOTS + 1;
-	}
-	
-	public void tickServer() {
-
-		if (level.isClientSide)
-			return;
-		
-		if (burntime != 0) {
-			burntime -= 1;
-		}
-		
-		if (burntime <= 0) {
-			//System.out.println(getBurnTime());
-			if (getBurnTime() != 0) {
-				burntime = getBurnTime();
-				System.out.println("burntime is " + burntime);
-				this.level.setBlock(this.worldPosition,
-						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
-				burning = true;
-			} else {
-				burning = false;
-				this.level.setBlock(this.worldPosition,
-						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
-			}
-
-		}
-		
-		if (!valid && burning) {
-			isRecipeValid();
-
-			if (valid) {
-				
-				System.out.println("is valid and burning");
-				
-			}
-		}
-		
-
-//		if (counter > 0) {
-//			counter--;
-//		}
-//
-//		if (burntime != 0) {
-//			burntime--;
-//		}
-//
-//		if (!valid) {
-//			isRecipeValid();
-//
-//			if (valid) {
-//				burntime = getBurnTime();
-//				// burntimemax = burntime;
-//				this.level.setBlock(this.worldPosition,
-//						this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, true), 3);
-//			}
-//		}
-//
-//		if (burntime == 0) {
-//			burntime = getBurnTime();
-//			//System.out.println(burntime);
-//			if (burntime == 0) {
-//			this.level.setBlock(this.worldPosition,
-//					this.level.getBlockState(this.worldPosition).setValue(BlockStateProperties.LIT, false), 3);
-//			}
-//		}
-//		
-//		
-//
-//		if (counter <= 0) {
-//
-//			if (valid) {
-//				attemptCraft(output);
-//				valid = false;
-//				//crafting = false;
-//				output = null;
-//			}
-//
-//			if (valid) {
-//				//crafting = true;
-//			}
-//		}
-	}
-	
-	private boolean outputRoom() {
-		
-		if (output != null) {
-		SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
-		
-		inv.setItem(0, itemHandler.getStackInSlot(6));
-		inv.setItem(0, itemHandler.getStackInSlot(7));
-		inv.setItem(0, itemHandler.getStackInSlot(8));
-		inv.setItem(0, itemHandler.getStackInSlot(9));
-		inv.setItem(0, itemHandler.getStackInSlot(10));
-		inv.setItem(0, itemHandler.getStackInSlot(11));
-		inv.setItem(0, itemHandler.getStackInSlot(12));
-		inv.setItem(0, itemHandler.getStackInSlot(13));
-		inv.setItem(0, itemHandler.getStackInSlot(14));
-		
-		if (inv.isEmpty()) {
-			return true;
-		}
-		
-		if (inv.canAddItem(output)) {
-			return true;
-		}
-		}
-		
-		return false;
-	}
-
-	private int getBurnTime() {
-		SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
-
-		if (!itemHandler.getStackInSlot(3).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(3));
-			fuel = 0;
-		}
-
-		if (!itemHandler.getStackInSlot(4).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(4));
-			fuel = 1;
-		}
-
-		if (!itemHandler.getStackInSlot(5).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(5));
-			fuel = 4;
-		}
-
-		ItemStack item;
-		
-		item = itemHandler.getStackInSlot(fuel).copy();
-		item.shrink(0);
-		//System.out.println(item);
-		itemHandler.setStackInSlot(fuel, item);
-		return ForgeHooks.getBurnTime(inv.getItem(0), RecipeType.SMELTING);
-	}
-
-	private boolean isRecipeValid() {
-
-		SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
-
-		if (!itemHandler.getStackInSlot(0).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(0));
-			input = 0;
-		}
-
-		if (!itemHandler.getStackInSlot(1).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(1));
-			input = 1;
-		}
-
-		if (!itemHandler.getStackInSlot(2).isEmpty()) {
-			inv.setItem(0, itemHandler.getStackInSlot(2));
-			input = 2;
-		}
-
-		if (level == null) {
-			valid = false;
-			return false;
-		}
-		// System.out.println(inv);
-
-		SmeltingRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, inv, level).orElse(null);
-		// System.out.print(recipe);
-		if (recipe == null) {
-			valid = false;
-
-			return false;
-		}
-
-		valid = true;
-		
-		counter = recipe.getCookingTime();
-		// countermax = counter;
-		output = recipe.getResultItem().copy();
-		return true;
-
-
-	}
-
-	private void attemptCraft(ItemStack output) {
-
-		itemHandler.extractItem(input, 1, false);
-
-		getOuputSlot(output);
-		
-	}
-
-//    private void handleOutput(int slot, ItemStack output) {
-//    	
-//    	if (itemHandler.getStackInSlot(slot).isEmpty()) {
-//    		
-//    	}
-//    }
-//    
-//    private void setOuput(ItemStack output) {
-//
-//    	var slot = getOuputSlot(output);
-//    	
-//    	
-//    	
-//
-//    }
-
-	private void getOuputSlot(ItemStack result) {
-		var outputMin = 6;
-		var outputMax = 14;
-
-		// int slot = 0;
-
-		ItemStack item;
-
-		for (int i = outputMin; i <= outputMax; i++) {
-			if (itemHandler.getStackInSlot(i).getCount() < 64) {
-				if (itemHandler.getStackInSlot(i).isEmpty()) {
-					itemHandler.insertItem(i, result, false);
-					valid = false;
-					output = null;
-					break;
-				} else if (!itemHandler.getStackInSlot(i).isEmpty()
-						&& itemHandler.getStackInSlot(i).is(result.getItem())) {
-					item = itemHandler.getStackInSlot(i).copy();
-					item.grow(1);
-					itemHandler.setStackInSlot(i, item);
-					valid = false;
-					output = null;
-					break;
-				}
-			}
-			continue;
-		}
-
-//		
-//			if (itemHandler.getStackInSlot(i).isEmpty()) {
-//				slot = i;
-//				itemHandler.insertItem(slot, output, false);
-//				break;
-//			} else if (!itemHandler.getStackInSlot(slot).isEmpty()
-//					&& itemHandler.getStackInSlot(slot).is(output.getItem())) {
-//				slot = i;
-//				item = itemHandler.getStackInSlot(slot).copy();
-//				item.grow(1);
-//				itemHandler.setStackInSlot(slot, item);
-//				valid = false;
-//				break;
-//			}
-//		}
-	}
-
-	@Override
-	public void setRemoved() {
-		super.setRemoved();
-		handler.invalidate();
-	}
-
-	@Override
-	protected void saveAdditional(CompoundTag pTag) {
-		pTag.put("inv", itemHandler.serializeNBT());
-		pTag.putInt("counter", counter);
-		pTag.putInt("burntime", burntime);
-		//pTag.putBoolean("crafting", crafting);
-		pTag.putBoolean("valid", valid);
-		
-		super.saveAdditional(pTag);
-	}
-
-	@Override
-	public void load(CompoundTag tag) {
-		itemHandler.deserializeNBT(tag.getCompound("inv"));
-		counter = tag.getInt("counter");
-		burntime = tag.getInt("burntime");
-		//crafting = tag.getBoolean("crafting");
-		valid = tag.getBoolean("valid");
-		super.load(tag);
-	}
-
-//	@Override
-//	public CompoundTag getUpdateTag() {
-//		this.saveAdditional(updateTag);
-//		return updateTag;
-//	}
-
-	@Override
-	public ClientboundBlockEntityDataPacket getUpdatePacket() {
-		return ClientboundBlockEntityDataPacket.create(this);
-	}
-
-	@Override
-	public void handleUpdateTag(CompoundTag tag) {
-		this.load(tag);
-	}
-
-//	@Override
-//	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-//		this.load(pkt.getTag());
-//	}
-
-	@SuppressWarnings("resource")
-	public void sendToClients() {
-		if (this.getLevel().isClientSide()) {
-			return;
-		}
-
-		ServerLevel world = (ServerLevel) this.getLevel();
-		List<ServerPlayer> entities = world.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.getBlockPos()),
-				false);
-		ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
-		entities.forEach(e -> e.connection.send(packet));
-		setChanged();
-	}
-
-	private ItemStackHandler createHandler() {
-		return new ItemStackHandler(SongForgeBlockEntity.getSlots()) {
-			@Override
-			protected void onContentsChanged(int slot) {
-				super.onContentsChanged(slot);
-				setChanged();
-			}
-
-			@Override
-			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-				return true;
-			}
-
-			@Override
-			public int getSlotLimit(int slot) {
-				return 64;
-			}
-
-			@Nonnull
-			@Override
-			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!isItemValid(slot, stack)) {
-					return stack;
-				}
-
-				return super.insertItem(slot, stack, simulate);
-			}
-		};
-	}
-	
-    ArrayList<LazyOptional<?>> capabilities = new ArrayList<>(Arrays.asList(
-            LazyOptional.of(this::createHandler),
-            LazyOptional.of(() -> new RangedWrapper(itemHandler, 3, 5)),
-            LazyOptional.of(() -> new RangedWrapper(itemHandler, 0, 2)),
-            LazyOptional.of(() -> new RangedWrapper(itemHandler, 6, 14))
-    ));
-
-    @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+    public Component getDisplayName() {
+        return Component.translatable("screen.geomancy.song_forge.text");
+    }
 
-            if (side == null) return capabilities.get(0).cast();
-            return switch (side) {
-                case UP -> capabilities.get(2).cast();
-                case DOWN -> capabilities.get(3).cast();
-                default -> capabilities.get(1).cast();
-            };
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+        return new SongForgeMenu(pContainerId, pPlayerInventory, this, this.data);
+    }
+
+    private AutomatableItemStackHandler createHandler() {
+        return new AutomatableItemStackHandler(19) {
+
+            @Override
+            protected void onContentsChanged(int slot) {
+                setChanged();
+            }
+
+            @Override
+            public boolean isInputSlot(int slot) {
+                return slot < 6;
+            }
+
+        };
+    }
+
+    private final Map<Direction, LazyOptional<WrappedHandler>> directionWrappedHandlerMap =
+            Map.of(Direction.DOWN, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i >= 6 && i <= 14 , (i, s) -> false)),
+                    Direction.UP, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false , (i, s) -> i >= 0 && i <= 2)),
+                    Direction.NORTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false, (i, s) -> i >= 3 && i <= 5)),
+                    Direction.SOUTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false, (i, s) -> i >= 3 && i <= 5)),
+                    Direction.EAST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false, (i, s) -> i >= 3 && i <= 5)),
+                    Direction.WEST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false, (i, s) -> i >= 3 && i <= 5)));
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if(side == null) {
+                return lazyItemHandler.cast();
+            }
+
+            if(directionWrappedHandlerMap.containsKey(side)) {
+                Direction localDir = this.getBlockState().getValue(SongForgeBlock.FACING);
+
+                if(side == Direction.UP || side == Direction.DOWN) {
+                    return directionWrappedHandlerMap.get(side).cast();
+                }
+
+                return switch (localDir) {
+                    default -> directionWrappedHandlerMap.get(side).cast();
+                    case EAST -> directionWrappedHandlerMap.get(side.getClockWise()).cast();
+                    case WEST -> directionWrappedHandlerMap.get(side.getCounterClockWise()).cast();
+                };
+            }
         }
+
         return super.getCapability(cap, side);
     }
 
-    public boolean canPlayerAccessInventory(Player playerIn) {
-        if (this.level.getBlockEntity(this.worldPosition) != this) {
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        lazyItemHandler = LazyOptional.of(() -> itemHandler);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        lazyItemHandler.invalidate();
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag nbt) {
+        nbt.put("inventory", itemHandler.serializeNBT());
+        nbt.putInt("song_forge.progress", progress);
+        nbt.putInt("song_forge.max_progress", maxProgress);
+        nbt.putBoolean("song_forge.burning", isBurning);
+        nbt.putInt("song_forge.fuel", fuel);
+        nbt.putInt("song_forge.max_fuel", maxFuel);
+        super.saveAdditional(nbt);
+    }
+
+    @Override
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        itemHandler.deserializeNBT(nbt.getCompound("inventory"));
+        progress = nbt.getInt("song_forge.progress");
+        maxProgress = nbt.getInt("song_forge.max_progress");
+        isBurning = nbt.getBoolean("song_forge.burning");
+        fuel = nbt.getInt("song_forge.fuel");
+        maxFuel = nbt.getInt("song_forge.max_fuel");
+    }
+
+    public void drops() {
+        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, itemHandler.getStackInSlot(i));
+        }
+
+        Containers.dropContents(this.level, this.worldPosition, inventory);
+    }
+
+
+    public static <E extends BlockEntity> void tick(Level level, BlockPos blockPos, BlockState blockState, SongForgeBlockEntity pEntity) {
+        if (level.isClientSide()) return;
+
+        if (pEntity.isBurning) {
+            pEntity.fuel--;
+        }
+
+        if (hasRecipe(pEntity)) {
+            //GemMod.LOGGER.info(hasFuelInFuelSlot(pEntity) + " " + !isConsumingFuel(pEntity));
+            if (hasFuelInFuelSlot(pEntity) && !isConsumingFuel(pEntity)) {
+                    pEntity.consumeFuel(pEntity);
+                    blockState = blockState.setValue(SongForgeBlock.LIT, pEntity.isBurning);
+                    level.setBlock(blockPos, blockState, 3);
+            }
+            if (isConsumingFuel(pEntity)) {
+                pEntity.progress++;
+                setChanged(level, blockPos, blockState);
+                if (pEntity.progress >= pEntity.maxProgress) {
+                    craftItem(pEntity);
+                }
+            }
+
+        } else {
+           pEntity.resetProgress();
+           setChanged(level, blockPos, blockState);
+        }
+
+        if (pEntity.fuel == 0) {
+            pEntity.isBurning = false;
+        }
+    }
+
+    private static void consumeFuel(SongForgeBlockEntity pEntity) {
+        SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
+        for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+        }
+
+        int fuel_val = ForgeHooks.getBurnTime(inventory.getItem(pEntity.currentFuelSlot), RecipeType.SMELTING);
+        if (fuel_val == pEntity.maxFuel) {
+            pEntity.itemHandler.extractItem(pEntity.currentFuelSlot, 1, false, false);
+            pEntity.fuel = fuel_val;
+            pEntity.isBurning = true;
+        } else {
+            pEntity.itemHandler.extractItem(pEntity.currentFuelSlot, 1, false, false);
+            pEntity.maxFuel = fuel_val;
+            pEntity.fuel = fuel_val;
+            pEntity.isBurning = true;
+        }
+    }
+
+    private static boolean isConsumingFuel(SongForgeBlockEntity pEntity) {
+        return pEntity.isBurning;
+     }
+
+    private static boolean hasFuelInFuelSlot(SongForgeBlockEntity pEntity) {
+        Level level = pEntity.level;
+        SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
+        boolean fuelFound = false;
+        for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+
+            if (!inventory.getItem(i).isEmpty() && i > 2 && i < 6) {
+                pEntity.currentFuelSlot = i;
+                fuelFound = true;
+                break;
+            }
+
+        }
+
+        return fuelFound;
+    }
+
+
+    private void resetProgress() {
+        this.progress = 0;
+    }
+
+    private static void craftItem(SongForgeBlockEntity pEntity) {
+        Level level = pEntity.level;
+        SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
+
+        inventory.setItem(0, pEntity.itemHandler.getStackInSlot(currentInput));
+
+        Optional<SmeltingRecipe> recipe = level.getRecipeManager()
+                .getRecipeFor(RecipeType.SMELTING, inventory, level);
+
+        if(hasRecipe(pEntity)) {
+            pEntity.itemHandler.extractItem(currentInput, 1, false, false);
+            pEntity.itemHandler.setStackInSlot(firstAvailableOutput, new ItemStack(recipe.get().getResultItem().getItem(),
+                    pEntity.itemHandler.getStackInSlot(firstAvailableOutput).getCount() + 1));
+
+            pEntity.resetProgress();
+        }
+    }
+
+    private static boolean hasRecipe(SongForgeBlockEntity entity) {
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        Optional<SmeltingRecipe> recipe = null;
+        boolean inputSelected = false;
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+
+            if (!inventory.getItem(i).isEmpty() && i < 3 && !inputSelected) {
+                SimpleContainer subInv = new SimpleContainer(3);
+                subInv.setItem(0, inventory.getItem(i));
+                currentInput = i;
+                recipe = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, subInv, level);
+                //break;
+                inputSelected = true;
+            }
+
+        }
+
+        if (recipe == null) return false;
+
+        try {
+            entity.maxProgress = recipe.get().getCookingTime();
+        } catch (Exception e) {
             return false;
         }
 
-        final double X_CENTRE_OFFSET = 0.5;
-        final double Y_CENTRE_OFFSET = 0.5;
-        final double Z_CENTRE_OFFSET = 0.5;
-        final double MAXIMUM_DIST_SQ = 8.0 * 8.0;
 
-        return playerIn.distanceToSqr(worldPosition.getX() + X_CENTRE_OFFSET, worldPosition.getY() + Y_CENTRE_OFFSET,
-                worldPosition.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DIST_SQ;
+        return recipe.isPresent() && canInsertIntoOutputSlot(inventory, recipe.get().getResultItem());
+    }
+
+//    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ) {
+//        boolean availableSlot = false;
+//        for (int slot = 0; slot < 9; slot++) {
+//            availableSlot = ;
+//
+//            if (availableSlot) {
+//                firstAvailableOutput = slot;
+//                break;
+//            }
+//        }
+//
+//        return availableSlot;
+//    }
+
+    private static boolean canInsertIntoOutputSlot(SimpleContainer inventory, ItemStack resultItem) {
+        boolean availableSlot = false;
+        //GemMod.LOGGER.info(inventory);
+        for (int slot = 6; slot < 15; slot++) {
+            availableSlot = (inventory.getItem(slot).getMaxStackSize() > inventory.getItem(slot).getCount()) &&
+                    (inventory.getItem(slot).getItem() == resultItem.getItem() || inventory.getItem(slot).isEmpty());
+
+            if (availableSlot) {
+                firstAvailableOutput = slot;
+                break;
+            }
+        }
+
+        return availableSlot;
     }
 }

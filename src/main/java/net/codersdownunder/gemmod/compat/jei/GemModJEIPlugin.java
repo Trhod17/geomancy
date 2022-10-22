@@ -32,7 +32,6 @@ public class GemModJEIPlugin implements IModPlugin {
         return PLUGIN_ID;
     }
 
-    @SuppressWarnings({ "resource" })
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();

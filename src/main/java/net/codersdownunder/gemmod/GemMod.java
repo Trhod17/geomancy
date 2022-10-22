@@ -66,7 +66,7 @@ public class GemMod
         ItemInit.ITEMS.register(bus);
         BlockInit.BLOCKS.register(bus);
         MenuInit.CONTAINERS.register(bus);
-        TileEntityInit.TILE_ENTITIES.register(bus);
+        BlockEntityInit.TILE_ENTITIES.register(bus);
         RecipeInit.RECIPE_SERIALIZERS.register(bus);
         RecipeInit.RECIPE_TYPES.register(bus);
         //VillagerInit.POINT_OF_INTEREST_TYPES.register(bus);

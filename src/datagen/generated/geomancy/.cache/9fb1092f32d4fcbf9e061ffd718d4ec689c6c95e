@@ -1,18 +1,3 @@
-// 1.19	2022-07-18T18:57:58.502792778	Recipes
-bc7e39220e29e03179d9e6fa66a8f7277176523d data/geomancy/recipes/agate.json
-e16ddaf96fb4a7162cd06330d31aeeb422573aba data/geomancy/recipes/amethyst.json
-b779a99ce404cfab8b6e263f3401c3dff57e0d03 data/geomancy/recipes/charoite.json
-a41300d0d0ad24913677183623e0621efcd7bd27 data/geomancy/recipes/chrysocolla.json
-6b0275bb6293db09b9fa20923dc9a6cb857e7df9 data/geomancy/recipes/citrine.json
-f04ebd57eefbd79ad9aab69176a72ab0f858f226 data/geomancy/recipes/garnet.json
-ff8c0734634d5f17963dfcd31cdd9a5f331b427b data/geomancy/recipes/jade.json
-ead392c00d202d9a4fa1d31c419c998085030010 data/geomancy/recipes/jasper.json
-0a119984875fbb69a2e2a66214357194d67758bf data/geomancy/recipes/malachite.json
-8b57b1caeb00a4c081f2f1638bb08fe304a05c94 data/geomancy/recipes/onyx.json
-27a8e82fcfbf0a6143cc1cad20b275a5ca752093 data/geomancy/recipes/peridot.json
-231bd08a65863d87d1ea8106bfde596f0c43005e data/geomancy/recipes/rhodonite.json
-6f3e033e51105c6ea972c8bdd1255b8bbfd07d32 data/geomancy/recipes/ruby.json
-b6a93819d60051102daec9d3489dccdfe878572e data/geomancy/recipes/sapphire.json
-598a60d578255fd22fa2d2fe42148d1fe3b866e8 data/geomancy/recipes/sphene.json
-fe9b9303f238b84a09033d693c2d8b67f4f0ec66 data/geomancy/recipes/spinel.json
-e2fc7db4b85f4db042b611216f29f9869b0ec168 data/geomancy/recipes/topaz.json
+// 1.19.2	2022-08-21T18:22:14.298772812	Recipes
+9161d979f3d1631343df15bd52289d7fd1dcc9f9 data/minecraft/advancements/recipes/gemsmoditemtab/netherite_digging_claw.json
+31cd98c0c20cff18a599f2805fe566f7a0b535ba data/minecraft/recipes/netherite_digging_claw.json

@@ -13,7 +13,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -45,10 +45,10 @@ public class TerraFirmaMenu extends AbstractContainerMenu {
 
 
         if (tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+            tileEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(h -> {
             	addSlot(new GenericSlot(h, 0, 32, 6));
             	addSlot(new GenericSlot(h, 1, 104, 6));
-            	addSlot(new OutputSlot(h, 2, 68, 6));
+            	//addSlot(new OutputSlot(h, 2, 68, 6));
 
             });
         }

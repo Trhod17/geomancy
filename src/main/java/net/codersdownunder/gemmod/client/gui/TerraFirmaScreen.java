@@ -45,7 +45,6 @@ public class TerraFirmaScreen extends AbstractContainerScreen<TerraFirmaMenu>
     
     @Override
     protected void containerTick() {
-    	// TODO Auto-generated method stub
     	super.containerTick();
     }
 
@@ -74,13 +73,12 @@ public class TerraFirmaScreen extends AbstractContainerScreen<TerraFirmaMenu>
     
     private void renderButtons(PoseStack pPoseStack, int pMouseX, int pMouseY, int pX, int pY, int pLastVisibleElementIndex) {
         for(int i = 0; i < pLastVisibleElementIndex && i < 9; ++i) {
-           int j = i - 0;
+           int j = i;
            int k = pX + j % 8 * 16;
            int l = j / 8;
            int i1 = pY + l * 18;
            int j1 = this.imageHeight;
-           int b = i;
-           if (i == b) {
+            if (i == i) {
               j1 += 18;
            } else if (pMouseX >= k && pMouseY >= i1 && pMouseX < k + 16 && pMouseY < i1 + 18) {
               j1 += 36;
@@ -107,7 +105,7 @@ public class TerraFirmaScreen extends AbstractContainerScreen<TerraFirmaMenu>
         //
         
         for(int i = 0; i < pRecipeIndexOffsetMax && i < list.size(); ++i) {
-           int j = i - 0;
+           int j = i;
            int k = pLeft + j % 20 * 18;
            int l = j / 4;
            this.minecraft.getItemRenderer().renderAndDecorateItem(new ItemStack(list.get(i)), k, pTop);

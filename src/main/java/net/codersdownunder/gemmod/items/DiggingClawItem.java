@@ -28,12 +28,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.TierSortingRegistry;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.NotNull;
 
 
 public class DiggingClawItem extends DiggerItem
 {
 	
-	private Tier tier;
+	private final Tier tier;
 
     public DiggingClawItem(float attackDamageBaseLine, float attackDamageBaseline, Tiers tier, TagKey<Block> blocks, Properties p_i48487_1_)
     {
@@ -108,12 +109,7 @@ public class DiggingClawItem extends DiggerItem
     }
     
     @Override
-    public boolean isCorrectToolForDrops(BlockState pBlock) {
-        return pBlock.is(Blocks.COBWEB) || pBlock.is(Blocks.REDSTONE_WIRE) || pBlock.is(Blocks.TRIPWIRE);
-     }
-
-    
-    @Override
+    @NotNull
     public net.minecraft.world.InteractionResult interactLivingEntity(ItemStack stack, net.minecraft.world.entity.player.Player playerIn, LivingEntity entity, net.minecraft.world.InteractionHand hand) {
        if (entity.level.isClientSide) return net.minecraft.world.InteractionResult.PASS;
        if (entity instanceof net.minecraftforge.common.IForgeShearable) {

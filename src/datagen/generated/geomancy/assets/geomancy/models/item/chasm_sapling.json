@@ -1,3 +1,6 @@
 {
-  "parent": "geomancy:block/chasm_sapling"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "geomancy:item/chasm_sapling"
+  }
 }

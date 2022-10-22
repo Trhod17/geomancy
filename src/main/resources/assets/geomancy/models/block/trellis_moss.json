@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"render_type": "minecraft:cutout_mipped",
 	"textures": {
-		"12": "geomancy:blocks/trellis_moss",
-		"particle": "geomancy:blocks/trellis_moss"
+		"12": "geomancy:block/trellis_moss",
+		"particle": "geomancy:block/trellis_moss"
 	},
 	"elements": [
 		{

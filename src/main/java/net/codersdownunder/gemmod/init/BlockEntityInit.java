@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = GemMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class TileEntityInit
+public class BlockEntityInit
 {
     
     public static DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, GemMod.MODID);
@@ -29,7 +29,7 @@ public class TileEntityInit
     
     public static RegistryObject<BlockEntityType<SongForgeBlockEntity>> SONG_FORGE_BE = TILE_ENTITIES.register("song_forge_be", () -> BlockEntityType.Builder.of(SongForgeBlockEntity::new, BlockInit.SONG_FORGE.get()).build(null));
     
-    //Non Functional
+    //Non-Functional
     public static RegistryObject<BlockEntityType<TerraFirmaBlockEntity>> TERRA_FIRMA_BE = TILE_ENTITIES.register("terra_firma_be", () -> BlockEntityType.Builder.of(TerraFirmaBlockEntity::new, BlockInit.TERRA_FIRMA.get()).build(null));
     public static RegistryObject<BlockEntityType<InfusionStandBlockEntity>> INFUSION_STAND_BE = TILE_ENTITIES.register("infusion_stand_be",() -> BlockEntityType.Builder.of(InfusionStandBlockEntity::new, BlockInit.INFUSION_STAND.get()).build(null));
 }

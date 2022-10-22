@@ -181,14 +181,12 @@ public class DippingRecipeBuilder implements RecipeBuilder {
         @Nullable
         @Override
         public JsonObject serializeAdvancement() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         @Nullable
         @Override
         public ResourceLocation getAdvancementId() {
-            // TODO Auto-generated method stub
             return null;
         }
 
@@ -197,7 +195,6 @@ public class DippingRecipeBuilder implements RecipeBuilder {
     @Deprecated
     @Override
     public RecipeBuilder unlockedBy(String pCriterionName, CriterionTriggerInstance pCriterionTrigger) {
-        // TODO Auto-generated method stub
         return this;
     }
 }

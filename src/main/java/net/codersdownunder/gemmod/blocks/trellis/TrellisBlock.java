@@ -15,10 +15,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,6 +36,9 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.IForgeShearable;
+import net.minecraftforge.common.ToolAction;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -42,7 +47,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 
-public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
+public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForgeShearable {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -162,18 +167,19 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 	
 	@Override
 	public boolean onDestroyedByPlayer(BlockState state, Level world, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
-		
+
 		Item item = player.getMainHandItem().getItem();
 		
 		if(player != null && item instanceof ShearsItem || item instanceof DiggingClawItem) {
-			// TODO : drop the appropriate item
-			world.setBlockAndUpdate(pos, BlockInit.TRELLIS.get().defaultBlockState()
+
+ 			world.setBlockAndUpdate(pos, BlockInit.TRELLIS.get().defaultBlockState()
 					.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
-			return false;
+			return true;
 		}
 		return super.onDestroyedByPlayer(state, world, pos, player, willHarvest, fluid);
 	}
-	
+
+
 	@Override
 	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
 		
@@ -252,39 +258,39 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 	}
 	
 	private int spreadChance(RandomSource pRandom) {
-		int spread = pRandom.nextInt(100);
-		
-		return spread;
+
+		return pRandom.nextInt(100);
 	}
 
-	private List<Item> list = Arrays.asList(new Item[]{Items.VINE, Items.MOSS_BLOCK, Items.MOSS_CARPET, Items.WEEPING_VINES, Items.TWISTING_VINES, Items.GLOW_BERRIES, Items.CHORUS_FRUIT, Items.GLOW_LICHEN});
+	private final List<Item> list = Arrays.asList(Items.VINE, Items.MOSS_BLOCK, Items.WEEPING_VINES, Items.TWISTING_VINES, Items.GLOW_BERRIES, Items.CHORUS_FRUIT, Items.GLOW_LICHEN);
 
 	@Override
+	@NotNull
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
-			BlockHitResult trace) {
+										  BlockHitResult trace) {
 		if (!world.isClientSide) {
 
 			Item itemInHand = player.getItemInHand(hand).getItem();
 			
 			if (list.contains(itemInHand)) {
+
 			if (itemInHand  == list.get(0)) {
 				updateTrellis(world, pos, state, BlockInit.TRELLIS_VINE.get());
-			} else if (itemInHand  == list.get(1) || player.getItemInHand(hand).getItem() == list.get(2)) {
+			} else if (itemInHand  == list.get(1)) {
 				updateTrellis(world, pos, state, BlockInit.TRELLIS_MOSS.get());
-			} else if (itemInHand  == list.get(3)) {
+			} else if (itemInHand  == list.get(2)) {
 				updateTrellis(world, pos, state, BlockInit.TRELLIS_CRIMSON.get());
-			} else if (itemInHand  == list.get(4)) {
+			} else if (itemInHand  == list.get(3)) {
 				updateTrellis(world, pos, state, BlockInit.TRELLIS_WARP.get());
-			} else if (itemInHand  == list.get(5)) {
+			} else if (itemInHand  == list.get(4)) {
 				updateTrellis(world, pos, state, BlockInit.TRELLIS_CAVE_VINES.get());
-			} else if (itemInHand  == list.get(6)) {
+			} else if (itemInHand  == list.get(5)) {
 				updateTrellis(world, pos, state, BlockInit.TRELLIS_CHORUS.get());
-			} else if (itemInHand  == list.get(7)) {
+			} else if (itemInHand  == list.get(6)) {
 				updateTrellis(world, pos, state, BlockInit.TRELLIS_LICHEN.get());
 			}
 			} else {
 				return InteractionResult.PASS;
-				
 				//GemMod.LOGGER.debug("Item: ", itemInHand, ", Is not valid for trellis");
 			}
 
@@ -295,6 +301,37 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock {
 	private void updateTrellis(Level world, BlockPos pos, BlockState state, Block block) {
 		world.setBlockAndUpdate(pos, block.defaultBlockState()
 				.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
+	}
+
+	public enum Variants {
+
+		VINE (BlockInit.TRELLIS_VINE.get(), Items.VINE),
+		MOSS (BlockInit.TRELLIS_MOSS.get(), Blocks.MOSS_BLOCK.asItem()),
+		WEEPING (BlockInit.TRELLIS_WARP.get(), Items.WEEPING_VINES),
+		TWISTING (BlockInit.TRELLIS_CRIMSON.get(), Items.TWISTING_VINES),
+		CAVE (BlockInit.TRELLIS_CAVE_VINES.get(), Blocks.CAVE_VINES.asItem()),
+		CHORUS (BlockInit.TRELLIS_CHORUS.get(), Items.CHORUS_FRUIT),
+		LICHEN (BlockInit.TRELLIS_LICHEN.get(), Items.GLOW_LICHEN);
+
+
+		private final Block trellis;
+		private final Item vine;
+
+		Variants(Block trellis, Item vine) {
+			this.trellis = trellis;
+			this.vine = vine;
+		}
+
+		private Block trellis() { return trellis; }
+		private Item vine() { return vine; }
+
+		public static Variants getItemFromBlock(Block identifier) {
+			return Arrays.stream(Variants.values()).filter(item -> item.trellis().equals(identifier)).findFirst().orElse(null);
+		}
+
+		public static Variants getBlockFromItem(Item identifier) {
+			return Arrays.stream(Variants.values()).filter(item -> item.vine().equals(identifier)).findFirst().orElse(null);
+		}
 	}
 
 }

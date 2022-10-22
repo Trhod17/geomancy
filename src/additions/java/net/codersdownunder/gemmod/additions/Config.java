@@ -16,10 +16,10 @@ public class Config {
 			test1(0, "test1"),
 			test2(1, "test2");
 			
-			private int id;
-			private String name;
+			private final int id;
+			private final String name;
 			
-			private testEnum(int id, String name) {
+			testEnum(int id, String name) {
 				this.id = id;
 				this.name = name;
 			}
@@ -62,7 +62,7 @@ public class Config {
 			private int id;
 			private String name;
 			
-			private testEnum(int id, String name) {
+			testEnum(int id, String name) {
 				this.id = id;
 				this.name = name;
 			}

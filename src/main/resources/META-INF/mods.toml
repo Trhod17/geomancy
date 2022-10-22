@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[41,)" 
+loaderVersion="[43,)" 
 license="LGPL V3"
 issueTrackerURL="https://github.com/codersdownunder"
 
@@ -11,7 +11,7 @@ displayName="Geomancy"
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
 logoFile="examplemod.png"
 credits=""
-authors="Trhod177, Lena_Cupid"
+authors="Trhod177, Lena_Cupid, LobsterJohn"
 description='''
 This is a long form description of the mod. You can write whatever you want here
 

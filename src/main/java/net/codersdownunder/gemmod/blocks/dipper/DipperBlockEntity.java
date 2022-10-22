@@ -2,14 +2,13 @@ package net.codersdownunder.gemmod.blocks.dipper;
 
 import net.codersdownunder.gemmod.Config;
 import net.codersdownunder.gemmod.crafting.recipe.DippingRecipe;
+import net.codersdownunder.gemmod.init.BlockEntityInit;
 import net.codersdownunder.gemmod.init.RecipeInit;
-import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
@@ -21,13 +20,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -55,7 +53,7 @@ public class DipperBlockEntity extends BlockEntity {
     private ItemStack output;
 
     public DipperBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(TileEntityInit.DIPPER_BE.get(), pWorldPosition, pBlockState);
+        super(BlockEntityInit.DIPPER_BE.get(), pWorldPosition, pBlockState);
 
         updateTag = getUpdateTag();
 
@@ -74,7 +72,6 @@ public class DipperBlockEntity extends BlockEntity {
         };
     }
 
-    @SuppressWarnings("resource")
     public void clientSync() {
         if (Objects.requireNonNull(this.getLevel()).isClientSide) {
             return;
@@ -249,11 +246,11 @@ public class DipperBlockEntity extends BlockEntity {
         return outputQuantity;
     }
 
-    @Override
-    public CompoundTag getUpdateTag() {
-        this.saveAdditional(updateTag);
-        return updateTag;
-    }
+//    @Override
+//    public CompoundTag getUpdateTag() {
+//        this.saveAdditional(updateTag);
+//        return updateTag;
+//    }
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -270,7 +267,6 @@ public class DipperBlockEntity extends BlockEntity {
         this.load(pkt.getTag());
     }
 
-    @SuppressWarnings("resource")
     public void sendToClients() {
         if (this.getLevel().isClientSide()) {
             return;
@@ -294,15 +290,15 @@ public class DipperBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag) {
+    protected void saveAdditional(CompoundTag tag) {
         CompoundTag fluid = new CompoundTag();
-        pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("counter", counter);
-        pTag.putBoolean("crafting", isCrafting);
-        pTag.putBoolean("valid", valid);
+        tag.put("inventory", itemHandler.serializeNBT());
+        tag.putInt("counter", counter);
+        tag.putBoolean("crafting", isCrafting);
+        tag.putBoolean("valid", valid);
         tank.writeToNBT(fluid);
-        pTag.put("fluid", fluid);
-        super.saveAdditional(pTag);
+        tag.put("fluid", fluid);
+        super.saveAdditional(tag);
     }
 
     @Override
@@ -358,10 +354,10 @@ public class DipperBlockEntity extends BlockEntity {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return handler.cast();
         }
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.FLUID_HANDLER) {
             return fluidHandler.cast();
         }
         return super.getCapability(cap, side);

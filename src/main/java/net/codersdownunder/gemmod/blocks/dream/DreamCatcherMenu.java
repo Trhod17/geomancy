@@ -12,10 +12,12 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+
+import javax.annotation.Nonnull;
 
 public class DreamCatcherMenu extends AbstractContainerMenu {
 
@@ -29,7 +31,7 @@ public class DreamCatcherMenu extends AbstractContainerMenu {
     
     public static int id;
     private int CONTAINER_SIZE = 16;
-    
+
     public DreamCatcherMenu() {
         super(MenuInit.DREAM_CATCHER_MENU.get(), id);
     }
@@ -44,7 +46,7 @@ public class DreamCatcherMenu extends AbstractContainerMenu {
 
 
         if (tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+            tileEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(h -> {
             	addSlot(new GenericSlot(h, 0, 49, 27));
             	addSlot(new GenericSlot(h, 1, 67, 27));
             	addSlot(new GenericSlot(h, 2, 85, 27));
@@ -68,11 +70,12 @@ public class DreamCatcherMenu extends AbstractContainerMenu {
         
         layoutPlayerInventorySlots(PLAYER_INVENTORY_XPOS, PLAYER_INVENTORY_YPOS);
     }
-    
+
+    @Nonnull
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
 	      ItemStack itemstack = ItemStack.EMPTY;
 	      Slot slot = this.slots.get(pIndex);
-	      if (slot != null && slot.hasItem()) {
+	      if (slot.hasItem()) {
 	         ItemStack itemstack1 = slot.getItem();
 	         itemstack = itemstack1.copy();
 	         if (pIndex < this.CONTAINER_SIZE) {

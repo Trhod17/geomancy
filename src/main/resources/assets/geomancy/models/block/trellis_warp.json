@@ -3,9 +3,9 @@
 	"render_type": "minecraft:cutout_mipped",
 	"textures": {
 		"1": "minecraft:block/spruce_planks",
-		"2": "geomancy:blocks/trellis_warp2",
-		"8": "geomancy:blocks/trellis_warp1",
-		"particle": "geomancy:blocks/trellis_warp2"
+		"2": "geomancy:block/trellis_warp2",
+		"8": "geomancy:block/trellis_warp1",
+		"particle": "geomancy:block/trellis_warp2"
 	},
 	"elements": [
 		{

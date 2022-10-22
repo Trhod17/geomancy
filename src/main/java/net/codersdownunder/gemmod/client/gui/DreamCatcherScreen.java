@@ -37,7 +37,6 @@ public class DreamCatcherScreen extends AbstractContainerScreen<DreamCatcherMenu
     
     @Override
     protected void containerTick() {
-    	// TODO Auto-generated method stub
     	super.containerTick();
     }
 

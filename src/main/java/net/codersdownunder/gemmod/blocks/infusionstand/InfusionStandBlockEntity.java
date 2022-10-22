@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.blocks.infusionstand;
 
-import net.codersdownunder.gemmod.init.TileEntityInit;
+import net.codersdownunder.gemmod.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -10,8 +10,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -31,7 +31,7 @@ public class InfusionStandBlockEntity extends BlockEntity {
     public boolean crafting = false;
 
     public InfusionStandBlockEntity(BlockPos pos, BlockState blockState) {
-        super(TileEntityInit.INFUSION_STAND_BE.get(), pos, blockState);
+        super(BlockEntityInit.INFUSION_STAND_BE.get(), pos, blockState);
     }
     
     public ItemStackHandler getItemStackHandler() {
@@ -126,7 +126,7 @@ public class InfusionStandBlockEntity extends BlockEntity {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return handler.cast();
         }
         return super.getCapability(cap, side);
@@ -146,7 +146,6 @@ public class InfusionStandBlockEntity extends BlockEntity {
             //System.out.println(inv + " " + level);
           
           if (level == null) {
-              return;
           }
           
 //        InfusingRecipe recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.INFUSING_RECIPE, inv, level).orElse(null);

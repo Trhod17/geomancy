@@ -9,8 +9,8 @@ import net.codersdownunder.gemmod.client.gui.SongForgeScreen;
 import net.codersdownunder.gemmod.client.gui.TelepadScreen;
 import net.codersdownunder.gemmod.client.gui.TerraFirmaScreen;
 import net.codersdownunder.gemmod.client.renderer.DipperBlockEntityRenderer;
+import net.codersdownunder.gemmod.init.BlockEntityInit;
 import net.codersdownunder.gemmod.init.MenuInit;
-import net.codersdownunder.gemmod.init.TileEntityInit;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -33,12 +33,12 @@ public class ClientSetup {
 	        MenuScreens.register(MenuInit.SONG_FORGE_MENU.get(), SongForgeScreen::new);
 	        
 	        
-	        BlockEntityRenderers.register(TileEntityInit.CUSTOM_SIGN.get(), SignRenderer::new);
+	        BlockEntityRenderers.register(BlockEntityInit.CUSTOM_SIGN.get(), SignRenderer::new);
 	        event.enqueueWork(() -> {
 	            Sheets.addWoodType(GemMod.CHASM);
 	        });
 	        
-	        BlockEntityRenderers.register(TileEntityInit.DIPPER_BE.get(), DipperBlockEntityRenderer::new);
+	        BlockEntityRenderers.register(BlockEntityInit.DIPPER_BE.get(), DipperBlockEntityRenderer::new);
 	    }
 	  
 }

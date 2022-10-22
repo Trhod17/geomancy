@@ -8,9 +8,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 import java.util.Random;
 
@@ -59,7 +59,7 @@ public class DreamCatcherEventHandler {
 	private static void insert(BlockEntity entity, Item item, int count) {
 
 		int slot = rand.nextInt(15);
-		entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
+		entity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
 			for (int i = 0; i < 15; i++) {
 				if (itemHandler.getStackInSlot(slot).isEmpty() || itemHandler.getStackInSlot(slot).getItem() == item) {
 					itemHandler.insertItem(slot, new ItemStack(item, count), false);

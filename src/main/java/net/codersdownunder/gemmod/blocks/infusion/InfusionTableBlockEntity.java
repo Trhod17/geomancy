@@ -2,7 +2,7 @@ package net.codersdownunder.gemmod.blocks.infusion;
 
 import net.codersdownunder.gemmod.crafting.recipe.InfusingRecipe;
 import net.codersdownunder.gemmod.init.RecipeInit;
-import net.codersdownunder.gemmod.init.TileEntityInit;
+import net.codersdownunder.gemmod.init.BlockEntityInit;
 import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,14 +12,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class InfusionTableBlockEntity extends BlockEntity {
+public class  InfusionTableBlockEntity extends BlockEntity {
 
     private AutomatableItemStackHandler itemHandler = createHandler();
 
@@ -29,7 +29,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
     public boolean crafting = false;
 
     public InfusionTableBlockEntity(BlockPos pos, BlockState blockState) {
-        super(TileEntityInit.INFUSION_TABLE.get(), pos, blockState);
+        super(BlockEntityInit.INFUSION_TABLE.get(), pos, blockState);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class InfusionTableBlockEntity extends BlockEntity {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return handler.cast();
         }
         return super.getCapability(cap, side);

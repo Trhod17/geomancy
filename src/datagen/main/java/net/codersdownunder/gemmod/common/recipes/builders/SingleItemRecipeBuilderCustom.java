@@ -119,7 +119,6 @@ public class SingleItemRecipeBuilderCustom implements RecipeBuilder {
 
 @Override
 public RecipeBuilder unlockedBy(String pCriterionName, CriterionTriggerInstance pCriterionTrigger) {
-	// TODO Auto-generated method stub
 	return null;
 }
 }

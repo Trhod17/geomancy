@@ -3,8 +3,8 @@
 	"render_type": "minecraft:cutout_mipped",
 	"textures": {
 		"1": "minecraft:block/spruce_planks",
-		"6": "geomancy:blocks/trellis_cave_vines",
-		"particle": "geomancy:blocks/trellis_cave_vines2"
+		"6": "geomancy:block/trellis_cave_vines",
+		"particle": "geomancy:block/trellis_cave_vines2"
 	},
 	"elements": [
 		{

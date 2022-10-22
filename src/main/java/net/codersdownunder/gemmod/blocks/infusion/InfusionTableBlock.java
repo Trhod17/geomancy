@@ -30,7 +30,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.network.NetworkHooks;
 
 import java.util.stream.Stream;
@@ -78,7 +78,7 @@ public class InfusionTableBlock extends Block implements SimpleWaterloggedBlock,
 	public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 		 if (pState.hasBlockEntity() && pState.getBlock() != pNewState.getBlock()) {
 	            // drops everything in the inventory
-	            pLevel.getBlockEntity(pPos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+	            pLevel.getBlockEntity(pPos).getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(h -> {
 	                for (int i = 0; i < h.getSlots(); i++) {
 	                	popResource(pLevel, pPos, h.getStackInSlot(i));
 	                }

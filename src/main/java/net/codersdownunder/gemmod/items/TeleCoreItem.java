@@ -39,7 +39,6 @@ public class TeleCoreItem extends Item {
 	
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag nbt) {
-		// TODO Auto-generated method stub
 		return super.initCapabilities(stack, nbt);
 	}
 

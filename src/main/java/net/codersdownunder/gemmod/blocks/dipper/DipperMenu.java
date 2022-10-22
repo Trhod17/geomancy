@@ -1,6 +1,5 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
-
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
@@ -16,7 +15,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -53,7 +52,7 @@ public class DipperMenu extends AbstractContainerMenu {
         this.tile = tile;
 
         if (blockEntity != null) {
-            blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+            blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
                 if (handler instanceof AutomatableItemStackHandler h) {
                     //center line
                     addSlot(new AutomatableSlot(h, STRING_SLOTS[0], 80, 18, TagUtils.getValues(GeomancyTags.Items.STRING)));

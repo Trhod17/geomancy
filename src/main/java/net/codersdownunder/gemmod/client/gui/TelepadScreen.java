@@ -37,7 +37,6 @@ public class TelepadScreen extends AbstractContainerScreen<TelepadMenu>
     
     @Override
     protected void containerTick() {
-    	// TODO Auto-generated method stub
     	super.containerTick();
     }
 

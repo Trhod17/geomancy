@@ -6,6 +6,8 @@ import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class GeomancyBlockTags extends BlockTagsProvider {
@@ -55,7 +57,6 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         		.add(BlockInit.TREADSTONE_CARPET_5.get())
         		.add(BlockInit.TREADSTONE_CARPET_6.get())
         		.add(BlockInit.TREADSTONE_CARPET_7.get());
-        		
         		
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(BlockInit.DIPPER.get())

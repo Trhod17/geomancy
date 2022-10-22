@@ -1,10 +1,12 @@
 package net.codersdownunder.gemmod.blocks.sign;
 
-import net.codersdownunder.gemmod.init.TileEntityInit;
+import net.codersdownunder.gemmod.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nonnull;
 
 public class CustomSignBlockEntity extends SignBlockEntity
 {
@@ -13,8 +15,9 @@ public class CustomSignBlockEntity extends SignBlockEntity
     }
 
 	@Override
+    @Nonnull
     public BlockEntityType<CustomSignBlockEntity> getType()
     {
-        return TileEntityInit.CUSTOM_SIGN.get();
+        return BlockEntityInit.CUSTOM_SIGN.get();
     }
 }

@@ -10,11 +10,13 @@ import net.codersdownunder.gemmod.blocks.songforge.SongForgeMenu;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadMenu;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -64,11 +66,14 @@ public class MenuInit
         Level world = inv.player.getCommandSenderWorld();
         return new TerraFirmaMenu(windowId, world, pos, inv, inv.player);
     }));
-    
-    public static final RegistryObject<MenuType<SongForgeMenu>> SONG_FORGE_MENU = CONTAINERS.register("song_forge_menu", () -> IForgeMenuType.create((windowId, inv, data) -> {
-        BlockPos pos = data.readBlockPos();
-        Level world = inv.player.getCommandSenderWorld();
-        return new SongForgeMenu(windowId, world, pos, inv, inv.player);
-    }));
+
+    public static final RegistryObject<MenuType<SongForgeMenu>> SONG_FORGE_MENU =
+            registerMenuType(SongForgeMenu::new, "song_forge_menu");
+
+
+    private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
+                                                                                                  String name) {
+        return CONTAINERS.register(name, () -> IForgeMenuType.create(factory));
+    }
 
 }   

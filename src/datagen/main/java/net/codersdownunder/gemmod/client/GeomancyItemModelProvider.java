@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.loaders.SeparateTransformsModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -16,8 +15,6 @@ public class GeomancyItemModelProvider extends ItemModelProvider {
     public GeomancyItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, GemMod.MODID, existingFileHelper);
     }
-    
-    //TODO try to convert 
 
     @Override
     protected void registerModels() {
@@ -96,31 +93,31 @@ public class GeomancyItemModelProvider extends ItemModelProvider {
     	
     }
     
-    private ItemModelBuilder diggingClaw(String material) {
-    	return getBuilder("digging_claw_" + material)
-    	.parent(getExistingFile(new ResourceLocation("forge:item/default")))
-    	.customLoader(SeparateTransformsModelBuilder::begin)
-    	.base(nested()
-    			.parent(getExistingFile(mcLoc("item/generated")))
-    			.texture("layer0", modLoc("item/claw_" + material + "_item")))
-    	.perspective(TransformType.FIRST_PERSON_RIGHT_HAND, 
-    			nested()
-    			.parent(getExistingFile(modLoc("item/digging_claw_hand")))
-    			.texture("texture", modLoc("item/claw_" + material)))
-    	.perspective(TransformType.FIRST_PERSON_LEFT_HAND, 
-    			nested()
-    			.parent(getExistingFile(modLoc("item/digging_claw_hand_left")))
-    			.texture("texture", modLoc("item/claw_" + material)))
-    	.perspective(TransformType.THIRD_PERSON_RIGHT_HAND, 
-    			nested()
-    			.parent(getExistingFile(modLoc("item/digging_claw_hand")))
-    			.texture("texture", modLoc("item/claw_" + material)))
-    	.perspective(TransformType.THIRD_PERSON_LEFT_HAND, 
-    			nested()
-    			.parent(getExistingFile(modLoc("item/digging_claw_hand_left")))
-    			.texture("texture", modLoc("item/claw_" + material))).
-    	end();
-    }
+    private void diggingClaw(String material) {
+		getBuilder("digging_claw_" + material)
+				.parent(getExistingFile(new ResourceLocation("forge:item/default")))
+				.customLoader(SeparateTransformsModelBuilder::begin)
+				.base(nested()
+						.parent(getExistingFile(mcLoc("item/generated")))
+						.texture("layer0", modLoc("item/claw_" + material + "_item")))
+				.perspective(TransformType.FIRST_PERSON_RIGHT_HAND,
+						nested()
+								.parent(getExistingFile(modLoc("item/digging_claw_hand")))
+								.texture("texture", modLoc("item/claw_" + material)))
+				.perspective(TransformType.FIRST_PERSON_LEFT_HAND,
+						nested()
+								.parent(getExistingFile(modLoc("item/digging_claw_hand_left")))
+								.texture("texture", modLoc("item/claw_" + material)))
+				.perspective(TransformType.THIRD_PERSON_RIGHT_HAND,
+						nested()
+								.parent(getExistingFile(modLoc("item/digging_claw_hand")))
+								.texture("texture", modLoc("item/claw_" + material)))
+				.perspective(TransformType.THIRD_PERSON_LEFT_HAND,
+						nested()
+								.parent(getExistingFile(modLoc("item/digging_claw_hand_left")))
+								.texture("texture", modLoc("item/claw_" + material))).
+				end();
+	}
     
     private void singleTexture(Item item, String texture) {
     	//Not sure if this works

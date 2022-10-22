@@ -64,11 +64,7 @@ public class BrewingRecipe implements Recipe<SimpleContainer>
         Ingredient ingredient = Ingredient.EMPTY;
         ingredient = this.recipeItems.get(6);
 
-        if (!ingredient.test(pCraftingInventory.getItem(6))) {
-            return false;
-        }
-
-        return true;
+        return ingredient.test(pCraftingInventory.getItem(6));
     }
 
 
