@@ -9,7 +9,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.crafting.recipe.InfusingRecipe;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.core.NonNullList;
@@ -24,9 +24,9 @@ import java.util.stream.IntStream;
 
 public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
 {
-    public static final RecipeType<InfusingRecipe> INFUSION = RecipeType.create(GemMod.MODID, "infusion_recipe", InfusingRecipe.class);
-    public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, "infusion_recipe");
-    public static final ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/infusion_recipe.png");
+    public static final RecipeType<InfusingRecipe> INFUSION = RecipeType.create(Geomancy.MODID, "infusion_recipe", InfusingRecipe.class);
+    public static final ResourceLocation ID = new ResourceLocation(Geomancy.MODID, "infusion_recipe");
+    public static final ResourceLocation GUI = new ResourceLocation(Geomancy.MODID, "textures/gui/infusion_recipe.png");
     private final IDrawable back;
     private final IDrawable icon;
 
@@ -42,7 +42,7 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe>
 
     @Override
     public Component getTitle() {
-        return Component.translatable("category." + GemMod.MODID + ".infusing_recipe");
+        return Component.translatable("category." + Geomancy.MODID + ".infusing_recipe");
     }
 
     @Override

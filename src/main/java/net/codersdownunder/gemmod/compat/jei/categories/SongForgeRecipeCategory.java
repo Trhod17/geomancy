@@ -8,7 +8,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -17,9 +17,9 @@ import net.minecraft.world.item.crafting.SmeltingRecipe;
 
 public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
 {
-    public static final RecipeType<SmeltingRecipe> SMELTING = RecipeType.create(GemMod.MODID, "songforge_recipe", SmeltingRecipe.class);
-    public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, "songforge_recipe");
-    public static final ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/song_forge.png");
+    public static final RecipeType<SmeltingRecipe> SMELTING = RecipeType.create(Geomancy.MODID, "songforge_recipe", SmeltingRecipe.class);
+    public static final ResourceLocation ID = new ResourceLocation(Geomancy.MODID, "songforge_recipe");
+    public static final ResourceLocation GUI = new ResourceLocation(Geomancy.MODID, "textures/gui/song_forge.png");
     private final IDrawable back;
     private final IDrawable icon;
 
@@ -35,7 +35,7 @@ public class SongForgeRecipeCategory implements IRecipeCategory<SmeltingRecipe>
 
     @Override
     public Component getTitle() {
-        return Component.translatable("category." + GemMod.MODID + ".songforge_recipe");
+        return Component.translatable("category." + Geomancy.MODID + ".songforge_recipe");
     }
 
     @Override

@@ -1,6 +1,7 @@
 package net.codersdownunder.gemmod.utils;
 
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -23,6 +24,7 @@ public class ModVanillaCompat {
         
         registerCompostable(0.3F, BlockInit.CHASM_SAPLING.get().asItem());
         registerCompostable(0.3F, BlockInit.CHASM_LEAVES.get().asItem());
+        registerCompostable(0.3F, ItemInit.MULMUS_BULB.get().asItem());
 	}
 
 	public static void registerCompostable(float chance, Item itemIn) {

@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.client;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.data.DataGenerator;
@@ -28,7 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class GeomancyBlockStates extends BlockStateProvider {
 	
     public GeomancyBlockStates(DataGenerator gen, ExistingFileHelper helper) {
-        super(gen, GemMod.MODID, helper);
+        super(gen, Geomancy.MODID, helper);
     }
 
     @Override

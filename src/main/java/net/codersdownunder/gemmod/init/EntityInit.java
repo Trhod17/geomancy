@@ -1,9 +1,9 @@
 package net.codersdownunder.gemmod.init;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = GemMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Geomancy.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityInit {
 
 }

@@ -37,13 +37,13 @@ public class Config {
 			builder.comment("Server Configuration Settings").push("server");
 			{
 				builder.comment("Dipper Configs").push("dipper");
-				this.dipperTime = builder.comment("Dipper Processing Time").translation(GemMod.MODID + ".config.common.dipper.dipper_time").defineInRange("DipperTime", 600, 0, 400000);
+				this.dipperTime = builder.comment("Dipper Processing Time").translation(Geomancy.MODID + ".config.common.dipper.dipper_time").defineInRange("DipperTime", 600, 0, 400000);
 				builder.pop();
 				
 				builder.comment("World Gen Configs").push("worldgen");
-				this.rarity = builder.comment("Gem Geode Rarity").translation(GemMod.MODID + ".config.common.worldgen.gem_geode_rarity").defineInRange("GemGeodeRarity", 40, 0, Integer.MAX_VALUE);
-				this.geodeMinY = builder.comment("Gem Geode Min Y Height").translation(GemMod.MODID + ".config.common.worldgen.gem_geode_min_y").defineInRange("GemGeodeMinY", -50, 0, Integer.MAX_VALUE);
-				this.geodeMaxY = builder.comment("Gem Geode Max Y Height").translation(GemMod.MODID + ".config.common.worldgen.gem_geode_max_y").defineInRange("GemGeodeMaxY", 30, 0, Integer.MAX_VALUE);
+				this.rarity = builder.comment("Gem Geode Rarity").translation(Geomancy.MODID + ".config.common.worldgen.gem_geode_rarity").defineInRange("GemGeodeRarity", 40, 0, Integer.MAX_VALUE);
+				this.geodeMinY = builder.comment("Gem Geode Min Y Height").translation(Geomancy.MODID + ".config.common.worldgen.gem_geode_min_y").defineInRange("GemGeodeMinY", -50, 0, Integer.MAX_VALUE);
+				this.geodeMaxY = builder.comment("Gem Geode Max Y Height").translation(Geomancy.MODID + ".config.common.worldgen.gem_geode_max_y").defineInRange("GemGeodeMaxY", 30, 0, Integer.MAX_VALUE);
 				builder.pop();
 //				
 //				builder.comment("Dream Catcher Configs").push("dream catcher");

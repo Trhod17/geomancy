@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.utils;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -19,7 +19,7 @@ public class GeomancyTags {
 		public static final TagKey<Block> carpets = createForgeTag("carpets");
 		
 		private static TagKey<Block> createTag(String name) {
-			return BlockTags.create(new ResourceLocation(GemMod.MODID, name));
+			return BlockTags.create(new ResourceLocation(Geomancy.MODID, name));
 		}
 		
 		private static TagKey<Block> createForgeTag(String name) {
@@ -45,7 +45,7 @@ public class GeomancyTags {
 		public static final TagKey<Item> QUARTZ = createForgeTag("gems/quartz");
 		
 		private static TagKey<Item> createTag(String name) {
-			return ItemTags.create(new ResourceLocation(GemMod.MODID, name));
+			return ItemTags.create(new ResourceLocation(Geomancy.MODID, name));
 		}
 		
 		private static TagKey<Item> createForgeTag(String name) {
@@ -59,7 +59,7 @@ public class GeomancyTags {
 		public static final TagKey<Fluid> DIPPING_FLUIDS = createTag("dipping_fluids");
 		
 		private static TagKey<Fluid> createTag(String name) {
-			return FluidTags.create(new ResourceLocation(GemMod.MODID, name));
+			return FluidTags.create(new ResourceLocation(Geomancy.MODID, name));
 		}
 		
 		private static TagKey<Fluid> createForgeTag(String name) {

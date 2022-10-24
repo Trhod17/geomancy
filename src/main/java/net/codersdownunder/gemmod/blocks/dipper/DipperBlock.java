@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.blocks.dipper;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.ChatFormatting;
@@ -72,15 +72,15 @@ public class DipperBlock extends BaseEntityBlock implements EntityBlock {
 	@Override
 	public void appendHoverText(ItemStack pStack, BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
 		if (Screen.hasControlDown()) {
-			pTooltip.add(TextUtils.FormattedTooltip(GemMod.MODID + ".dipper.tooltip.add_fluid", ChatFormatting.GREEN));
+			pTooltip.add(TextUtils.FormattedTooltip(Geomancy.MODID + ".dipper.tooltip.add_fluid", ChatFormatting.GREEN));
 		} else {
-			pTooltip.add(TextUtils.FormattedTooltip(GemMod.MODID + ".dipper.tooltip.add_fluid_unpressed", ChatFormatting.GREEN));
+			pTooltip.add(TextUtils.FormattedTooltip(Geomancy.MODID + ".dipper.tooltip.add_fluid_unpressed", ChatFormatting.GREEN));
 		}
 		
 		if (Screen.hasShiftDown()) {
-			pTooltip.add(TextUtils.FormattedTooltip(GemMod.MODID + ".dipper.tooltip.use_case", ChatFormatting.GREEN));
+			pTooltip.add(TextUtils.FormattedTooltip(Geomancy.MODID + ".dipper.tooltip.use_case", ChatFormatting.GREEN));
 		} else {
-			pTooltip.add(TextUtils.FormattedTooltip(GemMod.MODID + ".dipper.tooltip.use_case_unpressed", ChatFormatting.GREEN));
+			pTooltip.add(TextUtils.FormattedTooltip(Geomancy.MODID + ".dipper.tooltip.use_case_unpressed", ChatFormatting.GREEN));
 		}
 		
 	}

@@ -8,7 +8,7 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.compat.jei.categories.DippingRecipeCategory;
 import net.codersdownunder.gemmod.compat.jei.categories.InfusingRecipeCategory;
 import net.codersdownunder.gemmod.compat.jei.categories.SongForgeRecipeCategory;
@@ -25,7 +25,7 @@ public class GemModJEIPlugin implements IModPlugin {
 	//TODO: remove this if not needed
     @SuppressWarnings("unused")
 	private static final int PLAYER_INV_SIZE = 4 * 9;
-    private static final ResourceLocation PLUGIN_ID = new ResourceLocation(GemMod.MODID, "jei_plugin");
+    private static final ResourceLocation PLUGIN_ID = new ResourceLocation(Geomancy.MODID, "jei_plugin");
 
     @Override
     public ResourceLocation getPluginUid() {

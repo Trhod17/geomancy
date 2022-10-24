@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.client;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.DataGenerator;
@@ -9,10 +9,10 @@ import net.minecraftforge.common.data.LanguageProvider;
 public class GeomancyLanguageProvider extends LanguageProvider {
     
     public GeomancyLanguageProvider(DataGenerator gen) {
-        super(gen, GemMod.MODID, "en_us");
+        super(gen, Geomancy.MODID, "en_us");
     }
     
-    private static String modid = GemMod.MODID;
+    private static String modid = Geomancy.MODID;
     
     @Override
     protected void addTranslations() {

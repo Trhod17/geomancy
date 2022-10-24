@@ -2,7 +2,7 @@ package net.codersdownunder.gemmod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadMenu;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -14,7 +14,7 @@ import java.awt.*;
 public class TelepadScreen extends AbstractContainerScreen<TelepadMenu>
 {
 
-    private ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/telepad.png");
+    private ResourceLocation GUI = new ResourceLocation(Geomancy.MODID, "textures/gui/telepad.png");
     public TelepadMenu container;
 
     public TelepadScreen(TelepadMenu container, Inventory inv, Component name) {

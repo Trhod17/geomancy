@@ -2,7 +2,7 @@ package net.codersdownunder.gemmod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandMenu;
 import net.codersdownunder.gemmod.client.gui.widgets.GemModButton;
 import net.codersdownunder.gemmod.network.GemModNetwork;
@@ -18,7 +18,7 @@ import java.awt.*;
 public class InfusionStandScreen extends AbstractContainerScreen<InfusionStandMenu>
 {
 
-    private ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/infusion_stand.png");
+    private ResourceLocation GUI = new ResourceLocation(Geomancy.MODID, "textures/gui/infusion_stand.png");
     public InfusionStandMenu container;
 
     public InfusionStandScreen(InfusionStandMenu container, Inventory inv, Component name) {

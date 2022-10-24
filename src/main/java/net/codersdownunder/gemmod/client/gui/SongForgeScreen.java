@@ -2,7 +2,7 @@ package net.codersdownunder.gemmod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeMenu;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -15,7 +15,7 @@ import java.awt.*;
 public class SongForgeScreen extends AbstractContainerScreen<SongForgeMenu>
 {
 
-    private ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/song_forge.png");
+    private ResourceLocation GUI = new ResourceLocation(Geomancy.MODID, "textures/gui/song_forge.png");
 
     public SongForgeScreen(SongForgeMenu menu, Inventory inv, Component name) {
         super(menu, inv, name);

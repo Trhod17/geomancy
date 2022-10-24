@@ -2,7 +2,7 @@ package net.codersdownunder.gemmod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableMenu;
 import net.codersdownunder.gemmod.client.gui.widgets.GemModButton;
 import net.codersdownunder.gemmod.network.GemModNetwork;
@@ -20,7 +20,7 @@ public class InfusionTableScreen extends AbstractContainerScreen<InfusionTableMe
     final static int PLAYER_INV_LABEL_XPOS = InfusionTableMenu.PLAYER_INVENTORY_XPOS;
     final static int PLAYER_INV_LABEL_YPOS = InfusionTableMenu.PLAYER_INVENTORY_YPOS - FONT_Y_SPACING;
 
-    private ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/infusion_table.png");
+    private ResourceLocation GUI = new ResourceLocation(Geomancy.MODID, "textures/gui/infusion_table.png");
     public InfusionTableMenu container;
 
     public InfusionTableScreen(InfusionTableMenu container, Inventory inv, Component name) {

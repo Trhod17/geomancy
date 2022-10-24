@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.blocks.telepad;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -171,7 +171,7 @@ public class TelepadBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 
 					@Override
 					public Component getDisplayName() {
-						return Component.translatable("screen." + GemMod.MODID + ".telepad.text");
+						return Component.translatable("screen." + Geomancy.MODID + ".telepad.text");
 					}
 				};
 				NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);

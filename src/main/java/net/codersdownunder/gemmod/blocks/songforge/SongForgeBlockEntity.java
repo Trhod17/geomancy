@@ -1,6 +1,5 @@
 package net.codersdownunder.gemmod.blocks.songforge;
 
-import net.codersdownunder.gemmod.GemMod;
 import net.codersdownunder.gemmod.init.BlockEntityInit;
 import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
 import net.codersdownunder.gemmod.utils.WrappedHandler;

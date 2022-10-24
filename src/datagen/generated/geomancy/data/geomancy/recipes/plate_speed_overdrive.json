@@ -1,26 +1,30 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "geomancy",
-  "key": {
-    "c": {
-      "item": "geomancy:concentration"
-    },
-    "d": {
-      "item": "minecraft:diamond"
-    },
-    "r": {
-      "item": "minecraft:redstone_block"
-    },
-    "x": {
-      "item": "geomancy:rose_quartz"
-    }
+  "type": "geomancy:infusing",
+  "base": {
+    "item": "geomancy:plate_speed_overdrive"
   },
-  "pattern": [
-    "xdx",
-    "rcr",
-    "xdx"
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:topaz"
+    },
+    {
+      "item": "geomancy:topaz"
+    },
+    {
+      "item": "geomancy:topaz_dreaming"
+    },
+    {
+      "item": "geomancy:malachite"
+    },
+    {
+      "item": "geomancy:malachite"
+    },
+    {
+      "item": "geomancy:malachite_dreaming"
+    }
   ],
-  "result": {
+  "output": {
     "item": "geomancy:plate_speed_overdrive"
   }
 }

@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.init;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlock;
 import net.codersdownunder.gemmod.blocks.dream.DreamCatcherBlock;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableBlock;
@@ -12,6 +12,13 @@ import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaBlock;
 import net.codersdownunder.gemmod.blocks.trellis.TrellisBlock;
+import net.codersdownunder.gemmod.world.feature.tree.ChasmTreeGrower;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarpetBlock;
@@ -30,17 +37,22 @@ import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.block.grower.OakTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = GemMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+import java.util.function.Supplier;
+
+@Mod.EventBusSubscriber(modid = Geomancy.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockInit
 {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GemMod.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Geomancy.MODID);
     
     public static final RegistryObject<Block> END_LANTERN = BLOCKS.register("end_lantern", () -> new LanternBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.LANTERN).lightLevel((p_235447_0_) -> {
       return 15;
@@ -72,8 +84,8 @@ public class BlockInit
     public static final RegistryObject<Block> CHASM_BUTTON = BLOCKS.register("chasm_button", () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noCollission()));
     public static final RegistryObject<Block> CHASM_PLATE = BLOCKS.register("chasm_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noCollission()));
     
-    public static final RegistryObject<Block> CHASM_SIGN = BLOCKS.register("chasm_sign", () -> new CustomStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), GemMod.CHASM));
-    public static final RegistryObject<Block> CHASM_SIGN_WALL = BLOCKS.register("chasm_sign_wall", () -> new CustomWallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), GemMod.CHASM));
+    public static final RegistryObject<Block> CHASM_SIGN = BLOCKS.register("chasm_sign", () -> new CustomStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), Geomancy.CHASM));
+    public static final RegistryObject<Block> CHASM_SIGN_WALL = BLOCKS.register("chasm_sign_wall", () -> new CustomWallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), Geomancy.CHASM));
     
     public static final RegistryObject<Block> MULMUS_LANTERN = BLOCKS.register("mulmus_lantern", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS, MaterialColor.QUARTZ).strength(0.3F).requiresCorrectToolForDrops().sound(SoundType.GLASS).lightLevel((p_235455_0_) -> {
       return 15;
@@ -90,7 +102,7 @@ public class BlockInit
    
    public static final RegistryObject<Block> GEODE_ORE = BLOCKS.register("geode_ore", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).requiresCorrectToolForDrops().sound(SoundType.STONE)));
    
-   public static final RegistryObject<Block> TELEPAD = BLOCKS.register("telepad", () -> new TelepadBlock(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion().lightLevel((p_235447_0_) -> {return 6;}))); 
+   public static final RegistryObject<Block> TELEPAD = BLOCKS.register("telepad", () -> new TelepadBlock(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion().lightLevel((p_235447_0_) -> {return 6;})));
    public static final RegistryObject<Block> TELEPAD_SLAB = BLOCKS.register("telepad_slab", () -> new TelepadSlab(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion().lightLevel((p_235447_0_) -> {return 6;})));
    
    public static final RegistryObject<Block> TERRA_FIRMA = BLOCKS.register("terra_firma", () -> new TerraFirmaBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
@@ -131,21 +143,37 @@ public class BlockInit
    
    public static final RegistryObject<Block> SONG_FORGE = BLOCKS.register("song_forge", () -> new SongForgeBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().sound(SoundType.STONE).randomTicks()));
    public static final RegistryObject<Block> TRELLIS = BLOCKS.register("trellis", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-   public static final RegistryObject<Block> TRELLIS_MOSS = BLOCKS.register("trellis_moss", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).requiresCorrectToolForDrops().noOcclusion()));
-   public static final RegistryObject<Block> TRELLIS_CAVE_VINES = BLOCKS.register("trellis_cave_vines", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-   public static final RegistryObject<Block> TRELLIS_LICHEN = BLOCKS.register("trellis_lichen", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion().requiresCorrectToolForDrops().lightLevel((p_235447_0_) -> {return 7;})));
-   public static final RegistryObject<Block> TRELLIS_VINE = BLOCKS.register("trellis_vine", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-   public static final RegistryObject<Block> TRELLIS_CHORUS = BLOCKS.register("trellis_chorus", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-   public static final RegistryObject<Block> TRELLIS_CRIMSON = BLOCKS.register("trellis_crimson", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-   public static final RegistryObject<Block> TRELLIS_WARP = BLOCKS.register("trellis_warp", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_MOSS = BLOCKS.register("trellis_moss", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.MOSS, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).requiresCorrectToolForDrops().noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_CAVE_VINES = BLOCKS.register("trellis_cave_vines", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_LICHEN = BLOCKS.register("trellis_lichen", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion().requiresCorrectToolForDrops().lightLevel((p_235447_0_) -> {return 7;})));
+   public static final RegistryObject<Block> TRELLIS_VINE = BLOCKS.register("trellis_vine", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_CHORUS = BLOCKS.register("trellis_chorus", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_CRIMSON = BLOCKS.register("trellis_crimson", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+   public static final RegistryObject<Block> TRELLIS_WARP = BLOCKS.register("trellis_warp", () -> new TrellisBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
 
-   public static final RegistryObject<Block> CHASM_SAPLING = BLOCKS.register("chasm_sapling", () -> new SaplingBlock(new OakTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-   
+   public static final RegistryObject<Block> CHASM_SAPLING = BLOCKS.register("chasm_sapling", () -> new SaplingBlock(new ChasmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)){
+       @Override
+       public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
+           Block block = state.getBlock();
 
-   
+           if (block == Blocks.END_STONE) return true;
+           return false;
+       }
+
+       @Override
+       protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+           Block block = pState.getBlock();
+
+           if (block == Blocks.END_STONE) return true;
+           return false;
+       }
+   });
+
    //TODO Finish this later
    //public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new fire)
-   //public static final RegistryObject<Block> SUPERCHEST = BLOCKS.register("superchest", () -> new SuperChestBlock(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD).noOcclusion());	
-   //
+
+    public static void register(IEventBus eventBus) {
+        BLOCKS.register(eventBus);
+    }
 
 }

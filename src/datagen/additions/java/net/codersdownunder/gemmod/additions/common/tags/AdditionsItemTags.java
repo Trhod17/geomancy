@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.additions.common.tags;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.additions.init.BlockItemInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -11,7 +11,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class AdditionsItemTags extends ItemTagsProvider {
 
     public AdditionsItemTags(DataGenerator generator, BlockTagsProvider blockTags, ExistingFileHelper helper) {
-        super(generator, blockTags, GemMod.MODID, helper);
+        super(generator, blockTags, Geomancy.MODID, helper);
     }
 
     @Override

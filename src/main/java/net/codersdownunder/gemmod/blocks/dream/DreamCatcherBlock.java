@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.blocks.dream;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -329,7 +329,7 @@ public class DreamCatcherBlock extends Block implements SimpleWaterloggedBlock, 
                     @Override
                     public Component getDisplayName()
                     {
-                        return Component.translatable("screen." + GemMod.MODID + ".dreamcatcher.text");
+                        return Component.translatable("screen." + Geomancy.MODID + ".dreamcatcher.text");
                     }
                 };
                 NetworkHooks.openScreen((ServerPlayer) player, containerProvider, pos);

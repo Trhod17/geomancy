@@ -15,7 +15,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlockEntity;
 import net.codersdownunder.gemmod.crafting.recipe.DippingRecipe;
 import net.codersdownunder.gemmod.init.BlockInit;
@@ -28,9 +28,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class DippingRecipeCategory implements IRecipeCategory<DippingRecipe> {
-    public static final RecipeType<DippingRecipe> DIPPING = RecipeType.create(GemMod.MODID, "dipping_recipe", DippingRecipe.class);
-    public static final ResourceLocation ID = new ResourceLocation(GemMod.MODID, "dipping_recipe");
-    public static final ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/dipper.png");
+    public static final RecipeType<DippingRecipe> DIPPING = RecipeType.create(Geomancy.MODID, "dipping_recipe", DippingRecipe.class);
+    public static final ResourceLocation ID = new ResourceLocation(Geomancy.MODID, "dipping_recipe");
+    public static final ResourceLocation GUI = new ResourceLocation(Geomancy.MODID, "textures/gui/dipper.png");
     private final IDrawable back;
     private final IDrawable icon;
 
@@ -46,7 +46,7 @@ public class DippingRecipeCategory implements IRecipeCategory<DippingRecipe> {
 
     @Override
     public Component getTitle() {
-        return Component.translatable("category." + GemMod.MODID + ".dipping_recipe");
+        return Component.translatable("category." + Geomancy.MODID + ".dipping_recipe");
     }
 
     @Override

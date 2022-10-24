@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.client;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.client.gui.DipperScreen;
 import net.codersdownunder.gemmod.client.gui.DreamCatcherScreen;
 import net.codersdownunder.gemmod.client.gui.InfusionStandScreen;
@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-@Mod.EventBusSubscriber(modid = GemMod.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Geomancy.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
 	
 	  public static void doClientStuff(final FMLClientSetupEvent event) {
@@ -35,7 +35,7 @@ public class ClientSetup {
 	        
 	        BlockEntityRenderers.register(BlockEntityInit.CUSTOM_SIGN.get(), SignRenderer::new);
 	        event.enqueueWork(() -> {
-	            Sheets.addWoodType(GemMod.CHASM);
+	            Sheets.addWoodType(Geomancy.CHASM);
 	        });
 	        
 	        BlockEntityRenderers.register(BlockEntityInit.DIPPER_BE.get(), DipperBlockEntityRenderer::new);

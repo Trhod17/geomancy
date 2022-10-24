@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.items;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
 import net.codersdownunder.gemmod.utils.TextUtils;
@@ -60,7 +60,7 @@ public class TeleCoreItem extends Item {
 			pContext.getItemInHand().setTag(pos);
 		}
 		} catch(Exception e)  {
-			GemMod.LOGGER.debug("Telecore pos saving failed: ", e);
+			Geomancy.LOGGER.debug("Telecore pos saving failed: ", e);
 		}
 
 		return InteractionResult.SUCCESS;

@@ -1,8 +1,9 @@
 package net.codersdownunder.gemmod.blocks.trellis;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.items.DiggingClawItem;
+import net.codersdownunder.gemmod.utils.TagUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -13,9 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -37,7 +36,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IForgeShearable;
-import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -169,8 +168,10 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 	public boolean onDestroyedByPlayer(BlockState state, Level world, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
 		Item item = player.getMainHandItem().getItem();
-		
-		if(player != null && item instanceof ShearsItem || item instanceof DiggingClawItem) {
+
+		if (Tags.Items.SHEARS == null) return false;
+
+		if(player != null && TagUtils.getValues(Tags.Items.SHEARS).contains(item) || item instanceof DiggingClawItem) {
 
  			world.setBlockAndUpdate(pos, BlockInit.TRELLIS.get().defaultBlockState()
 					.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
@@ -179,6 +180,10 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 		return super.onDestroyedByPlayer(state, world, pos, player, willHarvest, fluid);
 	}
 
+	@Override
+	public float getDestroyProgress(BlockState pState, Player pPlayer, BlockGetter pLevel, BlockPos pPos) {
+		return super.getDestroyProgress(pState, pPlayer, pLevel, pPos);
+	}
 
 	@Override
 	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
@@ -189,9 +194,7 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 		int number = pRandom.nextInt(12);
 		
 		switch (number) {
-		case 0: {
-			break;
-		}
+		case 0: {}
 		case 1: {
 			if (pLevel.getBlockState(pPos.above()).getBlock() == trellis) {
 				if (spreadChance(pRandom) <= 70) {
@@ -201,12 +204,8 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 			}
 			break;
 		}
-		case 2: {
-			break;
-		}
-		case 3: {
-			
-		}
+		case 2: {}
+		case 3: {}
 		case 4: {
 			if (pLevel.getBlockState(pPos.below()).getBlock() == trellis) {
 				if (spreadChance(pRandom) <= 70) {
@@ -216,12 +215,8 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 			}
 			break;
 		}
-		case 5: {
-			break;
-		}
-		case 6: {
-			
-		}
+		case 5: {}
+		case 6: {}
 		case 7: {
 			if (pLevel.getBlockState(pPos.east()).getBlock() == trellis) {
 				if (spreadChance(pRandom) <= 70) {
@@ -231,12 +226,8 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 			}
 			break;
 		}
-		case 8: {
-			break;
-		}
-		case 9: {
-			
-		}
+		case 8: {}
+		case 9: {}
 		case 10: {
 			if (pLevel.getBlockState(pPos.west()).getBlock() == trellis) {
 				if (spreadChance(pRandom) <= 70) {
@@ -246,14 +237,10 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 			}
 			break;
 		}
-		case 11: {
-			break;
-		}
-		case 12: {
-			break;
-		}
+		case 11: {}
+		case 12: {}
 		default:
-			GemMod.LOGGER.debug("Number outside direction range");
+			Geomancy.LOGGER.debug("Number outside direction range");
 		}
 	}
 	
@@ -271,28 +258,8 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 		if (!world.isClientSide) {
 
 			Item itemInHand = player.getItemInHand(hand).getItem();
-			
-			if (list.contains(itemInHand)) {
 
-			if (itemInHand  == list.get(0)) {
-				updateTrellis(world, pos, state, BlockInit.TRELLIS_VINE.get());
-			} else if (itemInHand  == list.get(1)) {
-				updateTrellis(world, pos, state, BlockInit.TRELLIS_MOSS.get());
-			} else if (itemInHand  == list.get(2)) {
-				updateTrellis(world, pos, state, BlockInit.TRELLIS_CRIMSON.get());
-			} else if (itemInHand  == list.get(3)) {
-				updateTrellis(world, pos, state, BlockInit.TRELLIS_WARP.get());
-			} else if (itemInHand  == list.get(4)) {
-				updateTrellis(world, pos, state, BlockInit.TRELLIS_CAVE_VINES.get());
-			} else if (itemInHand  == list.get(5)) {
-				updateTrellis(world, pos, state, BlockInit.TRELLIS_CHORUS.get());
-			} else if (itemInHand  == list.get(6)) {
-				updateTrellis(world, pos, state, BlockInit.TRELLIS_LICHEN.get());
-			}
-			} else {
-				return InteractionResult.PASS;
-				//GemMod.LOGGER.debug("Item: ", itemInHand, ", Is not valid for trellis");
-			}
+			updateTrellis(world, pos, state, Variants.getBlockFromItem(itemInHand).trellis());
 
 		}
 		return InteractionResult.SUCCESS;
@@ -305,14 +272,14 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 
 	public enum Variants {
 
+		EMPTY (BlockInit.TRELLIS.get(), Items.AIR),
 		VINE (BlockInit.TRELLIS_VINE.get(), Items.VINE),
 		MOSS (BlockInit.TRELLIS_MOSS.get(), Blocks.MOSS_BLOCK.asItem()),
-		WEEPING (BlockInit.TRELLIS_WARP.get(), Items.WEEPING_VINES),
-		TWISTING (BlockInit.TRELLIS_CRIMSON.get(), Items.TWISTING_VINES),
-		CAVE (BlockInit.TRELLIS_CAVE_VINES.get(), Blocks.CAVE_VINES.asItem()),
+		WEEPING (BlockInit.TRELLIS_WARP.get(), Items.TWISTING_VINES),
+		TWISTING (BlockInit.TRELLIS_CRIMSON.get(), Items.WEEPING_VINES),
+		CAVE (BlockInit.TRELLIS_CAVE_VINES.get(), Items.GLOW_BERRIES),
 		CHORUS (BlockInit.TRELLIS_CHORUS.get(), Items.CHORUS_FRUIT),
 		LICHEN (BlockInit.TRELLIS_LICHEN.get(), Items.GLOW_LICHEN);
-
 
 		private final Block trellis;
 		private final Item vine;
@@ -326,11 +293,11 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 		private Item vine() { return vine; }
 
 		public static Variants getItemFromBlock(Block identifier) {
-			return Arrays.stream(Variants.values()).filter(item -> item.trellis().equals(identifier)).findFirst().orElse(null);
+			return Arrays.stream(Variants.values()).filter(item -> item.trellis().equals(identifier)).findFirst().orElse(EMPTY);
 		}
 
 		public static Variants getBlockFromItem(Item identifier) {
-			return Arrays.stream(Variants.values()).filter(item -> item.vine().equals(identifier)).findFirst().orElse(null);
+			return Arrays.stream(Variants.values()).filter(item -> item.vine().equals(identifier)).findFirst().orElse(EMPTY);
 		}
 	}
 

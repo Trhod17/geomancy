@@ -1,6 +1,6 @@
 package net.codersdownunder.gemmod.network;
 
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.network.messages.InfusionCraftingMessage;
 import net.codersdownunder.gemmod.network.messages.InfusionStandCraftingMessage;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +14,7 @@ public final class GemModNetwork
     public static final String NETWORK_VERSION = "1";
 
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(GemMod.MODID, "geomancy"), () -> NETWORK_VERSION,
+            new ResourceLocation(Geomancy.MODID, "geomancy"), () -> NETWORK_VERSION,
             NETWORK_VERSION::equals, NETWORK_VERSION::equals);
     
     private GemModNetwork() {

@@ -1,0 +1,10 @@
+{
+  "values": [
+    "geomancy:digging_claw_wood",
+    "geomancy:digging_claw_stone",
+    "geomancy:digging_claw_iron",
+    "geomancy:digging_claw_gold",
+    "geomancy:digging_claw_diamond",
+    "geomancy:digging_claw_netherite"
+  ]
+}

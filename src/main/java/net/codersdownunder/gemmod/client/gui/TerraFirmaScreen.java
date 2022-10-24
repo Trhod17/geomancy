@@ -2,7 +2,7 @@ package net.codersdownunder.gemmod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.codersdownunder.gemmod.GemMod;
+import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaMenu;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -20,7 +20,7 @@ import java.util.List;
 public class TerraFirmaScreen extends AbstractContainerScreen<TerraFirmaMenu>
 {
 
-    private ResourceLocation GUI = new ResourceLocation(GemMod.MODID, "textures/gui/terra.png");
+    private ResourceLocation GUI = new ResourceLocation(Geomancy.MODID, "textures/gui/terra.png");
     
     
 	private float scrollOffs;

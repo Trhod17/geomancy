@@ -1,26 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "geomancy",
-  "key": {
-    "c": {
-      "item": "minecraft:coal_block"
-    },
-    "f": {
-      "item": "minecraft:flint"
-    },
-    "r": {
-      "item": "minecraft:redstone_block"
-    },
-    "x": {
-      "item": "geomancy:rose_quartz"
-    }
+  "type": "geomancy:infusing",
+  "base": {
+    "item": "geomancy:plate_speed_up"
   },
-  "pattern": [
-    "xfx",
-    "rcr",
-    "xfx"
+  "group": "geomancy",
+  "ingredients": [
+    {
+      "item": "geomancy:topaz_dreaming"
+    },
+    {
+      "item": "geomancy:ruby_dreaming"
+    }
   ],
-  "result": {
+  "output": {
     "item": "geomancy:plate_speed_up"
   }
 }
