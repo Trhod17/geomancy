@@ -13,43 +13,36 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": [
-                      "minecraft:shears"
-                    ]
+                    "tag": "forge:shears"
                   }
                 }
               ],
-              "name": "minecraft:air"
+              "functions": [
+                {
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:binomial_with_bonus_count",
+                  "function": "minecraft:apply_bonus",
+                  "parameters": {
+                    "extra": 1,
+                    "probability": 0.5714286
+                  }
+                }
+              ],
+              "name": "minecraft:vine"
             },
             {
-              "type": "minecraft:alternatives",
-              "children": [
+              "type": "minecraft:item",
+              "functions": [
                 {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "tag": "forge:shears"
-                      }
-                    }
-                  ],
-                  "name": "minecraft:vine"
-                },
-                {
-                  "type": "minecraft:item",
-                  "functions": [
-                    {
-                      "function": "minecraft:explosion_decay"
-                    }
-                  ],
-                  "name": "geomancy:trellis"
+                  "function": "minecraft:explosion_decay"
                 }
-              ]
+              ],
+              "name": "geomancy:trellis"
             }
           ]
         }
       ],
+      "name": "translation{key='block.geomancy.trellis_vine', args=[]}",
       "rolls": 1.0
     }
   ]

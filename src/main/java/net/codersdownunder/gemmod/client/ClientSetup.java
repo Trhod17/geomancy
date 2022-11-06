@@ -10,17 +10,31 @@ import net.codersdownunder.gemmod.client.gui.TelepadScreen;
 import net.codersdownunder.gemmod.client.gui.TerraFirmaScreen;
 import net.codersdownunder.gemmod.client.renderer.DipperBlockEntityRenderer;
 import net.codersdownunder.gemmod.init.BlockEntityInit;
+import net.codersdownunder.gemmod.init.FluidInit;
 import net.codersdownunder.gemmod.init.MenuInit;
+import net.codersdownunder.gemmod.init.ParticlesInit;
+import net.codersdownunder.gemmod.particles.PurpleFlameParticle;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod.EventBusSubscriber(modid = Geomancy.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
+
+	public static void subscribeClientEvents() {
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+		modEventBus.addListener(ClientSetup::doClientStuff);
+		modEventBus.addListener(ClientSetup::registerParticleFactories);
+	}
 	
 	  public static void doClientStuff(final FMLClientSetupEvent event) {
 		  
@@ -39,6 +53,14 @@ public class ClientSetup {
 	        });
 	        
 	        BlockEntityRenderers.register(BlockEntityInit.DIPPER_BE.get(), DipperBlockEntityRenderer::new);
-	    }
+
+		  	ItemBlockRenderTypes.setRenderLayer(FluidInit.SOURCE_HEALING_WATER.get(), RenderType.translucent());
+			ItemBlockRenderTypes.setRenderLayer(FluidInit.FLOWING_HEALING_WATER.get(), RenderType.translucent());
+
+	  }
+
+	public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+		  event.register(ParticlesInit.PURPLE_FLAME.get(), PurpleFlameParticle.Provider::new);
+	}
 	  
 }

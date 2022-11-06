@@ -128,7 +128,6 @@ public class GeomancyItemTags extends ItemTagsProvider {
 				.add(ItemInit.DIGGING_CLAW_GOLD.get())
 				.add(ItemInit.DIGGING_CLAW_DIAMOND.get())
 				.add(ItemInit.DIGGING_CLAW_NETHERITE.get());
-
 	}
 
 	@Override

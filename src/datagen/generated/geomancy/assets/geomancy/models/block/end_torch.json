@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_torch",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "torch": "geomancy:block/end_torch"
+  }
+}

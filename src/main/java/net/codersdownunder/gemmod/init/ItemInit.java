@@ -4,10 +4,8 @@ import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.items.*;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SignItem;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,7 +16,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class ItemInit
 {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Geomancy.MODID);
-    
     public static final RegistryObject<Item> AGATE = ITEMS.register("agate", () -> new GemItem(new Item.Properties().tab((Geomancy.gemsmoditemtab))));
     public static final RegistryObject<Item> CHRYSOCOLLA = ITEMS.register("chrysocolla", () -> new GemItem(new Item.Properties().tab((Geomancy.gemsmoditemtab))));
     public static final RegistryObject<Item> MALACHITE = ITEMS.register("malachite", () -> new GemItem(new Item.Properties().tab((Geomancy.gemsmoditemtab))));
@@ -83,24 +80,28 @@ public class ItemInit
     
     public static final RegistryObject<Item> ROSE_QUARTZ = ITEMS.register("rose_quartz", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab)));
     
-    public static final RegistryObject<Item> PLATE_FAILSAFE = ITEMS.register("plate_failsafe", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab)));
-    public static final RegistryObject<Item> PLATE_FUEL_COAL = ITEMS.register("plate_fuel_coal", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab)));
-    public static final RegistryObject<Item> PLATE_FUEL_TIME = ITEMS.register("plate_fuel_time", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab)));
-    public static final RegistryObject<Item> PLATE_SPEED_OVERDRIVE = ITEMS.register("plate_speed_overdrive", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab)));
-    public static final RegistryObject<Item> PLATE_SPEED_UP = ITEMS.register("plate_speed_up", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab)));
-    public static final RegistryObject<Item> PLATE_YIELD_ORE = ITEMS.register("plate_yield_ore", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab)));
-    
+    public static final RegistryObject<Item> PLATE_FAILSAFE = ITEMS.register("plate_failsafe", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab).stacksTo(5)));
+    public static final RegistryObject<Item> PLATE_FUEL_COAL = ITEMS.register("plate_fuel_coal", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab).stacksTo(5)));
+    public static final RegistryObject<Item> PLATE_FUEL_TIME = ITEMS.register("plate_fuel_time", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab).stacksTo(5)));
+    public static final RegistryObject<Item> PLATE_SPEED_OVERDRIVE = ITEMS.register("plate_speed_overdrive", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab).stacksTo(5)));
+    public static final RegistryObject<Item> PLATE_SPEED_UP = ITEMS.register("plate_speed_up", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab).stacksTo(5)));
+    public static final RegistryObject<Item> PLATE_YIELD_ORE = ITEMS.register("plate_yield_ore", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab).stacksTo(5)));
+
+    public static final RegistryObject<Item> PLATE_DING = ITEMS.register("plate_ding", () -> new Item(new Item.Properties().tab(Geomancy.gemsmoditemtab).stacksTo(5)));
+
     public static final RegistryObject<Item> DIGGING_CLAW_WOOD = ITEMS.register("digging_claw_wood", () -> new DiggingClawItem(1, -2.8F, Tiers.WOOD, GeomancyTags.Blocks.claw, new Item.Properties().tab(Geomancy.gemsmoditemtab)));
     public static final RegistryObject<Item> DIGGING_CLAW_STONE = ITEMS.register("digging_claw_stone", () -> new DiggingClawItem(1, -2.8F, Tiers.STONE, GeomancyTags.Blocks.claw, new Item.Properties().tab(Geomancy.gemsmoditemtab)));
     public static final RegistryObject<Item> DIGGING_CLAW_IRON = ITEMS.register("digging_claw_iron", () -> new DiggingClawItem(0, 0, Tiers.IRON, GeomancyTags.Blocks.claw, new Item.Properties().tab(Geomancy.gemsmoditemtab)));
     public static final RegistryObject<Item> DIGGING_CLAW_GOLD = ITEMS.register("digging_claw_gold", () -> new DiggingClawItem(1, -2.8F, Tiers.GOLD, GeomancyTags.Blocks.claw, new Item.Properties().tab(Geomancy.gemsmoditemtab)));
     public static final RegistryObject<Item> DIGGING_CLAW_DIAMOND = ITEMS.register("digging_claw_diamond", () -> new DiggingClawItem(1, -2.8F, Tiers.DIAMOND, GeomancyTags.Blocks.claw, new Item.Properties().tab(Geomancy.gemsmoditemtab)));
     public static final RegistryObject<Item> DIGGING_CLAW_NETHERITE = ITEMS.register("digging_claw_netherite", () -> new DiggingClawItem(1, -2.8F, Tiers.NETHERITE, GeomancyTags.Blocks.claw, new Item.Properties().tab(Geomancy.gemsmoditemtab)));
-    
-    
-    
-    
-    
+
+    public static final RegistryObject<Item> HEALING_WATER_BUCKET = ITEMS.register("healing_water_bucket",
+            () -> new BucketItem(FluidInit.SOURCE_HEALING_WATER,
+                    new Item.Properties().tab(Geomancy.gemsmodblocktab).craftRemainder(Items.BUCKET).stacksTo(1)));
+
+
+
 
 
 
@@ -166,6 +167,7 @@ public class ItemInit
     public static final RegistryObject<BlockItem> SONG_FORGE = ITEMS.register("song_forge", () -> new BlockItem(BlockInit.SONG_FORGE.get(), new Item.Properties().tab(Geomancy.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> TRELLIS = ITEMS.register("trellis", () -> new BlockItem(BlockInit.TRELLIS.get(), new Item.Properties().tab(Geomancy.gemsmodblocktab)));
     public static final RegistryObject<BlockItem> CHASM_SAPLING = ITEMS.register("chasm_sapling", () -> new BlockItem(BlockInit.CHASM_SAPLING.get(), new Item.Properties().tab(Geomancy.gemsmodblocktab)));
+    public static final RegistryObject<StandingAndWallBlockItem> END_TORCH = ITEMS.register("end_torch", () -> new StandingAndWallBlockItem(BlockInit.END_TORCH.get(), BlockInit.WALL_END_TORCH.get(), (new Item.Properties()).tab(Geomancy.gemsmodblocktab)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

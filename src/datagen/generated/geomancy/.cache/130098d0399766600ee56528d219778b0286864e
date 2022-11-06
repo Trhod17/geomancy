@@ -1,4 +1,4 @@
-// 1.19.2	2022-08-12T15:04:13.316717377	Item Models: geomancy
+// 1.19.2	2022-11-06T15:42:50.211894794	Item Models: geomancy
 8420dd113a7694ddeb214af346cbba852ffd1022 assets/geomancy/models/item/agate.json
 eb1d807bc1c604adc605f6448b58e0c2e301c637 assets/geomancy/models/item/agate_dreaming.json
 3ec323d5890112b0a2ec1ba7336fa6fb9042d35c assets/geomancy/models/item/amethyst.json
@@ -28,6 +28,7 @@ e4f14e227bbdab7a6f5d7e3794ccce98975d8c74 assets/geomancy/models/item/empty_totem
 4916afc97305ed35afd8df6701b175a6c7b38352 assets/geomancy/models/item/garnet.json
 364168aa77894932c1e7a678c406d9dd04edfb7d assets/geomancy/models/item/garnet_dreaming.json
 1cb6bb811a44b223a8fd769e2a335921eba9a5bd assets/geomancy/models/item/geode.json
+d89acd87aab3886e562aae3e3e1f65b0f7c03965 assets/geomancy/models/item/healing_water_bucket.json
 2639703bf564aab65d8a44697887ca0286143ce6 assets/geomancy/models/item/jade.json
 8dc2bbf9943a63766bb5262f6349de82ea4e0c96 assets/geomancy/models/item/jade_dreaming.json
 ab0b72ce91391326666e350d1c1b580db6a02d9a assets/geomancy/models/item/jasper.json

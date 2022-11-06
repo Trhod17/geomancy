@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "concoction3": {
+    "concoction_three": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:honeycomb"
+              "minecraft:redstone"
             ]
           },
           {
             "items": [
-              "minecraft:glowstone_dust"
+              "minecraft:chorus_flower"
             ]
           },
           {
             "items": [
-              "minecraft:honey_bottle"
+              "minecraft:dragon_breath"
             ]
           },
           {
             "items": [
-              "minecraft:blaze_powder"
+              "minecraft:ender_eye"
             ]
           },
           {
             "items": [
-              "minecraft:nether_wart"
+              "minecraft:ghast_tear"
             ]
           }
         ]
@@ -42,7 +42,7 @@
   },
   "requirements": [
     [
-      "concoction3",
+      "concoction_three",
       "has_the_recipe"
     ]
   ],

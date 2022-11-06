@@ -1,12 +1,14 @@
 package net.codersdownunder.gemmod.blocks.songforge;
 
 import net.codersdownunder.gemmod.init.BlockEntityInit;
+import net.codersdownunder.gemmod.init.ParticlesInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -45,8 +47,8 @@ public class SongForgeBlock extends BaseEntityBlock {
 		// .setValue(FORGE, false)
 	}
 
-
-	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRand) {
+	@Override
+	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRand) {
 		if (pState.getValue(LIT)) {
 			double d0 = (double) pPos.getX() + 0.5D;
 			double d1 = (double) pPos.getY();
@@ -62,7 +64,7 @@ public class SongForgeBlock extends BaseEntityBlock {
 			double d6 = pRand.nextDouble() * 6.0D / 16.0D;
 			double d7 = direction$axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52D : d4;
 			pLevel.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
-			pLevel.addParticle(ParticleTypes.FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
+			pLevel.addParticle(ParticlesInit.PURPLE_FLAME.get(), d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
 		}
 	}
 

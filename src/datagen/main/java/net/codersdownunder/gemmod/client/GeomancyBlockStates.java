@@ -1,8 +1,11 @@
 package net.codersdownunder.gemmod.client;
 
+import net.codersdownunder.gemmod.DataUtils;
 import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.FluidInit;
+import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -24,6 +27,8 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import javax.xml.crypto.Data;
 
 public class GeomancyBlockStates extends BlockStateProvider {
 	
@@ -113,9 +118,17 @@ public class GeomancyBlockStates extends BlockStateProvider {
     	
     	rotatingBlock(BlockInit.DREAM_CATCHER.get(), "block/dream_catcher");
 
+		registerEndTorch();
+
         registerItemModels();
 
     }
+
+
+	private void registerEndTorch() {
+		simpleBlock(BlockInit.END_TORCH.get(), models().torch(DataUtils.getBlockRegistryName(BlockInit.END_TORCH.get()), modLoc("block/end_torch")).renderType("minecraft:cutout_mipped"));
+		horizontalBlock(BlockInit.WALL_END_TORCH.get(), models().torchWall(DataUtils.getBlockRegistryName(BlockInit.WALL_END_TORCH.get()), modLoc("block/end_torch")).renderType("minecraft:cutout_mipped"), 90);
+	}
 
     protected void registerItemModels() {
     	
@@ -199,6 +212,8 @@ public class GeomancyBlockStates extends BlockStateProvider {
     	basicModel("treadstone_carpet_7", "treadstone_carpet_7");
     	
     	basicModel("song_forge");
+
+		singleTexture(ItemInit.END_TORCH.get(), "end_torch", "block");
     	
     }
     
@@ -219,6 +234,12 @@ public class GeomancyBlockStates extends BlockStateProvider {
                 mcLoc("item/generated"),
                 "layer0", modLoc("item/" + texture));
     }
+
+	private void singleTexture(Item item, String texture, String folder) {
+		itemModels().singleTexture(item.toString(),
+				mcLoc("item/generated"),
+				"layer0", modLoc(folder + "/" + texture));
+	}
     
     private void singleTextureMC(Item item, String texture) {
     	itemModels().singleTexture(item.toString(),

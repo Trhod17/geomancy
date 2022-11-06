@@ -171,6 +171,9 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(ItemInit.DIGGING_CLAW_GOLD.get(), "Golden Digging Claw");
         add(ItemInit.DIGGING_CLAW_DIAMOND.get(), "Diamond Digging Claw");
         add(ItemInit.DIGGING_CLAW_NETHERITE.get(), "Netherite Digging Claw");
+
+        add(ItemInit.END_TORCH.get(), "End Torch");
+        add(ItemInit.HEALING_WATER_BUCKET.get(), "Healing Water Bucket");
     }
 
     private void addBlocks() {
@@ -245,6 +248,7 @@ public class GeomancyLanguageProvider extends LanguageProvider {
         add(BlockInit.TRELLIS_WARP.get(), "Warped Trellis");
         
         add(BlockInit.CHASM_SAPLING.get(), "Chasm Sapling");
+
     }
     
     private void addItemGroupText() {

@@ -7,7 +7,7 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "telepad": {
+    "telepad_slab": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "telepad",
+      "telepad_slab",
       "has_the_recipe"
     ]
   ],

@@ -3,12 +3,17 @@ package net.codersdownunder.gemmod;
 import net.codersdownunder.gemmod.init.*;
 import net.codersdownunder.gemmod.world.feature.ModConfiguredFeatures;
 import net.codersdownunder.gemmod.world.feature.ModPlacedFeatures;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.extensions.IForgeEntity;
+import net.minecraftforge.common.extensions.IForgeLivingEntity;
+import net.minecraftforge.fluids.FluidInteractionRegistry;
+import net.minecraftforge.fluids.FluidType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.codersdownunder.gemmod.client.ClientSetup;
-import net.codersdownunder.gemmod.handlers.DreamCatcherEventHandler;
-import net.codersdownunder.gemmod.handlers.LogStrippingEvent;
+import net.codersdownunder.gemmod.events.DreamCatcherEventHandler;
+import net.codersdownunder.gemmod.events.LogStrippingEvent;
 import net.codersdownunder.gemmod.network.GemModNetwork;
 import net.codersdownunder.gemmod.utils.GemModItemGroup;
 import net.codersdownunder.gemmod.utils.ModVanillaCompat;
@@ -32,6 +37,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import java.util.Locale;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -64,7 +71,8 @@ public class Geomancy
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         
         //bus.addListener(RecipeSerializer.class, ModRecipeTypes::registerRecipes);
-        
+
+        ParticlesInit.register(bus);
         ItemInit.register(bus);
         BlockInit.register(bus);
         MenuInit.register(bus);
@@ -73,12 +81,13 @@ public class Geomancy
         RecipeInit.registerTypes(bus);
         ModConfiguredFeatures.register(bus);
         ModPlacedFeatures.register(bus);
-
+        FluidTypesInit.register(bus);
+        FluidInit.register(bus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.commonSpec);
         //ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.addListener(ClientSetup::doClientStuff));
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientSetup::subscribeClientEvents);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(LogStrippingEvent.class);
@@ -101,8 +110,11 @@ public class Geomancy
         	
         	ModVanillaCompat.compat();
         });
+
+
         //VillagerInit.fillTradeData();
         //GeomancyFeatures.initialize();
+
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -110,10 +122,6 @@ public class Geomancy
        
     }
 
-    
-//    public void onServerStarting(FMLDedicatedServerSetupEvent event) {
-//        
-//    }
     
    
     
@@ -140,14 +148,9 @@ public class Geomancy
         	event.getToolTip().add(TextUtils.FormattedTooltip("tooltip.concoction.four", ChatFormatting.GREEN));
         }
     }
-    
-    
-//    public static final PlacementModifierType<RNGPlacement> RNG_DECORATOR = register("rng_initializer", RNGPlacement.CODEC);
-//    
-//    private static <P extends PlacementModifier> PlacementModifierType<P> register(String name, Codec<P> codec) {
-//		return Registry.register(Registry.PLACEMENT_MODIFIERS, name, () -> {
-//			return codec;
-//		});
-//	}
+
+    public static ResourceLocation prefix(String name) {
+        return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
+    }
     
     }

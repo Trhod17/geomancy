@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "concoction1": {
+    "concoction_one": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:bone_meal"
+              "minecraft:redstone"
             ]
           },
           {
             "items": [
-              "minecraft:gunpowder"
+              "minecraft:chorus_flower"
             ]
           },
           {
             "items": [
-              "minecraft:glass_bottle"
+              "minecraft:dragon_breath"
             ]
           },
           {
             "items": [
-              "minecraft:fermented_spider_eye"
+              "minecraft:ender_eye"
             ]
           },
           {
             "items": [
-              "minecraft:milk_bucket"
+              "minecraft:ghast_tear"
             ]
           }
         ]
@@ -42,7 +42,7 @@
   },
   "requirements": [
     [
-      "concoction1",
+      "concoction_one",
       "has_the_recipe"
     ]
   ],

@@ -6,6 +6,7 @@ import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class GeomancyBlockTags extends BlockTagsProvider {
@@ -54,8 +55,12 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         		.add(BlockInit.TREADSTONE_CARPET_4.get())
         		.add(BlockInit.TREADSTONE_CARPET_5.get())
         		.add(BlockInit.TREADSTONE_CARPET_6.get())
-        		.add(BlockInit.TREADSTONE_CARPET_7.get());
-        		
+        		.add(BlockInit.TREADSTONE_CARPET_7.get())
+				.add(BlockInit.GEODE_ORE.get());
+
+		tag(BlockTags.NEEDS_IRON_TOOL)
+				.add(BlockInit.GEODE_ORE.get());
+
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(BlockInit.DIPPER.get())
         		.add(BlockInit.INFUSION_TABLE.get())
@@ -175,7 +180,8 @@ public class GeomancyBlockTags extends BlockTagsProvider {
         	.add(BlockInit.TRELLIS_MOSS.get())
         	.add(BlockInit.TRELLIS_VINE.get())
         	.add(BlockInit.TRELLIS_WARP.get());
-    }
+
+	}
 
     @Override
     public String getName() {

@@ -3,16 +3,16 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:netherite_ingot"
+        "recipe": "geomancy:netherite_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "netherite_nugget": {
+    "netherrite_nugget": {
       "conditions": {
         "items": [
           {
             "items": [
-              "geomancy:netherrite_nugget"
+              "minecraft:netherite_ingot"
             ]
           }
         ]
@@ -22,13 +22,13 @@
   },
   "requirements": [
     [
-      "netherite_nugget",
+      "netherrite_nugget",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:netherite_ingot"
+      "geomancy:netherite_ingot"
     ]
   }
 }

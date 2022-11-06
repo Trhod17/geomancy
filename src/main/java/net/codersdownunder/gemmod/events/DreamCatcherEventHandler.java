@@ -1,4 +1,4 @@
-package net.codersdownunder.gemmod.handlers;
+package net.codersdownunder.gemmod.events;
 
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;

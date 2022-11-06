@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "concoction4": {
+    "concoction_four": {
       "conditions": {
         "items": [
           {
@@ -42,7 +42,7 @@
   },
   "requirements": [
     [
-      "concoction4",
+      "concoction_four",
       "has_the_recipe"
     ]
   ],

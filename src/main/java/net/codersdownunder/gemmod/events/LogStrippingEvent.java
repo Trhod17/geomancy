@@ -1,4 +1,4 @@
-package net.codersdownunder.gemmod.handlers;
+package net.codersdownunder.gemmod.events;
 
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.core.BlockPos;
@@ -46,5 +46,7 @@ public class LogStrippingEvent
         }
 
     }
+
+
 
 }

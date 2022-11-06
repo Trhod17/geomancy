@@ -7,6 +7,8 @@ import net.codersdownunder.gemmod.utils.TagUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -43,6 +45,7 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 
@@ -171,7 +174,9 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 
 		if (Tags.Items.SHEARS == null) return false;
 
-		if(player != null && TagUtils.getValues(Tags.Items.SHEARS).contains(item) || item instanceof DiggingClawItem) {
+		if(player != null && TagUtils.getValues(Tags.Items.SHEARS).contains(item)) {
+
+			destroy(world, pos, state);
 
  			world.setBlockAndUpdate(pos, BlockInit.TRELLIS.get().defaultBlockState()
 					.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
@@ -181,18 +186,39 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 	}
 
 	@Override
-	public float getDestroyProgress(BlockState pState, Player pPlayer, BlockGetter pLevel, BlockPos pPos) {
-		return super.getDestroyProgress(pState, pPlayer, pLevel, pPos);
+	public boolean isShearable(@NotNull ItemStack item, Level level, BlockPos pos) {
+		if (this == BlockInit.TRELLIS.get()) return false;
+
+		return true;
+	}
+
+	@Override
+	public @NotNull List<ItemStack> onSheared(@org.jetbrains.annotations.Nullable Player player, @NotNull ItemStack item, Level level, BlockPos pos, int fortune) {
+		if (this == BlockInit.TRELLIS.get()) return java.util.Collections.emptyList();
+
+		return java.util.Collections.singletonList(new ItemStack(Variants.getItemFromBlock(this).vine().asItem()));
+	}
+
+	public static boolean hasEmptyTrellisNearby(BlockState pState, ServerLevel pLevel, BlockPos pPos) {
+		if (pLevel.getBlockState(pPos.above()).getBlock() == BlockInit.TRELLIS.get() ||
+				pLevel.getBlockState(pPos.below()).getBlock() == BlockInit.TRELLIS.get() ||
+					pLevel.getBlockState(pPos.east()).getBlock() == BlockInit.TRELLIS.get() ||
+						pLevel.getBlockState(pPos.west()).getBlock() == BlockInit.TRELLIS.get()) {
+					return true;
+		}
+		return false;
 	}
 
 	@Override
 	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-		
+
+		if (!hasEmptyTrellisNearby(pState, pLevel, pPos)) return;
+
 		Block trellis = BlockInit.TRELLIS.get();
 		Block current = this.defaultBlockState().getBlock();
 		
 		int number = pRandom.nextInt(12);
-		
+
 		switch (number) {
 		case 0: {}
 		case 1: {
@@ -249,7 +275,7 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 		return pRandom.nextInt(100);
 	}
 
-	private final List<Item> list = Arrays.asList(Items.VINE, Items.MOSS_BLOCK, Items.WEEPING_VINES, Items.TWISTING_VINES, Items.GLOW_BERRIES, Items.CHORUS_FRUIT, Items.GLOW_LICHEN);
+	//private final List<Item> list = Arrays.asList(Items.VINE, Items.MOSS_BLOCK, Items.WEEPING_VINES, Items.TWISTING_VINES, Items.GLOW_BERRIES, Items.CHORUS_FRUIT, Items.GLOW_LICHEN);
 
 	@Override
 	@NotNull
@@ -259,12 +285,22 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, IForg
 
 			Item itemInHand = player.getItemInHand(hand).getItem();
 
-			updateTrellis(world, pos, state, Variants.getBlockFromItem(itemInHand).trellis());
+			if (Variants.getBlockFromItem(itemInHand) != Variants.EMPTY) {
+				updateTrellis(world, pos, state, Variants.getBlockFromItem(itemInHand).trellis());
+				player.getItemInHand(hand).shrink(1);
+			}
+
+			if (this != BlockInit.TRELLIS.get() && TagUtils.getValues(Tags.Items.SHEARS).contains(itemInHand)) {
+				ItemStack item = player.getItemInHand(hand);
+				item.setDamageValue(item.getDamageValue() + 1);
+				playerDestroy(world, player, pos, state, null, player.getItemInHand(hand));
+				updateTrellis(world, pos, state, Variants.EMPTY.trellis());
+			}
 
 		}
 		return InteractionResult.SUCCESS;
 	}
-	
+
 	private void updateTrellis(Level world, BlockPos pos, BlockState state, Block block) {
 		world.setBlockAndUpdate(pos, block.defaultBlockState()
 				.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)));

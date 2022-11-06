@@ -1,4 +1,4 @@
-// 1.19.2	2022-08-12T15:04:13.324277817	Block States: geomancy
+// 1.19.2	2022-11-06T15:04:11.955432811	Block States: geomancy
 a9009b3252989a3199f823673df86567092a8f02 assets/geomancy/blockstates/chasm_button.json
 b48ebd3ce824f7ac0649624e451d02d9ca7e1fe9 assets/geomancy/blockstates/chasm_door.json
 068b387a63f3b38b48c6cd086dbc084963fca0a5 assets/geomancy/blockstates/chasm_fence.json
@@ -20,6 +20,7 @@ ac962e639aa04a74c4171418d3d033c045c614e1 assets/geomancy/blockstates/chasm_slab.
 b9138f8b747645f45c501767b243e8a00b7238c2 assets/geomancy/blockstates/dream_catcher.json
 77555e4eb4cc4151ecba74648931f186664a3f40 assets/geomancy/blockstates/end_lantern.json
 a20d43d5752096c474354225ae332b741925bc27 assets/geomancy/blockstates/end_lantern_block.json
+53281efb474ebf62b7e977139fbdca6826e954c8 assets/geomancy/blockstates/end_torch.json
 c84adde01d606f8fd8098a0ed54c62c86fe8e67b assets/geomancy/blockstates/geode_ore.json
 1194265d7813263373ef771bc8c575a9bd34015f assets/geomancy/blockstates/infusion_table.json
 c9f3ddd64728459d5a6d9340a1ef09ea61aecf9f assets/geomancy/blockstates/mulmus_lantern.json
@@ -63,6 +64,7 @@ f90df98b76b7c5ceaf4c38f67cb39de0957f7a3b assets/geomancy/blockstates/trellis_cri
 264b95855d416e49fbcff0b977c5df9a54b6bf44 assets/geomancy/blockstates/trellis_moss.json
 5aebd80ae777dad2b59b4c6792ac0f50e63dac66 assets/geomancy/blockstates/trellis_vine.json
 96900a8cc747845a8602776cb8e4356ad01b5712 assets/geomancy/blockstates/trellis_warp.json
+f0e13f9092b95daba04d9a3938cb9c0e53996309 assets/geomancy/blockstates/wall_end_torch.json
 2261ab1d56ff84f6f4089905e342843b3517b346 assets/geomancy/models/block/chasm_button.json
 b2dc90a9517067174016c04951885a006b435b59 assets/geomancy/models/block/chasm_button_pressed.json
 b211db1b16951405c4af7699b2f9b1900c0c1017 assets/geomancy/models/block/chasm_door_bottom_left.json
@@ -103,6 +105,7 @@ ff81295a41d8462db7bfe971122294a907160eb4 assets/geomancy/models/block/chasm_trap
 b0794b56a60580d6f04df58caea7780e36649b4b assets/geomancy/models/block/chasm_trapdoor_top.json
 5265977d703d5633c18817d23d31310f5f3b37ac assets/geomancy/models/block/end_lantern.json
 2869ad56428ea0e76afae2d22c3acbcedb761aff assets/geomancy/models/block/end_lantern_block.json
+0bb5f656022fab542571ee1543d18f8a21e5c46a assets/geomancy/models/block/end_torch.json
 0575bbdc21448d4b847963fee1296f8150e1d4c3 assets/geomancy/models/block/geode_ore.json
 f771d7825bdeac9ab3b504849b92ce40dcd9daa0 assets/geomancy/models/block/mulmus_lantern.json
 826249d4e5e6071405e26ea69615e8382c1708e1 assets/geomancy/models/block/polished_mulmus_lantern.json
@@ -157,6 +160,7 @@ a7c29ee263ea330de2da4f12ed76cc4b61352eac assets/geomancy/models/block/treadstone
 108f5ecabf569111472a33cb3d5e2ce19ef99584 assets/geomancy/models/block/treadstone_slab_6_top.json
 13555081fd92a438a5015f5828529130c86e9f77 assets/geomancy/models/block/treadstone_slab_7.json
 3ad758b955d8f83a23051710b14b5809ec3af042 assets/geomancy/models/block/treadstone_slab_7_top.json
+13ac5fba9156d184e65de1ff5e654de21955d097 assets/geomancy/models/block/wall_end_torch.json
 a17933723c1e02deb3cffef4b00fcd58b28ba654 assets/geomancy/models/item/chasm_button.json
 bb12063152bccbc56aaa29bdb53a38f5f45f40b9 assets/geomancy/models/item/chasm_door.json
 b8b063bc85648d25bd2a28bfb2034e70261e1c07 assets/geomancy/models/item/chasm_fence.json
@@ -177,6 +181,7 @@ bb12063152bccbc56aaa29bdb53a38f5f45f40b9 assets/geomancy/models/item/chasm_trapd
 8d9a6479b08174afe061bd4e51d11979fc9c9483 assets/geomancy/models/item/dream_catcher.json
 4e0ae703b54067908facdcfda65d15be23bd4abf assets/geomancy/models/item/end_lantern.json
 643e8cd8db7e0aa691f9e9c2418deff84dd6ede3 assets/geomancy/models/item/end_lantern_block.json
+caf69f7cb83831bac1fdf9ffc5f4748a6c1e791f assets/geomancy/models/item/end_torch.json
 cdf82be3497060315d3509711126c273249197c5 assets/geomancy/models/item/geode_ore.json
 12247f15cd187bbfe0be77e495ca1fa3233e23f0 assets/geomancy/models/item/infusion_table.json
 08892f8a437426791aed303f6f97606a8b925a21 assets/geomancy/models/item/mulmus_lantern.json

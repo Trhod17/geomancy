@@ -3,9 +3,9 @@ package net.codersdownunder.gemmod.blocks.songforge;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.MenuInit;
 import net.codersdownunder.gemmod.utils.AutomatableItemStackHandler;
-import net.codersdownunder.gemmod.utils.slots.AutomatableSlot;
-import net.codersdownunder.gemmod.utils.slots.FuelSlot;
-import net.codersdownunder.gemmod.utils.slots.OutputSlot;
+import net.codersdownunder.gemmod.utils.slots.*;
+import net.codersdownunder.gemmod.utils.slots.songforge.FurnaceInputSlot;
+import net.codersdownunder.gemmod.utils.slots.songforge.SongForgeUpgradeSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -43,9 +43,9 @@ public class SongForgeMenu extends AbstractContainerMenu {
             blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
                 if (handler instanceof AutomatableItemStackHandler h) {
                     //input slot
-                    addSlot(new AutomatableSlot(h, 0, 7, 0));
-                    addSlot(new AutomatableSlot(h, 1, 25, 0));
-                    addSlot(new AutomatableSlot(h, 2, 43, 0));
+                    addSlot(new FurnaceInputSlot(blockEntity, h, 0, 7, 0));
+                    addSlot(new FurnaceInputSlot(blockEntity, h, 1, 25, 0));
+                    addSlot(new FurnaceInputSlot(blockEntity, h, 2, 43, 0));
 
                     //fuel slots
                     addSlot(new FuelSlot(h, 3, 7, 36));
@@ -64,10 +64,10 @@ public class SongForgeMenu extends AbstractContainerMenu {
                     addSlot(new OutputSlot(h, 14, 139, 36));
 
                     //upgrade slots
-                    addSlot(new AutomatableSlot(h, 15, 163, 49));
-                    addSlot(new AutomatableSlot(h, 16, 163, 67));
-                    addSlot(new AutomatableSlot(h, 17, 163, 85));
-                    addSlot(new AutomatableSlot(h, 18, 163, 103));
+                    addSlot(new SongForgeUpgradeSlot(blockEntity, h, 15, 163, 49));
+                    addSlot(new SongForgeUpgradeSlot(blockEntity, h, 16, 163, 67));
+                    addSlot(new SongForgeUpgradeSlot(blockEntity, h, 17, 163, 85));
+                    addSlot(new SongForgeUpgradeSlot(blockEntity, h, 18, 163, 103));
                 }
             });
         }
@@ -118,6 +118,7 @@ public class SongForgeMenu extends AbstractContainerMenu {
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 19;  // must be the number of slots you have!
 
+
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
@@ -128,12 +129,14 @@ public class SongForgeMenu extends AbstractContainerMenu {
         // Check if the slot clicked is one of the vanilla container slots
         if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // This is a vanilla container slot so merge the stack into the tile inventory
+
             if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
                     + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;  // EMPTY_ITEM
             }
         } else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
             // This is a TE slot so merge the stack into the players inventory
+
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }

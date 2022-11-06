@@ -3,16 +3,16 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:telepad_recraft"
+        "recipe": "geomancy:netherrite_nugget"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "telepad_slab": {
+    "netherite_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "geomancy:telepad_slab"
+              "geomancy:netherrite_nugget"
             ]
           }
         ]
@@ -22,13 +22,13 @@
   },
   "requirements": [
     [
-      "telepad_slab",
+      "netherite_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:telepad_recraft"
+      "geomancy:netherrite_nugget"
     ]
   }
 }

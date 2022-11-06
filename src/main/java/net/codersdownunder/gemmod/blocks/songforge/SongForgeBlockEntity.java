@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
@@ -66,7 +67,8 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
                     case 1 -> SongForgeBlockEntity.this.maxProgress = pValue;
                     case 2 -> SongForgeBlockEntity.this.fuel = pValue;
                     case 3 -> SongForgeBlockEntity.this.maxFuel = pValue;
-                };
+                }
+                ;
             }
 
             @Override
@@ -97,15 +99,29 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
 
             @Override
             public boolean isInputSlot(int slot) {
+                return slot < 6 || slot > 14;
+            }
+
+            @Override
+            public boolean isInsertableSlot(int slot) {
                 return slot < 6;
             }
 
+            @Override
+            public boolean isInputSlotItem(int slot, ItemStack stack) {
+
+                if (slot > 14) {
+                    return SongForgeUpgrades.isValidUpgrade(stack.getItem());
+                }
+
+                return true;
+            }
         };
     }
 
     private final Map<Direction, LazyOptional<WrappedHandler>> directionWrappedHandlerMap =
-            Map.of(Direction.DOWN, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i >= 6 && i <= 14 , (i, s) -> false)),
-                    Direction.UP, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false , (i, s) -> i >= 0 && i <= 2)),
+            Map.of(Direction.DOWN, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i >= 6 && i <= 14, (i, s) -> false)),
+                    Direction.UP, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false, (i, s) -> i >= 0 && i <= 2)),
                     Direction.NORTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false, (i, s) -> i >= 3 && i <= 5)),
                     Direction.SOUTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false, (i, s) -> i >= 3 && i <= 5)),
                     Direction.EAST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> false, (i, s) -> i >= 3 && i <= 5)),
@@ -114,14 +130,14 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if(side == null) {
+            if (side == null) {
                 return lazyItemHandler.cast();
             }
 
-            if(directionWrappedHandlerMap.containsKey(side)) {
+            if (directionWrappedHandlerMap.containsKey(side)) {
                 Direction localDir = this.getBlockState().getValue(SongForgeBlock.FACING);
 
-                if(side == Direction.UP || side == Direction.DOWN) {
+                if (side == Direction.UP || side == Direction.DOWN) {
                     return directionWrappedHandlerMap.get(side).cast();
                 }
 
@@ -190,9 +206,9 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
         if (hasRecipe(pEntity)) {
             //GemMod.LOGGER.info(hasFuelInFuelSlot(pEntity) + " " + !isConsumingFuel(pEntity));
             if (hasFuelInFuelSlot(pEntity) && !isConsumingFuel(pEntity)) {
-                    pEntity.consumeFuel(pEntity);
-                    blockState = blockState.setValue(SongForgeBlock.LIT, pEntity.isBurning);
-                    level.setBlock(blockPos, blockState, 3);
+                pEntity.consumeFuel(pEntity);
+                blockState = blockState.setValue(SongForgeBlock.LIT, pEntity.isBurning);
+                level.setBlock(blockPos, blockState, 3);
             }
             if (isConsumingFuel(pEntity)) {
                 pEntity.progress++;
@@ -203,12 +219,14 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
             }
 
         } else {
-           pEntity.resetProgress();
-           setChanged(level, blockPos, blockState);
+            pEntity.resetProgress();
+            setChanged(level, blockPos, blockState);
         }
 
         if (pEntity.fuel == 0) {
             pEntity.isBurning = false;
+            blockState = blockState.setValue(SongForgeBlock.LIT, pEntity.isBurning);
+            level.setBlock(blockPos, blockState, 3);
         }
     }
 
@@ -233,7 +251,7 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
 
     private static boolean isConsumingFuel(SongForgeBlockEntity pEntity) {
         return pEntity.isBurning;
-     }
+    }
 
     private static boolean hasFuelInFuelSlot(SongForgeBlockEntity pEntity) {
         Level level = pEntity.level;
@@ -259,6 +277,8 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static void craftItem(SongForgeBlockEntity pEntity) {
+        if (!pEntity.hasLevel()) return;
+
         Level level = pEntity.level;
         SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
 
@@ -267,7 +287,7 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
         Optional<SmeltingRecipe> recipe = level.getRecipeManager()
                 .getRecipeFor(RecipeType.SMELTING, inventory, level);
 
-        if(hasRecipe(pEntity)) {
+        if (hasRecipe(pEntity)) {
             pEntity.itemHandler.extractItem(currentInput, 1, false, false);
             pEntity.itemHandler.setStackInSlot(firstAvailableOutput, new ItemStack(recipe.get().getResultItem().getItem(),
                     pEntity.itemHandler.getStackInSlot(firstAvailableOutput).getCount() + 1));
@@ -277,6 +297,8 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean hasRecipe(SongForgeBlockEntity entity) {
+        if (!entity.hasLevel()) return false;
+
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         Optional<SmeltingRecipe> recipe = null;
@@ -307,20 +329,6 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
         return recipe.isPresent() && canInsertIntoOutputSlot(inventory, recipe.get().getResultItem());
     }
 
-//    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ) {
-//        boolean availableSlot = false;
-//        for (int slot = 0; slot < 9; slot++) {
-//            availableSlot = ;
-//
-//            if (availableSlot) {
-//                firstAvailableOutput = slot;
-//                break;
-//            }
-//        }
-//
-//        return availableSlot;
-//    }
-
     private static boolean canInsertIntoOutputSlot(SimpleContainer inventory, ItemStack resultItem) {
         boolean availableSlot = false;
         //GemMod.LOGGER.info(inventory);
@@ -335,5 +343,27 @@ public class SongForgeBlockEntity extends BlockEntity implements MenuProvider {
         }
 
         return availableSlot;
+    }
+
+    public boolean isUpgrade(ItemStack stack) {
+
+        if (stack == null) return false;
+
+        //Geomancy.LOGGER.info(SongForgeUpgrades.isValidUpgrade(stack.getItem()));
+        return SongForgeUpgrades.isValidUpgrade(stack.getItem());
+    }
+
+    /*
+    *  Used in FurnaceInputSlot
+    */
+    public boolean hasRecipe(ItemStack stack) {
+        return getRecipe(stack).isPresent();
+    }
+
+
+    protected Optional<SmeltingRecipe> getRecipe(ItemStack item) {
+        return (item.getItem() instanceof AirItem)
+                ? Optional.empty()
+                : Optional.ofNullable(this.level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SimpleContainer(item), this.level).orElse(null));
     }
 }

@@ -90,7 +90,7 @@ public class GeomancyItemModelProvider extends ItemModelProvider {
     	diggingClaw("diamond");
     	diggingClaw("netherite");
     	
-    	
+    	singleTexture(ItemInit.HEALING_WATER_BUCKET.get(), "healing_bucket");
     }
     
     private void diggingClaw(String material) {

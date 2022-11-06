@@ -1,8 +1,10 @@
 package net.codersdownunder.gemmod.init;
 
 import net.codersdownunder.gemmod.Geomancy;
+import net.codersdownunder.gemmod.blocks.endtorch.EndTorchBlock;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlock;
 import net.codersdownunder.gemmod.blocks.dream.DreamCatcherBlock;
+import net.codersdownunder.gemmod.blocks.endtorch.EndWallTorchBlock;
 import net.codersdownunder.gemmod.blocks.infusion.InfusionTableBlock;
 import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomStandingSignBlock;
@@ -15,27 +17,14 @@ import net.codersdownunder.gemmod.blocks.trellis.TrellisBlock;
 import net.codersdownunder.gemmod.world.feature.tree.ChasmTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CarpetBlock;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FenceBlock;
-import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.world.level.block.LanternBlock;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.WoodButtonBlock;
-import net.minecraft.world.level.block.grower.OakTreeGrower;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -46,8 +35,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = Geomancy.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockInit
@@ -100,7 +87,7 @@ public class BlockInit
    
    public static final RegistryObject<Block> DREAM_CATCHER = BLOCKS.register("dream_catcher", () -> new DreamCatcherBlock(BlockBehaviour.Properties.of(Material.GLASS).requiresCorrectToolForDrops().sound(SoundType.GLASS).dynamicShape().noOcclusion().noCollission()));
    
-   public static final RegistryObject<Block> GEODE_ORE = BLOCKS.register("geode_ore", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+   public static final RegistryObject<Block> GEODE_ORE = BLOCKS.register("geode_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.AMETHYST).strength(4.5F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
    
    public static final RegistryObject<Block> TELEPAD = BLOCKS.register("telepad", () -> new TelepadBlock(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion().lightLevel((p_235447_0_) -> {return 6;})));
    public static final RegistryObject<Block> TELEPAD_SLAB = BLOCKS.register("telepad_slab", () -> new TelepadSlab(BlockBehaviour.Properties.of(Material.WOOL).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).noOcclusion().lightLevel((p_235447_0_) -> {return 6;})));
@@ -169,8 +156,32 @@ public class BlockInit
        }
    });
 
-   //TODO Finish this later
-   //public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new fire)
+   public static final RegistryObject<Block> END_TORCH = BLOCKS.register("end_torch", () -> new EndTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_50886_) -> {
+       return 14;
+   }).sound(SoundType.WOOD)));
+   public static final RegistryObject<Block> WALL_END_TORCH = BLOCKS.register("wall_end_torch", () -> new EndWallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_50886_) -> {
+       return 14;
+   }).sound(SoundType.WOOD)));
+
+    public static final RegistryObject<LiquidBlock> HEALING_WATER_BLOCK = BLOCKS.register("healing_water_block",
+            () -> new LiquidBlock(FluidInit.SOURCE_HEALING_WATER, BlockBehaviour.Properties.copy(Blocks.WATER)){
+                @Override
+                public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+
+                    if (pEntity instanceof LivingEntity) {
+                        if (pState.is(BlockInit.HEALING_WATER_BLOCK.get())) {
+                            ((LivingEntity) pEntity).addEffect(new MobEffectInstance(MobEffects.REGENERATION));
+                        }
+                    }
+                }
+
+            });
+
+
+    //TODO Finish this later
+//   public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new FireBlock(BlockBehaviour.Properties.of(Material.FIRE, MaterialColor.FIRE).noCollission().instabreak().lightLevel((p_152605_) -> {
+//       return 15;
+//   }).sound(SoundType.WOOL)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

@@ -1,27 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "concoction2": {
+    "concoction_two": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:phantom_membrane"
+              "minecraft:redstone"
             ]
           },
           {
             "items": [
-              "minecraft:lapis_lazuli"
+              "minecraft:chorus_flower"
             ]
           },
           {
             "items": [
-              "minecraft:ink_sac"
+              "minecraft:dragon_breath"
             ]
           },
           {
             "items": [
-              "minecraft:slime_ball"
+              "minecraft:ender_eye"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:ghast_tear"
             ]
           }
         ]
@@ -37,7 +42,7 @@
   },
   "requirements": [
     [
-      "concoction2",
+      "concoction_two",
       "has_the_recipe"
     ]
   ],
