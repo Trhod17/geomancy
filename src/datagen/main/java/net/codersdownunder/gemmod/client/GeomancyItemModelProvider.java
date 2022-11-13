@@ -91,6 +91,8 @@ public class GeomancyItemModelProvider extends ItemModelProvider {
     	diggingClaw("netherite");
     	
     	singleTexture(ItemInit.HEALING_WATER_BUCKET.get(), "healing_bucket");
+
+		singleTexture(ItemInit.CUPID_ARROW.get(), "cupid_arrow");
     }
     
     private void diggingClaw(String material) {

@@ -18,6 +18,11 @@ public class GeomancyInfusionRecipeProvider extends RecipeProvider {
     }
 
 	@Override
+	public String getName() {
+		return "Geomancy Infusion Recipe Provider";
+	}
+
+	@Override
 	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
 //		InfusionRecipeBuilder.infusing(ItemInit.CHAROITE_DREAMING.get(), ItemInit.CHAROITE.get())
 //		.requires(Items.STICK)

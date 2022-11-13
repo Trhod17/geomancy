@@ -1,12 +1,14 @@
 package net.codersdownunder.gemmod.server.tags;
 
 import net.codersdownunder.gemmod.Geomancy;
+import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -19,7 +21,6 @@ public class GeomancyItemTags extends ItemTagsProvider {
 
 	@Override
 	protected void addTags() {
-		
 		
 		tag(GeomancyTags.Items.DREAM_COMMON)
 		.add(ItemInit.AGATE.get())
@@ -76,34 +77,34 @@ public class GeomancyItemTags extends ItemTagsProvider {
 		tag(GeomancyTags.Items.DIPPING_FLUIDS)
 		.add(Items.WATER_BUCKET);
 
-		tag(ItemTags.LOGS).add(ItemInit.CHASM_LOG.get()).add(ItemInit.CHASM_LOG_BARK.get())
-				.add(ItemInit.CHASM_LOG_STRIPPED.get()).add(ItemInit.CHASM_LOG_STRIPPED_BARK.get());
+		tag(ItemTags.LOGS).add(BlockItemInit.CHASM_LOG.get()).add(BlockItemInit.CHASM_LOG_BARK.get())
+				.add(BlockItemInit.CHASM_LOG_STRIPPED.get()).add(BlockItemInit.CHASM_LOG_STRIPPED_BARK.get());
 
-		tag(ItemTags.LOGS_THAT_BURN).add(ItemInit.CHASM_LOG.get()).add(ItemInit.CHASM_LOG_BARK.get())
-				.add(ItemInit.CHASM_LOG_STRIPPED.get()).add(ItemInit.CHASM_LOG_STRIPPED_BARK.get());
+		tag(ItemTags.LOGS_THAT_BURN).add(BlockItemInit.CHASM_LOG.get()).add(BlockItemInit.CHASM_LOG_BARK.get())
+				.add(BlockItemInit.CHASM_LOG_STRIPPED.get()).add(BlockItemInit.CHASM_LOG_STRIPPED_BARK.get());
 
-		tag(ItemTags.PLANKS).add(ItemInit.CHASM_PLANKS.get());
+		tag(ItemTags.PLANKS).add(BlockItemInit.CHASM_PLANKS.get());
 
-		tag(ItemTags.WOODEN_STAIRS).add(ItemInit.CHASM_STAIRS.get());
+		tag(ItemTags.WOODEN_STAIRS).add(BlockItemInit.CHASM_STAIRS.get());
 
-		tag(ItemTags.WOODEN_SLABS).add(ItemInit.CHASM_SLAB.get());
+		tag(ItemTags.WOODEN_SLABS).add(BlockItemInit.CHASM_SLAB.get());
 
-		tag(ItemTags.WOODEN_BUTTONS).add(ItemInit.CHASM_BUTTON.get());
+		tag(ItemTags.WOODEN_BUTTONS).add(BlockItemInit.CHASM_BUTTON.get());
 
-		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(ItemInit.CHASM_PLATE.get());
+		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(BlockItemInit.CHASM_PLATE.get());
 
-		tag(ItemTags.WOODEN_TRAPDOORS).add(ItemInit.CHASM_TRAPDOOR.get());
+		tag(ItemTags.WOODEN_TRAPDOORS).add(BlockItemInit.CHASM_TRAPDOOR.get());
 
-		tag(ItemTags.WOODEN_DOORS).add(ItemInit.CHASM_DOOR.get());
+		tag(ItemTags.WOODEN_DOORS).add(BlockItemInit.CHASM_DOOR.get());
 
-		tag(ItemTags.WOODEN_FENCES).add(ItemInit.CHASM_FENCE.get());
+		tag(ItemTags.WOODEN_FENCES).add(BlockItemInit.CHASM_FENCE.get());
 
-		tag(ItemTags.LEAVES).add(ItemInit.CHASM_LEAVES.get());
+		tag(ItemTags.LEAVES).add(BlockItemInit.CHASM_LEAVES.get());
 		
 		tag(GeomancyTags.Items.QUARTZ).add(Items.QUARTZ).add(ItemInit.ROSE_QUARTZ.get());
 		
 		tag(ItemTags.SAPLINGS)
-		.add(ItemInit.CHASM_SAPLING.get());
+		.add(BlockItemInit.CHASM_SAPLING.get());
 
 		tag(Tags.Items.SHEARS)
 				.add(ItemInit.DIGGING_CLAW_WOOD.get())
@@ -128,6 +129,9 @@ public class GeomancyItemTags extends ItemTagsProvider {
 				.add(ItemInit.DIGGING_CLAW_GOLD.get())
 				.add(ItemInit.DIGGING_CLAW_DIAMOND.get())
 				.add(ItemInit.DIGGING_CLAW_NETHERITE.get());
+
+		tag(ItemTags.ARROWS)
+				.add(ItemInit.CUPID_ARROW.get());
 	}
 
 	@Override

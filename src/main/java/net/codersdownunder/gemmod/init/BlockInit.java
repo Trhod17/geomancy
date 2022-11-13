@@ -1,6 +1,7 @@
 package net.codersdownunder.gemmod.init;
 
 import net.codersdownunder.gemmod.Geomancy;
+import net.codersdownunder.gemmod.blocks.ScorchBlock;
 import net.codersdownunder.gemmod.blocks.endtorch.EndTorchBlock;
 import net.codersdownunder.gemmod.blocks.dipper.DipperBlock;
 import net.codersdownunder.gemmod.blocks.dream.DreamCatcherBlock;
@@ -10,6 +11,7 @@ import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomStandingSignBlock;
 import net.codersdownunder.gemmod.blocks.sign.CustomWallSignBlock;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
+import net.codersdownunder.gemmod.blocks.source.SourceBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlock;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadSlab;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaBlock;
@@ -17,7 +19,6 @@ import net.codersdownunder.gemmod.blocks.trellis.TrellisBlock;
 import net.codersdownunder.gemmod.world.feature.tree.ChasmTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -27,6 +28,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.IPlantable;
@@ -177,9 +180,11 @@ public class BlockInit
 
             });
 
+    public static final RegistryObject<Block> INFINITE_SOURCE_WATER = BLOCKS.register("infinite_source_water", () -> new SourceBlock(BlockBehaviour.Properties.of(Material.METAL).strength(10, 15), Fluids.WATER));
+
 
     //TODO Finish this later
-//   public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new FireBlock(BlockBehaviour.Properties.of(Material.FIRE, MaterialColor.FIRE).noCollission().instabreak().lightLevel((p_152605_) -> {
+//   public static final RegistryObject<Block> SCORCH = BLOCKS.register("scorch", () -> new ScorchBlock(BlockBehaviour.Properties.of(Material.FIRE, MaterialColor.FIRE).noCollission().instabreak().lightLevel((p_152605_) -> {
 //       return 15;
 //   }).sound(SoundType.WOOL)));
 

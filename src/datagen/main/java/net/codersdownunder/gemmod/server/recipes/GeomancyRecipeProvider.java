@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import net.codersdownunder.gemmod.DataUtils;
 import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
@@ -16,15 +17,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class GeomancyRecipeProvider extends RecipeProvider implements IConditionBuilder {
 	
 	public GeomancyRecipeProvider(DataGenerator generatorIn) {
         super(generatorIn);
     }
+
+	@Override
+	public String getName() {
+		return "Geomancy Recipe Provider";
+	}
 
 	@Override
 	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
@@ -231,7 +235,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLOW_INK_SAC, Items.SLIME_BALL, Items.WHITE_DYE, Items.EGG))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(ItemInit.SONG_FORGE.get())
+		ShapedRecipeBuilder.shaped(BlockItemInit.SONG_FORGE.get())
 				.pattern("sps")
 				.pattern("scs")
 				.pattern("bgb")
@@ -362,8 +366,8 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				nuggetToIngotRecipe(consumer, Items.NETHERITE_INGOT, ItemInit.NETHERRITE_NUGGET.get());
 				ingotToNuggetsRecipe(consumer, ItemInit.NETHERRITE_NUGGET.get(), Items.NETHERITE_INGOT);
 
-				conversionRecipe(consumer, ItemInit.TELEPAD.get(), ItemInit.TELEPAD_SLAB.get());
-				conversionRecipe(consumer, ItemInit.TELEPAD_SLAB.get(), ItemInit.TELEPAD.get());
+				conversionRecipe(consumer, BlockItemInit.TELEPAD.get(), BlockItemInit.TELEPAD_SLAB.get());
+				conversionRecipe(consumer, BlockItemInit.TELEPAD_SLAB.get(), BlockItemInit.TELEPAD.get());
 	}
 
 	/*

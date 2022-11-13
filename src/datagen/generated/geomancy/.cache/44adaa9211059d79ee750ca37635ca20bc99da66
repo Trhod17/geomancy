@@ -1,4 +1,4 @@
-// 1.19.2	2022-11-06T15:04:11.955432811	Block States: geomancy
+// 1.19.2	2022-11-10T16:29:02.799384935	Block States: geomancy
 a9009b3252989a3199f823673df86567092a8f02 assets/geomancy/blockstates/chasm_button.json
 b48ebd3ce824f7ac0649624e451d02d9ca7e1fe9 assets/geomancy/blockstates/chasm_door.json
 068b387a63f3b38b48c6cd086dbc084963fca0a5 assets/geomancy/blockstates/chasm_fence.json
@@ -22,6 +22,7 @@ b9138f8b747645f45c501767b243e8a00b7238c2 assets/geomancy/blockstates/dream_catch
 a20d43d5752096c474354225ae332b741925bc27 assets/geomancy/blockstates/end_lantern_block.json
 53281efb474ebf62b7e977139fbdca6826e954c8 assets/geomancy/blockstates/end_torch.json
 c84adde01d606f8fd8098a0ed54c62c86fe8e67b assets/geomancy/blockstates/geode_ore.json
+90f1d52f57f0466fdeb09a7db1aa759e90ae25a9 assets/geomancy/blockstates/infinite_source_water.json
 1194265d7813263373ef771bc8c575a9bd34015f assets/geomancy/blockstates/infusion_table.json
 c9f3ddd64728459d5a6d9340a1ef09ea61aecf9f assets/geomancy/blockstates/mulmus_lantern.json
 f9a2b4ae6f5f22509493f6df49c01e915e6b8364 assets/geomancy/blockstates/mulmus_lantern_polished.json
@@ -187,6 +188,7 @@ cdf82be3497060315d3509711126c273249197c5 assets/geomancy/models/item/geode_ore.j
 08892f8a437426791aed303f6f97606a8b925a21 assets/geomancy/models/item/mulmus_lantern.json
 57c4cf0ec6258e5e2b42ca5b1b577ac5854a32ed assets/geomancy/models/item/mulmus_lantern_polished.json
 0d3d5e262dce9123a951e55b2601323677026436 assets/geomancy/models/item/song_forge.json
+3cc302214d0bb8da65b937f7c61bdfcfef42b9f0 assets/geomancy/models/item/source.json
 4d6001739dbeb833b6eedb4d3f97df2f0865c021 assets/geomancy/models/item/telepad.json
 5c17aa19ee9f8b4c5756411bc0e2ce8e9154f969 assets/geomancy/models/item/telepad_slab.json
 a3bb7450bd5c05c7b563d85b12af420db55ddc38 assets/geomancy/models/item/treadstone_1.json

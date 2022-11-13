@@ -3,6 +3,7 @@ package net.codersdownunder.gemmod;
 import net.codersdownunder.gemmod.init.*;
 import net.codersdownunder.gemmod.world.feature.ModConfiguredFeatures;
 import net.codersdownunder.gemmod.world.feature.ModPlacedFeatures;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.extensions.IForgeEntity;
 import net.minecraftforge.common.extensions.IForgeLivingEntity;
@@ -75,6 +76,7 @@ public class Geomancy
         ParticlesInit.register(bus);
         ItemInit.register(bus);
         BlockInit.register(bus);
+        BlockItemInit.register(bus);
         MenuInit.register(bus);
         BlockEntityInit.register(bus);
         RecipeInit.registerSerializers(bus);
@@ -83,6 +85,7 @@ public class Geomancy
         ModPlacedFeatures.register(bus);
         FluidTypesInit.register(bus);
         FluidInit.register(bus);
+        EntityInit.register(bus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.commonSpec);
         //ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);

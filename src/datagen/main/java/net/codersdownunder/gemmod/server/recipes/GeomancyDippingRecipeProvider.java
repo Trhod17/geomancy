@@ -19,6 +19,11 @@ public class GeomancyDippingRecipeProvider extends RecipeProvider {
     }
 
 	@Override
+	public String getName() {
+		return "Geomancy Dipping Recipe Provider";
+	}
+
+	@Override
 	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
 		
 		DippingRecipeBuilder.dipping(ItemInit.AGATE.get(), 1000)

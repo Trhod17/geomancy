@@ -4,9 +4,11 @@ import net.codersdownunder.gemmod.DataUtils;
 import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.codersdownunder.gemmod.init.FluidInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -118,10 +120,11 @@ public class GeomancyBlockStates extends BlockStateProvider {
     	
     	rotatingBlock(BlockInit.DREAM_CATCHER.get(), "block/dream_catcher");
 
+		simpleBlock(BlockInit.INFINITE_SOURCE_WATER.get(), models().getExistingFile(modLoc("block/source")));
+
 		registerEndTorch();
 
         registerItemModels();
-
     }
 
 
@@ -213,9 +216,36 @@ public class GeomancyBlockStates extends BlockStateProvider {
     	
     	basicModel("song_forge");
 
-		singleTexture(ItemInit.END_TORCH.get(), "end_torch", "block");
+		singleTexture(BlockItemInit.END_TORCH.get(), "end_torch", "block");
+
+		basicModel("infinite_source_water", "source");
     	
     }
+
+//	private void createFireModels(Block fireBlock, String texture1, String texture2) {
+//		ModelFile scorch_floor_0 = models().withExistingParent(texture1, mcLoc("block/template_fire_floor"))
+//				.texture(texture1, modLoc(texture1)).renderType("minecraft:cutout_mipped");
+//		ModelFile scorch_floor_1 = models().withExistingParent(texture2, mcLoc("block/template_fire_floor"))
+//				.texture(texture2, modLoc(texture2)).renderType("minecraft:cutout_mipped");
+//
+//		ModelFile scorch_side_0 = models().withExistingParent(texture1, mcLoc("block/template_fire_side"))
+//				.texture(texture1, modLoc(texture1)).renderType("minecraft:cutout_mipped");
+//		ModelFile scorch_side_1 = models().withExistingParent(texture2, mcLoc("block/template_fire_side"))
+//				.texture(texture2, modLoc(texture2)).renderType("minecraft:cutout_mipped");
+//		ModelFile scorch_side_alt_0 = models().withExistingParent(texture1, mcLoc("block/template_fire_side_alt"))
+//				.texture(texture1, modLoc(texture1)).renderType("minecraft:cutout_mipped");
+//		ModelFile scorch_floor_alt_1 = models().withExistingParent(texture2, mcLoc("block/template_fire_side_alt"))
+//				.texture(texture2, modLoc(texture2)).renderType("minecraft:cutout_mipped");
+//
+//		ModelFile scorch_up_0 = models().withExistingParent(texture1, mcLoc("block/template_fire_up"))
+//				.texture(texture1, modLoc(texture1)).renderType("minecraft:cutout_mipped");
+//		ModelFile scorch_up_1 = models().withExistingParent(texture2, mcLoc("block/template_fire_up"))
+//				.texture(texture2, modLoc(texture2)).renderType("minecraft:cutout_mipped");
+//		ModelFile scorch_up_alt_0 = models().withExistingParent(texture1, mcLoc("block/template_fire_up_alt"))
+//				.texture(texture1, modLoc(texture1)).renderType("minecraft:cutout_mipped");
+//		ModelFile scorch_up_alt_1 = models().withExistingParent(texture2, mcLoc("block/template_fire_up_alt"))
+//				.texture(texture2, modLoc(texture2)).renderType("minecraft:cutout_mipped");
+//	}
     
     private void basicModel(String name) {
     	itemModels().withExistingParent(name, modLoc("block/" + name));

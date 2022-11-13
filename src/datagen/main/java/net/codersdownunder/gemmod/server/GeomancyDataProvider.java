@@ -11,6 +11,7 @@ import net.codersdownunder.gemmod.server.recipes.GeomancyInfusionRecipeProvider;
 import net.codersdownunder.gemmod.server.recipes.GeomancyRecipeProvider;
 import net.codersdownunder.gemmod.server.recipes.GeomancyUpgradeRecipeProvider;
 import net.codersdownunder.gemmod.server.tags.GeomancyBlockTags;
+import net.codersdownunder.gemmod.server.tags.GeomancyEntityTags;
 import net.codersdownunder.gemmod.server.tags.GeomancyFluidTags;
 import net.codersdownunder.gemmod.server.tags.GeomancyItemTags;
 import net.codersdownunder.gemmod.server.world.GeomancyBiomeModifierProvider;
@@ -45,6 +46,7 @@ public class GeomancyDataProvider {
             gen.addProvider(event.includeServer(), blockTags);
             gen.addProvider(event.includeServer(), new GeomancyItemTags(gen, blockTags, event.getExistingFileHelper()));
             gen.addProvider(event.includeServer(), new GeomancyFluidTags(gen, event.getExistingFileHelper()));
+			gen.addProvider(event.includeServer(), new GeomancyEntityTags(gen, event.getExistingFileHelper()));
 			gen.addProvider(event.includeServer(), new GeomancyBiomeModifierProvider(gen, event.getExistingFileHelper()));
 
 

@@ -7,6 +7,7 @@ import net.codersdownunder.gemmod.blocks.infusion.InfusionTableBlockEntity;
 import net.codersdownunder.gemmod.blocks.infusionstand.InfusionStandBlockEntity;
 import net.codersdownunder.gemmod.blocks.sign.CustomSignBlockEntity;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlockEntity;
+import net.codersdownunder.gemmod.blocks.source.SourceBlockEntity;
 import net.codersdownunder.gemmod.blocks.telepad.TelepadBlockEntity;
 import net.codersdownunder.gemmod.blocks.terra.TerraFirmaBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -33,6 +34,8 @@ public class BlockEntityInit
     //Non-Functional
     public static RegistryObject<BlockEntityType<TerraFirmaBlockEntity>> TERRA_FIRMA_BE = BLOCK_ENTITIES.register("terra_firma_be", () -> BlockEntityType.Builder.of(TerraFirmaBlockEntity::new, BlockInit.TERRA_FIRMA.get()).build(null));
     public static RegistryObject<BlockEntityType<InfusionStandBlockEntity>> INFUSION_STAND_BE = BLOCK_ENTITIES.register("infusion_stand_be",() -> BlockEntityType.Builder.of(InfusionStandBlockEntity::new, BlockInit.INFUSION_STAND.get()).build(null));
+
+    public static RegistryObject<BlockEntityType<SourceBlockEntity>> SOURCE_BE = BLOCK_ENTITIES.register("source_be", () -> BlockEntityType.Builder.of(SourceBlockEntity::new, BlockInit.INFINITE_SOURCE_WATER.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

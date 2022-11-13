@@ -1,4 +1,4 @@
-// 1.19.2	2022-11-06T15:42:50.168898158	LootTables
+// 1.19.2	2022-11-10T16:12:17.526134606	LootTables
 507ea5a152b79689c90f9d677ef932dbe035b7ab data/geomancy/loot_tables/blocks/chasm_button.json
 deee973c46d74e8488c0699708a9ec327077af46 data/geomancy/loot_tables/blocks/chasm_door.json
 d2a00f74375f9c947a7309efc755f8f33f161871 data/geomancy/loot_tables/blocks/chasm_fence.json
@@ -23,6 +23,7 @@ fd6b995f09c7d2cf9fe19b3cccf71dbbd404a41d data/geomancy/loot_tables/blocks/end_la
 7c21d52f3f072a075bdc287874e65ae21c13b6bd data/geomancy/loot_tables/blocks/end_torch.json
 a9e0944b57e4010dbbc0ffff74cc514f73666089 data/geomancy/loot_tables/blocks/geode_ore.json
 1d4929d7d6176f60e5ea991a577527ed251ef375 data/geomancy/loot_tables/blocks/healing_water_block.json
+41564b43cd389f22c34943c23be7dfa97db8d965 data/geomancy/loot_tables/blocks/infinite_source_water.json
 85abc9ccac9baa977527de7d470219c55508d351 data/geomancy/loot_tables/blocks/infusion_stand.json
 dccff127917418dd94dc4dca5a71c2cc1819fad6 data/geomancy/loot_tables/blocks/infusion_table.json
 d60b72acbcfc3173c5a38a17b1121ce612f84533 data/geomancy/loot_tables/blocks/mulmus_lantern.json

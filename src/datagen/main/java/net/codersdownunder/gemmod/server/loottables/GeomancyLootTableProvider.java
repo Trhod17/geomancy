@@ -145,6 +145,8 @@ public class GeomancyLootTableProvider extends LootTableProvider {
             dropOther(BlockInit.WALL_END_TORCH.get(), BlockInit.END_TORCH.get());
 
             add(BlockInit.HEALING_WATER_BLOCK.get(), noDrop());
+            //add(BlockInit.SCORCH.get(), noDrop());
+            dropSelf(BlockInit.INFINITE_SOURCE_WATER.get());
         }
 
         protected static LootTable.Builder createTrellisDrop(Block block, Item dropItem, Item trellis) {

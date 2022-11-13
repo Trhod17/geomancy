@@ -1,22 +1,3 @@
-// 1.19.2	2022-11-06T15:57:22.856623249	Geomancy Tags
-4cf136be6c1237f04ba6734ffd3c25ea6d93ace7 data/forge/tags/blocks/carpets.json
-5e53a7dbc7726b16d017fb4eb2e2b55a57256ec1 data/minecraft/tags/blocks/climbable.json
-4d9434d2a20c9d2ec6e169e8ff366c7c6fbd1416 data/minecraft/tags/blocks/fence_gates.json
-5d6d7e6d6aed8bc7ea77db794d997ca4701a64b3 data/minecraft/tags/blocks/leaves.json
-99d63a4bda916b8bc8f8e5645720a478bfcac918 data/minecraft/tags/blocks/logs.json
-99d63a4bda916b8bc8f8e5645720a478bfcac918 data/minecraft/tags/blocks/logs_that_burn.json
-302a40921a07e5caf71690522f6979c0cbe69e07 data/minecraft/tags/blocks/mineable/axe.json
-4319136cdb2be962084f5bc3001c5d0658825016 data/minecraft/tags/blocks/mineable/pickaxe.json
-76c8975be71d59e44f0ad26ac19b3280516f8163 data/minecraft/tags/blocks/needs_iron_tool.json
-ad4a8356af3dc867d7f63b8943f92d4d77a729cd data/minecraft/tags/blocks/needs_stone_tool.json
-0c51f5606dd3c75050cef4e7cfb38158966bd7fe data/minecraft/tags/blocks/planks.json
-32d42d2235eabfbc5ce024e3430900de7a9a901f data/minecraft/tags/blocks/saplings.json
-ea15aa97c4c1db5d1ba950e3d7ccaf59c249cece data/minecraft/tags/blocks/slabs.json
-d18cb66e69ed64aa3bc9dc9ff0a34823c57adb40 data/minecraft/tags/blocks/stairs.json
-0cbc0a38fced3a4858e5f030d65fcb06c5b629ee data/minecraft/tags/blocks/wooden_buttons.json
-cfa4db44ae53eb897a15c65061ee273ec5419f1c data/minecraft/tags/blocks/wooden_doors.json
-68f5bd386a1bb5c55adf777316ce48cbb7fbe11b data/minecraft/tags/blocks/wooden_fences.json
-76af49455a73333cc82e59f257d7a8124bf16dc5 data/minecraft/tags/blocks/wooden_pressure_plates.json
-31ea301ad40e5bdfa7a1c65ef6e3140b49ebbbaf data/minecraft/tags/blocks/wooden_slabs.json
-04985b0c80d01b015f61748620a1fb276beb0b1e data/minecraft/tags/blocks/wooden_stairs.json
-7d7d2c3c4c6acaf28ca68a9c020980d07bd833c1 data/minecraft/tags/blocks/wooden_trapdoors.json
+// 1.19.2	2022-11-10T16:29:02.862249544	Geomancy Tags
+cf3608bd187922aeb48c566c19e8482b0dca34c7 data/geomancy/tags/fluids/dipping_fluids.json
+5a90cd591eb5b8d25f7ba1882f540ca94beab9c1 data/minecraft/tags/fluids/water.json

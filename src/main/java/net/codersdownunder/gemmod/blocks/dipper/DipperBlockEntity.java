@@ -40,7 +40,7 @@ public class DipperBlockEntity extends BlockEntity {
     private FluidTank tank;
 
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-    private final LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> tank);
+    public final LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> tank);
 
     private CompoundTag updateTag;
 
@@ -258,36 +258,21 @@ public class DipperBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        this.load(tag);
-    }
-
-    @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
         this.load(pkt.getTag());
     }
 
-    public void sendToClients() {
-        if (this.getLevel().isClientSide()) {
-            return;
-        }
-
-        ServerLevel world = (ServerLevel) this.getLevel();
-        List<ServerPlayer> entities = world.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.getBlockPos()), false);
-        ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
-        entities.forEach(e -> e.connection.send(packet));
-        setChanged();
-    }
-
-    @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        itemHandler.deserializeNBT(tag.getCompound("inventory"));
-        counter = tag.getInt("counter");
-        isCrafting = tag.getBoolean("crafting");
-        valid = tag.getBoolean("valid");
-        tank.readFromNBT(tag.getCompound("fluid"));
-    }
+//    public void sendToClients() {
+//        if (this.getLevel().isClientSide()) {
+//            return;
+//        }
+//
+//        ServerLevel world = (ServerLevel) this.getLevel();
+//        List<ServerPlayer> entities = world.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.getBlockPos()), false);
+//        ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
+//        entities.forEach(e -> e.connection.send(packet));
+//        setChanged();
+//    }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
@@ -299,6 +284,17 @@ public class DipperBlockEntity extends BlockEntity {
         tank.writeToNBT(fluid);
         tag.put("fluid", fluid);
         super.saveAdditional(tag);
+    }
+
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        itemHandler.deserializeNBT(tag.getCompound("inventory"));
+        counter = tag.getInt("counter");
+        isCrafting = tag.getBoolean("crafting");
+        valid = tag.getBoolean("valid");
+        tank.readFromNBT(tag.getCompound("fluid"));
     }
 
     @Override

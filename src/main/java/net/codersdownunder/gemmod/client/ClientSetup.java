@@ -9,10 +9,9 @@ import net.codersdownunder.gemmod.client.gui.SongForgeScreen;
 import net.codersdownunder.gemmod.client.gui.TelepadScreen;
 import net.codersdownunder.gemmod.client.gui.TerraFirmaScreen;
 import net.codersdownunder.gemmod.client.renderer.DipperBlockEntityRenderer;
-import net.codersdownunder.gemmod.init.BlockEntityInit;
-import net.codersdownunder.gemmod.init.FluidInit;
-import net.codersdownunder.gemmod.init.MenuInit;
-import net.codersdownunder.gemmod.init.ParticlesInit;
+import net.codersdownunder.gemmod.client.renderer.InfiniteSourceEntityRenderer;
+import net.codersdownunder.gemmod.client.renderer.entities.CupidArrowRenderer;
+import net.codersdownunder.gemmod.init.*;
 import net.codersdownunder.gemmod.particles.PurpleFlameParticle;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -20,6 +19,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -53,6 +53,9 @@ public class ClientSetup {
 	        });
 	        
 	        BlockEntityRenderers.register(BlockEntityInit.DIPPER_BE.get(), DipperBlockEntityRenderer::new);
+		  	BlockEntityRenderers.register(BlockEntityInit.SOURCE_BE.get(), InfiniteSourceEntityRenderer::new);
+
+		  	EntityRenderers.register(EntityInit.CUPID_ARROW.get(), CupidArrowRenderer::new);
 
 		  	ItemBlockRenderTypes.setRenderLayer(FluidInit.SOURCE_HEALING_WATER.get(), RenderType.translucent());
 			ItemBlockRenderTypes.setRenderLayer(FluidInit.FLOWING_HEALING_WATER.get(), RenderType.translucent());

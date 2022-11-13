@@ -18,6 +18,11 @@ public class GeomancyUpgradeRecipeProvider extends RecipeProvider {
     }
 
 	@Override
+	public String getName() {
+		return "Geomancy Upgrade Recipe Provider";
+	}
+
+	@Override
 	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
 		
 		UpgradeRecipeBuilder.smithing(Ingredient.of(ItemInit.DIGGING_CLAW_DIAMOND.get()), Ingredient.of(Items.NETHERITE_INGOT), ItemInit.DIGGING_CLAW_NETHERITE.get()).unlocks("netherite", InventoryChangeTrigger.TriggerInstance.hasItems(Items.NETHERITE_INGOT, ItemInit.DIGGING_CLAW_NETHERITE.get())).save(consumer, "netherite_digging_claw");

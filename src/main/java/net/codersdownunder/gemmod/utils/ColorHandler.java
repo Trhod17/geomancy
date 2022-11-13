@@ -2,6 +2,7 @@ package net.codersdownunder.gemmod.utils;
 
 import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockInit;
+import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
@@ -27,7 +28,7 @@ public class ColorHandler {
 			final ItemColor chasm = (stack, tintIndex) -> {
 				return 0x654882;
 			};
-			event.register(chasm, ItemInit.CHASM_LEAVES.get());
+			event.register(chasm, BlockItemInit.CHASM_LEAVES.get());
 		}
 	 
 }

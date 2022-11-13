@@ -13,7 +13,7 @@ license="LGPL V3"
     logoFile="logo.png"
     description='''Geomancy Additions'''
 
-[[dependencies.gemmodadditions]]
+[[dependencies.geomancyadditions]]
     modId="geomancy"
     mandatory=true
     versionRange="[${version}]"
