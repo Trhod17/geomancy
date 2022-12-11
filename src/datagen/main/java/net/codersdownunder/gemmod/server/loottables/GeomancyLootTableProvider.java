@@ -1,6 +1,5 @@
 package net.codersdownunder.gemmod.server.loottables;
 
-import com.mojang.datafixers.kinds.Const;
 import com.mojang.datafixers.util.Pair;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.ItemInit;
@@ -8,14 +7,14 @@ import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -27,7 +26,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -38,30 +36,34 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.function.*;
 
 public class GeomancyLootTableProvider extends LootTableProvider {
-    public GeomancyLootTableProvider(DataGenerator generator) {
-        super(generator);
+
+    public GeomancyLootTableProvider(PackOutput p_254123_, Set<ResourceLocation> p_254481_, List<SubProviderEntry> p_253798_) {
+        super(p_254123_, p_254481_, p_253798_);
     }
 
     @Override
     protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext tracker) { /*NOOP*/ }
 
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        return Collections.singletonList(Pair.of(BlockLootTable::new, LootContextParamSets.BLOCK));
+    public List<SubProviderEntry> getTables() {
+        return Collections.singletonList(BlockLootTable::new, LootContextParamSets.BLOCK));
     }
 
 
-    private static class BlockLootTable extends BlockLoot {
+    private static class BlockLootTable extends BlockLootSubProvider {
+        protected BlockLootTable(Set<Item> p_249153_, FeatureFlagSet p_251215_) {
+            super(p_249153_, p_251215_);
+        }
+
         @Override
         protected Iterable<Block> getKnownBlocks() {
             return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).toList();
         }
 
         @Override
-        protected void addTables() {
+        protected void generate() {
             dropSelf(BlockInit.CHASM_BUTTON.get());
             dropSelf(BlockInit.CHASM_FENCE.get());
             dropSelf(BlockInit.CHASM_FENCE_GATE.get());
@@ -200,7 +202,7 @@ public class GeomancyLootTableProvider extends LootTableProvider {
         }
 
         @NotNull
-        protected static LootTable.Builder createSlabItemTable(Block slab) {
+        protected LootTable.Builder createSlabItemTable(Block slab) {
             return LootTable.lootTable().withPool(LootPool.lootPool()
                     .name(getBlockName(slab))
                     .setRolls(ConstantValue.exactly(1))

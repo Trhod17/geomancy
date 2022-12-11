@@ -3,6 +3,7 @@ package net.codersdownunder.gemmod.world.feature;
 import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class ModPlacedFeatures {
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES =
-            DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, Geomancy.MODID);
+            DeferredRegister.create(Registries.PLACED_FEATURE, Geomancy.MODID);
 
     public static final RegistryObject<PlacedFeature> DARKSTONE_GEODE_PLACED = PLACED_FEATURES.register("darkstone_geode_placed",
             () -> new PlacedFeature(ModConfiguredFeatures.DARKSTONE_GEODE.getHolder().get(), List.of(

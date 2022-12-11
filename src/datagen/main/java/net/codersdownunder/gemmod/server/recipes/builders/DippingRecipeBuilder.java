@@ -13,7 +13,6 @@ import net.codersdownunder.gemmod.init.RecipeInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class DippingRecipeBuilder implements RecipeBuilder {
     private final Item result;
@@ -109,7 +109,7 @@ public class DippingRecipeBuilder implements RecipeBuilder {
     }
 
     public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
-        pFinishedRecipeConsumer.accept(new DippingRecipeBuilder.Result(pRecipeId, this.result, this.count, this.fluidAmount, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
+        pFinishedRecipeConsumer.accept(new DippingRecipeBuilder.Result(pRecipeId, this.result, this.count, this.fluidAmount, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result + "/" + pRecipeId.getPath())));
     }
 
     public static class Result implements FinishedRecipe {
@@ -152,7 +152,7 @@ public class DippingRecipeBuilder implements RecipeBuilder {
 
                 // Output
                 JsonObject jsonobject = new JsonObject();
-                jsonobject.addProperty("item", Registry.ITEM.getKey(this.result).toString());
+                jsonobject.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
                 if (this.count > 1) {
                     jsonobject.addProperty("count", this.count);
                 }

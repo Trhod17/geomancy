@@ -1,11 +1,10 @@
 package net.codersdownunder.gemmod.entities;
 
 
-import net.codersdownunder.gemmod.Geomancy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,37 +15,30 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
-public class CupidArrowEntity extends AbstractArrow
-{
+public class CupidArrowEntity extends AbstractArrow {
 
 
-    public CupidArrowEntity(EntityType<CupidArrowEntity> entityType, Level world)
-    {
+    public CupidArrowEntity(EntityType<CupidArrowEntity> entityType, Level world) {
         super(entityType, world);
     }
 
-    public CupidArrowEntity(EntityType<CupidArrowEntity> entityType, double x, double y, double z, Level world)
-    {
+    public CupidArrowEntity(EntityType<CupidArrowEntity> entityType, double x, double y, double z, Level world) {
         super(entityType, x, y, z, world);
     }
 
-    public CupidArrowEntity(EntityType<CupidArrowEntity> entityType, LivingEntity shooter, Level world)
-    {
+    public CupidArrowEntity(EntityType<CupidArrowEntity> entityType, LivingEntity shooter, Level world) {
         super(entityType, shooter, world);
     }
 
     @Override
-    protected ItemStack getPickupItem()
-    {
+    protected ItemStack getPickupItem() {
         return ItemStack.EMPTY;
     }
 
     @Override
-    protected void onHitEntity(EntityHitResult pResult)
-    {
+    protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
-        if (!pResult.getEntity().level.isClientSide())
-        {
+        if (!pResult.getEntity().level.isClientSide()) {
             ServerLevel world = (ServerLevel) this.level;
             BlockPos pos = pResult.getEntity().blockPosition();
             Entity entity = pResult.getEntity();
@@ -62,11 +54,10 @@ public class CupidArrowEntity extends AbstractArrow
         }
     }
 
-
-    //this is for helping debug render issues
-    @Override
-    public Packet<?> getAddEntityPacket()
-    {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
+//    //this is for helping debug render issues
+//    @Override
+//    public Packet<ClientGamePacketListener> getAddEntityPacket()
+//    {
+//        return NetworkHooks.getEntitySpawningPacket(this);
+//    }
 }

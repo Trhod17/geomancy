@@ -107,11 +107,13 @@ public class DippingRecipe implements Recipe<SimpleContainer>
             if (fluids.get(0).equals(Fluids.EMPTY)) {
                 // Try loading fluid from fluid tag
                 try {
-                    @SuppressWarnings("deprecation")
-					HolderSet.Named<Fluid> fluidTag = Registry.FLUID.getOrCreateTag(TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation(this.fluid.getFirst())));
-                    if (fluidTag.size() > 0) {
-                        fluids = fluidTag.stream().map(Holder::value).toList();
-                    }
+
+                    //TODO fix this
+
+//					HolderSet.Named<Fluid> fluidTag = Registry.FLUID.getOrCreateTag(TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation(this.fluid.getFirst())));
+//                    if (fluidTag.size() > 0) {
+//                        fluids = fluidTag.stream().map(Holder::value).toList();
+//                    }
                 } catch (Exception e) {
                     // Who cares
                 }

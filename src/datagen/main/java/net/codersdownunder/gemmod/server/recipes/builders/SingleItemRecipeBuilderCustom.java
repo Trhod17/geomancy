@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SingleItemRecipeBuilderCustom implements RecipeBuilder {
    private final Item result;
@@ -50,7 +51,7 @@ public class SingleItemRecipeBuilderCustom implements RecipeBuilder {
 
    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
       this.ensureValid(pRecipeId);
-      pFinishedRecipeConsumer.accept(new SingleItemRecipeBuilderCustom.Result(pRecipeId, this.type, this.group == null ? "" : this.group, this.ingredient, this.result, this.count, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
+      pFinishedRecipeConsumer.accept(new SingleItemRecipeBuilderCustom.Result(pRecipeId, this.type, this.group == null ? "" : this.group, this.ingredient, this.result, this.count, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result + "/" + pRecipeId.getPath())));
    }
 
    private void ensureValid(ResourceLocation pId) {
@@ -84,7 +85,7 @@ public class SingleItemRecipeBuilderCustom implements RecipeBuilder {
          }
 
          pJson.add("ingredient", this.ingredient.toJson());
-         pJson.addProperty("result", Registry.ITEM.getKey(this.result).toString());
+         pJson.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
          pJson.addProperty("count", this.count);
       }
 

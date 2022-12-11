@@ -21,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class InfusionRecipeBuilder implements RecipeBuilder {
     private final Item result;
@@ -109,7 +110,7 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
     }
 
     public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
-        pFinishedRecipeConsumer.accept(new InfusionRecipeBuilder.Result(pRecipeId, this.result, this.count, this.base, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
+        pFinishedRecipeConsumer.accept(new InfusionRecipeBuilder.Result(pRecipeId, this.result, this.count, this.base, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.getResult() + "/" + pRecipeId.getPath())));
     }
 
     public static class Result implements FinishedRecipe {
@@ -153,13 +154,13 @@ public class InfusionRecipeBuilder implements RecipeBuilder {
                 pJson.add("ingredients", jsonarray);
 
                 JsonObject jsonobject1 = new JsonObject();
-                jsonobject1.addProperty("item", Registry.ITEM.getKey(this.base).toString());
+                jsonobject1.addProperty("item", ForgeRegistries.ITEMS.getKey(this.base).toString());
 
                 pJson.add("base", jsonobject1);
 
 
                 JsonObject jsonobject = new JsonObject();
-                jsonobject.addProperty("item", Registry.ITEM.getKey(this.result).toString());
+                jsonobject.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
                 if (this.count > 1) {
                     jsonobject.addProperty("count", this.count);
                 }

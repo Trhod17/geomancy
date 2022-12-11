@@ -6,24 +6,24 @@ import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.server.recipes.builders.InfusionRecipeBuilder;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
 public class GeomancyInfusionRecipeProvider extends RecipeProvider {
-	
-	public GeomancyInfusionRecipeProvider(DataGenerator generatorIn) {
-        super(generatorIn);
-    }
-
-	@Override
-	public String getName() {
-		return "Geomancy Infusion Recipe Provider";
+	public GeomancyInfusionRecipeProvider(PackOutput p_248933_) {
+		super(p_248933_);
 	}
 
+//	@Override
+//	public String getName() {
+//		return "Geomancy Infusion Recipe Provider";
+//	}
+
 	@Override
-	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 //		InfusionRecipeBuilder.infusing(ItemInit.CHAROITE_DREAMING.get(), ItemInit.CHAROITE.get())
 //		.requires(Items.STICK)
 //		.requires(Items.STICK)

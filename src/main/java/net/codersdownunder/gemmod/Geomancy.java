@@ -1,14 +1,7 @@
 package net.codersdownunder.gemmod;
 
 import net.codersdownunder.gemmod.init.*;
-import net.codersdownunder.gemmod.world.feature.ModConfiguredFeatures;
-import net.codersdownunder.gemmod.world.feature.ModPlacedFeatures;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.extensions.IForgeEntity;
-import net.minecraftforge.common.extensions.IForgeLivingEntity;
-import net.minecraftforge.fluids.FluidInteractionRegistry;
-import net.minecraftforge.fluids.FluidType;
+import net.codersdownunder.gemmod.tabs.CreativeTabEvents;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,13 +9,11 @@ import net.codersdownunder.gemmod.client.ClientSetup;
 import net.codersdownunder.gemmod.events.DreamCatcherEventHandler;
 import net.codersdownunder.gemmod.events.LogStrippingEvent;
 import net.codersdownunder.gemmod.network.GemModNetwork;
-import net.codersdownunder.gemmod.utils.GemModItemGroup;
 import net.codersdownunder.gemmod.utils.ModVanillaCompat;
 import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -49,18 +40,9 @@ public class Geomancy
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "geomancy";
-    
-    public static final CreativeModeTab gemsmoditemtab = new GemModItemGroup("gemsmoditemtab");
-    public static final CreativeModeTab gemsmodblocktab = new GemModItemGroup("gemmodblocktab");
-    
+
     public static final WoodType CHASM = WoodType.create(new ResourceLocation(MODID, "chasm").toString());
-    
-    //public static SimpleChannel simpleChannel; 
 
-    //public static final String MESSAGE_PROTOCOL_VERSION = "1.0";
-
-    //public static final ResourceLocation simpleChannelRL = new ResourceLocation(MODID, "gemmodchannel");
-    
     public static String find(String name)
 	{
 		return MODID + ":" + name;
@@ -70,8 +52,6 @@ public class Geomancy
     public Geomancy() {
         
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        
-        //bus.addListener(RecipeSerializer.class, ModRecipeTypes::registerRecipes);
 
         ParticlesInit.register(bus);
         ItemInit.register(bus);
@@ -81,14 +61,15 @@ public class Geomancy
         BlockEntityInit.register(bus);
         RecipeInit.registerSerializers(bus);
         RecipeInit.registerTypes(bus);
-        ModConfiguredFeatures.register(bus);
-        ModPlacedFeatures.register(bus);
+        //ModConfiguredFeatures.register(bus);
+        //ModPlacedFeatures.register(bus);
         FluidTypesInit.register(bus);
         FluidInit.register(bus);
         EntityInit.register(bus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.commonSpec);
         //ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(CreativeTabEvents::onCreativeModeTabRegister);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientSetup::subscribeClientEvents);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);

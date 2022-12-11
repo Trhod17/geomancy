@@ -3,6 +3,7 @@ package net.codersdownunder.gemmod.world.feature;
 import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -23,13 +24,14 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
 public class ModConfiguredFeatures {
     public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES =
-            DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, Geomancy.MODID);
+            DeferredRegister.create(Registries.CONFIGURED_FEATURE, Geomancy.MODID);
 
     public static final RegistryObject<ConfiguredFeature<?, ?>> DARKSTONE_GEODE = CONFIGURED_FEATURES.register("darkstone_geode",
             () -> new ConfiguredFeature<>(Feature.GEODE,

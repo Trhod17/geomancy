@@ -9,10 +9,8 @@ import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
@@ -20,25 +18,24 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 public class GeomancyRecipeProvider extends RecipeProvider implements IConditionBuilder {
-	
-	public GeomancyRecipeProvider(DataGenerator generatorIn) {
-        super(generatorIn);
-    }
-
-	@Override
-	public String getName() {
-		return "Geomancy Recipe Provider";
+	public GeomancyRecipeProvider(PackOutput p_248933_) {
+		super(p_248933_);
 	}
 
+//	@Override
+//	public String getName() {
+//		return "Geomancy Recipe Provider";
+//	}
+
 	@Override
-	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-		ShapelessRecipeBuilder.shapeless(BlockInit.CHASM_PLANKS.get(), 4)
+	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_PLANKS.get(), 4)
 				.requires(BlockInit.CHASM_LOG.get())
 				.group(Geomancy.MODID)
 				.unlockedBy("chasm_log", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_LOG.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_STAIRS.get(), 8)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_STAIRS.get(), 8)
 				.pattern("x  ")
 				.pattern("xx ")
 				.pattern("xxx")
@@ -47,27 +44,27 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_SLAB.get(), 6)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_SLAB.get(), 6)
 				.pattern("xxx")
 				.define('x', BlockInit.CHASM_PLANKS.get())
 				.group(Geomancy.MODID)
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(BlockInit.CHASM_BUTTON.get(), 2)
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_BUTTON.get(), 2)
 				.requires(BlockInit.CHASM_PLANKS.get())
 				.group(Geomancy.MODID)
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_PLATE.get(), 2)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_PLATE.get(), 2)
 				.pattern("xx")
 				.define('x', BlockInit.CHASM_PLANKS.get())
 				.group(Geomancy.MODID)
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_DOOR.get(), 3)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_DOOR.get(), 3)
 				.pattern("xx ")
 				.pattern("xx ")
 				.pattern("xx ")
@@ -76,7 +73,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_FENCE.get(), 3)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_FENCE.get(), 3)
 				.pattern("xsx")
 				.pattern("xsx")
 				.define('x', BlockInit.CHASM_PLANKS.get())
@@ -85,7 +82,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_FENCE_GATE.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_FENCE_GATE.get(), 1)
 				.pattern("sxs")
 				.pattern("sxs")
 				.define('x', BlockInit.CHASM_PLANKS.get())
@@ -94,7 +91,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_TRAPDOOR.get(), 3)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_TRAPDOOR.get(), 3)
 				.pattern("xxx")
 				.pattern("xxx")
 				.define('x', BlockInit.CHASM_PLANKS.get())
@@ -102,7 +99,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_LOG_BARK.get(), 3)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_LOG_BARK.get(), 3)
 				.pattern("xx ")
 				.pattern("xx ")
 				.define('x', BlockInit.CHASM_LOG.get())
@@ -110,7 +107,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("chasm_log", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_LOG.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_LOG_STRIPPED_BARK.get(), 3)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_LOG_STRIPPED_BARK.get(), 3)
 				.pattern("xx ")
 				.pattern("xx ")
 				.define('x', BlockInit.CHASM_LOG_STRIPPED.get())
@@ -118,7 +115,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("chasm_log_stripped", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_LOG_STRIPPED.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.CHASM_SIGN.get(), 3)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_SIGN.get(), 3)
 				.pattern("xxx")
 				.pattern("xxx")
 				.pattern(" s ")
@@ -128,7 +125,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("chasm_planks", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHASM_PLANKS.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(ItemInit.CATCHER_RING.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.CATCHER_RING.get(), 1)
 				.pattern("xsx")
 				.pattern("sts")
 				.pattern("xsx")
@@ -139,7 +136,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("catcherring", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHITE_WOOL, Items.STRING, Items.STICK))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.DREAM_CATCHER.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockInit.DREAM_CATCHER.get(), 1)
 				.pattern(" h ")
 				.pattern("srs")
 				.pattern("frf")
@@ -151,7 +148,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("dreamcatcher", InventoryChangeTrigger.TriggerInstance.hasItems(Items.FEATHER, Items.STRING, Items.TRIPWIRE_HOOK, ItemInit.CATCHER_RING.get()))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(Items.BELL, 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.BELL, 1)
 				.pattern("lll")
 				.pattern("gag")
 				.pattern("gng")
@@ -163,7 +160,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("bell", InventoryChangeTrigger.TriggerInstance.hasItems(Items.OAK_LOG, Items.GOLD_INGOT, Items.AMETHYST_BLOCK, Items.GOLD_NUGGET))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.DIPPER.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockInit.DIPPER.get(), 1)
 				.pattern("pip")
 				.pattern("lgl")
 				.pattern("sss")
@@ -176,7 +173,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.OAK_PLANKS, Items.IRON_INGOT, Items.OAK_LOG, Items.GLASS, Items.SMOOTH_STONE))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.INFUSION_TABLE.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockInit.INFUSION_TABLE.get(), 1)
 				.pattern("epe")
 				.pattern("sgs")
 				.pattern("ede")
@@ -189,7 +186,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("infusion_table", InventoryChangeTrigger.TriggerInstance.hasItems(Items.EMERALD, Items.DARK_OAK_SAPLING, Items.STRIPPED_DARK_OAK_LOG, Items.GOLDEN_APPLE, Items.DARK_OAK_LOG))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockInit.TELEPAD.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockInit.TELEPAD.get(), 1)
 				.pattern("ggg")
 				.pattern("dld")
 				.pattern("pap")
@@ -202,7 +199,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("telepad", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLASS, Items.DARK_PRISMARINE, Items.SEA_LANTERN, Items.ENDER_PEARL, Items.AMETHYST_SHARD))
 				.save(consumer, new ResourceLocation("telepad"));
 
-		ShapedRecipeBuilder.shaped(ItemInit.EMPTY_TOTEM.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.EMPTY_TOTEM.get(), 1)
 				.pattern("gbg")
 				.pattern("rar")
 				.pattern("nbn")
@@ -215,7 +212,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("empty_totem", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT, Items.GOLD_BLOCK, Items.BLAZE_ROD, Items.ENCHANTED_GOLDEN_APPLE, Items.GOLD_NUGGET))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(ItemInit.NETHER_CRUX.get())
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemInit.NETHER_CRUX.get())
 				.requires(ItemInit.NETHERRITE_NUGGET.get())
 				.requires(Items.END_CRYSTAL)
 				.requires(Items.EMERALD)
@@ -223,7 +220,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("nethercrux", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.NETHERRITE_NUGGET.get(), Items.END_CRYSTAL, Items.EMERALD))
 				.save(consumer, new ResourceLocation("nethercrux"));
 
-		ShapedRecipeBuilder.shaped(Items.PHANTOM_MEMBRANE, 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.PHANTOM_MEMBRANE, 1)
 				.pattern(" g ")
 				.pattern("sbs")
 				.pattern(" e ")
@@ -235,7 +232,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLOW_INK_SAC, Items.SLIME_BALL, Items.WHITE_DYE, Items.EGG))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(BlockItemInit.SONG_FORGE.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockItemInit.SONG_FORGE.get())
 				.pattern("sps")
 				.pattern("scs")
 				.pattern("bgb")
@@ -248,7 +245,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("song_forge", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLOW_INK_SAC, Items.AMETHYST_SHARD, Items.ENDER_PEARL, Items.OXIDIZED_COPPER, Items.AMETHYST_BLOCK, Items.GLOW_INK_SAC))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(ItemInit.PLATE_SPEED_UP.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.PLATE_SPEED_UP.get(), 1)
 				.pattern("xfx")
 				.pattern("rcr")
 				.pattern("xfx")
@@ -260,7 +257,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("plate_speed_up", InventoryChangeTrigger.TriggerInstance.hasItems(Items.FLINT, ItemInit.ROSE_QUARTZ.get(), Items.REDSTONE_BLOCK, Items.COAL_BLOCK))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(ItemInit.PLATE_FUEL_COAL.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.PLATE_FUEL_COAL.get(), 1)
 				.pattern("xmx")
 				.pattern("cfc")
 				.pattern("xmx")
@@ -272,7 +269,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("plate_coal", InventoryChangeTrigger.TriggerInstance.hasItems(Items.MAGMA_BLOCK, ItemInit.ROSE_QUARTZ.get(), Items.BLAST_FURNACE, Items.COAL_BLOCK))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(ItemInit.PLATE_FUEL_TIME.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.PLATE_FUEL_TIME.get(), 1)
 				.pattern("xox")
 				.pattern("aca")
 				.pattern("xox")
@@ -284,7 +281,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("plate_time", InventoryChangeTrigger.TriggerInstance.hasItems(Items.AMETHYST_BLOCK, ItemInit.ROSE_QUARTZ.get(), Items.OXIDIZED_COPPER, Items.CLOCK))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(ItemInit.PLATE_YIELD_ORE.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.PLATE_YIELD_ORE.get(), 1)
 				.pattern("xcx")
 				.pattern("ogo")
 				.pattern("xix")
@@ -297,7 +294,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("plate_ore_yield", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.ROSE_QUARTZ.get(), Items.OBSIDIAN, Items.RAW_COPPER_BLOCK, Items.RAW_GOLD_BLOCK, Items.RAW_IRON_BLOCK))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(ItemInit.PLATE_SPEED_OVERDRIVE.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.PLATE_SPEED_OVERDRIVE.get(), 1)
 				.pattern("xdx")
 				.pattern("rcr")
 				.pattern("xdx")
@@ -309,7 +306,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("plate_speed_overdrive", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.ROSE_QUARTZ.get(), Items.REDSTONE_BLOCK, ItemInit.CONCENTRATION.get(), Items.DIAMOND))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(ItemInit.PLATE_FAILSAFE.get(), 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.PLATE_FAILSAFE.get(), 1)
 				.pattern("xnx")
 				.pattern("crc")
 				.pattern("xcx")
@@ -321,7 +318,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 				.unlockedBy("dipper", InventoryChangeTrigger.TriggerInstance.hasItems(ItemInit.ROSE_QUARTZ.get(), Items.RESPAWN_ANCHOR, Items.HONEYCOMB_BLOCK, ItemInit.NETHER_CRUX.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(ItemInit.NETHER_CRUX.get(), 8)
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemInit.NETHER_CRUX.get(), 8)
 				.requires(ItemInit.NETHERRITE_NUGGET.get())
 				.requires(ItemInit.NETHERRITE_NUGGET.get())
 				.requires(Items.NETHER_STAR)
@@ -374,7 +371,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 	 * Converts item1 to item2
 	 */
 	private void conversionRecipe(Consumer<FinishedRecipe> consumer, Item item1, Item item2) {
-		ShapelessRecipeBuilder.shapeless(item1)
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, item1)
 				.requires(item2)
 				.group(Geomancy.MODID)
 				.unlockedBy(DataUtils.getItemRegistryName(item1), InventoryChangeTrigger.TriggerInstance.hasItems(item2))
@@ -382,7 +379,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 	}
 
 	private void ingotToNuggetsRecipe(Consumer<FinishedRecipe> consumer, Item nugget, Item ingot) {
-		ShapelessRecipeBuilder.shapeless(nugget, 9)
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, nugget, 9)
 				.requires(ingot)
 				.group(Geomancy.MODID)
 				.unlockedBy(DataUtils.getItemRegistryName(nugget), InventoryChangeTrigger.TriggerInstance.hasItems(ingot))
@@ -390,7 +387,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 	}
 
 	private void nuggetToIngotRecipe(Consumer<FinishedRecipe> consumer, Item ingot, Item nugget) {
-		ShapedRecipeBuilder.shaped(ingot, 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ingot, 1)
 				.pattern("xxx")
 				.pattern("xxx")
 				.pattern("xxx")
@@ -401,7 +398,7 @@ public class GeomancyRecipeProvider extends RecipeProvider implements ICondition
 	}
 
 	private void concoctionRecipe(Consumer<FinishedRecipe> consumer, Item concoction, Item item1, Item item2, Item item3, Item item4, Item item5) {
-		ShapedRecipeBuilder.shaped(concoction, 1)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, concoction, 1)
 				.pattern(" x ")
 				.pattern("asd")
 				.pattern(" f ")

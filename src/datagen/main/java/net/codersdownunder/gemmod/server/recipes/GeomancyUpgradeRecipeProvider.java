@@ -5,27 +5,31 @@ import java.util.function.Consumer;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.UpgradeRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class GeomancyUpgradeRecipeProvider extends RecipeProvider {
-	
-	public GeomancyUpgradeRecipeProvider(DataGenerator generatorIn) {
-        super(generatorIn);
-    }
 
-	@Override
-	public String getName() {
-		return "Geomancy Upgrade Recipe Provider";
+
+	public GeomancyUpgradeRecipeProvider(PackOutput p_248933_) {
+		super(p_248933_);
 	}
 
+//	@Override
+//	public String getName() {
+//		return "Geomancy Upgrade Recipe Provider";
+//	}
+
+
 	@Override
-	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 		
-		UpgradeRecipeBuilder.smithing(Ingredient.of(ItemInit.DIGGING_CLAW_DIAMOND.get()), Ingredient.of(Items.NETHERITE_INGOT), ItemInit.DIGGING_CLAW_NETHERITE.get()).unlocks("netherite", InventoryChangeTrigger.TriggerInstance.hasItems(Items.NETHERITE_INGOT, ItemInit.DIGGING_CLAW_NETHERITE.get())).save(consumer, "netherite_digging_claw");
+		UpgradeRecipeBuilder.smithing(Ingredient.of(ItemInit.DIGGING_CLAW_DIAMOND.get()), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.TOOLS, ItemInit.DIGGING_CLAW_NETHERITE.get()).unlocks("netherite", InventoryChangeTrigger.TriggerInstance.hasItems(Items.NETHERITE_INGOT, ItemInit.DIGGING_CLAW_NETHERITE.get())).save(consumer, "netherite_digging_claw");
 		
 	}
 

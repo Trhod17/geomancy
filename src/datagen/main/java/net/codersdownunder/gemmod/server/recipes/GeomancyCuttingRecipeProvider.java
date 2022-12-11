@@ -9,6 +9,7 @@ import net.codersdownunder.gemmod.server.recipes.builders.SingleItemRecipeBuilde
 import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -18,18 +19,17 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 
 public class GeomancyCuttingRecipeProvider extends RecipeProvider {
-	
-	public GeomancyCuttingRecipeProvider(DataGenerator generatorIn) {
-        super(generatorIn);
-    }
-
-	@Override
-	public String getName() {
-		return "Geomancy Stone Cutting Recipe Provider";
+	public GeomancyCuttingRecipeProvider(PackOutput p_248933_) {
+		super(p_248933_);
 	}
 
+//	@Override
+//	public String getName() {
+//		return "Geomancy Stone Cutting Recipe Provider";
+//	}
+
 	@Override
-	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 
 		SingleItemRecipeBuilderCustom.stonecutting(Ingredient.of(BlockItemInit.TREADSTONE_1.get()), BlockItemInit.TREADSTONE_1.get()).save(consumer);
 		SingleItemRecipeBuilderCustom.stonecutting(Ingredient.of(BlockItemInit.TREADSTONE_1.get()), BlockItemInit.TREADSTONE_2.get()).save(consumer);

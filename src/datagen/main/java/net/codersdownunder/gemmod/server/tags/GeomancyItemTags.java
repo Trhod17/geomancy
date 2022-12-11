@@ -4,23 +4,26 @@ import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
 
 public class GeomancyItemTags extends ItemTagsProvider {
 
-	public GeomancyItemTags(DataGenerator generator, BlockTagsProvider blockTags, ExistingFileHelper helper) {
-		super(generator, blockTags, Geomancy.MODID, helper);
+	public GeomancyItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider provider, @Nullable ExistingFileHelper existingFileHelper)
+	{
+		super(output, lookupProvider, provider, Geomancy.MODID, existingFileHelper);
 	}
-
 	@Override
-	protected void addTags() {
+	protected void addTags(HolderLookup.Provider p_256380_) {
 		
 		tag(GeomancyTags.Items.DREAM_COMMON)
 		.add(ItemInit.AGATE.get())
