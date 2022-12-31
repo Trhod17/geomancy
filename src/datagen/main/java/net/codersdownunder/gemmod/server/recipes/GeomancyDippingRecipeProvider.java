@@ -6,25 +6,26 @@ import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.server.recipes.builders.DippingRecipeBuilder;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.NotNull;
 
 public class GeomancyDippingRecipeProvider extends RecipeProvider {
 	public GeomancyDippingRecipeProvider(PackOutput p_248933_) {
 		super(p_248933_);
 	}
 
-//	@Override
-//	public String getName() {
-//		return "Geomancy Dipping Recipe Provider";
-//	}
+	@Override
+	@NotNull
+	public String getName() {
+		return "Geomancy Dipping Recipe Provider";
+	}
 
 	@Override
-	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+	protected void buildRecipes(final Consumer<FinishedRecipe> consumer) {
 		
 		DippingRecipeBuilder.dipping(ItemInit.AGATE.get(), 1000)
 		.requires(GeomancyTags.Items.QUARTZ)

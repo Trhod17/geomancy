@@ -8,7 +8,6 @@ import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -16,19 +15,22 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import org.jetbrains.annotations.NotNull;
 
 public class GeomancyRecipeProvider extends RecipeProvider implements IConditionBuilder {
-	public GeomancyRecipeProvider(PackOutput p_248933_) {
-		super(p_248933_);
+	public GeomancyRecipeProvider(final PackOutput output) {
+		super(output);
 	}
 
-//	@Override
-//	public String getName() {
-//		return "Geomancy Recipe Provider";
-//	}
+	@Override
+	@NotNull
+	public String getName() {
+		return "Geomancy Base Recipe Provider";
+	}
 
 	@Override
-	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+	protected void buildRecipes(final Consumer<FinishedRecipe> consumer) {
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, BlockInit.CHASM_PLANKS.get(), 4)
 				.requires(BlockInit.CHASM_LOG.get())
 				.group(Geomancy.MODID)

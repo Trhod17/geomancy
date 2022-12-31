@@ -21,7 +21,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,9 +35,9 @@ public class DiggingClawItem extends DiggerItem
 	
 	private final Tier tier;
 
-    public DiggingClawItem(float attackDamageBaseLine, float attackDamageBaseline, Tiers tier, TagKey<Block> blocks, Properties p_i48487_1_)
+    public DiggingClawItem(float attackDamageBaseLine, float attackDamageBaseline2, Tiers tier, TagKey<Block> blocks, Properties p_i48487_1_)
     {
-        super(attackDamageBaseline, attackDamageBaseline, tier, blocks, p_i48487_1_);
+        super(attackDamageBaseLine, attackDamageBaseline2, tier, blocks, p_i48487_1_);
         this.tier = tier;
     }
     
@@ -51,8 +50,7 @@ public class DiggingClawItem extends DiggerItem
         BlockState blockstate = level.getBlockState(blockpos);
     	Block block = blockstate.getBlock();
     	
-    	if (block instanceof GrowingPlantHeadBlock) {
-            GrowingPlantHeadBlock growingplantheadblock = (GrowingPlantHeadBlock)block;
+    	if (block instanceof GrowingPlantHeadBlock growingplantheadblock) {
             if (!growingplantheadblock.isMaxAge(blockstate)) {
                Player player = pContext.getPlayer();
                ItemStack itemstack = pContext.getItemInHand();
@@ -88,7 +86,7 @@ public class DiggingClawItem extends DiggerItem
                }
 
                CampfireBlock.dowse(pContext.getPlayer(), level, blockpos, blockstate);
-               blockstate2 = blockstate.setValue(CampfireBlock.LIT, Boolean.valueOf(false));
+               blockstate2 = blockstate.setValue(CampfireBlock.LIT, false);
             }
 
             if (blockstate2 != null) {
@@ -145,7 +143,7 @@ public class DiggingClawItem extends DiggerItem
             return TierSortingRegistry.isCorrectTierForDrops(tier, state);
         if (state.is(BlockTags.MINEABLE_WITH_SHOVEL))
             return TierSortingRegistry.isCorrectTierForDrops(tier, state);
-        if (state.is(GeomancyTags.Blocks.claw))
+        if (state.is(GeomancyTags.Blocks.CLAW))
             return TierSortingRegistry.isCorrectTierForDrops(tier, state);
         return false;
     }

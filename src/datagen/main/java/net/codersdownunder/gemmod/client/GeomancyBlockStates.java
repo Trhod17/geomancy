@@ -5,10 +5,7 @@ import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.blocks.songforge.SongForgeBlock;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.BlockItemInit;
-import net.codersdownunder.gemmod.init.FluidInit;
-import net.codersdownunder.gemmod.init.ItemInit;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -30,12 +27,11 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.xml.crypto.Data;
 
 public class GeomancyBlockStates extends BlockStateProvider {
 	
-    public GeomancyBlockStates(DataGenerator gen, ExistingFileHelper helper) {
-        super(gen, Geomancy.MODID, helper);
+    public GeomancyBlockStates(PackOutput packOutput, ExistingFileHelper helper) {
+        super(packOutput, Geomancy.MODID, helper);
     }
 
     @Override

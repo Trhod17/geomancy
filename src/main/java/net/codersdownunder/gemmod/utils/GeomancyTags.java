@@ -15,8 +15,9 @@ public class GeomancyTags {
 
 	public static class Blocks {
 		
-		public static final TagKey<Block> claw = createTag("mineable/claw");
-		public static final TagKey<Block> carpets = createForgeTag("carpets");
+		public static final TagKey<Block> CLAW = createTag("mineable/claw");
+
+		public static final TagKey<Block> CARPETS = createForgeTag("carpets");
 		
 		private static TagKey<Block> createTag(String name) {
 			return BlockTags.create(new ResourceLocation(Geomancy.MODID, name));
@@ -43,6 +44,11 @@ public class GeomancyTags {
 		public static final TagKey<Item> DIPPING_FLUIDS = createTag("dipping_fluids");
 		
 		public static final TagKey<Item> QUARTZ = createForgeTag("gems/quartz");
+
+		public static final TagKey<Item> TREADSTONES = createTag("treadstones");
+		public static final TagKey<Item> TREADSTONE_STAIRS = createTag("treadstones/stairs");
+		public static final TagKey<Item> TREADSTONE_SLABS = createTag("treadstones/slabs");
+		public static final TagKey<Item> TREADSTONE_CARPETS = createTag("treadstones/carpets");
 		
 		private static TagKey<Item> createTag(String name) {
 			return ItemTags.create(new ResourceLocation(Geomancy.MODID, name));

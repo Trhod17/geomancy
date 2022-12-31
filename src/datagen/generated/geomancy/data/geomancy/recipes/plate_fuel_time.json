@@ -1,30 +1,27 @@
 {
-  "type": "geomancy:infusing",
-  "base": {
-    "item": "geomancy:plate_fuel_time"
-  },
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "geomancy",
-  "ingredients": [
-    {
-      "item": "geomancy:rhodonite_dreaming"
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_block"
     },
-    {
-      "item": "geomancy:citrine_dreaming"
+    "c": {
+      "item": "minecraft:clock"
     },
-    {
-      "item": "geomancy:sphene"
+    "o": {
+      "item": "minecraft:oxidized_copper"
     },
-    {
-      "item": "geomancy:sphene"
-    },
-    {
-      "item": "geomancy:garnet"
-    },
-    {
-      "item": "geomancy:garnet"
+    "x": {
+      "item": "geomancy:rose_quartz"
     }
+  },
+  "pattern": [
+    "xox",
+    "aca",
+    "xox"
   ],
-  "output": {
+  "result": {
     "item": "geomancy:plate_fuel_time"
   }
 }

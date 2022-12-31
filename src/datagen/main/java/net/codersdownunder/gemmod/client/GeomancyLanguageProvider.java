@@ -4,16 +4,16 @@ import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.BlockInit;
 import net.codersdownunder.gemmod.init.BlockItemInit;
 import net.codersdownunder.gemmod.init.ItemInit;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class GeomancyLanguageProvider extends LanguageProvider {
     
-    public GeomancyLanguageProvider(DataGenerator gen) {
-        super(gen, Geomancy.MODID, "en_us");
+    public GeomancyLanguageProvider(PackOutput packOutput) {
+        super(packOutput, Geomancy.MODID, "en_us");
     }
     
-    private static String modid = Geomancy.MODID;
+    private static final String modid = Geomancy.MODID;
     
     @Override
     protected void addTranslations() {
@@ -254,8 +254,8 @@ public class GeomancyLanguageProvider extends LanguageProvider {
     }
     
     private void addItemGroupText() {
-    	add("itemGroup.gemsmoditemtab", "Geomancy Items");
-    	add("itemGroup.gemmodblocktab", "Geomancy Blocks");
+    	add("tab_geomancy_items.text", "Geomancy Items");
+    	add("tab_geomancy_blocks.text", "Geomancy Blocks");
     }
 
 }

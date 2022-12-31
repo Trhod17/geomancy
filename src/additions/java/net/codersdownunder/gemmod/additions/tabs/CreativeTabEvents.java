@@ -13,17 +13,16 @@ public class CreativeTabEvents {
     public static CreativeModeTab TAB_GEOMANCY_ADDITIONS;
     @SubscribeEvent
     public static void onCreativeModeTabRegister(CreativeModeTabEvent.Register event) {
-        TAB_GEOMANCY_ADDITIONS = event.registerCreativeModeTab(new ResourceLocation(Additions.MODID, "geomancy_additions"), builder -> {
-            builder
-                    .icon(() -> new ItemStack(BlockItemInit.PURPUR_PILLAR_WALL.get())).displayItems((features, output, hasPermissions) -> {
-                        output.accept(new ItemStack(BlockItemInit.PURPUR_PILLAR_WALL.get()));
-                        output.accept(new ItemStack(BlockItemInit.PURPUR_WALL.get()));
-                        output.accept(new ItemStack(BlockItemInit.PRISMARINE_BRICKS_WALL.get()));
-                        output.accept(new ItemStack(BlockItemInit.DARK_PRISMARINE_WALL.get()));
-                    })
-                    .title(Component.translatable("tab_geomancy_blocks.text"))
-                    .build();
-        });
+        TAB_GEOMANCY_ADDITIONS = event.registerCreativeModeTab(new ResourceLocation(Additions.MODID, "geomancy_additions"),
+                builder -> builder
+                .icon(() -> new ItemStack(BlockItemInit.PURPUR_PILLAR_WALL.get())).displayItems((features, output, hasPermissions) -> {
+                    output.accept(new ItemStack(BlockItemInit.PURPUR_PILLAR_WALL.get()));
+                    output.accept(new ItemStack(BlockItemInit.PURPUR_WALL.get()));
+                    output.accept(new ItemStack(BlockItemInit.PRISMARINE_BRICKS_WALL.get()));
+                    output.accept(new ItemStack(BlockItemInit.DARK_PRISMARINE_WALL.get()));
+                })
+                .title(Component.translatable("tab_additions_blocks.text"))
+                .build());
 
     }
 

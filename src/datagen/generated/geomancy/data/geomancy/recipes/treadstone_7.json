@@ -1,28 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "count": 1,
-  "ingredient": [
-    {
-      "item": "geomancy:treadstone_1"
-    },
-    {
-      "item": "geomancy:treadstone_2"
-    },
-    {
-      "item": "geomancy:treadstone_3"
-    },
-    {
-      "item": "geomancy:treadstone_4"
-    },
-    {
-      "item": "geomancy:treadstone_5"
-    },
-    {
-      "item": "geomancy:treadstone_6"
-    },
-    {
-      "item": "geomancy:treadstone_7"
-    }
-  ],
+  "ingredient": {
+    "tag": "geomancy:treadstones"
+  },
   "result": "geomancy:treadstone_7"
 }

@@ -5,7 +5,6 @@ import net.codersdownunder.gemmod.items.*;
 import net.codersdownunder.gemmod.utils.GeomancyTags;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -89,12 +88,12 @@ public class ItemInit
 
     public static final RegistryObject<Item> PLATE_DING = ITEMS.register("plate_ding", () -> new Item(new Item.Properties().stacksTo(5)));
 
-    public static final RegistryObject<Item> DIGGING_CLAW_WOOD = ITEMS.register("digging_claw_wood", () -> new DiggingClawItem(1, -2.8F, Tiers.WOOD, GeomancyTags.Blocks.claw, new Item.Properties()));
-    public static final RegistryObject<Item> DIGGING_CLAW_STONE = ITEMS.register("digging_claw_stone", () -> new DiggingClawItem(1, -2.8F, Tiers.STONE, GeomancyTags.Blocks.claw, new Item.Properties()));
-    public static final RegistryObject<Item> DIGGING_CLAW_IRON = ITEMS.register("digging_claw_iron", () -> new DiggingClawItem(0, 0, Tiers.IRON, GeomancyTags.Blocks.claw, new Item.Properties()));
-    public static final RegistryObject<Item> DIGGING_CLAW_GOLD = ITEMS.register("digging_claw_gold", () -> new DiggingClawItem(1, -2.8F, Tiers.GOLD, GeomancyTags.Blocks.claw, new Item.Properties()));
-    public static final RegistryObject<Item> DIGGING_CLAW_DIAMOND = ITEMS.register("digging_claw_diamond", () -> new DiggingClawItem(1, -2.8F, Tiers.DIAMOND, GeomancyTags.Blocks.claw, new Item.Properties()));
-    public static final RegistryObject<Item> DIGGING_CLAW_NETHERITE = ITEMS.register("digging_claw_netherite", () -> new DiggingClawItem(1, -2.8F, Tiers.NETHERITE, GeomancyTags.Blocks.claw, new Item.Properties()));
+    public static final RegistryObject<Item> DIGGING_CLAW_WOOD = ITEMS.register("digging_claw_wood", () -> new DiggingClawItem(1, -2.8F, Tiers.WOOD, GeomancyTags.Blocks.CLAW, new Item.Properties()));
+    public static final RegistryObject<Item> DIGGING_CLAW_STONE = ITEMS.register("digging_claw_stone", () -> new DiggingClawItem(1, -2.8F, Tiers.STONE, GeomancyTags.Blocks.CLAW, new Item.Properties()));
+    public static final RegistryObject<Item> DIGGING_CLAW_IRON = ITEMS.register("digging_claw_iron", () -> new DiggingClawItem(0, 0, Tiers.IRON, GeomancyTags.Blocks.CLAW, new Item.Properties()));
+    public static final RegistryObject<Item> DIGGING_CLAW_GOLD = ITEMS.register("digging_claw_gold", () -> new DiggingClawItem(1, -2.8F, Tiers.GOLD, GeomancyTags.Blocks.CLAW, new Item.Properties()));
+    public static final RegistryObject<Item> DIGGING_CLAW_DIAMOND = ITEMS.register("digging_claw_diamond", () -> new DiggingClawItem(1, -2.8F, Tiers.DIAMOND, GeomancyTags.Blocks.CLAW, new Item.Properties()));
+    public static final RegistryObject<Item> DIGGING_CLAW_NETHERITE = ITEMS.register("digging_claw_netherite", () -> new DiggingClawItem(1, -2.8F, Tiers.NETHERITE, GeomancyTags.Blocks.CLAW, new Item.Properties()));
 
     public static final RegistryObject<Item> HEALING_WATER_BUCKET = ITEMS.register("healing_water_bucket",
             () -> new BucketItem(FluidInit.SOURCE_HEALING_WATER,

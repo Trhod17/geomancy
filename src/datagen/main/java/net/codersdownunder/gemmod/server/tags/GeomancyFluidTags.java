@@ -9,6 +9,7 @@ import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
@@ -22,7 +23,7 @@ public class GeomancyFluidTags extends FluidTagsProvider {
 
 
     @Override
-    protected void addTags(HolderLookup.Provider p_256380_) {
+    protected void addTags(final HolderLookup.Provider p_256380_) {
         tag(GeomancyTags.Fluids.DIPPING_FLUIDS)
                 .add(Fluids.WATER);
 
@@ -34,7 +35,8 @@ public class GeomancyFluidTags extends FluidTagsProvider {
     }
 
     @Override
+    @NotNull
     public String getName() {
-        return "Geomancy Tags";
+        return "Geomancy Fluid Tags";
     }
 }

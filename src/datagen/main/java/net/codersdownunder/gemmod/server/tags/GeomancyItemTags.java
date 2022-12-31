@@ -23,7 +23,7 @@ public class GeomancyItemTags extends ItemTagsProvider {
 		super(output, lookupProvider, provider, Geomancy.MODID, existingFileHelper);
 	}
 	@Override
-	protected void addTags(HolderLookup.Provider p_256380_) {
+	protected void addTags(final HolderLookup.Provider p_256380_) {
 		
 		tag(GeomancyTags.Items.DREAM_COMMON)
 		.add(ItemInit.AGATE.get())
@@ -135,10 +135,46 @@ public class GeomancyItemTags extends ItemTagsProvider {
 
 		tag(ItemTags.ARROWS)
 				.add(ItemInit.CUPID_ARROW.get());
+
+		tag(GeomancyTags.Items.TREADSTONES)
+				.add(BlockItemInit.TREADSTONE_1.get(),
+						BlockItemInit.TREADSTONE_2.get(),
+						BlockItemInit.TREADSTONE_3.get(),
+						BlockItemInit.TREADSTONE_4.get(),
+						BlockItemInit.TREADSTONE_5.get(),
+						BlockItemInit.TREADSTONE_6.get(),
+						BlockItemInit.TREADSTONE_7.get());
+
+		tag(GeomancyTags.Items.TREADSTONE_CARPETS)
+				.add(BlockItemInit.TREADSTONE_CARPET_1.get(),
+						BlockItemInit.TREADSTONE_CARPET_2.get(),
+						BlockItemInit.TREADSTONE_CARPET_3.get(),
+						BlockItemInit.TREADSTONE_CARPET_4.get(),
+						BlockItemInit.TREADSTONE_CARPET_5.get(),
+						BlockItemInit.TREADSTONE_CARPET_6.get(),
+						BlockItemInit.TREADSTONE_CARPET_7.get());
+
+		tag(GeomancyTags.Items.TREADSTONE_SLABS)
+				.add(BlockItemInit.TREADSTONE_SLAB_1.get(),
+						BlockItemInit.TREADSTONE_SLAB_2.get(),
+						BlockItemInit.TREADSTONE_SLAB_3.get(),
+						BlockItemInit.TREADSTONE_SLAB_4.get(),
+						BlockItemInit.TREADSTONE_SLAB_5.get(),
+						BlockItemInit.TREADSTONE_SLAB_6.get(),
+						BlockItemInit.TREADSTONE_SLAB_7.get());
+
+		tag(GeomancyTags.Items.TREADSTONE_STAIRS)
+				.add(BlockItemInit.TREADSTONE_STAIR_1.get(),
+						BlockItemInit.TREADSTONE_STAIR_2.get(),
+						BlockItemInit.TREADSTONE_STAIR_3.get(),
+						BlockItemInit.TREADSTONE_STAIR_4.get(),
+						BlockItemInit.TREADSTONE_STAIR_5.get(),
+						BlockItemInit.TREADSTONE_STAIR_6.get(),
+						BlockItemInit.TREADSTONE_STAIR_7.get());
 	}
 
 	@Override
 	public String getName() {
-		return "Geomancy Tags";
+		return "Geomancy Item Tags";
 	}
 }

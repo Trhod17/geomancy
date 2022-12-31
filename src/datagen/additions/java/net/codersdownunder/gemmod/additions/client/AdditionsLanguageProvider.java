@@ -2,13 +2,13 @@ package net.codersdownunder.gemmod.additions.client;
 
 import net.codersdownunder.gemmod.additions.Additions;
 import net.codersdownunder.gemmod.additions.init.BlockInit;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class AdditionsLanguageProvider extends LanguageProvider {
 
-	public AdditionsLanguageProvider(DataGenerator gen) {
-		super(gen, Additions.MODID, "en_us");
+	public AdditionsLanguageProvider(PackOutput packOutput) {
+		super(packOutput, Additions.MODID, "en_us");
 	}
 
 	// private static String modid = Additions.MODID;
@@ -29,6 +29,7 @@ public class AdditionsLanguageProvider extends LanguageProvider {
 	}
 
 	private void addCreativeTabs() {
-    	add("itemGroup.additionsitemtab", "Geomancy Additions");
+
+		add("tabs_additions_blocks.text", "Geomancy Additions");
     }
 }

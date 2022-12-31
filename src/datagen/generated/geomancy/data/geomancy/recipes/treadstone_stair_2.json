@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "count": 1,
   "ingredient": {
-    "item": "geomancy:treadstone_2"
+    "tag": "geomancy:treadstones"
   },
   "result": "geomancy:treadstone_stair_2"
 }

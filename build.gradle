@@ -251,6 +251,8 @@ repositories {
 	maven { // Patchouli
         url 'https://maven.blamejared.com/'
     }
+
+    maven { url "https://maven.shedaniel.me" }
 }
 
 dependencies {
@@ -266,6 +268,9 @@ dependencies {
    	///implementation fg.deobf('curse.maven:catalogue-459701:3822882')
    	//compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     //runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    implementation fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:${rei_version}")
+    implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+    implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}")
 }
 
 if (project.hasProperty('UPDATE_MAPPINGS')) {

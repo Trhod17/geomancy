@@ -7,6 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
@@ -19,7 +20,7 @@ public class GeomancyEntityTags extends EntityTypeTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider p_256380_) {
+    protected void addTags(final HolderLookup.Provider p_256380_) {
         tag(EntityTypeTags.ARROWS)
                 .add(EntityInit.CUPID_ARROW.get());
 
@@ -28,6 +29,7 @@ public class GeomancyEntityTags extends EntityTypeTagsProvider {
     }
 
     @Override
+    @NotNull
     public String getName() {
         return "Geomancy Entity Tags";
     }

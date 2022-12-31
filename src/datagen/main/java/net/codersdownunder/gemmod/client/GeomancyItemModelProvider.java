@@ -3,7 +3,7 @@ package net.codersdownunder.gemmod.client;
 import net.codersdownunder.gemmod.Geomancy;
 import net.codersdownunder.gemmod.init.ItemInit;
 import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -12,8 +12,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class GeomancyItemModelProvider extends ItemModelProvider {
 
-    public GeomancyItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, Geomancy.MODID, existingFileHelper);
+    public GeomancyItemModelProvider(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
+        super(packOutput, Geomancy.MODID, existingFileHelper);
     }
 
     @Override

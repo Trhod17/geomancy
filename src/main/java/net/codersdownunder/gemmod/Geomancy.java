@@ -9,7 +9,7 @@ import net.codersdownunder.gemmod.client.ClientSetup;
 import net.codersdownunder.gemmod.events.DreamCatcherEventHandler;
 import net.codersdownunder.gemmod.events.LogStrippingEvent;
 import net.codersdownunder.gemmod.network.GemModNetwork;
-import net.codersdownunder.gemmod.utils.ModVanillaCompat;
+import net.codersdownunder.gemmod.compat.vanilla.ModVanillaCompat;
 import net.codersdownunder.gemmod.utils.TextUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
